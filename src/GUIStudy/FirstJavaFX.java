@@ -1,3 +1,5 @@
+package GUIStudy;
+
 /**
  * 初次尝试使用JavaFX来编写JavaGUI界面
  *
@@ -12,7 +14,6 @@
  *
  * @author:Benjamin
  */
-package GUIStudy;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

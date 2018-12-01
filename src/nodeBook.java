@@ -1,8 +1,10 @@
-import java.util.ArrayList;
-
+/**
+ * ≤›∏Â÷Ω
+ *
+ * author:Benjamin
+ */
 public class nodeBook {
     public static void main(String[] args) {
-//        String a = "111";
-//        ArrayList b = (ArrayList)a;
+        System.out.println("Hello World!");
     }
 }
