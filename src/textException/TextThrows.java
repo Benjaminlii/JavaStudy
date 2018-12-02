@@ -20,6 +20,7 @@ public class TextThrows {
         int b = 0;
         if(b == 0){
 //            抛出的异常必须是一个对象，而不是一个类，需要实例化
+//            这里抛出异常是指向外层调用报错，需要try-catch来处理
             throw new ArithmeticException("'b'should't equals to Zero.");
         }
         double answer = a / b;
