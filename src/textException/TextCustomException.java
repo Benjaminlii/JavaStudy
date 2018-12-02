@@ -1,12 +1,13 @@
 package textException;
 
+import java.util.Scanner;
+
 /**
  * 测试自定义异常，目前这样写好像是没什么用
  *
  * author:Benjamin
  */
 
-import java.util.Scanner;
 
 public class TextCustomException {
     public static void main(String[] args) {
@@ -17,7 +18,7 @@ public class TextCustomException {
         }
     }
 
-    public static void text0() throws MyException {
+    private static void text0() throws MyException {
         Scanner in = new Scanner(System.in);
         String str = in.nextLine();
         if (str.equals("error")) {
@@ -33,7 +34,7 @@ class MyException extends Exception {
     public MyException() {
     }
 
-    public MyException(String message) {
+    MyException(String message) {
         super(message);
     }
 }
