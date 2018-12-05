@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * type ArrayList.set(int n, type data);    设置ArrayList下标为n位置上的元素为data，返回原值（此处为覆盖原来的值）
  * type ArrayList.get(int n);   得到ArrayList上下标为n的元素，返回这个值
  * int ArrayList.size();    得到ArrayList的长度，并返回
+ * Array ArrayList.toArray();   将ArrayList转化成数组并返回
  * <p>
  * author:Benjamin
  */
@@ -38,6 +39,8 @@ public class TextArrayList {
 
         //ArrayList.size()返回容器的长度
         System.out.println("one.size() = " + one.size());
+
+        System.out.println("one.toArray() = " + one.toArray());
 
 
     }
