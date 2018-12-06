@@ -16,6 +16,7 @@ import java.util.HashSet;
  * Array HashSet.toArray()  将HashSet转化为数组并返回
  *
  * author:Benjamin
+ * date:2018.12.5
  */
 
 public class textHashSet {

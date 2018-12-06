@@ -21,6 +21,7 @@ import java.util.HashMap;
  * HashMap实现了Map接口，包含以上方法
  *
  * author:Benjamin
+ * date:2018.12.5
  */
 
 public class textHashMap {

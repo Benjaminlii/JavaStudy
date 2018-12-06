@@ -16,6 +16,7 @@ import java.util.ArrayList;
  * Array ArrayList.toArray();   将ArrayList转化成数组并返回
  * <p>
  * author:Benjamin
+ * date:2018.12.2
  */
 
 public class TextArrayList {
