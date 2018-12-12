@@ -19,6 +19,11 @@ package textMultithread;
  *      }
  * target就是传入的Runnable对象，如果未传入target，那么就应该覆盖run方法
  *
+ * 实现Runnable接口的好处：
+ *      1、将多线程的实现与多线程执行的代码分离
+ *      2、避免Java单继承的局限性
+ * 这种方式实现多线程较为常见
+ *
  * author:Benjamin
  * date:2018.12.12
  */
