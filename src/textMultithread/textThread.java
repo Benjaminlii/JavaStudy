@@ -16,24 +16,22 @@ package textMultithread;
  */
 
 class Thread1 extends Thread{
-    private String name;
-
     Thread1(String name) {
-        this.name = name;
+        super(name);
     }
 
     // run方法承载了自定义线程中要运行的代码
     @Override
     public void run() {
         for(int i = 0; i < 1000; i++){
-            System.out.println(this.name + "---" + i);
+            System.out.println(this.getName() + "---" + i);
         }
     }
 }
 
 public class textThread {
     public static void main(String[] args) {
-        // 创建线程，这时内存中并没有自定义的线程，只是一定定义好了
+        // 创建线程，这时内存中并没有自定义的线程，只是已经定义好了
         // 在调用start方法之后，才会有三个线程（主线程、one、two）
         Thread1 one = new Thread1("one");
         Thread1 two = new Thread1("two");
