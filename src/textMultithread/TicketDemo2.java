@@ -15,7 +15,7 @@ package textMultithread;
  */
 public class TicketDemo2 {
     public static void main(String[] args) {
-        Runnable r1 = new Ticket1();
+        Runnable r1 = new Ticket2();
 
         Thread t1 = new Thread(r1);
         Thread t2 = new Thread(r1);
