@@ -33,11 +33,11 @@ class Ticket2 implements Runnable{
     // 票不能重复卖，所以四个Ticket对象共用一个num，及静态变量
     private int num = 100;
 
-    private void sale() {
+    private void sale() throws InterruptedException {
         // 保证票为正数
         while (this.num > 0) {
             // 延时
-            for(int i = 0; i < 1000000; i++);
+            Thread.sleep(10);
             System.out.println(Thread.currentThread().getName()
                     + "...." + num--);
         }
@@ -45,6 +45,10 @@ class Ticket2 implements Runnable{
 
     @Override
     public void run() {
-        sale();
+        try {
+            sale();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
