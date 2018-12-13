@@ -6,8 +6,11 @@ package textMultithread;
  * 使用线程锁将一段操作共享数据的代码锁起来，使线程运行期间其他线程不能被运行
  * 原理为，一个线程进入synchronized后的代码块时，obj对象会被标记
  * 当CPU切换到其他线程时，线程看到被标记的obj，就会停止执行，随后被CPU切换
- * 原线程在数次被CPU切换到已经进入synchronized语句的代码块中并且运行完之后
+ * 原线程在数次被CPU切换到已经进入synchronized语句的代码块中并且运行完之后（也就是说，线程锁会降低程序运行的效率）
  * 在退出synchronized代码块时，会将obj的标记还原，使得其他线程有机会进入synchronized语句
+ *
+ * synchronized线程锁解决线程安全问题的前提：
+ *      有多个线程，并且这些线程都使用了同一个线程锁，也就是共用一个obj对象
  *
  * author:Benjamin
  * date:2018.12.13
@@ -35,15 +38,20 @@ class Ticket3 implements Runnable {
     private int num = 100;
     private final Object obj = new Object();
 
-    private void sale() throws InterruptedException {
+    private void sale(){
         // 在这个例子中，不能将run方法中的所有代码锁起来，所以更改了循环的结构
         while (true) {
-            //
+            // 这里使用了线程锁，如果run方法中需要被锁起来的代码是被封装起来的
+            // 那么可以直接在封装函数的函数定义上加上synchronized关键字
             synchronized (obj) {
                 // 保证票为正数
                 if (this.num > 0) {
                     // 延时
-                    Thread.sleep(10);
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     System.out.println(Thread.currentThread().getName() + "...." + num--);
                 }else{
                     break;
@@ -54,10 +62,6 @@ class Ticket3 implements Runnable {
 
     @Override
     public void run() {
-        try {
-            sale();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        sale();
     }
 }
