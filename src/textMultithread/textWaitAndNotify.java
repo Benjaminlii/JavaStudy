@@ -43,7 +43,7 @@ class DataForCommun1 {
 class Input1 implements Runnable {
     private final DataForCommun1 one;
 
-    public Input1(DataForCommun1 one) {
+    Input1(DataForCommun1 one) {
         this.one = one;
     }
 
@@ -78,7 +78,7 @@ class Input1 implements Runnable {
 class Output1 implements Runnable{
     private final DataForCommun1 one;
 
-    public Output1(DataForCommun1 one) {
+    Output1(DataForCommun1 one) {
         this.one = one;
     }
 
