@@ -43,7 +43,7 @@ class DataForCommun1 {
     private boolean flag = false;
 
     synchronized void set(String data1, String data2) {
-        if (!this.flag)
+        if (this.flag)
             try {
                 this.wait();
             } catch (InterruptedException e) {
@@ -52,12 +52,12 @@ class DataForCommun1 {
         this.data1 = data1;
         this.data2 = data2;
 
-        this.flag = false;
+        this.flag = true;
         this.notify();
     }
 
     synchronized void get() {
-        if (this.flag) {
+        if (!this.flag) {
             try {
                 this.wait();
             } catch (InterruptedException e) {
@@ -66,7 +66,7 @@ class DataForCommun1 {
         }
         System.out.println(data1 + data2);
 
-        this.flag = true;
+        this.flag = false;
         this.notify();
 
     }
