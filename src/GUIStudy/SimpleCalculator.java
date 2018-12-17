@@ -28,6 +28,7 @@ public class SimpleCalculator extends Application {
 
         Scene scene = new Scene(one, 920, 150);
         primaryStage.setScene(scene);
+
         primaryStage.show();
 
     }
@@ -81,9 +82,11 @@ public class SimpleCalculator extends Application {
 
     private VBox getCol() {
         VBox one = new VBox();
+
         one.setPadding(new Insets(10, 10, 10, 10));
         one.setSpacing(10);
         one.getChildren().addAll(this.getRow1(), this.getRow2());
+
         return one;
     }
 

@@ -27,26 +27,25 @@ public class InvestmentCalculator extends Application {
 
         Scene scene = new Scene(getRow(), 420, 250);
         primaryStage.setScene(scene);
+
         primaryStage.show();
     }
 
     private HBox getRow() {
         HBox one = new HBox();
+
         one.setPadding(new Insets(10, 10, 10, 10));
         one.setSpacing(10);
-
-
         one.getChildren().addAll(this.getCol1(), this.getCol2());
-
 
         return one;
     }
 
     private VBox getCol1() {
         VBox one = new VBox();
+
         one.setPadding(new Insets(10, 10, 10, 10));
         one.setSpacing(20);
-
         one.getChildren().addAll(new Label("Investment Amount")
                 , new Label("Years")
                 , new Label("Annual Interest Rate")
@@ -57,6 +56,7 @@ public class InvestmentCalculator extends Application {
 
     private VBox getCol2() {
         VBox one = new VBox();
+
         one.setPadding(new Insets(10, 10, 10, 10));
         one.setSpacing(10);
 
