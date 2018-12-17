@@ -10,6 +10,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * author:Benjamin
+ * data:2018.12.17
+ */
+
 public class InvestmentCalculator extends Application {
     private static TextField invAmount = new TextField();
     private static TextField years = new TextField();
