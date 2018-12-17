@@ -25,6 +25,7 @@ public class InvestmentCalculator extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Exercise");
 
+        // 设置画布的上的排布以及尺寸
         Scene scene = new Scene(getRow(), 420, 250);
         primaryStage.setScene(scene);
 
@@ -34,6 +35,7 @@ public class InvestmentCalculator extends Application {
     private HBox getRow() {
         HBox one = new HBox();
 
+        // 组件之间间距
         one.setPadding(new Insets(10, 10, 10, 10));
         one.setSpacing(10);
         one.getChildren().addAll(this.getCol1(), this.getCol2());
@@ -44,6 +46,7 @@ public class InvestmentCalculator extends Application {
     private VBox getCol1() {
         VBox one = new VBox();
 
+        // 组件之间间距
         one.setPadding(new Insets(10, 10, 10, 10));
         one.setSpacing(20);
         one.getChildren().addAll(new Label("Investment Amount")
@@ -57,6 +60,7 @@ public class InvestmentCalculator extends Application {
     private VBox getCol2() {
         VBox one = new VBox();
 
+        // 组件之间间距
         one.setPadding(new Insets(10, 10, 10, 10));
         one.setSpacing(10);
 

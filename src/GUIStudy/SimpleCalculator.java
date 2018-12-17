@@ -26,6 +26,7 @@ public class SimpleCalculator extends Application {
         primaryStage.setTitle("Exercise");
         VBox one = this.getCol();
 
+        // 设置画布的上的排布以及尺寸
         Scene scene = new Scene(one, 920, 150);
         primaryStage.setScene(scene);
 
@@ -35,6 +36,8 @@ public class SimpleCalculator extends Application {
 
     private HBox getRow1() {
         HBox one = new HBox();
+
+        // 组件之间间距
         one.setPadding(new Insets(10, 10, 10, 10));
         one.setSpacing(10);
 
@@ -49,6 +52,8 @@ public class SimpleCalculator extends Application {
 
     private HBox getRow2() {
         HBox one = new HBox();
+
+        // 组件之间间距
         one.setPadding(new Insets(10, 10, 10, 140));
         one.setSpacing(50);
 
@@ -83,6 +88,7 @@ public class SimpleCalculator extends Application {
     private VBox getCol() {
         VBox one = new VBox();
 
+        // 组件之间间距
         one.setPadding(new Insets(10, 10, 10, 10));
         one.setSpacing(10);
         one.getChildren().addAll(this.getRow1(), this.getRow2());
