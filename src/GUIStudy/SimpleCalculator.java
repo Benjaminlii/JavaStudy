@@ -22,7 +22,7 @@ public class SimpleCalculator extends Application {
     private static TextField result_ = new TextField();
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         primaryStage.setTitle("Exercise");
         VBox one = this.getCol();
 
