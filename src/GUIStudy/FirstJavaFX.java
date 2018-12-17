@@ -44,7 +44,11 @@ public class FirstJavaFX extends Application {
         btn.setOnAction(event -> {
             int row = (int) (Math.random() * 10);
             int col = (int) (Math.random() * 10);
-            pane.add(btn, col, row);
+            try {
+                pane.add(btn, col, row);
+            }catch (IllegalArgumentException e){
+                System.out.println("Exception");
+            }
         });
         pane.add(btn, 5, 5);
 
