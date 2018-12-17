@@ -28,7 +28,9 @@ package textMultithread;
  *      notifyAll()唤醒了所有的线程，其中肯定包括与运行线程（将要被锁定）不同任务的线程
  *      这样就解决了会出现四个睡眠线程的问题
  *
- * 至此，多生产者多消费者案例被解决
+ * 至此，多生产者多消费者案例被解决，但这样的解决方案是有缺陷的
+ * 程序线程唤醒和睡眠的次数非常多，也就导致运行的效率低下
+ *
  *
  *  author:Benjamin
  * date:2018.12.15
@@ -106,7 +108,7 @@ class Producer implements Runnable {
     }
 }
 
-// 生产者
+// 消费者
 class Consumer implements Runnable {
 
     private Resource one;
