@@ -71,7 +71,6 @@ public class Calculator extends Application {
         setButton(one, 5, 3, "=");
         setButton(one, 5, 4, "+");
 
-
         return one;
     }
 
@@ -106,24 +105,32 @@ public class Calculator extends Application {
 
         String[] numbers;
         double answer = 0;
-        if (one.split("\\+").length == 2) {
-            numbers = one.split("\\+");
-            answer = Float.valueOf(numbers[0]) + Float.valueOf(numbers[1]);
-        } else if (one.split("-").length == 2) {
-            numbers = one.split("-");
-            answer = Float.valueOf(numbers[0]) - Float.valueOf(numbers[1]);
-        } else if (one.split("\\*").length == 2) {
+        if (one.split("\\*").length == 2) {
             numbers = one.split("\\*");
             answer = Float.valueOf(numbers[0]) * Float.valueOf(numbers[1]);
         } else if (one.split("/").length == 2) {
             numbers = one.split("/");
-            answer = Float.valueOf(numbers[0]) / Float.valueOf(numbers[1]);
+            float num1 = Float.valueOf(numbers[0]);
+            float num2 = Float.valueOf(numbers[1]);
+            if (num2 == 0) return "Error!";
+            else answer = num1 / num2;
         } else if (one.split("\\^").length == 2) {
             numbers = one.split("\\^");
             answer = Math.pow(Float.valueOf(numbers[0]), Float.valueOf(numbers[1]));
         } else if (one.split("%").length == 2) {
             numbers = one.split("%");
             answer = Float.valueOf(numbers[0]) % Float.valueOf(numbers[1]);
+        } else if (one.split("\\+").length == 2) {
+            numbers = one.split("\\+");
+            answer = Float.valueOf(numbers[0]) + Float.valueOf(numbers[1]);
+        } else if (one.split("-").length == 2) {
+            numbers = one.split("-");
+            System.out.println(one + "--" + one.split("-").length + "--" + numbers[0]);
+            if (numbers[0].equals("")) {
+                answer = Float.valueOf(numbers[1]) * -1;
+            } else {
+                answer = Float.valueOf(numbers[0]) - Float.valueOf(numbers[1]);
+            }
         }
         return answer + "";
     }
