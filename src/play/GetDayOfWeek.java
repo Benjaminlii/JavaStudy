@@ -19,7 +19,7 @@ import java.util.Scanner;
  * date:2018.12.18
  */
 
-public class getDayOfWeek {
+public class GetDayOfWeek {
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
