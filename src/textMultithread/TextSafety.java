@@ -16,7 +16,7 @@ package textMultithread;
  * date:2018.12.13
  */
 
-public class textSafety {
+public class TextSafety {
     public static void main(String[] args) {
         Runnable r1 = new Ticket3();
 

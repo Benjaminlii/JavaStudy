@@ -11,7 +11,7 @@ package textMultithread;
  * author:Benjamin
  * date:2018.12.13
  */
-public class textSingleton {
+public class TextSingleton {
 }
 
 /**

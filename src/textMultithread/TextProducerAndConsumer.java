@@ -35,7 +35,7 @@ package textMultithread;
  *  author:Benjamin
  * date:2018.12.15
  */
-public class textProducerAndConsumer {
+public class TextProducerAndConsumer {
     public static void main(String[] args) {
         Resource one = new Resource();
 

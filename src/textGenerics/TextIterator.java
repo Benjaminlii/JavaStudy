@@ -21,7 +21,7 @@ import java.util.List;
  * author:Benjamin
  * date:2018.12.6
  */
-public class textIterator {
+public class TextIterator {
     public static void main(String[] args) {
         List<String> one = new ArrayList<>();
         for (int i = 0; i < 10; i++) {

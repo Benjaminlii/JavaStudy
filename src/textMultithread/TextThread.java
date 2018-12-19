@@ -47,7 +47,7 @@ class Thread1 extends Thread{
     }
 }
 
-public class textThread {
+public class TextThread {
     public static void main(String[] args) throws InterruptedException {
         // 创建线程，这时内存中并没有自定义的线程，只是已经定义好了
         // 在调用start方法之后，才会有三个线程（主线程、one、two）

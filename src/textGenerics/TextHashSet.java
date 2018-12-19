@@ -19,7 +19,7 @@ import java.util.HashSet;
  * date:2018.12.5
  */
 
-public class textHashSet {
+public class TextHashSet {
     public static void main(String[] args) {
         HashSet<String> one = new HashSet<>();
         one.add("one");

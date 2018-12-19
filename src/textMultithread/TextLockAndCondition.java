@@ -30,7 +30,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * author:Benjamin
  * date:2018.12.17
  */
-public class textLockAndCondition {
+public class TextLockAndCondition {
     public static void main(String[] args) {
         Resource1 one = new Resource1();
 

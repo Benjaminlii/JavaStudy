@@ -37,7 +37,7 @@ class doInOtherThread implements Runnable{
     }
 }
 
-public class textRunnable {
+public class TextRunnable {
     public static void main(String[] args) {
         Thread t1 = new Thread(new doInOtherThread());
         Thread t2 = new Thread(new doInOtherThread());

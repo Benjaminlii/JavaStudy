@@ -14,7 +14,7 @@ package textMultithread;
  * author:Benjamin
  * date:2018.12.14
  */
-public class textDeadLock {
+public class TextDeadLock {
     public static void main(String[] args) {
         Runnable one = new DeadLock();
 

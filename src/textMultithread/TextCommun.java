@@ -17,7 +17,7 @@ package textMultithread;
  * author:Benjamin
  * date:2018.12.14
  */
-public class textCommun {
+public class TextCommun {
     public static void main(String[] args) {
         DataForCommun one = new DataForCommun();
 

@@ -22,7 +22,7 @@ package textMultithread;
  * author:Benjamin
  * date:2018.12.14
  */
-public class textWaitAndNotify {
+public class TextWaitAndNotify {
     public static void main(String[] args) {
         DataForCommun1 one = new DataForCommun1();
 

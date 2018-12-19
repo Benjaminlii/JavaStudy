@@ -24,7 +24,7 @@ import java.util.HashMap;
  * date:2018.12.5
  */
 
-public class textHashMap {
+public class TextHashMap {
     public static void main(String[] args) {
         HashMap<Integer, String> one = new HashMap<>();
         one.put(1, "one");
