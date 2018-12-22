@@ -25,6 +25,7 @@ import java.util.Scanner;
  */
 
 class TxtWriter{
+
     private FileWriter fw;
 
     TxtWriter(String fileName) throws IOException {
@@ -38,7 +39,6 @@ class TxtWriter{
 }
 
 public class TextFileWriter {
-
 
     public static void main(String[] args) {
         try(Scanner in = new Scanner(System.in)){
