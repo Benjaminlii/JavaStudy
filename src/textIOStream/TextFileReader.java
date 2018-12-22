@@ -8,7 +8,7 @@ import java.io.IOException;
  * FileReader类（继承关系：Object->Reader->InputStreamReader->FileReader）
  * 构造器： FileReader(String fileName);    以fileName为名称关联一个文件
  *          FileReader(File file);          关联一个File对象
- * 方法：  int FileReader.read();      在文件中读取一个字符，并以整形返回
+ * 方法：  int FileReader.read();      在文件中读取一个字符，并以整形返回，若文件结束，返回-1
  *
  * author:Benjamin
  * date:2018.12.22
