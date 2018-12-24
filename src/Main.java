@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import java.util.Scanner;
 
 /**
@@ -5,37 +6,20 @@ import java.util.Scanner;
  * date:2018.12.24
  */
 public class Main {
-    private static boolean isAInt(char[] one) {
-        for (char i : one) {
-            if (!((int) i >= 48 && (int) i <= 57)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static boolean isInt(String[] one) {
-        for (String i : one) {
-            if (!isAInt(i.toCharArray())) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        String[] one = new String[2];
-        while (true) {
-            one[0] = in.next();
-            one[1] = in.next();
-            if (!isInt(one)) {
-                System.out.println("Incorrect input and re-enter two integers:");
-            } else {
-                System.out.println("Sum is " + (Integer.valueOf(one[0]) + Integer.valueOf(one[1])));
-                break;
+        BigInteger m = new BigInteger(in.next());
+        BigInteger one = new BigInteger("1");
+        int n = in.nextInt();
+
+        while(n>0){
+            if(m.isProbablePrime(1)){
+                n--;
+                System.out.println(m);
             }
+            m = m.add(one);
         }
 
         in.close();
