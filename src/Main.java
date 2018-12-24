@@ -1,32 +1,36 @@
 import java.util.Scanner;
 
 /**
+ * '.' -(int)-> 46
+ * '0'~'9' -(int)-> 48~57
+ * 还加入了判断小数点个数的机制
  * author:Benjamin
  * date:2018.12.24
  */
 public class Main {
 
-    private static void exchange(char[] array, int one, int two){
-        char tmp = array[one];
-        array[one] = array[two];
-        array[two] = tmp;
-    }
-
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        char[]one = in.next().toCharArray();
+        char[] one = in.next().toCharArray();
         in.close();
 
-        for(int i = 0; i < one.length; i++){
-            int flag = i;
-            for(int j = i+1; j<one.length;j++){
-                if((int) one[flag] > (int) one[j]){
-                    flag = j;
-                }
+        int count = 0;
+        for (char i : one) {
+            if (i == '.') {
+                count++;
             }
-            exchange(one,i,flag);
+        }
+        if (count > 1) {
+            System.out.println("false");
+            return;
         }
 
-        System.out.println(one);
+        for (char i : one) {
+            if (!((int) i >= 48 && (int) i <= 57 || (int) i == 46)) {
+                System.out.println("false");
+                return;
+            }
+        }
+        System.out.println("true");
     }
 }
