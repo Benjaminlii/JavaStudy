@@ -1,36 +1,65 @@
 import java.util.Scanner;
 
 /**
- * '.' -(int)-> 46
- * '0'~'9' -(int)-> 48~57
- * 还加入了判断小数点个数的机制
  * author:Benjamin
  * date:2018.12.24
  */
+abstract class Shape {
+
+    abstract double getArea();
+
+    static double getsumArea(Shape[] shapes) {
+        double rtn = 0;
+        for (Shape one : shapes)
+            rtn += one.getArea();
+        return rtn;
+    }
+}
+
+class Circle extends Shape {
+
+    private double ride;
+
+    Circle(double ride) {
+        this.ride = ride;
+    }
+
+    @Override
+    double getArea() {
+        return Math.PI * Math.pow(this.ride, 2);
+    }
+}
+
+class Rectangle extends Shape {
+
+    private double side1;
+    private double side2;
+
+    Rectangle(double side1, double side2) {
+        this.side1 = side1;
+        this.side2 = side2;
+    }
+
+    @Override
+    double getArea() {
+        return this.side1 * this.side2;
+    }
+}
+
 public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        char[] one = in.next().toCharArray();
+
+        System.out.printf("The total area is %.4f", Shape.getsumArea(
+                new Shape[]{
+                        new Circle(in.nextDouble()),
+                        new Circle(in.nextDouble()),
+                        new Rectangle(in.nextDouble(), in.nextDouble()),
+                        new Rectangle(in.nextDouble(), in.nextDouble())
+                }
+        ));
+
         in.close();
-
-        int count = 0;
-        for (char i : one) {
-            if (i == '.') {
-                count++;
-            }
-        }
-        if (count > 1) {
-            System.out.println("false");
-            return;
-        }
-
-        for (char i : one) {
-            if (!((int) i >= 48 && (int) i <= 57 || (int) i == 46)) {
-                System.out.println("false");
-                return;
-            }
-        }
-        System.out.println("true");
     }
 }
