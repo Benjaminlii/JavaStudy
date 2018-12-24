@@ -20,7 +20,8 @@ import java.util.Scanner;
  *          FileWriter(String FileName, boolean append);    append表示是否为续写
  *          FileWriter(File file);      以file对象为基本创建一个写入流，并关联文件
  *          FileWriter(file file, boolean append)       同上，表示是否为续写
- * 方法     void FileWriter.flush();             刷新缓冲区域，将缓冲区域中的字符写入文件中。
+ * 方法     void FileWriter.write(String data)    往缓冲区域写入字符
+ *          void FileWriter.flush();             刷新缓冲区域，将缓冲区域中的字符写入文件中。
  *          void FileWriter.close();             关闭流，在关闭之前会进行刷新操作。
  *
  * author:Benjamin
