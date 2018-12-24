@@ -1,5 +1,4 @@
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.math.BigInteger;
 import java.util.Scanner;
 
 /**
@@ -11,11 +10,19 @@ public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        GregorianCalendar oneTime = new GregorianCalendar();
-        oneTime.setTimeInMillis(in.nextLong());
-        System.out.println(oneTime.get(Calendar.YEAR) + "-" +
-                oneTime.get(Calendar.MONTH) + "-" +
-                oneTime.get(Calendar.DAY_OF_MONTH));
+        BigInteger num = new BigInteger(Long.MAX_VALUE + "");
+        BigInteger one = new BigInteger("1");
+        num = num.add(one);// 题目中是大于Long.MAX_VALUE的数
+        BigInteger n = new BigInteger(in.next());
+        int count = 0;
+
+        while (count < 3) {
+            if (num.mod(n).toString().equals("0")) {
+                System.out.println(num);
+                count++;
+            }
+            num = num.add(one);
+        }
 
         in.close();
     }
