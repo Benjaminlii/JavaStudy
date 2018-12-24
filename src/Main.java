@@ -10,26 +10,27 @@ public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        HashMap<String, String> list = new HashMap<>();
+        HashMap<String, Integer> list = new HashMap<>();
 
         String name;
-        String number;
+        Integer number;
 
         while (true) {
             name = in.next();
             if (name.equals("noname")) {
                 break;
             }
-            number = in.next();
+            number = in.nextInt();
             list.put(name, number);
         }
 
         name = in.next();
         number = list.get(name);
         if (number == null) {
-            number = "Not found.";
+            System.out.println("Not found.");
+        }else{
+            System.out.printf("%.2f", number*0.21);
         }
-        System.out.println(number);
 
         in.close();
     }
