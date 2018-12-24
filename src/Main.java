@@ -50,7 +50,6 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-
         System.out.printf("The total area is %.4f", Shape.getsumArea(
                 new Shape[]{
                         new Circle(in.nextDouble()),
@@ -59,7 +58,6 @@ public class Main {
                         new Rectangle(in.nextDouble(), in.nextDouble())
                 }
         ));
-
         in.close();
     }
 }
