@@ -23,5 +23,12 @@ public class Cell {
         return this.isBlack;
     }
 
+    public int getID(){
+        return this.ID;
+    }
 
+    public void exchange(boolean isBlack){
+        this.isEmpty = false;
+        this.isBlack = isBlack;
+    }
 }
