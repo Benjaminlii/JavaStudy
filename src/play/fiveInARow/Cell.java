@@ -7,7 +7,7 @@ public class Cell {
     private boolean isEmpty;
     private boolean isBlack;
 
-    public Cell(int row, int col) {
+    Cell(int row, int col) {
         this.row = row;
         this.col = col;
         this.ID = (this.col - 1) * 15 + this.row;
@@ -23,11 +23,15 @@ public class Cell {
         return this.isBlack;
     }
 
-    public int getID(){
+    boolean isEmpty(){
+        return this.isEmpty;
+    }
+
+    int getID(){
         return this.ID;
     }
 
-    public void exchange(boolean isBlack){
+    void exchange(boolean isBlack){
         this.isEmpty = false;
         this.isBlack = isBlack;
     }

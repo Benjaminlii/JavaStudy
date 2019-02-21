@@ -21,7 +21,7 @@ public class Board extends Application {
     private Image black = new Image(getClass().getResourceAsStream("/BlackPiece.png"));
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         primaryStage.setTitle("Checker Board");
         GridPane grid = new GridPane();
         grid.setHgap(0);
@@ -38,13 +38,15 @@ public class Board extends Application {
                 btn.setStyle("-fx-padding: 0px;-fx-border-color: black;-fx-border-width: 1");
 
                 btn.setOnAction((ActionEvent) -> {
-                    btn.getCell().exchange(Board.isblack);
-                    if(Board.isblack){
-                        btn.setGraphic(new ImageView(black));
-                    }else{
-                        btn.setGraphic(new ImageView(white));
+                    if(btn.getCell().isEmpty()) {
+                        btn.getCell().exchange(Board.isblack);
+                        if (Board.isblack) {
+                            btn.setGraphic(new ImageView(black));
+                        } else {
+                            btn.setGraphic(new ImageView(white));
+                        }
+                        Board.exchangeColor(pieces);
                     }
-                    Board.exchangeColor(pieces);
                 });
 
                 pieces.put(btn.getCell().getID(),btn);
@@ -61,12 +63,13 @@ public class Board extends Application {
     private static void exchangeColor(HashMap<Integer, PieceButton> pieces) {
         Board.isblack = !Board.isblack;
         if(Board.isblack){
-            for(int i = 0; i < pieces.size(); i++){
+            for(int i = 1; i <= pieces.size(); i++){
                 PieceButton btn = pieces.get(i);
                 btn.setStyle("-fx-padding: 0px;-fx-border-color: black;-fx-border-width: 1");
+
             }
         }else{
-            for(int i = 0; i < pieces.size(); i++){
+            for(int i = 1; i <= pieces.size(); i++){
                 PieceButton btn = pieces.get(i);
                 btn.setStyle("-fx-padding: 0px;-fx-border-color: white;-fx-border-width: 1");
             }
@@ -81,15 +84,15 @@ class PieceButton extends Button {
         super(str, img);
     }
 
-    public PieceButton() {
+    PieceButton() {
         super();
     }
 
-    public void setCell(Cell one) {
+    void setCell(Cell one) {
         this.one = one;
     }
 
-    public Cell getCell(){
+    Cell getCell(){
         return this.one;
     }
 
