@@ -1,4 +1,17 @@
 package play.fiveInARow;
+/**
+ * 之前忘了写文档
+ * 五子棋算是一个比较简单的小程序
+ * 我的界面优化比较差，主要是不想添加多余的组件
+ * 所以大多通过全局的颜色来继续执子方的提醒和获胜方的提醒
+ * 这样做和好处是揭秘那更加简洁，坏处就是比较不人性化
+ *
+ * 一开始的思路也都没问题，主要是实现过程中，算法部分考虑不周全，导致bug
+ * JavaFX也是难点之一，不过参考文档的话并不难
+ *
+ * data：2019.2.25
+ * author:Benjamin
+ */
 
 import javafx.application.Application;
 import javafx.scene.Scene;
