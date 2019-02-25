@@ -1,6 +1,6 @@
 package play.fiveInARow;
 
-public class Cell {
+class Cell {
     private int row;
     private int col;
     private int ID;
@@ -10,29 +10,38 @@ public class Cell {
     Cell(int row, int col) {
         this.row = row;
         this.col = col;
-        this.ID = (this.col - 1) * 15 + this.row;
+        this.ID = (this.row - 1) * 15 + this.col;
         this.isEmpty = true;
     }
 
-    public void setCell(boolean ifColorIsBlack){
+    void setCell(boolean ifColorIsBlack) {
         this.isEmpty = false;
         this.isBlack = ifColorIsBlack;
     }
 
-    public boolean getColorIsBlack(){
+    boolean getColorIsBlack() {
         return this.isBlack;
     }
 
-    boolean isEmpty(){
+    boolean isEmpty() {
         return this.isEmpty;
     }
 
-    int getID(){
+    int getID() {
         return this.ID;
     }
 
-    void exchange(boolean isBlack){
-        this.isEmpty = false;
-        this.isBlack = isBlack;
+    int getRow() {
+        return row;
     }
+
+    int getCol() {
+        return col;
+    }
+
+    static int getIDByRowAngCol(int row, int col) {
+        return (row - 1) * 15 + col;
+    }
+
+
 }
