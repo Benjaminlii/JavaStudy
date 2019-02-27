@@ -5,10 +5,10 @@ package play.fiveInARow;
  * 我的界面优化比较差，主要是不想添加多余的组件
  * 所以大多通过全局的颜色来继续执子方的提醒和获胜方的提醒
  * 这样做和好处是揭秘那更加简洁，坏处就是比较不人性化
- *
+ * <p>
  * 一开始的思路也都没问题，主要是实现过程中，算法部分考虑不周全，导致bug
  * JavaFX也是难点之一，不过参考文档的话并不难
- *
+ * <p>
  * data：2019.2.25
  * author:Benjamin
  */
@@ -66,7 +66,8 @@ public class Board extends Application {
                     Board.exchangeColor(pieces);
                     if (Board.isEnough(btn.getCell().getRow(), btn.getCell().getCol(), pieces)) {
                         boolean isblack = btn.getCell().getColorIsBlack();
-                        showWinner(pieces, isblack);
+//                        showWinner(pieces, isblack);
+                        System.out.println((btn.getCell().getColorIsBlack() ? "Black" : "White") + " win");
                     }
                 }
             });
@@ -209,7 +210,7 @@ public class Board extends Application {
     private static void showWinner(HashMap<Integer, PieceButton> pieces, boolean isblack) {
         Image color = isblack ? Board.black : Board.white;
         PieceButton btn;
-        for(int i = 1; i <= pieces.size(); i++){
+        for (int i = 1; i <= pieces.size(); i++) {
             btn = pieces.get(i);
             btn.setGraphic(new ImageView(color));
         }
