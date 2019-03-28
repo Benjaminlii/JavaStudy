@@ -215,7 +215,6 @@ public class Board extends Application {
             btn.setGraphic(new ImageView(color));
         }
     }
-
 }
 
 class PieceButton extends Button {
