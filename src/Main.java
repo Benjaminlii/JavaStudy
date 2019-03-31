@@ -10,15 +10,11 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        ArrayList<Integer> one = new ArrayList<>();
-        int num = in.nextInt() + in.nextInt();
-        for(int i = 0; i < num; i ++){
-            one.add(in.nextInt());
-        }
-        Collections.sort(one);
-        for(int i : one){
-            System.out.printf("%d ", i);
-        }
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        hm.put(1,1);
+        hm.put(2,2);
+        hm.put(3,3);
+        hm.put(4,4);
+        Set<Integer> one = hm.keySet();
     }
 }
