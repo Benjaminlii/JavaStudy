@@ -1,4 +1,4 @@
-//package textNIO;
+package textNIO;
 
 import java.io.IOException;
 import java.net.InetAddress;
