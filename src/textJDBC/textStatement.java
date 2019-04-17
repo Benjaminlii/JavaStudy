@@ -31,14 +31,17 @@ import java.util.Scanner;
  * ---------------------------------------------------------------------------------------------------------------------
  */
 
-public class textStatement {
+public class TextStatement {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         m2();
     }
 
     private static void m1() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?characterEncoding=UTF8&serverTimezone=UTC", "root", "litao.");
+        Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/demo?characterEncoding=UTF8&serverTimezone=UTC",
+                "root",
+                "litao.");
 
         Statement sta = con.createStatement();
         String str = "insert into student (s_name, course) value ('lilili', 'web');";
@@ -46,6 +49,7 @@ public class textStatement {
         sta.execute(str);
 
     }
+
     private static void m2() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?characterEncoding=UTF8&serverTimezone=UTC", "root", "litao.");

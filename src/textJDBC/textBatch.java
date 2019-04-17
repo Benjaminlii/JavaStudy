@@ -18,7 +18,7 @@ import java.sql.Statement;
  * ---------------------------------------------------------------------------------------------------------------------
  */
 
-public class textBatch {
+public class TextBatch {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         m1();

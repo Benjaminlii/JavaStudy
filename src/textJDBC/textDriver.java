@@ -24,10 +24,13 @@ import java.sql.SQLException;
  * ---------------------------------------------------------------------------------------------------------------------
  */
 
-public class textDriver {
+public class TextDriver {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         Class.forName("come.mysql.jdbc.Driver");
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/world", "root", "litao.");
+        Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/world",
+                "root",
+                "litao.");
 
     }
 }

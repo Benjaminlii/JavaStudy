@@ -22,7 +22,7 @@ import java.sql.*;
  * ---------------------------------------------------------------------------------------------------------------------
  */
 
-public class textResultSet {
+public class TextResultSet {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         m1();
     }
