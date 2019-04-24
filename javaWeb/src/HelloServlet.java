@@ -1,5 +1,6 @@
 import javax.servlet.*;
 import java.io.IOException;
+import java.util.Enumeration;
 
 public class HelloServlet implements Servlet{
 
@@ -21,6 +22,17 @@ public class HelloServlet implements Servlet{
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         System.out.println("init hello");
+
+        // ≤‚ ‘ServletConfig¿‡
+        System.out.println("user : " + servletConfig.getInitParameter("user"));
+        System.out.println();
+
+        Enumeration<String> names = servletConfig.getInitParameterNames();
+        while(names.hasMoreElements()){
+            String name = names.nextElement();
+            String value = servletConfig.getInitParameter(name);
+            System.out.println("" + name + " : " + value);
+        }
     }
 
     @Override
