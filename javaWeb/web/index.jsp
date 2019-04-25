@@ -11,6 +11,6 @@
     <title>Benjamin</title>
 </head>
 <body>
-<h1>zyy zyy zyy zyy zyy zyy zyy zyy zyy zyy zyy zyy </h1>
+<h1>Benjamin!</h1>
 </body>
 </html>
