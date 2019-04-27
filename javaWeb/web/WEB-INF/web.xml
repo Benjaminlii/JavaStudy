@@ -64,4 +64,14 @@
         <servlet-name>loginHttp</servlet-name>
         <url-pattern>/loginHttp</url-pattern>
     </servlet-mapping>
+
+    <!-- 注册JSP -->
+    <servlet>
+        <servlet-name>demoJSP</servlet-name>
+        <jsp-file>/page/demo.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>demoJSP</servlet-name>
+        <url-pattern>/demojsp</url-pattern>
+    </servlet-mapping>
 </web-app>
