@@ -12,7 +12,7 @@
 </head>
 <body>
     <%
-        //编码
+        //设置post请求方式的编码，get方式再Tomcat的设置中修改
         request.setCharacterEncoding("utf-8");
         out.print("用户名：" + request.getParameter("username") + "<br/>");
         out.print("密码：" + request.getParameter("password") + "<br/>");
