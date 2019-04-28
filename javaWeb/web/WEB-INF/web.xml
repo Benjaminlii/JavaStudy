@@ -7,7 +7,7 @@
     <!-- 对第一个servlet helloServlet.java 进行配置 -->
     <servlet>
         <servlet-name>hello</servlet-name>
-        <servlet-class>HelloServlet</servlet-class>
+        <servlet-class>demo.HelloServlet</servlet-class>
         <!-- 配置Servlet的初始化参数 -->
         <init-param>
             <!-- 参数名 -->
@@ -28,10 +28,10 @@
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
 
-    <!-- 第二个servlet WorldServlet.java 对Servlet的初始化顺序进行测试 -->
+    <!-- 第二个servlet demo.WorldServlet.java 对Servlet的初始化顺序进行测试 -->
     <servlet>
         <servlet-name>world</servlet-name>
-        <servlet-class>WorldServlet</servlet-class>
+        <servlet-class>demo.WorldServlet</servlet-class>
         <load-on-startup>2</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -48,7 +48,7 @@
     <!-- 对一个提交表单的注册 -->
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>LoginServlet</servlet-class>
+        <servlet-class>demo.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -58,7 +58,7 @@
     <!-- 注册第一个HttpServlet -->
     <servlet>
         <servlet-name>loginHttp</servlet-name>
-        <servlet-class>LoginHttpServlet</servlet-class>
+        <servlet-class>demo.LoginHttpServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>loginHttp</servlet-name>
@@ -73,5 +73,25 @@
     <servlet-mapping>
         <servlet-name>demoJSP</servlet-name>
         <url-pattern>/demojsp</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- 一个注册账号的demo -->
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <jsp-file>/register/register.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>show</servlet-name>
+        <jsp-file>/register/show.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>show</servlet-name>
+        <url-pattern>/show</url-pattern>
     </servlet-mapping>
 </web-app>

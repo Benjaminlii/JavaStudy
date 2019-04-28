@@ -1,5 +1,8 @@
+package demo;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -27,6 +30,7 @@ public class LoginServlet implements Servlet {
         System.out.println(username + ", " + password);
 
         HttpServletRequest httpServletRequest = (HttpServletRequest)servletRequest;
+        HttpServletResponse httpServletResponse = (HttpServletResponse)servletResponse;
         System.out.println("URI : " +
                 httpServletRequest.getRequestURI());
         System.out.println("URL : " +
@@ -37,6 +41,11 @@ public class LoginServlet implements Servlet {
         PrintWriter out =  servletResponse.getWriter();
         out.print(username + ", " + password);
 
+        //在这里顺便测试请求的转发和重定向
+        //请求转发
+        httpServletRequest.getRequestDispatcher("/world").forward(servletRequest,servletResponse);
+        //请求重定向
+        httpServletResponse.sendRedirect("/world");
     }
 
     @Override
