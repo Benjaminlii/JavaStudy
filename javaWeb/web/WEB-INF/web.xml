@@ -94,4 +94,15 @@
         <servlet-name>show</servlet-name>
         <url-pattern>/show</url-pattern>
     </servlet-mapping>
+
+    <!-- demoCookie -->
+    <servlet>
+        <servlet-name>loginCookie</servlet-name>
+        <jsp-file>/demoCookie/login.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loginCookie</servlet-name>
+        <url-pattern>/loginCookie</url-pattern>
+    </servlet-mapping>
+
 </web-app>
