@@ -79,16 +79,16 @@
     <!-- 一个注册账号的demo -->
     <servlet>
         <servlet-name>register</servlet-name>
-        <jsp-file>/register/register.jsp</jsp-file>
+        <jsp-file>/loginWithDBMS/loginWithDBMS.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>register</servlet-name>
-        <url-pattern>/register</url-pattern>
+        <url-pattern>/loginWithDBMS</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>show</servlet-name>
-        <jsp-file>/register/show.jsp</jsp-file>
+        <jsp-file>/loginWithDBMS/show.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>show</servlet-name>

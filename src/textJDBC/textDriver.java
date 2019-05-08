@@ -26,11 +26,12 @@ import java.sql.SQLException;
 
 public class TextDriver {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
+        Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/world",
+                "jdbc:mysql://localhost:3306/web?characterEncoding=UTF8&serverTimezone=UTC",
                 "root",
                 "litao.");
+        System.out.println(con);
 
     }
 }
