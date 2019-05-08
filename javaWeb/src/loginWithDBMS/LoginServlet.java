@@ -1,24 +1,28 @@
 package loginWithDBMS;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-@WebServlet("/Check")
-public class CheckServlet extends HttpServlet {
+@WebServlet("/Login")
+public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("utf-8");
+
         Acc acc = new Acc(request.getParameter("uname"), request.getParameter("upwd"));
         LoginDao login = new LoginDao();
 
-        PrintWriter out = response.getWriter();
-
-        if (login.login(acc) <= 0) {
-            out.println("error");
+        if (login.login(acc) == 1) {
+            try {
+                request.getRequestDispatcher("/loginWithDBMS/Welcome.jsp").forward(request,response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            }
         } else {
-            out.println("get it");
+            response.sendRedirect("/javaWeb/loginWithDBMS/login.jsp");
         }
     }
 
