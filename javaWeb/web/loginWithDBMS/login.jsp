@@ -11,7 +11,7 @@
     <title>login</title>
 </head>
 <body>
-<form action="check.jsp">
+<form action="/javaWeb/Check">
     用户名：<label>
     <input type="text" name="uname"><br>
 </label>

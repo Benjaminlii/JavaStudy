@@ -6,7 +6,7 @@ import java.io.IOException;
 public class WorldServlet implements Servlet {
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
-        System.out.println("init world");
+//        System.out.println("init world");
     }
 
     @Override
