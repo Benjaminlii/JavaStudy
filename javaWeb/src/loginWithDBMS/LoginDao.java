@@ -2,32 +2,57 @@ package loginWithDBMS;
 
 import java.sql.*;
 
-public class LoginDao {
+class LoginDao {
 
-    private Connection con;
-    private PreparedStatement ps = null;
-
-    public LoginDao(String username, String password, String database) throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/" + database + "?characterEncoding=UTF8&serverTimezone=UTC",
-                username,
-                password);
+    LoginDao(){
     }
 
-    public int login(Acc acc) throws SQLException {
-        String sql = "select * from acc where uname = ? and upwd = ?;";
+    int login(Acc acc) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int rtn = -1;
 
-        ps = con.prepareStatement(sql);
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/" + "web" + "?characterEncoding=UTF8&serverTimezone=UTC",
+                    "root",
+                    "litao.");
+            String sql = "select count(*) from acc where uname = ? and upwd = ?;";
 
-        ps.setObject(1, acc.getUname());
-        ps.setObject(2, acc.getUpwd());
+            ps = con.prepareStatement(sql);
 
-        ResultSet rs = ps.executeQuery();
-        int rtn = 0;
-        while(rs.next()){
-            rtn++;
+            ps.setString(1, acc.getUname());
+            ps.setString(2, acc.getUpwd());
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                rtn = rs.getInt(1);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null)
+                    rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (ps != null)
+                    ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
+
         return rtn;
     }
 }
