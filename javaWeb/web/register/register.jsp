@@ -3,7 +3,7 @@
   User: Benjamin
   Date: 2019/4/28
   Time: 22:12
-  To change this template use File | Settings | File Templates.
+  To ChangeOff this template use File | Settings | File Templates.
 --%>
 <%--
   使用一个注册并展示信息的demo练习Servlet和JSP的知识点

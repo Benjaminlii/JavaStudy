@@ -16,7 +16,7 @@ class LoginDao {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/" + "web" + "?characterEncoding=UTF8&serverTimezone=UTC",
+                    "jdbc:mysql://localhost:3306/web?characterEncoding=UTF8&serverTimezone=UTC",
                     "root",
                     "litao.");
             String sql = "select count(*) from acc where uname = ? and upwd = ?;";
