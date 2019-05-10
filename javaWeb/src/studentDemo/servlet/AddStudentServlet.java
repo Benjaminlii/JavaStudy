@@ -1,7 +1,7 @@
-package addStudent.servlet;
+package studentDemo.servlet;
 
-import addStudent.entity.Student;
-import addStudent.service.StudentService;
+import studentDemo.entity.Student;
+import studentDemo.service.StudentService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "AddStudentServlet", value = "/addStudent")
+@WebServlet(value = "/addStudentServlet")
 public class AddStudentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置请求的解析格式为utf-8
@@ -24,14 +24,12 @@ public class AddStudentServlet extends HttpServlet {
                 , Integer.valueOf(request.getParameter("sage"))
                 , String.valueOf(request.getParameter("saddress"))
         );
-        String rtn = null;
         if(StudentService.addStudent(stu)){
-            rtn = "插入成功！";
+            request.setAttribute("add", "1");
         }else{
-            rtn = "插入失败！";
+            request.setAttribute("add", "0");
         }
-        //向前端返回文字数据
-        response.getWriter().print(rtn);
+        request.getRequestDispatcher("/findAllStudentServlet").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

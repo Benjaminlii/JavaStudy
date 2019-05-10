@@ -11,7 +11,7 @@
     <title>Benjamin</title>
 </head>
 <body>
-<h1><a href="/javaWeb/addStudent/addStudent.html">Benjamin!</a></h1>
+<h1><a href="/javaWeb/findAllStudentServlet">Benjamin!</a></h1>
 
 </body>
 </html>

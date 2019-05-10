@@ -1,4 +1,4 @@
-package addStudent.dao;
+package studentDemo.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

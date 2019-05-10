@@ -1,4 +1,4 @@
-package addStudent.entity;
+package studentDemo.entity;
 
 /**
  * 对web数据库中的student表的数据进行的数据封装
