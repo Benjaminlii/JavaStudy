@@ -20,7 +20,7 @@ public class TextIP {
     // 使用net包中的InetAddress.getLocalHost();获取本地的IP地址
     public static void method_0() throws UnknownHostException {
         InetAddress one = InetAddress.getLocalHost();
-        System.out.println(one);
+        System.out.println(one.getHostAddress());
     }
 
     // 根据IP的名称获取IP地址对象

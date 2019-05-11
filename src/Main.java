@@ -9,7 +9,11 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        String s = String.valueOf(null);
-        System.out.println(s);
+        String s1 = "Hello";
+        String s2 = "Hello";
+        String s3 = "Hellp";
+        s3 = s3.replace('p', 'o');
+        System.out.println(s1==s2);
+        System.out.println(s1==s3);
     }
 }

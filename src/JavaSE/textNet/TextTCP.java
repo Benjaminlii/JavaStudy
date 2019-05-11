@@ -1,4 +1,4 @@
-//package JavaSE.textNet;
+package JavaSE.textNet;//package JavaSE.textNet;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -18,8 +18,22 @@ import java.net.Socket;
  * date:2019.3.30
  */
 public class TextTCP {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException {
+        // 服务端需要监听一个端口
+        ServerSocket ss = new ServerSocket(8889);
+        // 获取与服务端连接的客户端对象
+        Socket s = ss.accept();
+        System.out.println(s.getInetAddress().getHostName() + ".....已连接服务端。");
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        PrintStream out = new PrintStream(s.getOutputStream(), true);
+        String line;
+        while ((line = in.readLine()) != null) {
+            if (line.equals("bye"))
+                break;
+            out.println(line);
+        }
+        s.close();
+        ss.close();
     }
 }
 
