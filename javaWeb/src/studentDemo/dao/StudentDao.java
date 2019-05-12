@@ -1,6 +1,7 @@
 package studentDemo.dao;
 
 import studentDemo.entity.Student;
+import studentDemo.util.DBUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,22 +22,9 @@ public class StudentDao {
      * @return 若插入成功，返回true，否则返回false
      */
     public static boolean addStudent(Student stu) {
-        Connection con = DBDao.getCon();
         String sql = "insert into student (sno, sname, sage, saddress) values (?, ?, ?, ?);";
-        PreparedStatement ps;
-        int count = 0;
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, stu.getSno());
-            ps.setString(2, stu.getSname());
-            ps.setInt(3, stu.getSage());
-            ps.setString(4, stu.getSaddress());
-
-            count = ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return count != 0;
+        Object[] para = {stu.getSno(), stu.getSname(), stu.getSage(), stu.getSaddress()};
+        return DBUtil.executeUpdate("web", sql, para) != 0;
     }
 
     /**
@@ -46,18 +34,9 @@ public class StudentDao {
      * @return 删除成功返回true，否则返回false
      */
     public static boolean deleteStudent(int sno) {
-        Connection con = DBDao.getCon();
         String sql = "delete from student where sno = ?;";
-        PreparedStatement ps;
-        int count = 0;
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, sno);
-            count = ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return count == 1;
+        Object[] para = {sno};
+        return DBUtil.executeUpdate("web", sql, para) == 1;
     }
 
     /**
@@ -68,22 +47,9 @@ public class StudentDao {
      * @return 若更改成功，返回true，若不成功，返回false
      */
     public static boolean updataStudent(int sno, Student stu) {
-        Connection con = DBDao.getCon();
         String sql = "update student set sname = ?, sage = ?, saddress = ? where sno = ?;";
-        PreparedStatement ps;
-        int count = 0;
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setString(1, stu.getSname());
-            ps.setInt(2, stu.getSage());
-            ps.setString(3, stu.getSaddress());
-            ps.setInt(4, sno);
-
-            count = ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return count == 1;
+        Object[] para = {stu.getSname(), stu.getSage(), stu.getSaddress(), stu.getSno()};
+        return DBUtil.executeUpdate("web", sql, para) == 1;
     }
 
     /**
@@ -103,50 +69,51 @@ public class StudentDao {
      * @return 若找到该Student，返回Student对象，若未找到，返回null
      */
     public static Student findStudentBySno(int sno) {
-        Connection con = DBDao.getCon();
         String sql = "select * from student where sno = ? ;";
-        PreparedStatement ps;
+        Object[] para = {sno};
         ResultSet rs;
         Student stu = null;
         try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, sno);
-            rs = ps.executeQuery();
+            rs = DBUtil.executeQuery("web", sql, para);
             if (rs.next()) {
                 stu = new Student(rs.getInt("sno")
                         , rs.getString("sname")
                         , rs.getInt("sage")
-                        , rs.getString("saddress"));
+                        , rs.getString("saddress")
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            DBUtil.closeAll();
         }
         return stu;
     }
 
     /**
      * 查找student表中的所有数据
+     *
      * @return 返回由student表中的数据组成的一个个Student组成的List
      */
     public static List<Student> findAllStudents() {
-        Connection con = DBDao.getCon();
         String sql = "select * from student";
-        PreparedStatement ps;
         ResultSet rs;
+        Student stu = null;
         List<Student> stus = new ArrayList<>();
         try {
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
+            rs = DBUtil.executeQuery("web", sql, null);
             while (rs.next()) {
-                stus.add(new Student(rs.getInt("sno")
-                                , rs.getString("sname")
-                                , rs.getInt("sage")
-                                , rs.getString("saddress")
-                        )
+                stu = new Student(rs.getInt("sno")
+                        , rs.getString("sname")
+                        , rs.getInt("sage")
+                        , rs.getString("saddress")
                 );
+                stus.add(stu);
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            DBUtil.closeAll();
         }
         return stus;
     }
