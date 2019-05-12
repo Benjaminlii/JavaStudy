@@ -20,17 +20,35 @@ import java.net.Socket;
 public class TextTCP {
     public static void main(String[] args) throws IOException {
         // 服务端需要监听一个端口
-        ServerSocket ss = new ServerSocket(8889);
+        ServerSocket ss = new ServerSocket(8989);
         // 获取与服务端连接的客户端对象
         Socket s = ss.accept();
         System.out.println(s.getInetAddress().getHostName() + ".....已连接服务端。");
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         PrintStream out = new PrintStream(s.getOutputStream(), true);
+        BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
         String line;
         while ((line = in.readLine()) != null) {
             if (line.equals("bye"))
                 break;
             out.println(line);
+            line = br.readLine();
+            System.out.println(line);
+        }
+        s.close();
+        ss.close();
+    }
+    public static void main1(String[] args) throws IOException {
+        // 服务端需要监听一个端口
+        ServerSocket ss = new ServerSocket(8889);
+        // 获取与服务端连接的客户端对象
+        Socket s = ss.accept();
+        System.out.println(s.getInetAddress().getHostName() + ".....已连接服务端。");
+        BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+        String line;
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
         }
         s.close();
         ss.close();
@@ -41,7 +59,7 @@ public class TextTCP {
  * 客户端程序
  */
 class TcpClient {
-    public static void main(String[] args) throws IOException {
+    public static void main1(String[] args) throws IOException {
         // Socket对象连接服务端时需要提供客户端的IP地址和端口号
         Socket s = new Socket("192.168.1.172", 10001);
 
@@ -61,6 +79,7 @@ class TcpClient {
 
         s.close();
     }
+
 }
 
 /**
