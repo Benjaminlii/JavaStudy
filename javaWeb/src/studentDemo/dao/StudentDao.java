@@ -3,8 +3,6 @@ package studentDemo.dao;
 import studentDemo.entity.Student;
 import studentDemo.util.DBUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -48,7 +46,7 @@ public class StudentDao {
      */
     public static boolean updataStudent(int sno, Student stu) {
         String sql = "update student set sname = ?, sage = ?, saddress = ? where sno = ?;";
-        Object[] para = {stu.getSname(), stu.getSage(), stu.getSaddress(), stu.getSno()};
+        Object[] para = {stu.getSname(), stu.getSage(), stu.getSaddress(), sno};
         return DBUtil.executeUpdate("web", sql, para) == 1;
     }
 
@@ -98,7 +96,7 @@ public class StudentDao {
     public static List<Student> findAllStudents() {
         String sql = "select * from student";
         ResultSet rs;
-        Student stu = null;
+        Student stu;
         List<Student> stus = new ArrayList<>();
         try {
             rs = DBUtil.executeQuery("web", sql, null);

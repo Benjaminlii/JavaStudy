@@ -3,11 +3,11 @@ package studentDemo.util;
 import java.sql.*;
 
 public class DBUtil {
-    public static Connection con;
-    public static PreparedStatement ps;
-    public static ResultSet rs;
+    private static Connection con;
+    private static PreparedStatement ps;
+    private static ResultSet rs;
 
-    public static Connection connectDatabase(String DBName) {
+    private static void connectDatabase(String DBName) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String URL = "jdbc:mysql://localhost:3306/" + DBName + "?characterEncoding=UTF8&serverTimezone=UTC";
@@ -17,7 +17,6 @@ public class DBUtil {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        return con;
     }
 
     public static int executeUpdate(String DBName, String sql, Object[] para) {
