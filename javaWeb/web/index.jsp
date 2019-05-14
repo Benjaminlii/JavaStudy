@@ -14,6 +14,7 @@
 <h1>Benjamin!</h1>
 <h2><a href="/javaWeb/findAllStudentServlet">studentDemo</a></h2>
 <h2><a href="/javaWeb/upAndDown/upAndDown.jsp">upAndDown</a></h2>
+<h2><a href="/javaWeb/ELDemo">EL</a></h2>
 
 </body>
 </html>
