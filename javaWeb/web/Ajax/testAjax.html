@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test ajax</title>
+    <script type="text/javascript">
+        function check() {
+            var mobile = document.getElementById("mobile").value;
+            //通过ajax一部方式请求服务端
+            xmlHttpRequest = new XMLHttpRequest();
+            //设置回调函数
+            xmlHttpRequest.onreadystatechange = callBack;
+
+            //建立链接
+            xmlHttpRequest.open("post", "/javaWeb/testAjaxServlet", true);
+
+            //设置post方式的头信息,注意拼写！！！！！
+            xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xmlHttpRequest.send("mobile=" + mobile);
+        }
+
+        function callBack() {
+            if (xmlHttpRequest.readyState === 4
+                && xmlHttpRequest.status === 200) {
+                var rtn = xmlHttpRequest.responseText;
+                if ("true" === rtn) {
+                    alert("此号码存在")
+                } else {
+                    alert("注册成功")
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+手机号：<label>
+    <input type="text" id="mobile">
+</label><br>
+<input type="button" value="注册" onclick="check()">
+</body>
+</html>

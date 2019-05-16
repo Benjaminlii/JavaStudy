@@ -16,6 +16,7 @@
 <h2><a href="/javaWeb/upAndDown/upAndDown.jsp">upAndDown</a></h2>
 <h2><a href="/javaWeb/ELDemo">EL</a></h2>
 <h2><a href="/javaWeb/testFilter">过滤器</a></h2>
+<h2><a href="/javaWeb/Ajax/testAjax.html">Ajax</a></h2>
 
 </body>
 </html>
