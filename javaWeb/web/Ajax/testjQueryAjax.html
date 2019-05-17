@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test jquery Ajax</title>
+    <script type="text/javascript" src="jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        function check() {
+            //使用val（）方法而不是value属性来获取input的值
+            var $mobile = $("#mobile").val();
+            $.ajax({
+                url: "/javaWeb/testAjaxServlet",
+                type: "post",
+                data: "mobile=" + $mobile,
+                success: function (result, testStatus) {
+                    if (result == "true") {
+                        alert("此号码存在");
+                    } else {
+                        alert("注册成功");
+                    }
+                },
+                error: function (xhr, errprMessage) {
+                    alert("系统异常！")
+                }
+            })
+        }
+
+        function testJson() {
+            $.ajax({
+                url: "/javaWeb/testJsonServlet",
+                type: "post",
+                contentType: "application/json;charset=utf-8",
+                success: function (result) {
+                    // alert("abcdefg");
+                    alert(result);
+                    // var json = eval(result);
+                    alert("abcdefg");
+                    // alert(json);
+                    var json1={key1:'a',key2:'b',key3:'c'};
+                    $.each(result, function (i, item) {
+                        alert("12123123123")
+                        $.each(eval(item), function (i1, item1) {
+                            alert(i1 + "----" + item1);
+                        })
+                    })
+                },
+                error: function () {
+                    alert("error");
+                }
+            })
+        }
+        // function (result) {
+        //     // alert("abcdefg");
+        //     // alert(result);
+        //     var json = eval(result);
+        //     // alert("abcdefg");
+        //     // alert(json);
+        //     $.each(json, function (i, item) {
+        //         alert(json[i].sname);
+        //     })
+        // }
+    </script>
+</head>
+<body>
+手机号：<label>
+    <input type="text" id="mobile">
+</label><br>
+<input type="button" value="注册" onclick="check()">
+<input type="button" value="json" onclick="testJson()">
+</body>
+</html>
