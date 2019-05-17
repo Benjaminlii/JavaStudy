@@ -9,9 +9,13 @@ import pojo.Student;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class MybatisFirst {
     @Test
+
+    // 根据学生的sno查询学生
+    // 初次使用mybatis进行数据库的操作
     public void findStudentByIdTest() {
         //添加mybatis配置文件
         String resource = "config/SqlMapConfig.xml";
@@ -31,6 +35,27 @@ public class MybatisFirst {
             Student student = sqlSession.selectOne("test.findStudentById", 4173188);
 
             System.out.println(student);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null)
+                sqlSession.close();
+        }
+    }
+
+    @Test
+    public void findStudentByName(){
+        String resource = "config/SqlMapConfig.xml";
+        SqlSession sqlSession = null;
+        try (
+              InputStream inputStream = Resources.getResourceAsStream(resource)
+        ) {
+            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            sqlSession = sqlSessionFactory.openSession();
+            List<Student> students = sqlSession.selectList("test.findStudentByName", "l");
+            for(Student student : students){
+                System.out.println(student);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
