@@ -37,7 +37,7 @@
     <!-- 插入没有返回值 -->
 
     <!-- 自增加主键 -->
-    <insert id="addStudent" parameterType="pojo.Student">
+    <insert id="insertStudent" parameterType="pojo.Student">
         insert into test_mybatis.student (sname, sage, saddress) values (#{sname}, #{sage}, #{saddress});
         <selectKey keyProperty="sno" order="AFTER" resultType="java.lang.Integer">
             select last_insert_id();

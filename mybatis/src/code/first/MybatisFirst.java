@@ -1,4 +1,4 @@
-package code;
+package code.first;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -76,7 +76,7 @@ public class MybatisFirst {
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             sqlSession = sqlSessionFactory.openSession();
             Student student = new Student("Benjamin", 19, "bj");
-            sqlSession.insert("addStudent", student);
+            sqlSession.insert("student.insertStudent", student);
             sqlSession.commit();
             System.out.println(student);
         } catch (IOException e) {
@@ -98,7 +98,7 @@ public class MybatisFirst {
         ) {
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             sqlSession = sqlSessionFactory.openSession();
-            sqlSession.delete("deleteStudentById", 6);
+            sqlSession.delete("student.deleteStudentById", 6);
             sqlSession.commit();
         } catch (IOException e) {
             e.printStackTrace();
@@ -120,7 +120,7 @@ public class MybatisFirst {
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             sqlSession = sqlSessionFactory.openSession();
             Student student = new Student(1,"Benjamin", 20, "xa");
-            sqlSession.update("updateStudentById", student);
+            sqlSession.update("student.updateStudentById", student);
             sqlSession.commit();
         } catch (IOException e) {
             e.printStackTrace();
