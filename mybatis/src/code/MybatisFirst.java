@@ -32,7 +32,7 @@ public class MybatisFirst {
             //通过SqlSession操作数据库
             //第一个参数是映射文件studentMapper.xml中的statement的id，其值等于namePlace + "." + statementId
             //第二个参数是映射文件中设置的要传入的参数类型所匹配的对象
-            Student student = sqlSession.selectOne("test.findStudentById", 4173188);
+            Student student = sqlSession.selectOne("student.findStudentById", 4173188);
 
             System.out.println(student);
         } catch (IOException e) {
@@ -44,16 +44,17 @@ public class MybatisFirst {
     }
 
     @Test
-    public void findStudentByName(){
+    //通过姓名模糊查询多个学生
+    public void findStudentByName() {
         String resource = "config/SqlMapConfig.xml";
         SqlSession sqlSession = null;
         try (
-              InputStream inputStream = Resources.getResourceAsStream(resource)
+                InputStream inputStream = Resources.getResourceAsStream(resource)
         ) {
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             sqlSession = sqlSessionFactory.openSession();
-            List<Student> students = sqlSession.selectList("test.findStudentByName", "l");
-            for(Student student : students){
+            List<Student> students = sqlSession.selectList("student.findStudentByName", "l");
+            for (Student student : students) {
                 System.out.println(student);
             }
         } catch (IOException e) {
@@ -61,6 +62,72 @@ public class MybatisFirst {
         } finally {
             if (sqlSession != null)
                 sqlSession.close();
+        }
+    }
+
+    @Test
+    //通过传入Student对象插入Student数据
+    public void addStudent() {
+        String resource = "config/SqlMapConfig.xml";
+        SqlSession sqlSession = null;
+        try (
+                InputStream inputStream = Resources.getResourceAsStream(resource)
+        ) {
+            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            sqlSession = sqlSessionFactory.openSession();
+            Student student = new Student("Benjamin", 19, "bj");
+            sqlSession.insert("addStudent", student);
+            sqlSession.commit();
+            System.out.println(student);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(sqlSession != null){
+                sqlSession.close();
+            }
+        }
+    }
+
+    @Test
+    // 通过sno删除Student
+    public void deleteStudentById() {
+        String resource = "config/SqlMapConfig.xml";
+        SqlSession sqlSession = null;
+        try (
+                InputStream inputStream = Resources.getResourceAsStream(resource)
+        ) {
+            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            sqlSession = sqlSessionFactory.openSession();
+            sqlSession.delete("deleteStudentById", 6);
+            sqlSession.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(sqlSession != null){
+                sqlSession.close();
+            }
+        }
+    }
+
+    @Test
+    //通过传入Student对象更新Student数据
+    public void updateStudentById() {
+        String resource = "config/SqlMapConfig.xml";
+        SqlSession sqlSession = null;
+        try (
+                InputStream inputStream = Resources.getResourceAsStream(resource)
+        ) {
+            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            sqlSession = sqlSessionFactory.openSession();
+            Student student = new Student(1,"Benjamin", 20, "xa");
+            sqlSession.update("updateStudentById", student);
+            sqlSession.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(sqlSession != null){
+                sqlSession.close();
+            }
         }
     }
 }

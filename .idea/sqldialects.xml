@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/javaWeb/src/loginWithDBMS/LoginDao.java" dialect="ClickHouse" />
     <file url="file://$PROJECT_DIR$/javaWeb/src/studentDemo/dao/StudentDao.java" dialect="ClickHouse" />
     <file url="file://$PROJECT_DIR$/src/textJDBC/TextStatement.java" dialect="MariaDB" />
+    <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>
