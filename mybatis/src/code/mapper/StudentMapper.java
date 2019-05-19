@@ -1,6 +1,8 @@
 package code.mapper;
 
 import pojo.Student;
+import pojo.StudentCustom;
+import pojo.StudentQueryVo;
 
 import java.util.List;
 
@@ -45,4 +47,14 @@ public interface StudentMapper {
      * @throws Exception
      */
     public List<Student> findStudentBySname(String sname) throws Exception;
+
+    /**
+     * 用户信息的综合查询
+     * 通过studentQueryVo包装类包装查询时所用到的所有信息（类），作为参数传入
+     * 在sql中调用其中的属性即可
+     * @param studentQueryVo 查询时会用到的所有信息所包装成的包装类
+     * @return 因为不确定查询的字段值，所以使用扩展类（或其容器）来接收查询结果
+     * @throws Exception
+     */
+    public List<StudentCustom> findStudentList(StudentQueryVo studentQueryVo) throws Exception;
 }

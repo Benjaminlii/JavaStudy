@@ -1,14 +1,16 @@
 package code.mapper;
 
-import code.dao.TestStudentDao;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
+import pojo.StudentCustom;
+import pojo.StudentQueryVo;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class TestStudentMapper {
     private static SqlSessionFactory sqlSessionFactory;
@@ -47,6 +49,28 @@ public class TestStudentMapper {
         System.out.println(studentMapper.findStudentBySname("Ben"));
 
         sqlSession.close();
+    }
 
+    @Test
+    public void TestfindStudentList() throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+
+        //构造包装类
+        StudentQueryVo studentQueryVo = new StudentQueryVo();
+        //包装类的成员变量Student扩展类
+        StudentCustom studentCustom = new StudentCustom();
+        studentCustom.setSage(18);
+        studentCustom.setSaddress("xa");
+        studentQueryVo.setStudentCustom(studentCustom);
+
+        //查询
+        List<StudentCustom> studentCustomList = studentMapper.findStudentList(studentQueryVo);
+
+        for(StudentCustom studentCustom1 : studentCustomList){
+            System.out.println(studentCustom1);
+        }
+        sqlSession.close();
     }
 }

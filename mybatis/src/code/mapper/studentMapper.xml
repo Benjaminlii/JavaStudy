@@ -61,7 +61,11 @@
     <!-- 更新学生信息 -->
     <!-- 这里根据sno更新学生信息，需要传入有sno的Student对象，然后根据sno查询数据，根据其他属性的值进行修改 -->
     <update id="updateStudent" parameterType="pojo.Student">
-    update    test_mybatis.student set sname = #{sname}, sage = #{sage}, saddress = #{saddress} where sno = #{sno};
-
+      update test_mybatis.student set sname = #{sname}, sage = #{sage}, saddress = #{saddress} where sno = #{sno};
     </update>
+
+    <!-- 用户信息综合查询 -->
+    <select id="findStudentList" parameterType="StudentQueryVo" resultType="StudentCustom">
+        select * from test_mybatis.student where sage > #{studentCustom.sage} and saddress = #{studentCustom.saddress};
+    </select>
 </mapper>

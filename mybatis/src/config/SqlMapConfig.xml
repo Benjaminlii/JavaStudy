@@ -4,9 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <!-- 配置properties -->
-    <properties resource="config/db.properties">
+    <properties resource="config/db.properties"/>
 
-    </properties>
+    <!-- 定义别名 -->
+    <typeAliases>
+        <!-- 设置单个的别名
+        type：类型的路径
+        alias：别名
+         -->
+        <!--<typeAlias type="pojo.Student" alias="student"/>-->
+
+        <!-- 批量设置别名
+        指定报名，mybatis会自动扫描包中的类，并设置别名为类名（首字母不区分大小写）
+        -->
+        <package name="pojo"/>
+    </typeAliases>
+
     <!-- 和spring整合后 environments配置将废除-->
     <environments default="development">
         <environment id="development">
@@ -24,8 +37,17 @@
 
     <!-- 加载映射文件 -->
     <mappers>
+        <!-- 原始方法加载xml -->
         <mapper resource="config/sqlMap/student.xml" />
-        <mapper resource="config/mapper/studentMapper.xml" />
+        <!-- 通过mapper接口加载单个 映射文件
+        遵循一些规范：需要将mapper接口类名和mapper.xml映射文件名称保持一致，且在一个目录中
+        上边规范的前提是：使用的是mapper代理方法
+         -->
+        <!--<mapper class="code.mapper.StudentMapper" />-->
+        <!-- 批量加载mapper
+        指定mapper接口的包名，mybatis自动扫描包下边所有mapper接口进行加载
+         -->
+        <package name="code.mapper"/>
     </mappers>
 
 </configuration>
