@@ -44,14 +44,14 @@
         </selectKey>
     </insert>
 
-    <!--&lt;!&ndash; 非自增加主键 &ndash;&gt;-->
-    <!--&lt;!&ndash; 这里相当于先填充studentPojo，所以再sql中要留下sno的位置 &ndash;&gt;-->
-    <!--<insert id="addStudent" parameterType="pojo.Student">-->
-        <!--insert into test_mybatis.student (sno, sname, sage, saddress) values (#{sno}, #{sname}, #{sage}, #{saddress});-->
-        <!--<selectKey keyProperty="sno" order="BEFORE" resultType="java.lang.Integer">-->
-            <!--select uuid();-->
-        <!--</selectKey>-->
-    <!--</insert>-->
+    <!-- 非自增加主键 -->
+    <!-- 这里相当于先填充studentPojo，所以再sql中要留下sno的位置 -->
+    <insert id="addStudent" parameterType="pojo.Student">
+        insert into test_mybatis.student (sno, sname, sage, saddress) values (#{sno}, #{sname}, #{sage}, #{saddress});
+        <selectKey keyProperty="sno" order="BEFORE" resultType="java.lang.Integer">
+            select uuid();
+        </selectKey>
+    </insert>
 
     <!-- 删除学生信息 -->
     <delete id="deleteStudentById" parameterType="java.lang.Integer">

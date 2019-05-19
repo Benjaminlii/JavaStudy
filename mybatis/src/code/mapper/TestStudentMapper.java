@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
+import pojo.Student;
 import pojo.StudentCustom;
 import pojo.StudentQueryVo;
 
@@ -70,6 +71,29 @@ public class TestStudentMapper {
 
         for(StudentCustom studentCustom1 : studentCustomList){
             System.out.println(studentCustom1);
+        }
+        sqlSession.close();
+    }
+
+    @Test
+    public void TextFindStudentListResultMap() throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+
+        //构造包装类
+        StudentQueryVo studentQueryVo = new StudentQueryVo();
+        //包装类的成员变量Student扩展类
+        StudentCustom studentCustom = new StudentCustom();
+        studentCustom.setSage(18);
+        studentCustom.setSaddress("xa");
+        studentQueryVo.setStudentCustom(studentCustom);
+
+        //查询
+        List<Student> studentCustomList = studentMapper.findStudentListResultMap(studentQueryVo);
+
+        for(Student student : studentCustomList){
+            System.out.println(student);
         }
         sqlSession.close();
     }

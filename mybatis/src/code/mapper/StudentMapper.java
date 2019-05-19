@@ -57,4 +57,12 @@ public interface StudentMapper {
      * @throws Exception
      */
     public List<StudentCustom> findStudentList(StudentQueryVo studentQueryVo) throws Exception;
+
+    /**
+     * 通过resultMap进行输出映射，将不可识别的字段名映射为Student对象
+     * @param studentQueryVo 查询时会用到的所有信息所包装成的包装类
+     * @return
+     * @throws Exception
+     */
+    public List<Student> findStudentListResultMap(StudentQueryVo studentQueryVo) throws Exception;
 }
