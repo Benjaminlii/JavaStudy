@@ -9,13 +9,13 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class TestStudentDao {
-    private SqlSessionFactory sqlSessionFactory;
+    private static SqlSessionFactory sqlSessionFactory;
 
-    public TestStudentDao() {
+    static  {
         try (
-                InputStream inputStream = Resources.getResourceAsStream("config/SqlMapConfig.xml");
+                InputStream inputStream = Resources.getResourceAsStream("config/SqlMapConfig.xml")
         ) {
-            this.sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+            TestStudentDao.sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
