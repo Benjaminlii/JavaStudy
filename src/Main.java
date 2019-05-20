@@ -1,8 +1,8 @@
-import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.SocketChannel;
-import java.util.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * whatever,write something.
@@ -13,53 +13,51 @@ import java.util.*;
 
 
 public class Main {
+    /**
+     * TODO 下载文件到本地
+     *
+     * @author nadim  
+     * @date Sep 11, 2015 11:45:31 AM
+     * fileUrl 远程地址
+     * fileLocal 本地路径
+     * throws Exception 
+     *      
+     */
+    public static void main(String[] args) throws Exception {
+        downloadFile();
+    }
 
-    public static SocketChannel socketChannel;
-
-    static {
+    public static void downloadFile() throws Exception {
+        String fileUrl = "magnet:?xt=urn:btih:e1216c5da9de1361489d8e694caa78b32f1ffacb&dn=Game.of.Thrones.S08E06.1080p.WEB.H264-MEMENTO%5Brartv%5D&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2760&tr=udp%3A%2F%2F9.rarbg.to%3A2780";
+        String fileLocal = "E:\\GameOfThronesS08E06.mkv";
+        URL url = new URL(fileUrl);
+        HttpURLConnection urlCon = (HttpURLConnection) url.openConnection();
+        urlCon.setConnectTimeout(6000);
+        urlCon.setReadTimeout(6000);
+        int code = urlCon.getResponseCode();
+        if (code != HttpURLConnection.HTTP_OK) {
+            throw new Exception("文件读取失败");
+        }
+        //读文件流
+        DataInputStream in = new DataInputStream(urlCon.getInputStream());
+        DataOutputStream out = new DataOutputStream(new FileOutputStream(fileLocal));
+        byte[] buffer = new byte[2048];
+        int count = 0;
+        while ((count = in.read(buffer)) > 0) {
+            out.write(buffer, 0, count);
+        }
         try {
-            socketChannel = SocketChannel.open(new InetSocketAddress("192.168.1.133",6666));
-            //socketChannel.configureBlocking(false);
-        } catch (IOException e) {
+            if (out != null) {
+                out.close();
+            }
+            if (in != null) {
+                in.close();
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) throws IOException {
-
-        ByteBuffer buffer = ByteBuffer.allocate(1024);
-        Scanner scanner = new Scanner(System.in);
-
-        new Thread(new ReceiveMsgClien()).start();
-
-        while (scanner.hasNext()){
-            buffer.put(scanner.nextLine().getBytes());
-            buffer.flip();
-            socketChannel.write(buffer);
-            buffer.clear();
-        }
-
-    }
-
-    public static class ReceiveMsgClien implements Runnable{
-        @Override
-        public void run() {
-
-            try {
-                while(true){
-                    ByteBuffer buffer = ByteBuffer.allocate(1024);
-
-                    int len = socketChannel.read(buffer);
-
-                    if(len > 0){
-                        buffer.flip();
-                        System.out.println(new String(buffer.array(),0,len));
-                        buffer.clear();
-                    }
-                }
-            }catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }
+
