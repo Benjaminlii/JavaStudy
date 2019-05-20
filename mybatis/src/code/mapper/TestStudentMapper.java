@@ -11,6 +11,7 @@ import pojo.StudentQueryVo;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TestStudentMapper {
@@ -76,6 +77,36 @@ public class TestStudentMapper {
     }
 
     @Test
+    public void findStudentListDynamicSQL() throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+
+        //构造包装类
+        StudentQueryVo studentQueryVo = new StudentQueryVo();
+        //包装类的成员变量Student扩展类
+        StudentCustom studentCustom = new StudentCustom();
+//        studentCustom.setSname("en");
+//        studentCustom.setSage(19);
+//        studentCustom.setSaddress("xa");
+        List<Integer> snos = new ArrayList<>();
+        snos.add(1);
+        snos.add(4);
+        snos.add(7);
+
+        studentQueryVo.setStudentCustom(studentCustom);
+        studentQueryVo.setSnos(snos);
+
+        //查询
+        List<StudentCustom> studentCustomList = studentMapper.findStudentListDynamicSQL(studentQueryVo);
+
+        for(StudentCustom studentCustom1 : studentCustomList){
+            System.out.println(studentCustom1);
+        }
+        sqlSession.close();
+    }
+
+    @Test
     public void TextFindStudentListResultMap() throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
@@ -86,7 +117,7 @@ public class TestStudentMapper {
         //包装类的成员变量Student扩展类
         StudentCustom studentCustom = new StudentCustom();
         studentCustom.setSage(18);
-        studentCustom.setSaddress("xa");
+//        studentCustom.setSaddress("xa");
         studentQueryVo.setStudentCustom(studentCustom);
 
         //查询

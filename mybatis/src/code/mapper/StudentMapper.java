@@ -59,6 +59,14 @@ public interface StudentMapper {
     public List<StudentCustom> findStudentList(StudentQueryVo studentQueryVo) throws Exception;
 
     /**
+     * 使用动态sql
+     * @param studentQueryVo 查询时会用到的所有信息所包装成的包装类
+     * @return 因为不确定查询的字段值，所以使用扩展类（或其容器）来接收查询结果
+     * @throws Exception
+     */
+    public List<StudentCustom> findStudentListDynamicSQL(StudentQueryVo studentQueryVo) throws Exception;
+
+    /**
      * 通过resultMap进行输出映射，将不可识别的字段名映射为Student对象
      * @param studentQueryVo 查询时会用到的所有信息所包装成的包装类
      * @return
