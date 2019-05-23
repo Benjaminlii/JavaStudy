@@ -12,7 +12,9 @@ public class DictionaryDaoImpl implements DictionaryDao {
     @Override
     public boolean addDictionary(Dictionary dictionary) {
         String sql = "insert into dictionary (d_par_id, d_name, d_value) values (?,?,?);";
-        Object[] para = {dictionary.getD_par_id(), dictionary.getD_name(), dictionary.getD_value()};
+        Object[] para = {
+                dictionary.getD_par_id(), dictionary.getD_name(), dictionary.getD_value()
+        };
         boolean rtn = DBUtil.executeUpdate(sql, para) == 1;
         DBUtil.closeAll();
         return rtn;

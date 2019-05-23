@@ -1,6 +1,5 @@
 package dao;
 
-import entity.Service;
 import entity.Store;
 import util.DBUtil;
 

@@ -13,9 +13,11 @@ public class PetDaoImpl implements PetDao {
     public boolean addPet(Pet pet) {
         String sql = "insert into pet (cl_id, d_id, s_id, p_age, p_sex, p_height, p_healthy) " +
                 "values (?,?,?,?,?,?,?);";
-        Object[] para = {pet.getCl_id(), pet.getD_id(), pet.getS_id(),
+        Object[] para = {
+                pet.getCl_id(), pet.getD_id(), pet.getS_id(),
                 pet.getP_age(), pet.getP_sex(), pet.getP_height(),
-                pet.getP_healthy()};
+                pet.getP_healthy()
+        };
         boolean rtn = DBUtil.executeUpdate(sql, para) == 1;
         DBUtil.closeAll();
         return rtn;

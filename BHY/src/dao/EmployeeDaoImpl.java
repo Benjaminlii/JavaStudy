@@ -14,9 +14,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public boolean addEmployee(Employee employee) {
         String sql = "insert into employee (username, password, e_name, e_salary, s_id, d_id, e_sex, e_age, e_time) " +
                 "values (?,?,?,?,?,?,?,?,?);";
-        Object[] para = {employee.getUsername(), employee.getPassword(), employee.getE_name(),
+        Object[] para = {
+                employee.getUsername(), employee.getPassword(), employee.getE_name(),
                 employee.getE_salary(), employee.getS_id(), employee.getD_id(),
-                employee.getE_sex(), employee.getE_age(), employee.getE_time()};
+                employee.getE_sex(), employee.getE_age(), employee.getE_time()
+        };
         boolean rtn = DBUtil.executeUpdate(sql, para) == 1;
         DBUtil.closeAll();
         return rtn;

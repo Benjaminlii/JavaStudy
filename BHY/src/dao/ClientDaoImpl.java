@@ -13,8 +13,10 @@ public class ClientDaoImpl implements ClientDao {
     public boolean addClient(Client client) {
         String sql = "insert into client (cl_name, mobile, cl_age, cl_sex, cl_emil " +
                 "values (?,?,?,?,?);";
-        Object[] para = {client.getCl_name(), client.getMobile(), client.getCl_age(),
-                client.getCl_sex(), client.getCl_emil()};
+        Object[] para = {
+                client.getCl_name(), client.getMobile(), client.getCl_age(),
+                client.getCl_sex(), client.getCl_emil()
+        };
         boolean rtn = DBUtil.executeUpdate(sql, para) == 1;
         DBUtil.closeAll();
         return rtn;
