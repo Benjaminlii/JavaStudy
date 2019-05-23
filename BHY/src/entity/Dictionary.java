@@ -3,17 +3,24 @@ package entity;
 /**
  * Êý¾Ý×ÖµäÀà
  */
-public class DictionaryDao {
+public class Dictionary {
     private int d_id;//×Öµäid
     private int d_par_id;//¸¸Ä¸×Öµäid
     private String d_name;//×ÖµäÃû³Æ
     private String d_value;//×ÖµäÖµ
 
-    public DictionaryDao() {
+    public Dictionary() {
     }
 
-    public DictionaryDao(int d_id, String d_name, String d_value) {
+    public Dictionary(int d_id, String d_name, String d_value) {
         this.d_id = d_id;
+        this.d_name = d_name;
+        this.d_value = d_value;
+    }
+
+    public Dictionary(int d_id, int d_par_id, String d_name, String d_value) {
+        this.d_id = d_id;
+        this.d_par_id = d_par_id;
         this.d_name = d_name;
         this.d_value = d_value;
     }
@@ -52,7 +59,7 @@ public class DictionaryDao {
 
     @Override
     public String toString() {
-        return "DictionaryDao{" +
+        return "Dictionary{" +
                 "d_id=" + d_id +
                 ", d_par_id=" + d_par_id +
                 ", d_name='" + d_name + '\'' +

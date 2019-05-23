@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * 销售记录类
  */
-public class RecordDao {
+public class Record {
     private int r_id;//销售记录id
     private int cl_id;//购买者id
     private int s_id;//宠物店id
@@ -15,10 +15,10 @@ public class RecordDao {
     private int r_num;//购买数量
     private String r_pattern;//支付方式
 
-    public RecordDao() {
+    public Record() {
     }
 
-    public RecordDao(int r_id, int cl_id, int s_id, int c_id, Date r_time, float r_price, int r_num) {
+    public Record(int r_id, int cl_id, int s_id, int c_id, Date r_time, float r_price, int r_num) {
         this.r_id = r_id;
         this.cl_id = cl_id;
         this.s_id = s_id;
@@ -26,6 +26,17 @@ public class RecordDao {
         this.r_time = r_time;
         this.r_price = r_price;
         this.r_num = r_num;
+    }
+
+    public Record(int r_id, int cl_id, int s_id, int c_id, Date r_time, float r_price, int r_num, String r_pattern) {
+        this.r_id = r_id;
+        this.cl_id = cl_id;
+        this.s_id = s_id;
+        this.c_id = c_id;
+        this.r_time = r_time;
+        this.r_price = r_price;
+        this.r_num = r_num;
+        this.r_pattern = r_pattern;
     }
 
     public int getR_id() {
@@ -94,7 +105,7 @@ public class RecordDao {
 
     @Override
     public String toString() {
-        return "RecordDao{" +
+        return "Record{" +
                 "r_id=" + r_id +
                 ", cl_id=" + cl_id +
                 ", s_id=" + s_id +

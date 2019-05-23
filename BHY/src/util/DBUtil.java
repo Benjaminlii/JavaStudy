@@ -12,12 +12,11 @@ public class DBUtil {
 
     /**
      * 对数据库进行连接
-     * @param DBName 要连接的数据库的名字
      */
-    private static void connectDatabase(String DBName) {
+    static{
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String URL = "jdbc:mysql://localhost:3306/" + DBName + "?characterEncoding=UTF8&serverTimezone=UTC";
+            String URL = "jdbc:mysql://localhost:3306/bhy?characterEncoding=UTF8&serverTimezone=UTC";
             String USERNAME = "root";
             String PASSWORD = "litao.";
             con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -28,13 +27,11 @@ public class DBUtil {
 
     /**
      * 对数据库进行更新操作
-     * @param DBName 要更新的数据库名
      * @param sql 进行更新操作的SQL语句
      * @param para SQL语句中的参数
      * @return 更新数据的条数
      */
-    public static int executeUpdate(String DBName, String sql, Object[] para) {
-        DBUtil.connectDatabase(DBName);
+    public static int executeUpdate(String sql, Object[] para) {
         int count = 0;
         try {
             ps = con.prepareStatement(sql);
@@ -54,13 +51,11 @@ public class DBUtil {
 
     /**
      * 对数据库进行查找操作
-     * @param DBName 要进行查找的数据库名
      * @param sql 进行查找操作的SQL语句
      * @param para SQL语句中的参数
      * @return 查找操作返回的结果集ResultSet对象
      */
-    public static ResultSet executeQuery(String DBName, String sql, Object[] para) {
-        DBUtil.connectDatabase(DBName);
+    public static ResultSet executeQuery(String sql, Object[] para) {
         try {
             ps = con.prepareStatement(sql);
             if(para != null) {
@@ -86,11 +81,6 @@ public class DBUtil {
         }
         try {
             if (ps != null) ps.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            if (con != null) con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

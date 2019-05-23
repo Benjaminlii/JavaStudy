@@ -3,7 +3,7 @@ package entity;
 /**
  * 宠物类
  */
-public class PetDao {
+public class Pet {
     private int p_id;//宠物id
     private int cl_id;//所属顾客id
     private int d_id;//字典信息（品种）id
@@ -13,13 +13,24 @@ public class PetDao {
     private float p_height;//宠物体重
     private String p_healthy;//宠物健康状况
 
-    public PetDao() {
+    public Pet() {
     }
 
-    public PetDao(int p_id, int cl_id, int d_id) {
+    public Pet(int p_id, int cl_id, int d_id) {
         this.p_id = p_id;
         this.cl_id = cl_id;
         this.d_id = d_id;
+    }
+
+    public Pet(int p_id, int cl_id, int d_id, int s_id, int p_age, String p_sex, float p_height, String p_healthy) {
+        this.p_id = p_id;
+        this.cl_id = cl_id;
+        this.d_id = d_id;
+        this.s_id = s_id;
+        this.p_age = p_age;
+        this.p_sex = p_sex;
+        this.p_height = p_height;
+        this.p_healthy = p_healthy;
     }
 
     public int getP_id() {
@@ -88,7 +99,7 @@ public class PetDao {
 
     @Override
     public String toString() {
-        return "PetDao{" +
+        return "Pet{" +
                 "p_id=" + p_id +
                 ", cl_id=" + cl_id +
                 ", d_id=" + d_id +

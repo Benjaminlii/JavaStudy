@@ -5,24 +5,35 @@ import java.util.Date;
 /**
  * 货物（商品）类
  */
-public class CargoDao {
+public class Cargo {
     private int c_id;//id
     private String c_name;//货物名称
     private int c_num;//货物数量
     private int d_id;//字典id（货物类别）
     private int s_id;//所属宠物店id
-    private Date c_getdate;//进货时间
-    private Date c_produceddate;//生产日期
-    private Date c_expirationdate;//保质日期
+    private Date c_getDate;//进货时间
+    private Date c_producedDate;//生产日期
+    private Date c_expirationDate;//保质日期
 
-    public CargoDao() {
+    public Cargo() {
     }
 
-    public CargoDao(int c_id, String c_name, int c_num, int d_id) {
+    public Cargo(int c_id, String c_name, int c_num, int d_id) {
         this.c_id = c_id;
         this.c_name = c_name;
         this.c_num = c_num;
         this.d_id = d_id;
+    }
+
+    public Cargo(int c_id, String c_name, int c_num, int d_id, int s_id, Date c_getDate, Date c_producedDate, Date c_expirationDate) {
+        this.c_id = c_id;
+        this.c_name = c_name;
+        this.c_num = c_num;
+        this.d_id = d_id;
+        this.s_id = s_id;
+        this.c_getDate = c_getDate;
+        this.c_producedDate = c_producedDate;
+        this.c_expirationDate = c_expirationDate;
     }
 
     public int getC_id() {
@@ -65,41 +76,41 @@ public class CargoDao {
         this.s_id = s_id;
     }
 
-    public Date getC_getdate() {
-        return c_getdate;
+    public Date getC_getDate() {
+        return c_getDate;
     }
 
     public void setC_getdate(Date c_getdate) {
-        this.c_getdate = c_getdate;
+        this.c_getDate = c_getdate;
     }
 
-    public Date getC_produceddate() {
-        return c_produceddate;
+    public Date getC_producedDate() {
+        return c_producedDate;
     }
 
-    public void setC_produceddate(Date c_produceddate) {
-        this.c_produceddate = c_produceddate;
+    public void setC_producedDate(Date c_produceddate) {
+        this.c_producedDate = c_produceddate;
     }
 
-    public Date getC_expirationdate() {
-        return c_expirationdate;
+    public Date getC_expirationDate() {
+        return c_expirationDate;
     }
 
-    public void setC_expirationdate(Date c_expirationdate) {
-        this.c_expirationdate = c_expirationdate;
+    public void setC_expirationDate(Date c_expirationdate) {
+        this.c_expirationDate = c_expirationdate;
     }
 
     @Override
     public String toString() {
-        return "CargoDao{" +
+        return "Cargo{" +
                 "c_id=" + c_id +
                 ", c_name='" + c_name + '\'' +
                 ", c_num=" + c_num +
                 ", d_id=" + d_id +
                 ", s_id=" + s_id +
-                ", c_getdate=" + c_getdate +
-                ", c_produceddate=" + c_produceddate +
-                ", c_expirationdate=" + c_expirationdate +
+                ", c_getDate=" + c_getDate +
+                ", c_producedDate=" + c_producedDate +
+                ", c_expirationDate=" + c_expirationDate +
                 '}';
     }
 }

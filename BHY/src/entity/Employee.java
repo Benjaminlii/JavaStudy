@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * 员工类
  */
-public class EmployeeDao {
+public class Employee {
     private int e_id;//员工id
     private String username;//用户名
     private String password;//密码
@@ -17,10 +17,10 @@ public class EmployeeDao {
     private int e_age;//年龄
     private Date e_time;//入职时间
 
-    public EmployeeDao() {
+    public Employee() {
     }
 
-    public EmployeeDao(int e_id, String username, String password, String e_name, int e_salary, int s_id, int d_id) {
+    public Employee(int e_id, String username, String password, String e_name, int e_salary, int s_id, int d_id) {
         this.e_id = e_id;
         this.username = username;
         this.password = password;
@@ -28,6 +28,19 @@ public class EmployeeDao {
         this.e_salary = e_salary;
         this.s_id = s_id;
         this.d_id = d_id;
+    }
+
+    public Employee(int e_id, String username, String password, String e_name, int e_salary, int s_id, int d_id, String e_sex, int e_age, Date e_time) {
+        this.e_id = e_id;
+        this.username = username;
+        this.password = password;
+        this.e_name = e_name;
+        this.e_salary = e_salary;
+        this.s_id = s_id;
+        this.d_id = d_id;
+        this.e_sex = e_sex;
+        this.e_age = e_age;
+        this.e_time = e_time;
     }
 
     public int getE_id() {
@@ -112,7 +125,7 @@ public class EmployeeDao {
 
     @Override
     public String toString() {
-        return "EmployeeDao{" +
+        return "Employee{" +
                 "e_id=" + e_id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
