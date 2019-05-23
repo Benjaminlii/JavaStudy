@@ -18,9 +18,11 @@
 
      resultType：指定sql输出结果的映射的java对象类型，select指定resultType表示将单条记录映射成java对象
      -->
-   <select id="findStudentBySno" parameterType="java.lang.Integer" resultType="pojo.Student">
-       select * from test_mybatis.student where sno = #{id};
-   </select>
+    <select id="findStudentBySno" parameterType="java.lang.Integer" resultType="pojo.Student">
+        select *
+        from test_mybatis.student
+        where sno = #{id};
+    </select>
 
     <!-- 根据用户名称模糊查询用户信息，可能返回多条
     resultType：指定就是单条！！记录所映射的java对象类型
@@ -29,7 +31,9 @@
     ${value}：接收输入参数的内容，如果传入类型是简单类型，${}中只能使用value
      -->
     <select id="findStudentBySname" parameterType="java.lang.String" resultType="pojo.Student">
-        select * from test_mybatis.student where sname like '%${value}%';
+        select *
+        from test_mybatis.student
+        where sname like '%${value}%';
     </select>
 
     <!-- 添加学生信息 -->
@@ -47,21 +51,27 @@
     <!--&lt;!&ndash; 非自增加主键 &ndash;&gt;-->
     <!--&lt;!&ndash; 这里相当于先填充studentPojo，所以再sql中要留下sno的位置 &ndash;&gt;-->
     <!--<insert id="addStudent" parameterType="pojo.Student">-->
-        <!--insert into test_mybatis.student (sno, sname, sage, saddress) values (#{sno}, #{sname}, #{sage}, #{saddress});-->
-        <!--<selectKey keyProperty="sno" order="BEFORE" resultType="java.lang.Integer">-->
-            <!--select uuid();-->
-        <!--</selectKey>-->
+    <!--insert into test_mybatis.student (sno, sname, sage, saddress) values (#{sno}, #{sname}, #{sage}, #{saddress});-->
+    <!--<selectKey keyProperty="sno" order="BEFORE" resultType="java.lang.Integer">-->
+    <!--select uuid();-->
+    <!--</selectKey>-->
     <!--</insert>-->
 
     <!-- 删除学生信息 -->
     <delete id="deleteStudentBySno" parameterType="java.lang.Integer">
-        delete from test_mybatis.student where sno = #{sno};
+        delete
+        from test_mybatis.student
+        where sno = #{sno};
     </delete>
 
     <!-- 更新学生信息 -->
     <!-- 这里根据sno更新学生信息，需要传入有sno的Student对象，然后根据sno查询数据，根据其他属性的值进行修改 -->
     <update id="updateStudent" parameterType="pojo.Student">
-      update test_mybatis.student set sname = #{sname}, sage = #{sage}, saddress = #{saddress} where sno = #{sno};
+        update test_mybatis.student
+        set sname    = #{sname},
+            sage     = #{sage},
+            saddress = #{saddress}
+        where sno = #{sno};
     </update>
 
     <!-- 用户信息综合查询 -->
@@ -70,7 +80,53 @@
      在sql中调用其中的属性即可
      -->
     <select id="findStudentList" parameterType="StudentQueryVo" resultType="StudentCustom">
-        select * from test_mybatis.student where sage > #{studentCustom.sage} and saddress = #{studentCustom.saddress};
+        select *
+        from test_mybatis.student
+        where sage = #{studentCustom.sage}
+          and saddress = #{studentCustom.saddress};
+    </select>
+
+    <!-- sql片段 -->
+    <sql id="selectStudentWhere">
+        <if test="studentCustom != null">
+            <if test="studentCustom.sname != null and studentCustom.sname != ''">
+                and sname like '%${studentCustom.sname}%'
+            </if>
+            <if test="studentCustom.sage != null and studentCustom.sage != ''">
+                and sage = #{studentCustom.sage}
+            </if>
+            <if test="studentCustom.saddress != null and studentCustom.saddress != ''">
+                and saddress = #{studentCustom.saddress}
+            </if>
+        </if>
+        <if test="snos != null">
+            <!-- 使用foreach拼接查询条件
+            如“id in（1， 2， 3）”或“and（id = 1 or id = 2 or id = 3）”
+            collection：指定输入 对象中集合属性
+            item：每个遍历生成对象中
+            open：开始遍历时拼接的串
+            close：结束遍历时拼接的串
+            separator：遍历的两个对象中需要拼接的串
+             -->
+            <!--<foreach collection="snos" item="sno" open="and (" close=")" separator="or">-->
+                <!--&lt;!&ndash; 需要进行拼接的串 &ndash;&gt;-->
+                <!--sno = #{sno}-->
+            <!--</foreach>-->
+
+            <!-- 实现id in（1， 2， 3） -->
+            <foreach collection="snos" item="sno" open="and sno in (" close=")" separator=",">
+                #{sno}
+            </foreach>
+        </if>
+    </sql>
+
+    <!-- 动态sql -->
+    <select id="findStudentListDynamicSQL" parameterType="StudentQueryVo" resultType="StudentCustom">
+        select * from test_mybatis.student
+        <where>
+            <include refid="selectStudentWhere"/>
+            <!-- 这里可能再调用其他的sql片段 -->
+        </where>
     </select>
 
     <!-- 使用id为toStudent的resultMap将sno_映射为Student.sno，sage_映射为Student.sage -->
@@ -81,6 +137,11 @@
 
     <!-- resultMap输出映射 -->
     <select id="findStudentListResultMap" parameterType="StudentQueryVo" resultMap="toStudent">
-        select sno sno_, sage sage_ from test_mybatis.student where sage > #{studentCustom.sage} and saddress = #{studentCustom.saddress};
+        select sno sno_, sage sage_
+        from test_mybatis.student
+        where sage > #{studentCustom.sage}
+          and saddress = #{studentCustom.saddress};
     </select>
+
+
 </mapper>

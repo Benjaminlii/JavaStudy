@@ -31,15 +31,11 @@
                 type: "post",
                 contentType: "application/json;charset=utf-8",
                 success: function (result) {
-                    // alert("abcdefg");
-                    alert(result);
-                    // var json = eval(result);
-                    alert("abcdefg");
-                    // alert(json);
-                    var json1={key1:'a',key2:'b',key3:'c'};
-                    $.each(result, function (i, item) {
-                        alert("12123123123")
-                        $.each(eval(item), function (i1, item1) {
+                    var json = eval("("+result+")");
+                    alert(json.stu1);
+                    alert(json);
+                    $.each(json, function (i, item) {
+                        $.each(item, function (i1, item1) {
                             alert(i1 + "----" + item1);
                         })
                     })

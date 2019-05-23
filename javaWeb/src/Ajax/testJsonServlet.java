@@ -24,7 +24,6 @@ public class testJsonServlet extends HttpServlet {
         System.out.println(json);
         out.print(json);
         out.close();
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
