@@ -2,7 +2,6 @@ package dao;
 
 import entity.Service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface ServiceDao {
@@ -30,7 +29,6 @@ public interface ServiceDao {
     /**
      * 查询Service表中的所有信息
      * @return 将表中的所有信息封装成List<Service>进行返回
-     * @throws SQLException 遍历ResultSet
      */
-    public List<Service> findAllService() throws SQLException;
+    public List<Service> findAllService() ;
 }

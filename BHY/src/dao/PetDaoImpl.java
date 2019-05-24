@@ -49,23 +49,27 @@ public class PetDaoImpl implements PetDao {
     }
 
     @Override
-    public List<Pet> findAllPet() throws SQLException {
+    public List<Pet> findAllPet() {
         String sql = "select * from pet;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
         List<Pet> rtn = new ArrayList<>();
         Pet pet;
-        while (resultSet.next()) {
-            pet = new Pet(
-                    resultSet.getInt("p_id"),
-                    resultSet.getInt("cl_id"),
-                    resultSet.getInt("d_id"),
-                    resultSet.getInt("s_id"),
-                    resultSet.getInt("p_age"),
-                    resultSet.getString("p_sex"),
-                    resultSet.getFloat("p_height"),
-                    resultSet.getString("p_healthy")
-            );
-            rtn.add(pet);
+        try {
+            while (resultSet.next()) {
+                pet = new Pet(
+                        resultSet.getInt("p_id"),
+                        resultSet.getInt("cl_id"),
+                        resultSet.getInt("d_id"),
+                        resultSet.getInt("s_id"),
+                        resultSet.getInt("p_age"),
+                        resultSet.getString("p_sex"),
+                        resultSet.getFloat("p_height"),
+                        resultSet.getString("p_healthy")
+                );
+                rtn.add(pet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         DBUtil.closeAll();
         return rtn;

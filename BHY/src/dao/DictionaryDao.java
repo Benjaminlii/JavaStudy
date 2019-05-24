@@ -2,7 +2,6 @@ package dao;
 
 import entity.Dictionary;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface DictionaryDao {
@@ -30,7 +29,6 @@ public interface DictionaryDao {
     /**
      * 查询Dictionary表中的所有信息
      * @return 将表中的所有信息封装成List<Dictionary>进行返回
-     * @throws SQLException 遍历ResultSet
      */
-    public List<Dictionary> findAllDictionary() throws SQLException;
+    public List<Dictionary> findAllDictionary();
 }

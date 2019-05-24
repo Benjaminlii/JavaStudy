@@ -7,12 +7,11 @@ import java.util.Date;
  */
 public class Employee {
     private int e_id;//员工id
-    private String username;//用户名
-    private String password;//密码
     private String e_name;//姓名
     private int e_salary;//工资
     private int s_id;//所属宠物店id
     private int d_id;//字典id（职务）
+    private int u_id;//用户id
     private String e_sex;//性别
     private int e_age;//年龄
     private Date e_time;//入职时间
@@ -20,24 +19,21 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int e_id, String username, String password, String e_name, int e_salary, int s_id, int d_id) {
+    public Employee(int e_id, String e_name, int e_salary, int s_id, int d_id) {
         this.e_id = e_id;
-        this.username = username;
-        this.password = password;
         this.e_name = e_name;
         this.e_salary = e_salary;
         this.s_id = s_id;
         this.d_id = d_id;
     }
 
-    public Employee(int e_id, String username, String password, String e_name, int e_salary, int s_id, int d_id, String e_sex, int e_age, Date e_time) {
+    public Employee(int e_id, String e_name, int e_salary, int s_id, int d_id, int u_id, String e_sex, int e_age, Date e_time) {
         this.e_id = e_id;
-        this.username = username;
-        this.password = password;
         this.e_name = e_name;
         this.e_salary = e_salary;
         this.s_id = s_id;
         this.d_id = d_id;
+        this.u_id = u_id;
         this.e_sex = e_sex;
         this.e_age = e_age;
         this.e_time = e_time;
@@ -49,22 +45,6 @@ public class Employee {
 
     public void setE_id(int e_id) {
         this.e_id = e_id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getE_name() {
@@ -99,6 +79,14 @@ public class Employee {
         this.d_id = d_id;
     }
 
+    public int getU_id() {
+        return u_id;
+    }
+
+    public void setU_id(int u_id) {
+        this.u_id = u_id;
+    }
+
     public String getE_sex() {
         return e_sex;
     }
@@ -127,12 +115,11 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "e_id=" + e_id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", e_name='" + e_name + '\'' +
                 ", e_salary=" + e_salary +
                 ", s_id=" + s_id +
                 ", d_id=" + d_id +
+                ", u_id=" + u_id +
                 ", e_sex='" + e_sex + '\'' +
                 ", e_age=" + e_age +
                 ", e_time=" + e_time +

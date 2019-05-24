@@ -7,6 +7,7 @@ public class Client {
     private int cl_id;//顾客id
     private String cl_name;//顾客姓名
     private String mobile;//顾客手机号码
+    private int u_id;//用户id
     private int cl_age;//顾客年龄
     private String cl_sex;//顾客性别
     private String cl_emil;//顾客电子邮箱
@@ -20,10 +21,11 @@ public class Client {
         this.mobile = mobile;
     }
 
-    public Client(int cl_id, String cl_name, String mobile, int cl_age, String cl_sex, String cl_emil) {
+    public Client(int cl_id, String cl_name, String mobile, int u_id, int cl_age, String cl_sex, String cl_emil) {
         this.cl_id = cl_id;
         this.cl_name = cl_name;
         this.mobile = mobile;
+        this.u_id = u_id;
         this.cl_age = cl_age;
         this.cl_sex = cl_sex;
         this.cl_emil = cl_emil;
@@ -51,6 +53,14 @@ public class Client {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public int getU_id() {
+        return u_id;
+    }
+
+    public void setU_id(int u_id) {
+        this.u_id = u_id;
     }
 
     public int getCl_age() {
@@ -83,6 +93,7 @@ public class Client {
                 "cl_id=" + cl_id +
                 ", cl_name='" + cl_name + '\'' +
                 ", mobile='" + mobile + '\'' +
+                ", u_id=" + u_id +
                 ", cl_age=" + cl_age +
                 ", cl_sex='" + cl_sex + '\'' +
                 ", cl_emil='" + cl_emil + '\'' +

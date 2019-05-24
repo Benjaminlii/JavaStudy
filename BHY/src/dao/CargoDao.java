@@ -2,7 +2,6 @@ package dao;
 
 import entity.Cargo;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface CargoDao {
@@ -30,7 +29,6 @@ public interface CargoDao {
     /**
      * 查询cargo表中的所有信息
      * @return 将表中的所有信息封装成List<Cargo>进行返回
-     * @throws SQLException 遍历ResultSet
      */
-    public List<Cargo> findAllCargo() throws SQLException;
+    public List<Cargo> findAllCargo();
 }

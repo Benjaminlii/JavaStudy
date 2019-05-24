@@ -2,7 +2,6 @@ package dao;
 
 import entity.Client;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface ClientDao {
@@ -30,7 +29,6 @@ public interface ClientDao {
     /**
      * 查询Client表中的所有信息
      * @return 将表中的所有信息封装成List<Clien>进行返回
-     * @throws SQLException 遍历ResultSet
      */
-    public List<Client> findAllClient() throws SQLException;
+    public List<Client> findAllClient();
 }

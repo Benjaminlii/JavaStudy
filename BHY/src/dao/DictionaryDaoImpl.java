@@ -40,19 +40,23 @@ public class DictionaryDaoImpl implements DictionaryDao {
     }
 
     @Override
-    public List<Dictionary> findAllDictionary() throws SQLException {
+    public List<Dictionary> findAllDictionary() {
         String sql = "select * from Dictionary;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
         List<Dictionary> rtn = new ArrayList<>();
         Dictionary dictionary;
-        while (resultSet.next()) {
-            dictionary = new Dictionary(
-                    resultSet.getInt("d_id"),
-                    resultSet.getInt("d_par_id"),
-                    resultSet.getString("d_name"),
-                    resultSet.getString("d_value")
-            );
-            rtn.add(dictionary);
+        try {
+            while (resultSet.next()) {
+                dictionary = new Dictionary(
+                        resultSet.getInt("d_id"),
+                        resultSet.getInt("d_par_id"),
+                        resultSet.getString("d_name"),
+                        resultSet.getString("d_value")
+                );
+                rtn.add(dictionary);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         DBUtil.closeAll();
         return rtn;
