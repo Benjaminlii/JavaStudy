@@ -10,6 +10,10 @@ public class DBUtil {
     private static PreparedStatement ps;
     private static ResultSet rs;
 
+    public static Connection getCon() {
+        return con;
+    }
+
     /**
      * 对数据库进行连接
      */

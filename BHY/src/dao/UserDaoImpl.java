@@ -43,52 +43,44 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findAllUser() {
+    public List<User> findAllUser() throws SQLException {
         String sql = "select * from user;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
         List<User> rtn = new ArrayList<>();
         User user;
-        try {
-            while (resultSet.next()) {
-                user = new User(
-                        resultSet.getInt("u_id"),
-                        resultSet.getInt("d_id"),
-                        resultSet.getString("username"),
-                        resultSet.getString("password")
-                );
-                rtn.add(user);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        while (resultSet.next()) {
+            user = new User(
+                    resultSet.getInt("u_id"),
+                    resultSet.getInt("d_id"),
+                    resultSet.getString("username"),
+                    resultSet.getString("password")
+            );
+            rtn.add(user);
         }
         DBUtil.closeAll();
         return rtn;
     }
 
     @Override
-    public User findUserByUserName(String username) {
+    public User findUserByUserName(String username) throws SQLException {
         String sql = "select * from user where username = ?;";
         Object[] para = {username};
         ResultSet resultSet = DBUtil.executeQuery(sql, para);
         User user = null;
-        try {
-            if (resultSet.next()) {
-                user = new User(
-                        resultSet.getInt("u_id"),
-                        resultSet.getInt("d_id"),
-                        resultSet.getString("username"),
-                        resultSet.getString("password")
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (resultSet.next()) {
+            user = new User(
+                    resultSet.getInt("u_id"),
+                    resultSet.getInt("d_id"),
+                    resultSet.getString("username"),
+                    resultSet.getString("password")
+            );
         }
         DBUtil.closeAll();
         return user;
     }
 
     @Override
-    public boolean isUserExist(String username) {
+    public boolean isUserExist(String username) throws SQLException {
         return findUserByUserName(username) != null;
     }
 }

@@ -2,6 +2,7 @@ package dao;
 
 import entity.Record;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface RecordDao {
@@ -30,5 +31,5 @@ public interface RecordDao {
      * 查询Record表中的所有信息
      * @return 将表中的所有信息封装成List<Record>进行返回
      */
-    public List<Record> findAllRecord();
+    public List<Record> findAllRecord() throws SQLException;
 }

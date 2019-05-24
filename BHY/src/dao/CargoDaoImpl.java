@@ -45,25 +45,21 @@ public class CargoDaoImpl implements CargoDao {
         return rtn;
     }
 
-    public List<Cargo> findAllCargo() {
+    public List<Cargo> findAllCargo() throws SQLException {
         String sql = "select * from cargo;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
         List<Cargo> rtn = new ArrayList<>();
         Cargo cargo;
-        try {
-            while (resultSet.next()) {
-                cargo = new Cargo(resultSet.getInt("c_id"),
-                        resultSet.getString("c_name"),
-                        resultSet.getInt("c_num"),
-                        resultSet.getInt("d_id"),
-                        resultSet.getInt("s_id"),
-                        (Date) resultSet.getObject("c_getDate"),
-                        (Date) resultSet.getObject("c_producedDate"),
-                        (Date) resultSet.getObject("c_expirationDate"));
-                rtn.add(cargo);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        while (resultSet.next()) {
+            cargo = new Cargo(resultSet.getInt("c_id"),
+                    resultSet.getString("c_name"),
+                    resultSet.getInt("c_num"),
+                    resultSet.getInt("d_id"),
+                    resultSet.getInt("s_id"),
+                    (Date) resultSet.getObject("c_getDate"),
+                    (Date) resultSet.getObject("c_producedDate"),
+                    (Date) resultSet.getObject("c_expirationDate"));
+            rtn.add(cargo);
         }
         DBUtil.closeAll();
         return rtn;

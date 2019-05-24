@@ -1,24 +1,55 @@
 package service;
 
+import dao.ClientDaoImpl;
+import dao.EmployeeDaoImpl;
 import dao.UserDao;
 import dao.UserDaoImpl;
+import entity.Client;
+import entity.Employee;
 import entity.User;
+import util.DBUtil;
+
+import java.sql.SQLException;
 
 /**
- * ¹ØÓÚuserµÄÒµÎñÂß¼­²ã
+ * å…³äºuserï¼ˆç”¨æˆ·ï¼‰çš„ä¸šåŠ¡é€»è¾‘å±‚
  */
 public class UserService {
     private UserDao userDao = new UserDaoImpl();
 
     /**
-     * Ôö¼ÓÒ»¸öuser£¬ÏÈÅĞ¶ÏÊÇ·ñ´æÔÚ¸ÃuserµÄusername£¬Èç¹û²»´æÔÚÔòÌí¼Ó
-     * @param user ÒªÌí¼ÓµÄuserĞÅÏ¢
-     * @return Ìí¼Ó³É¹¦·µ»Øtrue£¬Ìí¼ÓÊ§°ÜÔò·µ»Øfalse
+     * å¢åŠ ä¸€ä¸ªuserï¼Œå…ˆåˆ¤æ–­æ˜¯å¦å­˜åœ¨è¯¥userçš„usernameï¼Œå¦‚æœä¸å­˜åœ¨åˆ™æ·»åŠ 
+     * ç„¶ååˆ¤æ–­å¢åŠ çš„ç”¨æˆ·çš„å±æ€§ï¼Œå¹¶åœ¨Clientï¼ˆé¡¾å®¢ï¼‰è¡¨æˆ–Employeeï¼ˆå‘˜å·¥ï¼‰è¡¨ä¸­æ·»åŠ ç›¸åº”çš„ä¿¡æ¯
+     * @param user è¦æ·»åŠ çš„userä¿¡æ¯
+     * @return æ·»åŠ æˆåŠŸè¿”å›trueï¼Œæ·»åŠ å¤±è´¥åˆ™è¿”å›false
      */
-    public boolean addUser(User user) {
+    public boolean addUser(User user, Object type) {
         boolean rtn = false;
-        if (!userDao.isUserExist(user.getUsername())) {
-            rtn = userDao.addUser(user);
+        try {
+            DBUtil.getCon().setAutoCommit(false);
+            if (!userDao.isUserExist(user.getUsername()) && (user.getD_id() == 8 || user.getD_id() == 9)) {
+                if(user.getD_id() == 8) {
+                    Client client = (Client)type;
+                    boolean rtn1 = userDao.addUser(user);
+                    client.setU_id(userDao.findUserByUserName(user.getUsername()).getU_id());
+                    boolean rtn2 = new ClientDaoImpl().addClient(client);
+                    rtn = rtn1 && rtn2;
+                }else {
+                    Employee employee = (Employee)type;
+                    boolean rtn1 = userDao.addUser(user);
+                    employee.setU_id(userDao.findUserByUserName(user.getUsername()).getU_id());
+                    boolean rtn2 = new EmployeeDaoImpl().addEmployee(employee);
+                    rtn = rtn1 && rtn2;
+                }
+                DBUtil.getCon().commit();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try{
+                DBUtil.getCon().rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
         }
         return rtn;
     }

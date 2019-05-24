@@ -47,24 +47,20 @@ public class StoreDaoImpl implements StoreDao {
     }
 
     @Override
-    public List<Store> findAllStore() {
+    public List<Store> findAllStore() throws SQLException {
         String sql = "select * from store;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
         List<Store> rtn = new ArrayList<>();
         Store store;
-        try {
-            while (resultSet.next()) {
-                store = new Store(
-                        resultSet.getInt("st_id"),
-                        resultSet.getInt("d_id"),
-                        resultSet.getInt("e_id"),
-                        resultSet.getString("st_address"),
-                        (Date) resultSet.getObject("st_time")
-                );
-                rtn.add(store);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        while (resultSet.next()) {
+            store = new Store(
+                    resultSet.getInt("st_id"),
+                    resultSet.getInt("d_id"),
+                    resultSet.getInt("e_id"),
+                    resultSet.getString("st_address"),
+                    (Date) resultSet.getObject("st_time")
+            );
+            rtn.add(store);
         }
         DBUtil.closeAll();
         return rtn;

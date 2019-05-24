@@ -50,27 +50,23 @@ public class ServiceDaoImpl implements ServiceDao {
     }
 
     @Override
-    public List<Service> findAllService() {
+    public List<Service> findAllService() throws SQLException {
         String sql = "select * from service;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
         List<Service> rtn = new ArrayList<>();
         Service service;
-        try {
-            while (resultSet.next()) {
-                service = new Service(
-                        resultSet.getInt("s_id"),
-                        resultSet.getInt("p_id"),
-                        resultSet.getString("s_isDispose"),
-                        resultSet.getString("s_isFinish"),
-                        resultSet.getInt("d_id"),
-                        resultSet.getInt("e_id"),
-                        (Date) resultSet.getObject("s_aTime"),
-                        resultSet.getFloat("s_price")
-                );
-                rtn.add(service);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        while (resultSet.next()) {
+            service = new Service(
+                    resultSet.getInt("s_id"),
+                    resultSet.getInt("p_id"),
+                    resultSet.getString("s_isDispose"),
+                    resultSet.getString("s_isFinish"),
+                    resultSet.getInt("d_id"),
+                    resultSet.getInt("e_id"),
+                    (Date) resultSet.getObject("s_aTime"),
+                    resultSet.getFloat("s_price")
+            );
+            rtn.add(service);
         }
         DBUtil.closeAll();
         return rtn;

@@ -19,6 +19,13 @@ public class Employee {
     public Employee() {
     }
 
+    public Employee(String e_name, int e_salary, int s_id, int d_id) {
+        this.e_name = e_name;
+        this.e_salary = e_salary;
+        this.s_id = s_id;
+        this.d_id = d_id;
+    }
+
     public Employee(int e_id, String e_name, int e_salary, int s_id, int d_id) {
         this.e_id = e_id;
         this.e_name = e_name;

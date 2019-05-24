@@ -2,6 +2,7 @@ package dao;
 
 import entity.Employee;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface EmployeeDao {
@@ -30,5 +31,5 @@ public interface EmployeeDao {
      * 查询Employee表中的所有信息
      * @return 将表中的所有信息封装成List<Employee>进行返回
      */
-    public List<Employee> findAllEmployee();
+    public List<Employee> findAllEmployee() throws SQLException;
 }

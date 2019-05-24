@@ -12,6 +12,7 @@ import java.util.List;
 public class EmployeeDaoImpl implements EmployeeDao {
     @Override
     public boolean addEmployee(Employee employee) {
+        System.out.println(employee);
         String sql = "insert into employee (e_name, e_salary, s_id, d_id, u_id, e_sex, e_age, e_time) " +
                 "values (?,?,?,?,?,?,?,?);";
         Object[] para = {
@@ -48,12 +49,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public List<Employee> findAllEmployee() {
+    public List<Employee> findAllEmployee() throws SQLException {
         String sql = "select * from employee;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
         List<Employee> rtn = new ArrayList<>();
         Employee employee;
-        try {
             while (resultSet.next()) {
                 employee = new Employee(
                         resultSet.getInt("e_id"),
@@ -68,9 +68,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 );
                 rtn.add(employee);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         DBUtil.closeAll();
         return rtn;
     }

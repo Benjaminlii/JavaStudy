@@ -43,12 +43,11 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     @Override
-    public List<Client> findAllClient() {
+    public List<Client> findAllClient() throws SQLException {
         String sql = "select * from client;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
         List<Client> rtn = new ArrayList<>();
         Client client;
-        try {
             while (resultSet.next()) {
                 client = new Client(
                         resultSet.getInt("cl_id"),
@@ -61,9 +60,6 @@ public class ClientDaoImpl implements ClientDao {
                 );
                 rtn.add(client);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         DBUtil.closeAll();
         return rtn;
     }

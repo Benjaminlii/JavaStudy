@@ -50,27 +50,23 @@ public class RecordDaoImpl implements RecordDao {
     }
 
     @Override
-    public List<Record> findAllRecord() {
+    public List<Record> findAllRecord() throws SQLException {
         String sql = "select * from record;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
         List<Record> rtn = new ArrayList<>();
         Record record;
-        try {
-            while (resultSet.next()) {
-                record = new Record(
-                        resultSet.getInt("r_id"),
-                        resultSet.getInt("cl_id"),
-                        resultSet.getInt("s_id"),
-                        resultSet.getInt("c_id"),
-                        (Date) resultSet.getObject("r_time"),
-                        resultSet.getFloat("r_price"),
-                        resultSet.getInt("r_num"),
-                        resultSet.getString("r_pattern")
-                );
-                rtn.add(record);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        while (resultSet.next()) {
+            record = new Record(
+                    resultSet.getInt("r_id"),
+                    resultSet.getInt("cl_id"),
+                    resultSet.getInt("s_id"),
+                    resultSet.getInt("c_id"),
+                    (Date) resultSet.getObject("r_time"),
+                    resultSet.getFloat("r_price"),
+                    resultSet.getInt("r_num"),
+                    resultSet.getString("r_pattern")
+            );
+            rtn.add(record);
         }
         DBUtil.closeAll();
         return rtn;
