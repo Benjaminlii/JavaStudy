@@ -31,4 +31,20 @@ public interface UserDao {
      * @return 将表中的所有信息封装成List<User>进行返回
      */
     public List<User> findAllUser();
+
+    /**
+     * 根据用户名查询用户
+     * @param username 需要查询的用户名
+     * @return 查询成功返回该用户，查询失败返回null
+     */
+    public User findUserByUserName(String username);
+
+    /**
+     * 判读该用户名是否存在
+     * @param username 需要进行判断的用户名
+     * @return 存在返回true，不存在返回false
+     */
+    public boolean isUserExist(String username);
+
+//    public User findUserByUserNameAndPassWord(String username, String passworld)
 }
