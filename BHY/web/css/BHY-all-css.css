@@ -27,6 +27,14 @@
     text-decoration: none;
 }
 
+.BHY-body{
+    position: relative;
+    margin: 0 auto 38px;
+    height:529px;
+    background: #00a2ca; /*#29a176*/
+
+}
+
 
 
 .BHY-footer{
