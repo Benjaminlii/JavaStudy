@@ -3,17 +3,17 @@ package entity;
 import java.util.Date;
 
 /**
- * ·şÎñÀà
+ * æœåŠ¡ç±»
  */
 public class Service {
-    private int s_id;//·şÎñid
-    private int p_id;//³èÎïid
-    private String s_isDispose;//ÊÇ·ñÊÜ´¦Àí
-    private String s_isFinish;//ÊÇ·ñ±»Íê³É
-    private int d_id;//×Öµäid£¨·şÎñÀà±ğ£©
-    private int e_id;//´¦ÀíÔ±¹¤id
-    private Date s_aTime;//·şÎñÔ¤Ô¼Ê±¼ä
-    private float s_price;//·şÎñ¼Û¸ñ
+    private int s_id;//æœåŠ¡id
+    private int p_id;//å® ç‰©id
+    private String s_isDispose;//æ˜¯å¦å—å¤„ç†
+    private String s_isFinish;//æ˜¯å¦è¢«å®Œæˆ
+    private int d_id;//å­—å…¸idï¼ˆæœåŠ¡ç±»åˆ«ï¼‰
+    private int e_id;//å¤„ç†å‘˜å·¥id
+    private Date s_aTime;//æœåŠ¡é¢„çº¦æ—¶é—´
+    private float s_price;//æœåŠ¡ä»·æ ¼
 
     public Service() {
     }

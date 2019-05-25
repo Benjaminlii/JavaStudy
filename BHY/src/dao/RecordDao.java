@@ -7,29 +7,29 @@ import java.util.List;
 
 public interface RecordDao {
     /**
-     * ÏòÊı¾İ¿âÖĞµÄRecord£¨ÏúÊÛ¼ÇÂ¼£©±íÖĞÌí¼ÓÊı¾İ
-     * @param record ´«ÈëµÄ·â×°ºÃµÄÊı¶ÔÏó
-     * @return Ìí¼Ó³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * å‘æ•°æ®åº“ä¸­çš„Recordï¼ˆé”€å”®è®°å½•ï¼‰è¡¨ä¸­æ·»åŠ æ•°æ®
+     * @param record ä¼ å…¥çš„å°è£…å¥½çš„æ•°å¯¹è±¡
+     * @return æ·»åŠ æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean addRecord(Record record);
 
     /**
-     * ¸ù¾İp_id´ÓRecord±íÖĞÉ¾³ıÒ»ÌõĞÅÏ¢
-     * @param r_id ĞèÒªÉ¾³ıµÄĞÅÏ¢µÄr_id
-     * @return É¾³ı³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®p_idä»Recordè¡¨ä¸­åˆ é™¤ä¸€æ¡ä¿¡æ¯
+     * @param r_id éœ€è¦åˆ é™¤çš„ä¿¡æ¯çš„r_id
+     * @return åˆ é™¤æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean deleteRecord(int r_id);
 
     /**
-     * ¸ù¾İ´«ÈëĞÅÏ¢¸ü¸ÄÒ»ÌõRecord±íÖĞµÄÊı¾İ
-     * @param record ´«ÈëµÄĞÅÏ¢£¬r_idÎª²éÕÒ¸ÃÌõĞÅÏ¢µÄÌõ¼ş£¬ÆäËûÊı¾İ¾ùÎªĞÂÊı¾İĞŞ¸Äµ½¸ÃĞÅÏ¢´¦
-     * @return ĞŞ¸Ä³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®ä¼ å…¥ä¿¡æ¯æ›´æ”¹ä¸€æ¡Recordè¡¨ä¸­çš„æ•°æ®
+     * @param record ä¼ å…¥çš„ä¿¡æ¯ï¼Œr_idä¸ºæŸ¥æ‰¾è¯¥æ¡ä¿¡æ¯çš„æ¡ä»¶ï¼Œå…¶ä»–æ•°æ®å‡ä¸ºæ–°æ•°æ®ä¿®æ”¹åˆ°è¯¥ä¿¡æ¯å¤„
+     * @return ä¿®æ”¹æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean updateRecord(Record record);
 
     /**
-     * ²éÑ¯Record±íÖĞµÄËùÓĞĞÅÏ¢
-     * @return ½«±íÖĞµÄËùÓĞĞÅÏ¢·â×°³ÉList<Record>½øĞĞ·µ»Ø
+     * æŸ¥è¯¢Recordè¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯
+     * @return å°†è¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯å°è£…æˆList<Record>è¿›è¡Œè¿”å›
      */
     public List<Record> findAllRecord() throws SQLException;
 }

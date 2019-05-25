@@ -6,11 +6,20 @@
     <title>不会养宠物</title>
     <link rel="stylesheet" type="text/css" href="../css/BHY-all-css.css"/>
     <link rel="stylesheet" type="text/css" href="../css/BHY-login-css.css"/>
+    <script type="text/javascript">
+        function loginCheck() {
+
+        }
+
+        function registerCheck() {
+
+        }
+    </script>
 </head>
 
 <body>
 <div id="BHY-header">
-    <div class="BHY-logo BHY-main-content">
+    <div class="BHY-logo BHY-Ajax.Main-content">
         <a href="#"><img src="../image/logo.png" alt="LOGO" height="74"/></a>
         <ul class="BHY-header-linker">
             <li><a href="#">关于我们</a></li>
@@ -21,7 +30,7 @@
 
 <div class=BHY-body>
     <div id="login-bd" class="BHY-login-bd">
-        <div class="BHY-main-content">
+        <div class="BHY-Ajax.Main-content">
             <div class="BHY-input-box">
                 <div class="BHY-input-title">
                     <h2>用户登录</h2>
@@ -30,11 +39,11 @@
                     <form>
                         <div class="BHY-input-item">
                             <p>登录名：</p>
-                            <input type="text" id="username" placeholder="请输入账号/邮箱"/>
+                            <input type="text" name="username" placeholder="请输入账号"/>
                         </div>
                         <div class="BHY-input-item">
                             <p>登录密码：</p>
-                            <input type="password" id="password" placeholder="请输入密码"/>
+                            <input type="password" name="password" placeholder="请输入密码"/>
                         </div>
                         <div class="BHY-input-item">
                             <p>验证码：</p>
@@ -42,7 +51,7 @@
                             <img src="../images/login/1.png" id="codeImg" alt="点击更换" title="点击更换"/>
                         </div>
                         <div class="BHY-login-btn" onclick="loginCheck();">登录</div>
-                        <div class="BHY-login-btn" onclick="loginCheck();">注册</div>
+                        <div class="BHY-login-btn" onclick="registerCheck();">注册</div>
                     </form>
                     <p class="BHY-input-other">忘记密码？<a href="#">联系我们</a></p>
                 </div>

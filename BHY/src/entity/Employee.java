@@ -3,18 +3,18 @@ package entity;
 import java.util.Date;
 
 /**
- * Ô±¹¤Àà
+ * å‘˜å·¥ç±»
  */
 public class Employee {
-    private int e_id;//Ô±¹¤id
-    private String e_name;//ĞÕÃû
-    private int e_salary;//¹¤×Ê
-    private int s_id;//ËùÊô³èÎïµêid
-    private int d_id;//×Öµäid£¨Ö°Îñ£©
-    private int u_id;//ÓÃ»§id
-    private String e_sex;//ĞÔ±ğ
-    private int e_age;//ÄêÁä
-    private Date e_time;//ÈëÖ°Ê±¼ä
+    private int e_id;//å‘˜å·¥id
+    private String e_name;//å§“å
+    private int e_salary;//å·¥èµ„
+    private int s_id;//æ‰€å±å® ç‰©åº—id
+    private int d_id;//å­—å…¸idï¼ˆèŒåŠ¡ï¼‰
+    private int u_id;//ç”¨æˆ·id
+    private String e_sex;//æ€§åˆ«
+    private int e_age;//å¹´é¾„
+    private Date e_time;//å…¥èŒæ—¶é—´
 
     public Employee() {
     }

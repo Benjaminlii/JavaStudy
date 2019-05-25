@@ -7,29 +7,29 @@ import java.util.List;
 
 public interface PetDao {
     /**
-     * ÏòÊı¾İ¿âÖĞµÄPet£¨³èÎï£©±íÖĞÌí¼ÓÊı¾İ
-     * @param pet ´«ÈëµÄ·â×°ºÃµÄÊı¶ÔÏó
-     * @return Ìí¼Ó³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * å‘æ•°æ®åº“ä¸­çš„Petï¼ˆå® ç‰©ï¼‰è¡¨ä¸­æ·»åŠ æ•°æ®
+     * @param pet ä¼ å…¥çš„å°è£…å¥½çš„æ•°å¯¹è±¡
+     * @return æ·»åŠ æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean addPet(Pet pet);
 
     /**
-     * ¸ù¾İp_id´ÓPet±íÖĞÉ¾³ıÒ»ÌõĞÅÏ¢
-     * @param p_id ĞèÒªÉ¾³ıµÄĞÅÏ¢µÄp_id
-     * @return É¾³ı³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®p_idä»Petè¡¨ä¸­åˆ é™¤ä¸€æ¡ä¿¡æ¯
+     * @param p_id éœ€è¦åˆ é™¤çš„ä¿¡æ¯çš„p_id
+     * @return åˆ é™¤æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean deletePet(int p_id);
 
     /**
-     * ¸ù¾İ´«ÈëĞÅÏ¢¸ü¸ÄÒ»ÌõPet±íÖĞµÄÊı¾İ
-     * @param pet ´«ÈëµÄĞÅÏ¢£¬p_idÎª²éÕÒ¸ÃÌõĞÅÏ¢µÄÌõ¼ş£¬ÆäËûÊı¾İ¾ùÎªĞÂÊı¾İĞŞ¸Äµ½¸ÃĞÅÏ¢´¦
-     * @return ĞŞ¸Ä³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®ä¼ å…¥ä¿¡æ¯æ›´æ”¹ä¸€æ¡Petè¡¨ä¸­çš„æ•°æ®
+     * @param pet ä¼ å…¥çš„ä¿¡æ¯ï¼Œp_idä¸ºæŸ¥æ‰¾è¯¥æ¡ä¿¡æ¯çš„æ¡ä»¶ï¼Œå…¶ä»–æ•°æ®å‡ä¸ºæ–°æ•°æ®ä¿®æ”¹åˆ°è¯¥ä¿¡æ¯å¤„
+     * @return ä¿®æ”¹æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean updatePet(Pet pet);
 
     /**
-     * ²éÑ¯Pet±íÖĞµÄËùÓĞĞÅÏ¢
-     * @return ½«±íÖĞµÄËùÓĞĞÅÏ¢·â×°³ÉList<Pet>½øĞĞ·µ»Ø
+     * æŸ¥è¯¢Petè¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯
+     * @return å°†è¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯å°è£…æˆList<Pet>è¿›è¡Œè¿”å›
      */
     public List<Pet> findAllPet() throws SQLException;
 }

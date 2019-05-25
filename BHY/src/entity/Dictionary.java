@@ -1,13 +1,13 @@
 package entity;
 
 /**
- * Êı¾İ×ÖµäÀà
+ * æ•°æ®å­—å…¸ç±»
  */
 public class Dictionary {
-    private int d_id;//×Öµäid
-    private int d_par_id;//¸¸Ä¸×Öµäid
-    private String d_name;//×ÖµäÃû³Æ
-    private String d_value;//×ÖµäÖµ
+    private int d_id;//å­—å…¸id
+    private int d_par_id;//çˆ¶æ¯å­—å…¸id
+    private String d_name;//å­—å…¸åç§°
+    private String d_value;//å­—å…¸å€¼
 
     public Dictionary() {
     }

@@ -1,16 +1,16 @@
 package entity;
 
 /**
- * ¹Ë¿ÍÀà
+ * é¡¾å®¢ç±»
  */
 public class Client {
-    private int cl_id;//¹Ë¿Íid
-    private String cl_name;//¹Ë¿ÍĞÕÃû
-    private String mobile;//¹Ë¿ÍÊÖ»úºÅÂë
-    private int u_id;//ÓÃ»§id
-    private int cl_age;//¹Ë¿ÍÄêÁä
-    private String cl_sex;//¹Ë¿ÍĞÔ±ğ
-    private String cl_emil;//¹Ë¿Íµç×ÓÓÊÏä
+    private int cl_id;//é¡¾å®¢id
+    private String cl_name;//é¡¾å®¢å§“å
+    private String mobile;//é¡¾å®¢æ‰‹æœºå·ç 
+    private int u_id;//ç”¨æˆ·id
+    private int cl_age;//é¡¾å®¢å¹´é¾„
+    private String cl_sex;//é¡¾å®¢æ€§åˆ«
+    private String cl_emil;//é¡¾å®¢ç”µå­é‚®ç®±
 
     public Client() {
     }

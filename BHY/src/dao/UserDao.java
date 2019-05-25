@@ -7,43 +7,43 @@ import java.util.List;
 
 public interface UserDao {
     /**
-     * ÏòÊı¾İ¿âÖĞµÄUser£¨ÓÃ»§£©±íÖĞÌí¼ÓÊı¾İ
-     * @param user ´«ÈëµÄ·â×°ºÃµÄÊı¶ÔÏó
-     * @return Ìí¼Ó³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * å‘æ•°æ®åº“ä¸­çš„Userï¼ˆç”¨æˆ·ï¼‰è¡¨ä¸­æ·»åŠ æ•°æ®
+     * @param user ä¼ å…¥çš„å°è£…å¥½çš„æ•°å¯¹è±¡
+     * @return æ·»åŠ æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean addUser(User user);
 
     /**
-     * ¸ù¾İu_id´ÓUser±íÖĞÉ¾³ıÒ»ÌõĞÅÏ¢
-     * @param u_id ĞèÒªÉ¾³ıµÄĞÅÏ¢µÄu_id
-     * @return É¾³ı³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®u_idä»Userè¡¨ä¸­åˆ é™¤ä¸€æ¡ä¿¡æ¯
+     * @param u_id éœ€è¦åˆ é™¤çš„ä¿¡æ¯çš„u_id
+     * @return åˆ é™¤æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean deleteUser(int u_id);
 
     /**
-     * ¸ù¾İ´«ÈëĞÅÏ¢¸ü¸ÄÒ»ÌõUser±íÖĞµÄÊı¾İ
-     * @param user ´«ÈëµÄĞÅÏ¢£¬u_idÎª²éÕÒ¸ÃÌõĞÅÏ¢µÄÌõ¼ş£¬ÆäËûÊı¾İ¾ùÎªĞÂÊı¾İĞŞ¸Äµ½¸ÃĞÅÏ¢´¦
-     * @return ĞŞ¸Ä³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®ä¼ å…¥ä¿¡æ¯æ›´æ”¹ä¸€æ¡Userè¡¨ä¸­çš„æ•°æ®
+     * @param user ä¼ å…¥çš„ä¿¡æ¯ï¼Œu_idä¸ºæŸ¥æ‰¾è¯¥æ¡ä¿¡æ¯çš„æ¡ä»¶ï¼Œå…¶ä»–æ•°æ®å‡ä¸ºæ–°æ•°æ®ä¿®æ”¹åˆ°è¯¥ä¿¡æ¯å¤„
+     * @return ä¿®æ”¹æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean updateUser(User user);
 
     /**
-     * ²éÑ¯User±íÖĞµÄËùÓĞĞÅÏ¢
-     * @return ½«±íÖĞµÄËùÓĞĞÅÏ¢·â×°³ÉList<User>½øĞĞ·µ»Ø
+     * æŸ¥è¯¢Userè¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯
+     * @return å°†è¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯å°è£…æˆList<User>è¿›è¡Œè¿”å›
      */
     public List<User> findAllUser() throws SQLException;
 
     /**
-     * ¸ù¾İÓÃ»§Ãû²éÑ¯ÓÃ»§
-     * @param username ĞèÒª²éÑ¯µÄÓÃ»§Ãû
-     * @return ²éÑ¯³É¹¦·µ»Ø¸ÃÓÃ»§£¬²éÑ¯Ê§°Ü·µ»Ønull
+     * æ ¹æ®ç”¨æˆ·åæŸ¥è¯¢ç”¨æˆ·
+     * @param username éœ€è¦æŸ¥è¯¢çš„ç”¨æˆ·å
+     * @return æŸ¥è¯¢æˆåŠŸè¿”å›è¯¥ç”¨æˆ·ï¼ŒæŸ¥è¯¢å¤±è´¥è¿”å›null
      */
     public User findUserByUserName(String username) throws SQLException;
 
     /**
-     * ÅĞ¶Á¸ÃÓÃ»§ÃûÊÇ·ñ´æÔÚ
-     * @param username ĞèÒª½øĞĞÅĞ¶ÏµÄÓÃ»§Ãû
-     * @return ´æÔÚ·µ»Øtrue£¬²»´æÔÚ·µ»Øfalse
+     * åˆ¤è¯»è¯¥ç”¨æˆ·åæ˜¯å¦å­˜åœ¨
+     * @param username éœ€è¦è¿›è¡Œåˆ¤æ–­çš„ç”¨æˆ·å
+     * @return å­˜åœ¨è¿”å›trueï¼Œä¸å­˜åœ¨è¿”å›false
      */
     public boolean isUserExist(String username) throws SQLException;
 

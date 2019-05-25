@@ -1,17 +1,17 @@
 package entity;
 
 /**
- * ³èÎïÀà
+ * å® ç‰©ç±»
  */
 public class Pet {
-    private int p_id;//³èÎïid
-    private int cl_id;//ËùÊô¹Ë¿Íid
-    private int d_id;//×ÖµäĞÅÏ¢£¨Æ·ÖÖ£©id
-    private int s_id;//³èÎïµêid
-    private int p_age;//³èÎïÄêÁä
-    private String p_sex;//³èÎïĞÔ±ğ
-    private float p_height;//³èÎïÌåÖØ
-    private String p_healthy;//³èÎï½¡¿µ×´¿ö
+    private int p_id;//å® ç‰©id
+    private int cl_id;//æ‰€å±é¡¾å®¢id
+    private int d_id;//å­—å…¸ä¿¡æ¯ï¼ˆå“ç§ï¼‰id
+    private int s_id;//å® ç‰©åº—id
+    private int p_age;//å® ç‰©å¹´é¾„
+    private String p_sex;//å® ç‰©æ€§åˆ«
+    private float p_height;//å® ç‰©ä½“é‡
+    private String p_healthy;//å® ç‰©å¥åº·çŠ¶å†µ
 
     public Pet() {
     }

@@ -7,29 +7,29 @@ import java.util.List;
 
 public interface ServiceDao {
     /**
-     * ÏòÊı¾İ¿âÖĞµÄService£¨·şÎñ£©±íÖĞÌí¼ÓÊı¾İ
-     * @param service ´«ÈëµÄ·â×°ºÃµÄÊı¶ÔÏó
-     * @return Ìí¼Ó³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * å‘æ•°æ®åº“ä¸­çš„Serviceï¼ˆæœåŠ¡ï¼‰è¡¨ä¸­æ·»åŠ æ•°æ®
+     * @param service ä¼ å…¥çš„å°è£…å¥½çš„æ•°å¯¹è±¡
+     * @return æ·»åŠ æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean addService(Service service);
 
     /**
-     * ¸ù¾İs_id´ÓService±íÖĞÉ¾³ıÒ»ÌõĞÅÏ¢
-     * @param s_id ĞèÒªÉ¾³ıµÄĞÅÏ¢µÄs_id
-     * @return É¾³ı³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®s_idä»Serviceè¡¨ä¸­åˆ é™¤ä¸€æ¡ä¿¡æ¯
+     * @param s_id éœ€è¦åˆ é™¤çš„ä¿¡æ¯çš„s_id
+     * @return åˆ é™¤æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean deleteService(int s_id);
 
     /**
-     * ¸ù¾İ´«ÈëĞÅÏ¢¸ü¸ÄÒ»ÌõService±íÖĞµÄÊı¾İ
-     * @param service ´«ÈëµÄĞÅÏ¢£¬s_idÎª²éÕÒ¸ÃÌõĞÅÏ¢µÄÌõ¼ş£¬ÆäËûÊı¾İ¾ùÎªĞÂÊı¾İĞŞ¸Äµ½¸ÃĞÅÏ¢´¦
-     * @return ĞŞ¸Ä³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®ä¼ å…¥ä¿¡æ¯æ›´æ”¹ä¸€æ¡Serviceè¡¨ä¸­çš„æ•°æ®
+     * @param service ä¼ å…¥çš„ä¿¡æ¯ï¼Œs_idä¸ºæŸ¥æ‰¾è¯¥æ¡ä¿¡æ¯çš„æ¡ä»¶ï¼Œå…¶ä»–æ•°æ®å‡ä¸ºæ–°æ•°æ®ä¿®æ”¹åˆ°è¯¥ä¿¡æ¯å¤„
+     * @return ä¿®æ”¹æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean updateService(Service service);
 
     /**
-     * ²éÑ¯Service±íÖĞµÄËùÓĞĞÅÏ¢
-     * @return ½«±íÖĞµÄËùÓĞĞÅÏ¢·â×°³ÉList<Service>½øĞĞ·µ»Ø
+     * æŸ¥è¯¢Serviceè¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯
+     * @return å°†è¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯å°è£…æˆList<Service>è¿›è¡Œè¿”å›
      */
     public List<Service> findAllService() throws SQLException;
 }

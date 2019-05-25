@@ -1,3 +1,6 @@
+.BHY-header{
+    width: 1672px;
+}
 .BHY-logo{
     height: 74px;
     line-height: 74px;
@@ -30,7 +33,8 @@
 .BHY-body{
     position: relative;
     margin: 0 auto 38px;
-    height:529px;
+    height:600px;
+    width: 1672px;
     background: #00a2ca; /*#29a176*/
 
 }
@@ -38,6 +42,7 @@
 
 
 .BHY-footer{
+    width: 1672px;
     padding-top:20px;
     padding-bottom: 35px;
     border-top:1px solid #e5e5e5;

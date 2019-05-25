@@ -1,15 +1,20 @@
 package entity;
 
 /**
- * ÓÃ»§Àà
+ * ç”¨æˆ·ç±»
  */
 public class User {
-    private int u_id;//ÓÃ»§id
-    private int d_id;//×Öµäid(ÓÃ»§ÀàĞÍ)
-    private String username;//ÓÃ»§Ãû
-    private String password;//ÃÜÂë
+    private int u_id;//ç”¨æˆ·id
+    private int d_id;//å­—å…¸id(ç”¨æˆ·ç±»å‹)
+    private String username;//ç”¨æˆ·å
+    private String password;//å¯†ç 
 
     public User() {
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public User(int d_id, String username, String password) {

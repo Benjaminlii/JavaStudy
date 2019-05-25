@@ -1,0 +1,26 @@
+/BHY/LoginServlet:
+    用户登陆的url
+    参数：username（用户名）、password（密码）
+    返回值：json格式：   key：   rtn
+                        value： 1为登陆成功（会设置user到session中）跳转到主页面
+                                2为密码不正确，不跳转
+                                3为用户名不存在，不跳转
+
+/BHY/RegisterServlet:
+    员工用户注册的url
+    参数:   username 用户名
+            password 密码
+            e_name 员工姓名
+            s_id 宠物店id（单选得到）
+            d_id 职务id（单选得到）
+    返回值：json格式：     key：    rtn
+                          value：  1为注册成功，会跳转至登陆页面
+                                   0为注册失败（用户名重复）
+
+/BHY/FindAllUserServlet:
+    查询所有的用户,会根据session中的user对象的类型判断是否能进行查询(通过判断user对象的d_id属性来得到当前用户的类型)
+    参数：无
+    返回值：json类型，如果当前状态为未登录，put("ifLogin", "false")并进行页面跳转
+                      如果已登陆，但权限不是店长，put("ifLogin", "true")，put("isLord", "false")由前端进行提示
+                      如果是店长登陆put("ifLogin", "true")，put("isLord", "true")，jsonObject.put("users", users)
+                                      最后的users是json格式的List<User>

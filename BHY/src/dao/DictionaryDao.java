@@ -7,29 +7,29 @@ import java.util.List;
 
 public interface DictionaryDao {
     /**
-     * ÏòÊı¾İ¿âÖĞµÄdictionary£¨Êı¾İ×Öµä£©±íÖĞÌí¼ÓÊı¾İ
-     * @param dictionary ´«ÈëµÄ·â×°ºÃµÄÊı¶ÔÏó
-     * @return Ìí¼Ó³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * å‘æ•°æ®åº“ä¸­çš„dictionaryï¼ˆæ•°æ®å­—å…¸ï¼‰è¡¨ä¸­æ·»åŠ æ•°æ®
+     * @param dictionary ä¼ å…¥çš„å°è£…å¥½çš„æ•°å¯¹è±¡
+     * @return æ·»åŠ æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean addDictionary(Dictionary dictionary);
 
     /**
-     * ¸ù¾İd_id´ÓDictionary±íÖĞÉ¾³ıÒ»ÌõĞÅÏ¢
-     * @param d_id ĞèÒªÉ¾³ıµÄĞÅÏ¢µÄd_id
-     * @return É¾³ı³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®d_idä»Dictionaryè¡¨ä¸­åˆ é™¤ä¸€æ¡ä¿¡æ¯
+     * @param d_id éœ€è¦åˆ é™¤çš„ä¿¡æ¯çš„d_id
+     * @return åˆ é™¤æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean deleteDictionary(int d_id);
 
     /**
-     * ¸ù¾İ´«ÈëĞÅÏ¢¸ü¸ÄÒ»ÌõDictionary±íÖĞµÄÊı¾İ
-     * @param dictionary ´«ÈëµÄĞÅÏ¢£¬d_idÎª²éÕÒ¸ÃÌõĞÅÏ¢µÄÌõ¼ş£¬ÆäËûÊı¾İ¾ùÎªĞÂÊı¾İĞŞ¸Äµ½¸ÃĞÅÏ¢´¦
-     * @return ĞŞ¸Ä³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®ä¼ å…¥ä¿¡æ¯æ›´æ”¹ä¸€æ¡Dictionaryè¡¨ä¸­çš„æ•°æ®
+     * @param dictionary ä¼ å…¥çš„ä¿¡æ¯ï¼Œd_idä¸ºæŸ¥æ‰¾è¯¥æ¡ä¿¡æ¯çš„æ¡ä»¶ï¼Œå…¶ä»–æ•°æ®å‡ä¸ºæ–°æ•°æ®ä¿®æ”¹åˆ°è¯¥ä¿¡æ¯å¤„
+     * @return ä¿®æ”¹æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean updateDictionary(Dictionary dictionary);
 
     /**
-     * ²éÑ¯Dictionary±íÖĞµÄËùÓĞĞÅÏ¢
-     * @return ½«±íÖĞµÄËùÓĞĞÅÏ¢·â×°³ÉList<Dictionary>½øĞĞ·µ»Ø
+     * æŸ¥è¯¢Dictionaryè¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯
+     * @return å°†è¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯å°è£…æˆList<Dictionary>è¿›è¡Œè¿”å›
      */
     public List<Dictionary> findAllDictionary() throws SQLException;
 }

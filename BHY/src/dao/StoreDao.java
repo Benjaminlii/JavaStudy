@@ -7,29 +7,29 @@ import java.util.List;
 
 public interface StoreDao {
     /**
-     * ÏòÊı¾İ¿âÖĞµÄStore£¨³èÎïµê£©±íÖĞÌí¼ÓÊı¾İ
-     * @param store ´«ÈëµÄ·â×°ºÃµÄÊı¶ÔÏó
-     * @return Ìí¼Ó³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * å‘æ•°æ®åº“ä¸­çš„Storeï¼ˆå® ç‰©åº—ï¼‰è¡¨ä¸­æ·»åŠ æ•°æ®
+     * @param store ä¼ å…¥çš„å°è£…å¥½çš„æ•°å¯¹è±¡
+     * @return æ·»åŠ æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean addStore(Store store);
 
     /**
-     * ¸ù¾İst_id´ÓStore±íÖĞÉ¾³ıÒ»ÌõĞÅÏ¢
-     * @param st_id ĞèÒªÉ¾³ıµÄĞÅÏ¢µÄst_id
-     * @return É¾³ı³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®st_idä»Storeè¡¨ä¸­åˆ é™¤ä¸€æ¡ä¿¡æ¯
+     * @param st_id éœ€è¦åˆ é™¤çš„ä¿¡æ¯çš„st_id
+     * @return åˆ é™¤æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean deleteStore(int st_id);
 
     /**
-     * ¸ù¾İ´«ÈëĞÅÏ¢¸ü¸ÄÒ»ÌõStore±íÖĞµÄÊı¾İ
-     * @param store ´«ÈëµÄĞÅÏ¢£¬st_idÎª²éÕÒ¸ÃÌõĞÅÏ¢µÄÌõ¼ş£¬ÆäËûÊı¾İ¾ùÎªĞÂÊı¾İĞŞ¸Äµ½¸ÃĞÅÏ¢´¦
-     * @return ĞŞ¸Ä³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®ä¼ å…¥ä¿¡æ¯æ›´æ”¹ä¸€æ¡Storeè¡¨ä¸­çš„æ•°æ®
+     * @param store ä¼ å…¥çš„ä¿¡æ¯ï¼Œst_idä¸ºæŸ¥æ‰¾è¯¥æ¡ä¿¡æ¯çš„æ¡ä»¶ï¼Œå…¶ä»–æ•°æ®å‡ä¸ºæ–°æ•°æ®ä¿®æ”¹åˆ°è¯¥ä¿¡æ¯å¤„
+     * @return ä¿®æ”¹æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean updateStore(Store store);
 
     /**
-     * ²éÑ¯Service±íÖĞµÄËùÓĞĞÅÏ¢
-     * @return ½«±íÖĞµÄËùÓĞĞÅÏ¢·â×°³ÉList<Store>½øĞĞ·µ»Ø
+     * æŸ¥è¯¢Serviceè¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯
+     * @return å°†è¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯å°è£…æˆList<Store>è¿›è¡Œè¿”å›
      */
     public List<Store> findAllStore() throws SQLException;
 }

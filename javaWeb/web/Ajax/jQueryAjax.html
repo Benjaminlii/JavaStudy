@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="jquery-3.3.1.js"></script>
+    <script>
+        function check(){
+            var $username = $("#username").val();
+            var $password = $("#password").val();
+            alert("username=" + $username + ", password=" + $password);
+            $.ajax({
+                url: "/javaWeb/Main",
+                type: "post",
+                // contentType: "application/json;charset=utf-8",
+                data:{"username":$username,"password":$password },
+                success: function(result){
+                    var json = eval("("+result+")");
+                    alert(json.rtn);
+                    if (json.rtn == 1) {
+                        alert("成功");
+                    }else{
+                        alert("失败");
+                    }
+                },error:function () {
+                    alert("error");
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+用户名：
+    <input type="text" id="username"><br>
+密码：
+    <input type="password" id="password">
+<input type="button" value="登陆" onclick="check()">
+</body>
+</html>

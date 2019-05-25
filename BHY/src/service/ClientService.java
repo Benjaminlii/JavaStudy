@@ -4,7 +4,7 @@ import dao.ClientDao;
 import dao.ClientDaoImpl;
 
 /**
- * 关于Client（顾客）的业务逻辑
+ * 鍏充簬Client锛堥【瀹級鐨勪笟鍔￠�昏緫
  */
 public class ClientService {
     private ClientDao clientDao = new ClientDaoImpl();

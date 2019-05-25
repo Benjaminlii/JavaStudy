@@ -3,17 +3,17 @@ package entity;
 import java.util.Date;
 
 /**
- * 销售记录类
+ * 閿�鍞褰曠被
  */
 public class Record {
-    private int r_id;//销售记录id
-    private int cl_id;//购买者id
-    private int s_id;//宠物店id
-    private int c_id;//货物id
-    private Date r_time;//时间
-    private float r_price;//售出价格
-    private int r_num;//购买数量
-    private String r_pattern;//支付方式
+    private int r_id;//閿�鍞褰昳d
+    private int cl_id;//璐拱鑰卛d
+    private int s_id;//瀹犵墿搴梚d
+    private int c_id;//璐х墿id
+    private Date r_time;//鏃堕棿
+    private float r_price;//鍞嚭浠锋牸
+    private int r_num;//璐拱鏁伴噺
+    private String r_pattern;//鏀粯鏂瑰紡
 
     public Record() {
     }

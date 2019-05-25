@@ -3,17 +3,17 @@ package entity;
 import java.util.Date;
 
 /**
- * »õÎï£¨ÉÌÆ·£©Àà
+ * è´§ç‰©ï¼ˆå•†å“ï¼‰ç±»
  */
 public class Cargo {
     private int c_id;//id
-    private String c_name;//»õÎïÃû³Æ
-    private int c_num;//»õÎïÊıÁ¿
-    private int d_id;//×Öµäid£¨»õÎïÀà±ğ£©
-    private int s_id;//ËùÊô³èÎïµêid
-    private Date c_getDate;//½ø»õÊ±¼ä
-    private Date c_producedDate;//Éú²úÈÕÆÚ
-    private Date c_expirationDate;//±£ÖÊÈÕÆÚ
+    private String c_name;//è´§ç‰©åç§°
+    private int c_num;//è´§ç‰©æ•°é‡
+    private int d_id;//å­—å…¸idï¼ˆè´§ç‰©ç±»åˆ«ï¼‰
+    private int s_id;//æ‰€å±å® ç‰©åº—id
+    private Date c_getDate;//è¿›è´§æ—¶é—´
+    private Date c_producedDate;//ç”Ÿäº§æ—¥æœŸ
+    private Date c_expirationDate;//ä¿è´¨æ—¥æœŸ
 
     public Cargo() {
     }

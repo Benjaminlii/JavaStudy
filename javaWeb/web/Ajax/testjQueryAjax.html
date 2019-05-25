@@ -12,14 +12,14 @@
                 url: "/javaWeb/testAjaxServlet",
                 type: "post",
                 data: "mobile=" + $mobile,
-                success: function (result, testStatus) {
+                success: function (result) {
                     if (result == "true") {
                         alert("此号码存在");
                     } else {
                         alert("注册成功");
                     }
                 },
-                error: function (xhr, errprMessage) {
+                error: function () {
                     alert("系统异常！")
                 }
             })

@@ -3,14 +3,14 @@ package entity;
 import java.util.Date;
 
 /**
- * 宠物店类
+ * 瀹犵墿搴楃被
  */
 public class Store {
-    private int st_id;//宠物店id
-    private int d_id;//字典id（级别）
-    private int e_id;//店长id
-    private String st_address;//地址
-    private Date st_time;//设立时间
+    private int st_id;//瀹犵墿搴梚d
+    private int d_id;//瀛楀吀id锛堢骇鍒級
+    private int e_id;//搴楅暱id
+    private String st_address;//鍦板潃
+    private Date st_time;//璁剧珛鏃堕棿
 
     public Store() {
     }

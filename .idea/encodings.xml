@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/BHY/src/dao/CargoDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/dao/ClientDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/dao/DictionaryDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/dao/EmployeeDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/dao/PetDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/dao/RecordDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/dao/ServiceDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/dao/StoreDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/dao/UserDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/entity/Cargo.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/entity/Client.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/entity/Dictionary.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/entity/Employee.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/entity/Pet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/entity/Record.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/entity/Service.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/entity/Store.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/entity/User.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/service/ClientService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BHY/src/service/UserService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/BHY/src/servlet/AddUserServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BHY/src/servlet/RegisterServlet.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/JavaSE/textObject/TextEquals.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/Main.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/play/DownLoadByURL.java" charset="UTF-8" />

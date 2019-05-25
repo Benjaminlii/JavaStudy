@@ -3,20 +3,24 @@ package servlet;
 import entity.Client;
 import entity.Employee;
 import entity.User;
+import net.sf.json.JSONObject;
 import service.UserService;
 
+import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@javax.servlet.annotation.WebServlet("/AddUserServlet")
-public class AddUserServlet extends javax.servlet.http.HttpServlet {
+@WebServlet("/RegisterServlet")
+public class RegisterServlet extends javax.servlet.http.HttpServlet {
+    /**
+     * 处理注册请求
+     * 成功会返回1，失败返回0（json，key为rtn）
+     */
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         //设置编码
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
 
-        //输出
-        PrintWriter pw = response.getWriter();
         //提取请求中的数据，封装成对象，u_id将在user添加成功后查询得到
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -32,13 +36,16 @@ public class AddUserServlet extends javax.servlet.http.HttpServlet {
             type = new Employee(e_name, 3000, s_id, d_id);
             request.getSession().setAttribute("employee", type);
         }
-        UserService userService = new UserService();
-        if (userService.addUser(user, type)) {
-//            response.sendRedirect("#");
-            pw.write("11111");
+        //输出
+        PrintWriter pw = response.getWriter();
+        JSONObject jsonObject = new JSONObject();
+        if (UserService.registerUser(user, type)) {
+            response.sendRedirect("/html/BHY-login.html");
+            jsonObject.put("rtn", "1");
         }else{
-            pw.write("00000");
+            jsonObject.put("rtn", "0");
         }
+        pw.print(jsonObject);
     }
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {

@@ -7,29 +7,29 @@ import java.util.List;
 
 public interface CargoDao {
     /**
-     * ÏòÊı¾İ¿âÖĞµÄcargo£¨ÉÌÆ·£©±íÖĞÌí¼ÓÊı¾İ
-     * @param cargo ´«ÈëµÄ·â×°ºÃµÄÊı¶ÔÏó
-     * @return Ìí¼Ó³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * å‘æ•°æ®åº“ä¸­çš„cargoï¼ˆå•†å“ï¼‰è¡¨ä¸­æ·»åŠ æ•°æ®
+     * @param cargo ä¼ å…¥çš„å°è£…å¥½çš„æ•°å¯¹è±¡
+     * @return æ·»åŠ æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean addCargo(Cargo cargo);
 
     /**
-     * ¸ù¾İc_id´Ócargo±íÖĞÉ¾³ıÒ»ÌõĞÅÏ¢
-     * @param c_id ĞèÒªÉ¾³ıµÄĞÅÏ¢µÄc_id
-     * @return É¾³ı³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®c_idä»cargoè¡¨ä¸­åˆ é™¤ä¸€æ¡ä¿¡æ¯
+     * @param c_id éœ€è¦åˆ é™¤çš„ä¿¡æ¯çš„c_id
+     * @return åˆ é™¤æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean deleteCargo(int c_id);
 
     /**
-     * ¸ù¾İ´«ÈëĞÅÏ¢¸ü¸ÄÒ»Ìõcargo±íÖĞµÄÊı¾İ
-     * @param cargo ´«ÈëµÄĞÅÏ¢£¬c_idÎª²éÕÒ¸ÃÌõĞÅÏ¢µÄÌõ¼ş£¬ÆäËûÊı¾İ¾ùÎªĞÂÊı¾İĞŞ¸Äµ½¸ÃĞÅÏ¢´¦
-     * @return ĞŞ¸Ä³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®ä¼ å…¥ä¿¡æ¯æ›´æ”¹ä¸€æ¡cargoè¡¨ä¸­çš„æ•°æ®
+     * @param cargo ä¼ å…¥çš„ä¿¡æ¯ï¼Œc_idä¸ºæŸ¥æ‰¾è¯¥æ¡ä¿¡æ¯çš„æ¡ä»¶ï¼Œå…¶ä»–æ•°æ®å‡ä¸ºæ–°æ•°æ®ä¿®æ”¹åˆ°è¯¥ä¿¡æ¯å¤„
+     * @return ä¿®æ”¹æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean updateCargo(Cargo cargo);
 
     /**
-     * ²éÑ¯cargo±íÖĞµÄËùÓĞĞÅÏ¢
-     * @return ½«±íÖĞµÄËùÓĞĞÅÏ¢·â×°³ÉList<Cargo>½øĞĞ·µ»Ø
+     * æŸ¥è¯¢cargoè¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯
+     * @return å°†è¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯å°è£…æˆList<Cargo>è¿›è¡Œè¿”å›
      */
     public List<Cargo> findAllCargo() throws SQLException;
 }

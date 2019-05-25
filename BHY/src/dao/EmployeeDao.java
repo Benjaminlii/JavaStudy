@@ -7,29 +7,29 @@ import java.util.List;
 
 public interface EmployeeDao {
     /**
-     * ÏòÊı¾İ¿âÖĞµÄEmployee£¨Ô±¹¤£©±íÖĞÌí¼ÓÊı¾İ
-     * @param employee ´«ÈëµÄ·â×°ºÃµÄÊı¶ÔÏó
-     * @return Ìí¼Ó³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * å‘æ•°æ®åº“ä¸­çš„Employeeï¼ˆå‘˜å·¥ï¼‰è¡¨ä¸­æ·»åŠ æ•°æ®
+     * @param employee ä¼ å…¥çš„å°è£…å¥½çš„æ•°å¯¹è±¡
+     * @return æ·»åŠ æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean addEmployee(Employee employee);
 
     /**
-     * ¸ù¾İe_id´ÓEmployee±íÖĞÉ¾³ıÒ»ÌõĞÅÏ¢
-     * @param e_id ĞèÒªÉ¾³ıµÄĞÅÏ¢µÄe_id
-     * @return É¾³ı³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®e_idä»Employeeè¡¨ä¸­åˆ é™¤ä¸€æ¡ä¿¡æ¯
+     * @param e_id éœ€è¦åˆ é™¤çš„ä¿¡æ¯çš„e_id
+     * @return åˆ é™¤æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean deleteEmployee(int e_id);
 
     /**
-     * ¸ù¾İ´«ÈëĞÅÏ¢¸ü¸ÄÒ»ÌõEmployee±íÖĞµÄÊı¾İ
-     * @param employee ´«ÈëµÄĞÅÏ¢£¬e_idÎª²éÕÒ¸ÃÌõĞÅÏ¢µÄÌõ¼ş£¬ÆäËûÊı¾İ¾ùÎªĞÂÊı¾İĞŞ¸Äµ½¸ÃĞÅÏ¢´¦
-     * @return ĞŞ¸Ä³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+     * æ ¹æ®ä¼ å…¥ä¿¡æ¯æ›´æ”¹ä¸€æ¡Employeeè¡¨ä¸­çš„æ•°æ®
+     * @param employee ä¼ å…¥çš„ä¿¡æ¯ï¼Œe_idä¸ºæŸ¥æ‰¾è¯¥æ¡ä¿¡æ¯çš„æ¡ä»¶ï¼Œå…¶ä»–æ•°æ®å‡ä¸ºæ–°æ•°æ®ä¿®æ”¹åˆ°è¯¥ä¿¡æ¯å¤„
+     * @return ä¿®æ”¹æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
      */
     public boolean updateEmployee(Employee employee);
 
     /**
-     * ²éÑ¯Employee±íÖĞµÄËùÓĞĞÅÏ¢
-     * @return ½«±íÖĞµÄËùÓĞĞÅÏ¢·â×°³ÉList<Employee>½øĞĞ·µ»Ø
+     * æŸ¥è¯¢Employeeè¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯
+     * @return å°†è¡¨ä¸­çš„æ‰€æœ‰ä¿¡æ¯å°è£…æˆList<Employee>è¿›è¡Œè¿”å›
      */
     public List<Employee> findAllEmployee() throws SQLException;
 }
