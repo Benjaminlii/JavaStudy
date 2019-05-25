@@ -1,0 +1,93 @@
+
+
+
+.BHY-login-bd{
+    margin-bottom: 38px;
+    height:529px;
+    background: #00a2ca; /*#29a176*/
+}
+.BHY-login-bd .BHY-main-content{
+    position: relative;
+    height:100%;
+    background: url('../images/login/loginbg.png?14622422798') no-repeat;
+}
+.BHY-login-bd .BHY-input-box{
+    position: absolute;
+    right: 80px;
+    top:50%;
+    margin-top:-200px;
+    background:#fff;
+    box-shadow: 2px 2px 3px #696363,-2px 0 3px #696363;
+}
+.BHY-login-bd .BHY-input-box .BHY-input-title{
+    margin-top:22px;
+    padding:0 10px;
+    border-left:4px solid #fc880c;
+    font-size:22px;
+    color:#000;
+}
+.BHY-login-bd .BHY-input-box .BHY-input-title h2{
+    padding-bottom:8px;
+    border-bottom:1px solid #d9d9d9;
+    font-size: 20px;
+}
+
+.BHY-login-bd .BHY-input-box .BHY-input-area{
+    padding:0 22px;
+    padding-top:20px;
+}
+.BHY-login-bd .BHY-input-box .BHY-input-area .BHY-input-item{
+    margin-bottom:15px;
+}
+.BHY-login-bd .BHY-input-box .BHY-input-area .BHY-input-item p{
+    margin-bottom:5px;
+    font-size:12px;
+    font-weight:bold;
+}
+.BHY-login-bd .BHY-input-box .BHY-input-area .BHY-input-item img{
+    cursor:pointer;
+    width:98px;
+    height:32px;
+}
+.BHY-login-bd .BHY-input-box .BHY-input-area input{
+    padding:0 10px;
+    border:1px solid #cacaca;
+    width:264px;
+    height:32px;
+    outline:none;
+    border-radius: 3px;
+    background:url('../images/login/logininputbg.png?14622422798');
+}
+.BHY-login-bd .BHY-input-box .BHY-input-area .BHY-img-code{
+    float:left;
+    width:160px;
+    margin-right:5px;
+    border-radius: 3px;
+}
+.BHY-login-bd .BHY-input-box .BHY-input-area .BHY-login-btn{
+    display:block;
+    width:100%;
+    height:36px;
+    line-height: 36px;
+    text-align:center;
+    background:#00a2ca;
+    border-radius: 4px;
+    border:none;
+    color:#fff;
+    cursor: pointer;
+    font-size:16px;
+    outline:none;
+    margin: 5px;
+}
+.BHY-login-bd .BHY-input-box .BHY-input-other{
+    padding:22px;
+    text-align:right;
+}
+
+.BHY-login-bd .BHY-input-box .BHY-input-other a{
+    margin-left:10px;
+}
+
+
+
+

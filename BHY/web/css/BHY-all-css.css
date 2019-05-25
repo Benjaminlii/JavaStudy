@@ -1,0 +1,57 @@
+.BHY-logo{
+    height: 74px;
+    line-height: 74px;
+}
+.BHY-main-content{
+    margin:0 auto;
+    width:1200px;
+}
+.BHY-logo h1{
+    float:left;
+}
+
+.BHY-logo h1 a:hover{
+    text-decoration:none;
+}
+.BHY-logo .BHY-header-linker{
+    float:right;
+}
+.BHY-logo .BHY-header-linker li{
+    float:left;
+    margin-left:20px;
+    font-size:20px;
+    list-style: none;
+}
+.BHY-logo .BHY-header-linker li a{
+    color:#808080;
+    text-decoration: none;
+}
+
+
+
+.BHY-footer{
+    padding-top:20px;
+    padding-bottom: 35px;
+    border-top:1px solid #e5e5e5;
+    font-size:12px;
+}
+.BHY-footer .BHY-footer-copyright{
+    text-align: center;
+}
+.BHY-footer .BHY-footer-copyright p{
+    color:#999;
+    margin-top:10px;
+}
+.BHY-footer .BHY-footer-copyright p:first-child{
+    margin-top:0px;
+}
+.BHY-footer .BHY-footer-copyright .BHY-links a {
+    margin-left:15px;
+    color:#666666;
+}
+.BHY-footer .BHY-footer-copyright .BHY-links a:first-child {
+    margin-left:0
+}
+
+
+
