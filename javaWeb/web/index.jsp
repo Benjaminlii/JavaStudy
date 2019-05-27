@@ -17,6 +17,7 @@
 <h2><a href="/javaWeb/ELDemo">EL</a></h2>
 <h2><a href="/javaWeb/testFilter">过滤器</a></h2>
 <h2>Ajax:<a href="/javaWeb/Ajax/testJSAjax.html">JS</a>, <a href="/javaWeb/Ajax/testjQueryAjax.html">jQuery</a></h2>
+<h2><a href="/javaWeb/Ajax/ajax.html">testAjax</a></h2>
 
 </body>
 </html>

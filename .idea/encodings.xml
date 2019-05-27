@@ -22,6 +22,10 @@
     <file url="file://$PROJECT_DIR$/BHY/src/service/ClientService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BHY/src/service/UserService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BHY/src/servlet/RegisterServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mybatis/src/code/mapper/StudentMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mybatis/src/code/mapper/TestStudentMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mybatis/src/pojo/StudentCustom.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mybatis/src/pojo/StudentQueryVo.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/JavaSE/textObject/TextEquals.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/Main.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/play/DownLoadByURL.java" charset="UTF-8" />

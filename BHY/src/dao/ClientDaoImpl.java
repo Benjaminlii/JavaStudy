@@ -11,7 +11,7 @@ import java.util.List;
 public class ClientDaoImpl implements ClientDao {
     @Override
     public boolean addClient(Client client) {
-        String sql = "insert into client (cl_name, mobile, u_id, cl_age, cl_sex, cl_emil " +
+        String sql = "insert into client (cl_name, mobile, u_id, cl_age, cl_sex, cl_emil) " +
                 "values (?,?,?,?,?,?);";
         Object[] para = {
                 client.getCl_name(), client.getMobile(), client.getU_id(),

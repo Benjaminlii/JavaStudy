@@ -3,13 +3,13 @@ package pojo;
 import java.util.List;
 
 /**
- * StudentÀàµÄpojo°ü×°¶ÔÏó
+ * Studentç±»çš„pojoåŒ…è£…å¯¹è±¡
  */
 public class StudentQueryVo {
-    // ÔÚÕâÀï°ü×°ËùÓĞµÄ²éÑ¯Ìõ¼ş
+    // åœ¨è¿™é‡ŒåŒ…è£…æ‰€æœ‰çš„æŸ¥è¯¢æ¡ä»¶
 
-    // Ñ§Éú
-    // Ê¹ÓÃÀ©Õ¹Àà¼Ì³ĞStudentÀà
+    // å­¦ç”Ÿ
+    // ä½¿ç”¨æ‰©å±•ç±»ç»§æ‰¿Studentç±»
     private  StudentCustom studentCustom;
 
     public StudentCustom getStudentCustom() {
@@ -20,7 +20,7 @@ public class StudentQueryVo {
         this.studentCustom = studentCustom;
     }
 
-    // ÆäËû²éÑ¯Ìõ¼ş¡£¡£¡£¡£¡£
+    // å…¶ä»–æŸ¥è¯¢æ¡ä»¶ã€‚ã€‚ã€‚ã€‚ã€‚
     private List<Integer> snos;
 
     public List<Integer> getSnos() {

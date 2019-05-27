@@ -29,10 +29,10 @@ public class TestStudentMapper {
 
     @Test
     public void TestFindStudentBySno() throws Exception {
-        //µÃµ½SqlSession£¬ÕâÊÇ²»¿ÉÉÙµÄ²½Öè
+        //å¾—åˆ°SqlSessionï¼Œè¿™æ˜¯ä¸å¯å°‘çš„æ­¥éª¤
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
-        //Í¨¹ıSqlSessionµÃµ½´úÀíµÄmapper½Ó¿Ú¶ÔÏó
+        //é€šè¿‡SqlSessionå¾—åˆ°ä»£ç†çš„mapperæ¥å£å¯¹è±¡
         StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
 
         System.out.println(studentMapper.findStudentBySno(2));
@@ -42,10 +42,10 @@ public class TestStudentMapper {
 
     @Test
     public void TestFindStudentBySname() throws Exception {
-        //µÃµ½SqlSession£¬ÕâÊÇ²»¿ÉÉÙµÄ²½Öè
+        //å¾—åˆ°SqlSessionï¼Œè¿™æ˜¯ä¸å¯å°‘çš„æ­¥éª¤
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
-        //Í¨¹ıSqlSessionµÃµ½´úÀíµÄmapper½Ó¿Ú¶ÔÏó
+        //é€šè¿‡SqlSessionå¾—åˆ°ä»£ç†çš„mapperæ¥å£å¯¹è±¡
         StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
 
         System.out.println(studentMapper.findStudentBySname("Ben"));
@@ -59,15 +59,15 @@ public class TestStudentMapper {
 
         StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
 
-        //¹¹Ôì°ü×°Àà
+        //æ„é€ åŒ…è£…ç±»
         StudentQueryVo studentQueryVo = new StudentQueryVo();
-        //°ü×°ÀàµÄ³ÉÔ±±äÁ¿StudentÀ©Õ¹Àà
+        //åŒ…è£…ç±»çš„æˆå‘˜å˜é‡Studentæ‰©å±•ç±»
         StudentCustom studentCustom = new StudentCustom();
         studentCustom.setSage(18);
         studentCustom.setSaddress("xa");
         studentQueryVo.setStudentCustom(studentCustom);
 
-        //²éÑ¯
+        //æŸ¥è¯¢
         List<StudentCustom> studentCustomList = studentMapper.findStudentList(studentQueryVo);
 
         for(StudentCustom studentCustom1 : studentCustomList){
@@ -82,9 +82,9 @@ public class TestStudentMapper {
 
         StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
 
-        //¹¹Ôì°ü×°Àà
+        //æ„é€ åŒ…è£…ç±»
         StudentQueryVo studentQueryVo = new StudentQueryVo();
-        //°ü×°ÀàµÄ³ÉÔ±±äÁ¿StudentÀ©Õ¹Àà
+        //åŒ…è£…ç±»çš„æˆå‘˜å˜é‡Studentæ‰©å±•ç±»
         StudentCustom studentCustom = new StudentCustom();
 //        studentCustom.setSname("en");
 //        studentCustom.setSage(19);
@@ -97,7 +97,7 @@ public class TestStudentMapper {
         studentQueryVo.setStudentCustom(studentCustom);
         studentQueryVo.setSnos(snos);
 
-        //²éÑ¯
+        //æŸ¥è¯¢
         List<StudentCustom> studentCustomList = studentMapper.findStudentListDynamicSQL(studentQueryVo);
 
         for(StudentCustom studentCustom1 : studentCustomList){
@@ -112,15 +112,15 @@ public class TestStudentMapper {
 
         StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
 
-        //¹¹Ôì°ü×°Àà
+        //æ„é€ åŒ…è£…ç±»
         StudentQueryVo studentQueryVo = new StudentQueryVo();
-        //°ü×°ÀàµÄ³ÉÔ±±äÁ¿StudentÀ©Õ¹Àà
+        //åŒ…è£…ç±»çš„æˆå‘˜å˜é‡Studentæ‰©å±•ç±»
         StudentCustom studentCustom = new StudentCustom();
         studentCustom.setSage(18);
 //        studentCustom.setSaddress("xa");
         studentQueryVo.setStudentCustom(studentCustom);
 
-        //²éÑ¯
+        //æŸ¥è¯¢
         List<Student> studentCustomList = studentMapper.findStudentListResultMap(studentQueryVo);
 
         for(Student student : studentCustomList){

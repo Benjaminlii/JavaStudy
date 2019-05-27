@@ -7,68 +7,68 @@ import pojo.StudentQueryVo;
 import java.util.List;
 
 /**
- * StudentµÄdao½Ó¿Ú£¬ÓÃÓÚ¹ÜÀíÑ§Éú
+ * Studentçš„daoæ¥å£ï¼Œç”¨äºç®¡ç†å­¦ç”Ÿ
  */
 public interface StudentMapper {
     /**
-     * ²åÈëStudentĞÅÏ¢
-     * @param student ĞèÒª²åÈëµÄStudent¶ÔÏó
+     * æ’å…¥Studentä¿¡æ¯
+     * @param student éœ€è¦æ’å…¥çš„Studentå¯¹è±¡
      * @throws Exception
      */
     public void insertStudent(Student student) throws Exception;
 
     /**
-     * ¸ù¾İsnoÉ¾³ıÑ§ÉúĞÅÏ¢
-     * @param sno ĞèÒªÉ¾³ıµÄÑ§ÉúµÄsno
+     * æ ¹æ®snoåˆ é™¤å­¦ç”Ÿä¿¡æ¯
+     * @param sno éœ€è¦åˆ é™¤çš„å­¦ç”Ÿçš„sno
      * @throws Exception
      */
     public void deleteStudentBySno(int sno) throws Exception;
 
     /**
-     * ¸üĞÂStudentĞÅÏ¢
-     * @param student ´«ÈëµÄĞèÒªĞŞ¸ÄµÄSutdentµÄĞÂµÄĞÅÏ¢
+     * æ›´æ–°Studentä¿¡æ¯
+     * @param student ä¼ å…¥çš„éœ€è¦ä¿®æ”¹çš„Sutdentçš„æ–°çš„ä¿¡æ¯
      * @throws Exception
      */
     public void updateStudent(Student student) throws Exception;
 
     /**
-     * Í¨¹ısno²éÑ¯Ñ§Éú
-     * @param sno ĞèÒª²éÑ¯µÄÑ§ÉúµÄsno
-     * @return ²éÑ¯µ½µÄStudent¶ÔÏó
+     * é€šè¿‡snoæŸ¥è¯¢å­¦ç”Ÿ
+     * @param sno éœ€è¦æŸ¥è¯¢çš„å­¦ç”Ÿçš„sno
+     * @return æŸ¥è¯¢åˆ°çš„Studentå¯¹è±¡
      * @throws Exception
      */
     public Student findStudentBySno(int sno) throws Exception;
 
     /**
-     * Í¨¹ıÑ§ÉúĞÕÃûÄ£ºı²éÑ¯£¬
-     * ÕâÀïĞèÒª×¢ÒâµÄÊÇ£¬mybatisÔÚ½øĞĞ´úÀíÉú³É½Ó¿ÚÊµÏÖ¶ÔÏóÊ±£¬»á¸ù¾İ·µ»ØÖµµÄ²»Í¬Ñ¡ÔñĞÔµÄµ÷ÓÃselectOne»òselectList
-     * @param sname Ä£ºı²éÑ¯µÄÑ§ÉúĞÕÃû
-     * @return ²éÑ¯³öµÄÑ§ÉúµÄÑ§ÉúµÄlist
+     * é€šè¿‡å­¦ç”Ÿå§“åæ¨¡ç³ŠæŸ¥è¯¢ï¼Œ
+     * è¿™é‡Œéœ€è¦æ³¨æ„çš„æ˜¯ï¼Œmybatisåœ¨è¿›è¡Œä»£ç†ç”Ÿæˆæ¥å£å®ç°å¯¹è±¡æ—¶ï¼Œä¼šæ ¹æ®è¿”å›å€¼çš„ä¸åŒé€‰æ‹©æ€§çš„è°ƒç”¨selectOneæˆ–selectList
+     * @param sname æ¨¡ç³ŠæŸ¥è¯¢çš„å­¦ç”Ÿå§“å
+     * @return æŸ¥è¯¢å‡ºçš„å­¦ç”Ÿçš„å­¦ç”Ÿçš„list
      * @throws Exception
      */
     public List<Student> findStudentBySname(String sname) throws Exception;
 
     /**
-     * ÓÃ»§ĞÅÏ¢µÄ×ÛºÏ²éÑ¯
-     * Í¨¹ıstudentQueryVo°ü×°Àà°ü×°²éÑ¯Ê±ËùÓÃµ½µÄËùÓĞĞÅÏ¢£¨Àà£©£¬×÷Îª²ÎÊı´«Èë
-     * ÔÚsqlÖĞµ÷ÓÃÆäÖĞµÄÊôĞÔ¼´¿É
-     * @param studentQueryVo ²éÑ¯Ê±»áÓÃµ½µÄËùÓĞĞÅÏ¢Ëù°ü×°³ÉµÄ°ü×°Àà
-     * @return ÒòÎª²»È·¶¨²éÑ¯µÄ×Ö¶ÎÖµ£¬ËùÒÔÊ¹ÓÃÀ©Õ¹Àà£¨»òÆäÈİÆ÷£©À´½ÓÊÕ²éÑ¯½á¹û
+     * ç”¨æˆ·ä¿¡æ¯çš„ç»¼åˆæŸ¥è¯¢
+     * é€šè¿‡studentQueryVoåŒ…è£…ç±»åŒ…è£…æŸ¥è¯¢æ—¶æ‰€ç”¨åˆ°çš„æ‰€æœ‰ä¿¡æ¯ï¼ˆç±»ï¼‰ï¼Œä½œä¸ºå‚æ•°ä¼ å…¥
+     * åœ¨sqlä¸­è°ƒç”¨å…¶ä¸­çš„å±æ€§å³å¯
+     * @param studentQueryVo æŸ¥è¯¢æ—¶ä¼šç”¨åˆ°çš„æ‰€æœ‰ä¿¡æ¯æ‰€åŒ…è£…æˆçš„åŒ…è£…ç±»
+     * @return å› ä¸ºä¸ç¡®å®šæŸ¥è¯¢çš„å­—æ®µå€¼ï¼Œæ‰€ä»¥ä½¿ç”¨æ‰©å±•ç±»ï¼ˆæˆ–å…¶å®¹å™¨ï¼‰æ¥æ¥æ”¶æŸ¥è¯¢ç»“æœ
      * @throws Exception
      */
     public List<StudentCustom> findStudentList(StudentQueryVo studentQueryVo) throws Exception;
 
     /**
-     * Ê¹ÓÃ¶¯Ì¬sql
-     * @param studentQueryVo ²éÑ¯Ê±»áÓÃµ½µÄËùÓĞĞÅÏ¢Ëù°ü×°³ÉµÄ°ü×°Àà
-     * @return ÒòÎª²»È·¶¨²éÑ¯µÄ×Ö¶ÎÖµ£¬ËùÒÔÊ¹ÓÃÀ©Õ¹Àà£¨»òÆäÈİÆ÷£©À´½ÓÊÕ²éÑ¯½á¹û
+     * ä½¿ç”¨åŠ¨æ€sql
+     * @param studentQueryVo æŸ¥è¯¢æ—¶ä¼šç”¨åˆ°çš„æ‰€æœ‰ä¿¡æ¯æ‰€åŒ…è£…æˆçš„åŒ…è£…ç±»
+     * @return å› ä¸ºä¸ç¡®å®šæŸ¥è¯¢çš„å­—æ®µå€¼ï¼Œæ‰€ä»¥ä½¿ç”¨æ‰©å±•ç±»ï¼ˆæˆ–å…¶å®¹å™¨ï¼‰æ¥æ¥æ”¶æŸ¥è¯¢ç»“æœ
      * @throws Exception
      */
     public List<StudentCustom> findStudentListDynamicSQL(StudentQueryVo studentQueryVo) throws Exception;
 
     /**
-     * Í¨¹ıresultMap½øĞĞÊä³öÓ³Éä£¬½«²»¿ÉÊ¶±ğµÄ×Ö¶ÎÃûÓ³ÉäÎªStudent¶ÔÏó
-     * @param studentQueryVo ²éÑ¯Ê±»áÓÃµ½µÄËùÓĞĞÅÏ¢Ëù°ü×°³ÉµÄ°ü×°Àà
+     * é€šè¿‡resultMapè¿›è¡Œè¾“å‡ºæ˜ å°„ï¼Œå°†ä¸å¯è¯†åˆ«çš„å­—æ®µåæ˜ å°„ä¸ºStudentå¯¹è±¡
+     * @param studentQueryVo æŸ¥è¯¢æ—¶ä¼šç”¨åˆ°çš„æ‰€æœ‰ä¿¡æ¯æ‰€åŒ…è£…æˆçš„åŒ…è£…ç±»
      * @return
      * @throws Exception
      */

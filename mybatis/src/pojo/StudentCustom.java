@@ -1,7 +1,7 @@
 package pojo;
 
 /**
- * StudentÀàµÄÀ©Õ¹Àà
+ * Studentç±»çš„æ‰©å±•ç±»
  */
 public class StudentCustom extends Student {
 }

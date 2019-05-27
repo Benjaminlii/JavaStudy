@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="jquery-3.3.1.js"></script>
+    <script>
+        function check(){
+            $.ajax({
+                url: "/javaWeb/Main",
+                type: "post",
+                success: function(result){
+                    /*后台传来的json格式的数据
+                     * [{"d_id":9,"password":"123123","u_id":1,"username":"zzw"},
+                     * {"d_id":9,"password":"123123","u_id":2,"username":"llf"},
+                     * {"d_id":8,"password":"123123","u_id":3,"username":"lt"},
+                     * {"d_id":8,"password":"123123","u_id":4,"username":"lh"},
+                     * {"d_id":8,"password":"123123","u_id":5,"username":"yjb"},
+                     * {"d_id":9,"password":"123123","u_id":6,"username":"hha"},
+                     * {"d_id":9,"password":"123123","u_id":7,"username":"aaa"}]
+                     */
+                    var tb = document.getElementById("tb");
+
+                    // 所有json都这么处理
+                    var jsons = jQuery.parseJSON(result);
+
+                    $.each(jsons,function (i, item) {
+
+                        // 打印json的套路
+                        // alert(JSON.stringify(item));
+
+                        var tr = document.createElement("tr");
+                        var td1 = document.createElement("td");
+                        // 根据key去访问接送中的value
+                        td1.innerHTML = item.u_id;
+                        var td2 = document.createElement("td")
+                        td2.innerHTML = item.username;
+                        var td3 = document.createElement("td");
+                        td3.innerHTML = item.password;
+                        var td4 = document.createElement("td");
+                        if(item.d_id === 8){
+                            td4.innerHTML = "顾客";
+                        }else {
+                            td4.innerHTML = "员工";
+                        }
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(td3);
+                        tr.appendChild(td4);
+                        tb.appendChild(tr);
+                    })
+                },
+                error: function(){
+                    alert("error");
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<input type="button" onclick="check()">
+<table border="1">
+    <thead>
+        <th>用户id</th><th>用户名</th><th>密码</th><th>类型</th>
+    </thead>
+    <tbody id="tb">
+
+    </tbody>
+</table>
+</body>
+</html>
