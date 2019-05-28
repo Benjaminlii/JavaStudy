@@ -52,6 +52,7 @@ public class LoginServlet extends HttpServlet {
             jsonObject.put("rtn", "3");
         }
         pw.print(jsonObject);
+        pw.close();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

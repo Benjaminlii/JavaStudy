@@ -46,6 +46,7 @@ public class RegisterServlet extends javax.servlet.http.HttpServlet {
             jsonObject.put("rtn", "0");
         }
         pw.print(jsonObject);
+        pw.close();
     }
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {

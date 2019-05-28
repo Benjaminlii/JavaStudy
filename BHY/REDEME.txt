@@ -24,3 +24,39 @@
                       如果已登陆，但权限不是店长，put("ifLogin", "true")，put("isLord", "false")由前端进行提示
                       如果是店长登陆put("ifLogin", "true")，put("isLord", "true")，jsonObject.put("users", users)
                                       最后的users是json格式的List<User>
+
+/BHY/AddClientServlet:
+    增加顾客信息的servlet
+    参数：姓名 cl_name，手机 mobile[，年龄 cl_age，性别 cl_sex，邮箱cl_emil]
+    返回值：若添加成功，返回{rtn:"1"}
+          ：若添加失败，返回{rtn:"0"}（手机号重复）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

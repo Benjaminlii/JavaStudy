@@ -15,10 +15,23 @@ public class Client {
     public Client() {
     }
 
+    public Client(String cl_name, String mobile) {
+        this.cl_name = cl_name;
+        this.mobile = mobile;
+    }
+
     public Client(int cl_id, String cl_name, String mobile) {
         this.cl_id = cl_id;
         this.cl_name = cl_name;
         this.mobile = mobile;
+    }
+
+    public Client(String cl_name, String mobile, int cl_age, String cl_sex, String cl_emil) {
+        this.cl_name = cl_name;
+        this.mobile = mobile;
+        this.cl_age = cl_age;
+        this.cl_sex = cl_sex;
+        this.cl_emil = cl_emil;
     }
 
     public Client(int cl_id, String cl_name, String mobile, int u_id, int cl_age, String cl_sex, String cl_emil) {

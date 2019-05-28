@@ -52,6 +52,7 @@ public class FindAllUserServlet extends HttpServlet {
             response.sendRedirect("/html/BHY-login.html");
         }
         pw.print(jsonObject);
+        pw.close();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
