@@ -32,10 +32,10 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean updateUser(User user) {
-        String sql = "update user set d_id = ?, username = ?, password = ?, " +
-                "where u_id = ?";
+        String sql = "update user set username = ?, password = ? " +
+                "where username = ?";
         Object[] para = {
-                user.getD_id(), user.getUsername(), user.getPassword(), user.getU_id()
+                user.getUsername(), user.getPassword(), user.getUsername()
         };
         boolean rtn = DBUtil.executeUpdate(sql, para) == 1;
         DBUtil.closeAll();

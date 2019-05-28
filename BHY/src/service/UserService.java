@@ -87,7 +87,6 @@ public class UserService {
 
     /**
      * 查询所有的User（用户）对象
-     *
      * @return 返回list
      */
     public static List<User> selectAllUser() {
@@ -98,5 +97,24 @@ public class UserService {
             e.printStackTrace();
         }
         return users;
+    }
+
+    /**
+     * 更新传入的用户名对应的用户的信息
+     * 先根据用户名进行判空，如果存在，则进行数据的更新
+     * @param user 传入的新数据，其中用户名指定要进行更新的用户
+     * @return 用户不存在返回false，存在且更新成功返回true
+     */
+    public static boolean updateUser(User user){
+        boolean rtn = false;
+        try {
+            if(userDao.isUserExist(user.getUsername())){
+                //该用户存在
+                rtn = userDao.updateUser(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rtn;
     }
 }

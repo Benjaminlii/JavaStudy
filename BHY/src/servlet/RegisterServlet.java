@@ -40,10 +40,9 @@ public class RegisterServlet extends javax.servlet.http.HttpServlet {
         PrintWriter pw = response.getWriter();
         JSONObject jsonObject = new JSONObject();
         if (UserService.registerUser(user, type)) {
-            response.sendRedirect("/html/BHY-login.html");
-            jsonObject.put("rtn", "1");
+            jsonObject.put("rtn", 1);
         }else{
-            jsonObject.put("rtn", "0");
+            jsonObject.put("rtn", 0);
         }
         pw.print(jsonObject);
         pw.close();

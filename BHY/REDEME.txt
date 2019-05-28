@@ -2,7 +2,7 @@
     用户登陆的url
     参数：username（用户名）、password（密码）
     返回值：json格式：   key：   rtn
-                        value： 1为登陆成功（会设置user到session中）跳转到主页面
+                        value： 1为登陆成功（会设置user到session中）应跳转到主页面
                                 2为密码不正确，不跳转
                                 3为用户名不存在，不跳转
 
@@ -14,7 +14,7 @@
             s_id 宠物店id（单选得到）
             d_id 职务id（单选得到）
     返回值：json格式：     key：    rtn
-                          value：  1为注册成功，会跳转至登陆页面
+                          value：  1为注册成功，应跳转至登陆页面
                                    0为注册失败（用户名重复）
 
 /BHY/FindAllUserServlet:
@@ -23,7 +23,7 @@
     返回值：json类型，如果当前状态为未登录，put("ifLogin", "false")并进行页面跳转
                       如果已登陆，但权限不是店长，put("ifLogin", "true")，put("isLord", "false")由前端进行提示
                       如果是店长登陆put("ifLogin", "true")，put("isLord", "true")，jsonObject.put("users", users)
-                                      最后的users是json格式的List<User>
+                                      最后的users是jsonArray格式的List<User>
 
 /BHY/AddClientServlet:
     增加顾客信息的servlet
@@ -31,6 +31,28 @@
     返回值：若添加成功，返回{rtn:"1"}
           ：若添加失败，返回{rtn:"0"}（手机号重复）
 
+/BHY/UpdateUserServlet:
+    响应前端发送的更新用户信息（大概就是改密码。。。）的请求
+    参数：需要传入用户名(username)和新密码(password)
+    返回值：    修改成功返回rtn：1
+                失败返回rtn：0（用户名不存在吧，一般前端规避这种错误，还有可能是数据库访问错误）
+
+/BHY/FindAllPetServlet：
+    响应前台发来的查询所有宠物信息的请求
+    无参数
+    返回所有宠物信息组成的jsonArray
+
+/BHY/AddPetServlet：
+    添加一条宠物信息
+    参数： 宠物品种 d_id
+           顾客手机号 mobile
+           宠物店id s_id
+           [年龄 p_age
+           性别 p_sex
+           体重 p_height]
+    返回值：添加成功返回rtn：1
+            用户不存在返回rtn：2
+            数据库底层错误返回rtn：3
 
 
 
@@ -60,3 +82,22 @@
 
 
 
+
+
+
+
+
+
+        //设置编码
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html; charset=utf-8");
+
+        //设置输出
+        PrintWriter pw = response.getWriter();
+        JSONObject jsonObject = new JSONObject();
+
+        //封装数据
+
+        //调用业务逻辑
+
+        //输出

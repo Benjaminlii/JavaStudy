@@ -46,14 +46,14 @@ public class LoginServlet extends HttpServlet {
             if(user.getPassword()!=null){
                 //密码匹配
                 request.getSession().setAttribute("user", user);
-                jsonObject.put("rtn", "1");
+                jsonObject.put("rtn", 1);
             }else{
                 //密码不匹配
-                jsonObject.put("rtn", "2");
+                jsonObject.put("rtn", 2);
             }
         }else{
             //用户名不存在
-            jsonObject.put("rtn", "3");
+            jsonObject.put("rtn", 3);
         }
         System.out.println(jsonObject);
         pw.close();

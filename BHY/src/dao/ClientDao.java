@@ -32,4 +32,20 @@ public interface ClientDao {
      * @return 将表中的所有信息封装成List<Clien>进行返回
      */
     public List<Client> findAllClient() throws SQLException;
+
+    /**
+     * 通过手机号查询顾客
+     * @param mobile 查询的顾客的手机号
+     * @return 查询成功返回Client对象，失败返回null
+     * @throws SQLException result遍历
+     */
+    public Client findClientByMobile(String mobile) throws SQLException;
+
+    /**
+     * 判断改手机号是否对应一个顾客信息
+     * @param mobile 需要进行判断的手机号
+     * @return 存在返回true，否则返回false
+     * @throws SQLException 下一级调用
+     */
+    public boolean isClientExist(String mobile) throws SQLException;
 }

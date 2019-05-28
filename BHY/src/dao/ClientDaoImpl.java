@@ -48,19 +48,45 @@ public class ClientDaoImpl implements ClientDao {
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
         List<Client> rtn = new ArrayList<>();
         Client client;
-            while (resultSet.next()) {
-                client = new Client(
-                        resultSet.getInt("cl_id"),
-                        resultSet.getString("cl_name"),
-                        resultSet.getString("mobile"),
-                        resultSet.getInt("u_id"),
-                        resultSet.getInt("cl_age"),
-                        resultSet.getString("cl_sex"),
-                        resultSet.getString("cl_emil")
-                );
-                rtn.add(client);
-            }
+        while (resultSet.next()) {
+            client = new Client(
+                    resultSet.getInt("cl_id"),
+                    resultSet.getString("cl_name"),
+                    resultSet.getString("mobile"),
+                    resultSet.getInt("u_id"),
+                    resultSet.getInt("cl_age"),
+                    resultSet.getString("cl_sex"),
+                    resultSet.getString("cl_emil")
+            );
+            rtn.add(client);
+        }
         DBUtil.closeAll();
         return rtn;
+    }
+
+    @Override
+    public Client findClientByMobile(String mobile) throws SQLException {
+        String sql = "select * from client where mobile = ?";
+        Object[] para = {mobile};
+        ResultSet resultSet = DBUtil.executeQuery(sql, para);
+        Client client = null;
+        if (resultSet.next()) {
+            client = new Client(
+                    resultSet.getInt("cl_id"),
+                    resultSet.getString("cl_name"),
+                    resultSet.getString("mobile"),
+                    resultSet.getInt("u_id"),
+                    resultSet.getInt("cl_age"),
+                    resultSet.getString("cl_sex"),
+                    resultSet.getString("cl_emil")
+            );
+        }
+        DBUtil.closeAll();
+        return client;
+    }
+
+    @Override
+    public boolean isClientExist(String mobile) throws SQLException {
+        return findClientByMobile(mobile) != null;
     }
 }

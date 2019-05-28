@@ -3,7 +3,7 @@ package util;
 import java.sql.*;
 
 /**
- * Êı¾İ¿â°ïÖúÀà
+ * æ•°æ®åº“å¸®åŠ©ç±»
  */
 public class DBUtil {
     private static Connection con;
@@ -15,7 +15,7 @@ public class DBUtil {
     }
 
     /**
-     * ¶ÔÊı¾İ¿â½øĞĞÁ¬½Ó
+     * å¯¹æ•°æ®åº“è¿›è¡Œè¿æ¥
      */
     static{
         try {
@@ -30,10 +30,10 @@ public class DBUtil {
     }
 
     /**
-     * ¶ÔÊı¾İ¿â½øĞĞ¸üĞÂ²Ù×÷
-     * @param sql ½øĞĞ¸üĞÂ²Ù×÷µÄSQLÓï¾ä
-     * @param para SQLÓï¾äÖĞµÄ²ÎÊı
-     * @return ¸üĞÂÊı¾İµÄÌõÊı
+     * å¯¹æ•°æ®åº“è¿›è¡Œæ›´æ–°æ“ä½œ
+     * @param sql è¿›è¡Œæ›´æ–°æ“ä½œçš„SQLè¯­å¥
+     * @param para SQLè¯­å¥ä¸­çš„å‚æ•°
+     * @return æ›´æ–°æ•°æ®çš„æ¡æ•°
      */
     public static int executeUpdate(String sql, Object[] para) {
         int count = 0;
@@ -54,10 +54,10 @@ public class DBUtil {
     }
 
     /**
-     * ¶ÔÊı¾İ¿â½øĞĞ²éÕÒ²Ù×÷
-     * @param sql ½øĞĞ²éÕÒ²Ù×÷µÄSQLÓï¾ä
-     * @param para SQLÓï¾äÖĞµÄ²ÎÊı
-     * @return ²éÕÒ²Ù×÷·µ»ØµÄ½á¹û¼¯ResultSet¶ÔÏó
+     * å¯¹æ•°æ®åº“è¿›è¡ŒæŸ¥æ‰¾æ“ä½œ
+     * @param sql è¿›è¡ŒæŸ¥æ‰¾æ“ä½œçš„SQLè¯­å¥
+     * @param para SQLè¯­å¥ä¸­çš„å‚æ•°
+     * @return æŸ¥æ‰¾æ“ä½œè¿”å›çš„ç»“æœé›†ResultSetå¯¹è±¡
      */
     public static ResultSet executeQuery(String sql, Object[] para) {
         try {
@@ -75,7 +75,7 @@ public class DBUtil {
     }
 
     /**
-     * ¹Ø±ÕËùÓĞµÄ×ÊÔ´£¬°üÀ¨ResultSet¡¢PreparedStatementºÍconnection¡£
+     * å…³é—­æ‰€æœ‰çš„èµ„æºï¼ŒåŒ…æ‹¬ResultSetã€PreparedStatementå’Œconnectionã€‚
      */
     public static void closeAll() {
         try {

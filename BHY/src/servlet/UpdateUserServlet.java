@@ -1,9 +1,10 @@
 package servlet;
 
-import entity.Client;
+import entity.User;
+import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import org.apache.commons.beanutils.BeanUtils;
-import service.ClientService;
+import service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,41 +14,40 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
 
-@WebServlet("/AddClientServlet")
-public class AddClientServlet extends HttpServlet {
+@WebServlet("/UpdateUserServlet")
+public class UpdateUserServlet extends HttpServlet {
     /**
-     * 增加顾客信息的servlet
-     * 需要从前端获得的信息：姓名，手机[，年龄，性别，emil]
-     * 手机号唯一
-     * <p>
-     * 若添加成功，返回{rtn:"1"}
-     * 若添加失败，返回{rtn:"0"}（手机号重复）
+     * 响应前端发送的更新用户信息（大概就是改密码。。。）的请求
+     * 需要传入用户名和新密码
+     * 修改成功返回rtn：1
+     * 失败返回rtn：0（用户名不存在吧，一般前端规避这种错误，还有可能是数据库访问错误）
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置编码
         request.setCharacterEncoding("utf-8");
-        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html; charset=utf-8");
 
         //设置输出
         PrintWriter pw = response.getWriter();
         JSONObject jsonObject = new JSONObject();
 
-        //封装信息
-        Client client = new Client();
+        //封装数据
+        User user = new User();
         try {
-            BeanUtils.populate(client, request.getParameterMap());
+            BeanUtils.populate(user, request.getParameterMap());
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
 
-        //调用逻辑层
-        if(ClientService.addClient(client)){
+        //调用业务逻辑
+        if(UserService.updateUser(user)){
             jsonObject.put("rtn", 1);
         }else{
             jsonObject.put("rtn", 0);
         }
+
+        //输出
         pw.print(jsonObject);
         pw.close();
     }

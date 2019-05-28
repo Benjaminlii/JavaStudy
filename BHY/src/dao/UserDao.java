@@ -47,5 +47,5 @@ public interface UserDao {
      */
     public boolean isUserExist(String username) throws SQLException;
 
-//    public User findUserByUserNameAndPassWord(String username, String passworld)
+//    public User findUserByUserNameAndPassWord(String username, String password)
 }

@@ -1,0 +1,57 @@
+﻿用户（User）管理
+    展示所有用户信息 /BHY/FindAllUserServlet
+    登陆 /BHY/LoginServlet
+    注册 /BHY/RegisterServlet
+    更新信息，修改密码 /BHY/UpdateUserServlet
+
+宠物（Pet）信息管理
+    展示全部信息，列表 /BHY/FindAllPetServlet
+    添加 /BHY/AddPetServlet
+    更新
+    删除
+
+
+服务（service）管理
+    展示已提交的服务项清单
+    提交服务
+    修改服务内容
+    删除服务项
+
+销售单（record）管理（分为进货和出售）
+    展示所有销售记录
+    添加一条销售记录
+    修改信息
+    删除信息
+
+宠物店（store）管理
+    展示所有店铺信息
+    注册新店铺
+    修改店铺信息
+    注销一个店铺
+
+仓库货物（cargo）管理
+    货物清单
+
+员工（employee）管理
+    全部员工信息展示（部分）
+    添加新员工（同用户注册）
+    单个员工信息展示
+    员工信息更新
+    删除员工信息
+
+顾客管理
+    展示所有顾客信息
+    更新顾客信息
+    添加一条顾客信息 /BHY/AddClientServlet
+
+数据字典展示
+
+
+
+
+
+
+
+
+
+
