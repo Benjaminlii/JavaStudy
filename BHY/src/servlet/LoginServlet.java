@@ -2,6 +2,7 @@ package servlet;
 
 import entity.User;
 import net.sf.json.JSONObject;
+import org.apache.commons.beanutils.BeanUtils;
 import service.UserService;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -26,9 +28,12 @@ public class LoginServlet extends HttpServlet {
         response.setCharacterEncoding("utf-8");
 
         //封装response中的数据
-        String username =  request.getParameter("username");
-        String password = request.getParameter("password");
-        User user = new User(username, password);
+        User user = new User();
+        try {
+            BeanUtils.populate(user, request.getParameterMap());
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
 
         //执行逻辑层的调用，用结果替换user的引用
         user = UserService.loginUser(user);
@@ -42,7 +47,6 @@ public class LoginServlet extends HttpServlet {
                 //密码匹配
                 request.getSession().setAttribute("user", user);
                 jsonObject.put("rtn", "1");
-                response.sendRedirect("/BHY/html/index.html");
             }else{
                 //密码不匹配
                 jsonObject.put("rtn", "2");
@@ -51,7 +55,7 @@ public class LoginServlet extends HttpServlet {
             //用户名不存在
             jsonObject.put("rtn", "3");
         }
-        pw.print(jsonObject);
+        System.out.println(jsonObject);
         pw.close();
     }
 

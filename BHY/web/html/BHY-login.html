@@ -6,9 +6,48 @@
     <title>不会养宠物</title>
     <link rel="stylesheet" type="text/css" href="../css/BHY-all-css.css"/>
     <link rel="stylesheet" type="text/css" href="../css/BHY-login-css.css"/>
+
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+
     <script type="text/javascript">
         function loginCheck() {
-
+            var inputUsername = document.getElementById("username");
+            var inputPassword = document.getElementById("password");
+            $username = $("#username").val();
+            $password = $("#password").val();
+            // alert("username:" + $username + ", password:" + $password)
+            if ($username === "") {
+                inputUsername.setAttribute("style", "border: red");
+                inputPassword.setAttribute("style", "");
+            } else if ($password === "") {
+                inputUsername.setAttribute("style", "");
+                inputPassword.setAttribute("style", "border: red");
+            } else {
+                $.ajax({
+                    url: "/BHY/LoginServlet",
+                    type: "post",
+                    data: {"username":$username,"password":$password},
+                    success: function (result) {
+                        var rtn = jQuery.parseJSON(result).rtn;
+                        if (rtn == 1) {
+                            //登陆成功
+                            $(location).attr('href', '/BHY/html/BHY.html');
+                        } else if (rtn == 2) {
+                            //密码不正确
+                            inputUsername.style.borderColor = "#cacaca";
+                            inputPassword.style.borderColor = "red";
+                        } else if (rtn == 3) {
+                            //用户不存在
+                            inputUsername.style.borderColor = "red";
+                            inputPassword.style.borderColor = "#cacaca";
+                        } else {
+                            alert("error");
+                        }
+                    },error:function () {
+                        alert("error");
+                    }
+                })
+            }
         }
 
         function registerCheck() {
@@ -39,16 +78,16 @@
                     <form>
                         <div class="BHY-input-item">
                             <p>登录名：</p>
-                            <input type="text" name="username" placeholder="请输入账号"/>
+                            <input id="username" type="text" name="username" placeholder="请输入账号"/>
                         </div>
                         <div class="BHY-input-item">
                             <p>登录密码：</p>
-                            <input type="password" name="password" placeholder="请输入密码"/>
+                            <input id="password" type="password" name="password" placeholder="请输入密码"/>
                         </div>
                         <div class="BHY-input-item">
                             <p>验证码：</p>
                             <input type="text" placeholder="" id="code" class="BHY-img-code"/>
-                            <img src="../images/login/1.png" id="codeImg" alt="点击更换" title="点击更换"/>
+                            <img src="############################" id="codeImg" alt="点击更换" title="点击更换"/>
                         </div>
                         <div class="BHY-login-btn" onclick="loginCheck();">登录</div>
                         <div class="BHY-login-btn" onclick="registerCheck();">注册</div>
