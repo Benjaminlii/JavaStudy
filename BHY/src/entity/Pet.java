@@ -33,6 +33,14 @@ public class Pet {
         this.p_healthy = p_healthy;
     }
 
+    public Pet(int p_id, int p_age, String p_sex, float p_height, String p_healthy) {
+        this.p_id = p_id;
+        this.p_age = p_age;
+        this.p_sex = p_sex;
+        this.p_height = p_height;
+        this.p_healthy = p_healthy;
+    }
+
     public int getP_id() {
         return p_id;
     }

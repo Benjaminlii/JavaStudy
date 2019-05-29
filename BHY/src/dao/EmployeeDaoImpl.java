@@ -1,7 +1,9 @@
 package dao;
 
 import entity.Employee;
+import entity.EmployeeCustom;
 import util.DBUtil;
+import util.PageUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,13 +51,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public List<Employee> findAllEmployee() throws SQLException {
-        String sql = "select * from employee;";
+    public List<EmployeeCustom> findAllEmployeeInDetail() throws SQLException {
+        String sql = "select employee.*, store.s_address, dictionary.d_value, user.username " +
+                "from employee " +
+                "left join store " +
+                "on employee.s_id = store.st_id " +
+                "left join dictionary " +
+                "on employee.d_id = dictionary.d_id " +
+                "left join user " +
+                "on employee.u_id = user.u_id;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
-        List<Employee> rtn = new ArrayList<>();
-        Employee employee;
+        List<EmployeeCustom> rtn = new ArrayList<>();
+        EmployeeCustom employeeCustom;
             while (resultSet.next()) {
-                employee = new Employee(
+                employeeCustom = new EmployeeCustom(
                         resultSet.getInt("e_id"),
                         resultSet.getString("e_name"),
                         resultSet.getInt("e_salary"),
@@ -64,10 +73,49 @@ public class EmployeeDaoImpl implements EmployeeDao {
                         resultSet.getInt("u_id"),
                         resultSet.getString("e_sex"),
                         resultSet.getInt("e_age"),
-                        (Date) resultSet.getObject("e_time")
-                );
-                rtn.add(employee);
+                        (Date) resultSet.getObject("e_time"),
+                        resultSet.getString("s_address"),
+                        resultSet.getString("d_value"),
+                        resultSet.getString("username")
+                        );
+                rtn.add(employeeCustom);
             }
+        DBUtil.closeAll();
+        return rtn;
+    }
+
+    @Override
+    public List<EmployeeCustom> findEmployeeLimitInDetail(int page) throws SQLException {
+        String sql = "select employee.*, store.s_address, dictionary.d_value, user.username " +
+                "from employee " +
+                "left join store " +
+                "on employee.s_id = store.st_id " +
+                "left join dictionary " +
+                "on employee.d_id = dictionary.d_id " +
+                "left join user " +
+                "on employee.u_id = user.u_id " +
+                "limit ?, ?;";
+        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
+        ResultSet resultSet = DBUtil.executeQuery(sql, para);
+        List<EmployeeCustom> rtn = new ArrayList<>();
+        EmployeeCustom employeeCustom;
+        while (resultSet.next()) {
+            employeeCustom = new EmployeeCustom(
+                    resultSet.getInt("e_id"),
+                    resultSet.getString("e_name"),
+                    resultSet.getInt("e_salary"),
+                    resultSet.getInt("s_id"),
+                    resultSet.getInt("d_id"),
+                    resultSet.getInt("u_id"),
+                    resultSet.getString("e_sex"),
+                    resultSet.getInt("e_age"),
+                    (Date) resultSet.getObject("e_time"),
+                    resultSet.getString("s_address"),
+                    resultSet.getString("d_value"),
+                    resultSet.getString("username")
+            );
+            rtn.add(employeeCustom);
+        }
         DBUtil.closeAll();
         return rtn;
     }

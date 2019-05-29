@@ -29,7 +29,7 @@ public class DicUtil {
 
     /**
      * 获得数据字典中d_id和d_value对应的map所转化成的json对象
-     * @return
+     * @return json{d_id：d_value。。。。。}
      */
     public static JSONObject getDicMapJson(){
         //得到宠物类型的字典

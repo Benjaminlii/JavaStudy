@@ -1,7 +1,9 @@
 package dao;
 
 import entity.Pet;
+import entity.PetCustom;
 import util.DBUtil;
+import util.PageUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -66,6 +68,62 @@ public class PetDaoImpl implements PetDao {
                     resultSet.getString("p_healthy")
             );
             rtn.add(pet);
+        }
+        DBUtil.closeAll();
+        return rtn;
+    }
+
+    @Override
+    public List<PetCustom> findAllPetInDetail() throws SQLException {
+        String sql = "select pet.*,client.cl_name,dictionary.d_value,store.s_address " +
+                "from pet " +
+                "left join client on pet.cl_id = client.cl_id " +
+                "left join dictionary on pet.d_id = dictionary.d_id " +
+                "left join store on pet.s_id = store.st_id;";
+        ResultSet resultSet = DBUtil.executeQuery(sql, null);
+        List<PetCustom> rtn = new ArrayList<>();
+        PetCustom petCustom;
+        while (resultSet.next()) {
+            petCustom = new PetCustom(
+                    resultSet.getInt("p_id"),
+                    resultSet.getInt("p_age"),
+                    resultSet.getString("p_sex"),
+                    resultSet.getFloat("p_height"),
+                    resultSet.getString("p_healthy"),
+                    resultSet.getString("cl_name"),
+                    resultSet.getString("d_value"),
+                    resultSet.getString("s_address")
+            );
+            rtn.add(petCustom);
+        }
+        DBUtil.closeAll();
+        return rtn;
+    }
+
+    @Override
+    public List<PetCustom> findPetLimitInDetail(int page) throws SQLException {
+        String sql = "select pet.*,client.cl_name,dictionary.d_value,store.s_address " +
+                "from pet " +
+                "left join client on pet.cl_id = client.cl_id " +
+                "left join dictionary on pet.d_id = dictionary.d_id " +
+                "left join store on pet.s_id = store.st_id " +
+                "limit ?, ?;";
+        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
+        ResultSet resultSet = DBUtil.executeQuery(sql, para);
+        List<PetCustom> rtn = new ArrayList<>();
+        PetCustom petCustom;
+        while (resultSet.next()) {
+            petCustom = new PetCustom(
+                    resultSet.getInt("p_id"),
+                    resultSet.getInt("p_age"),
+                    resultSet.getString("p_sex"),
+                    resultSet.getFloat("p_height"),
+                    resultSet.getString("p_healthy"),
+                    resultSet.getString("cl_name"),
+                    resultSet.getString("d_value"),
+                    resultSet.getString("s_address")
+            );
+            rtn.add(petCustom);
         }
         DBUtil.closeAll();
         return rtn;

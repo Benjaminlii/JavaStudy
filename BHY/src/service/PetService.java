@@ -6,6 +6,7 @@ import dao.PetDao;
 import dao.PetDaoImpl;
 import entity.Client;
 import entity.Pet;
+import entity.PetCustom;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -21,10 +22,10 @@ public class PetService {
      * 查询所有的宠物信息，封装成List返回
      * @return 所有宠物信息构成的List
      */
-    public static List<Pet> findAllPet(){
-        List<Pet> pets = null;
+    public static List<PetCustom> findPetLimit(int page){
+        List<PetCustom> pets = null;
         try {
-            pets = petDao.findAllPet();
+            pets = petDao.findPetLimitInDetail(page);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -89,10 +89,10 @@ public class UserService {
      * 查询所有的User（用户）对象
      * @return 返回list
      */
-    public static List<User> selectAllUser() {
+    public static List<User> selectUserLimit(int page) {
         List<User> users = null;
         try {
-            users = userDao.findAllUser();
+            users = userDao.findUserLimit(page);
         } catch (SQLException e) {
             e.printStackTrace();
         }

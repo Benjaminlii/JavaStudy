@@ -1,6 +1,7 @@
 package dao;
 
 import entity.Pet;
+import entity.PetCustom;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -32,4 +33,12 @@ public interface PetDao {
      * @return 将表中的所有信息封装成List<Pet>进行返回
      */
     public List<Pet> findAllPet() throws SQLException;
+
+    /**
+     * 查询Pet表中的详细信息（使用连接查询）
+     * @return PetCustom包装类的List
+     */
+    public List<PetCustom> findAllPetInDetail() throws SQLException;
+
+    public List<PetCustom> findPetLimitInDetail(int pagr) throws SQLException;
 }

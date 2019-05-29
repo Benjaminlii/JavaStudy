@@ -1,7 +1,6 @@
 package servlet;
 
 import entity.User;
-import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import org.apache.commons.beanutils.BeanUtils;
 import service.UserService;

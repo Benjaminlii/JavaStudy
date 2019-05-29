@@ -1,12 +1,7 @@
 package servlet;
 
-import com.mysql.cj.xdevapi.JsonArray;
-import dao.DictionaryDao;
-import dao.DictionaryDaoImpl;
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import service.PetService;
-import util.DicUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,14 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
-@WebServlet("/FindAllPetServlet")
-public class FindAllPetServlet extends HttpServlet {
+@WebServlet("/FindPetLimitServlet")
+public class FindPetLimitServlet extends HttpServlet {
     /**
-     * 响应前台发来的查询所有宠物信息的请求
-     * 无参数
-     * 返回{pets:[{}, {}, {}], dics:[{}, {}, {}]}(返回一个json，其中pets对应宠物信息的json数组，dics对应字典数据json)
+     * 响应前台发来的分页查询宠物信息的请求
+     * 参数查寻的页码
+     * 返回{"cl_id":0,"cl_name":"小刚","d_id":0,"p_age":0,"p_healthy":"","p_height":0,"p_id":1,"p_sex":"","p_type":"短毛猫","s_id":0,"st_name":""}
+     * 返回一个json，其中各个字段对应pet的详细信息
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置编码
@@ -31,22 +26,16 @@ public class FindAllPetServlet extends HttpServlet {
 
         //设置输出
         PrintWriter pw = response.getWriter();
-        JSONObject jsonObject = new JSONObject();
-        JSONArray pets = null;
 
-        //无参数
+        //参数
+        int page = Integer.valueOf(request.getParameter("page"));
         //调用业务逻辑
-        //得到全部pet
-        pets = JSONArray.fromObject(PetService.findAllPet());
+        JSONArray pets = JSONArray.fromObject(PetService.findPetLimit(page));
 
-        //得到数据字典
-        JSONObject dics = DicUtil.getDicMapJson();
-
-        jsonObject.put("pets", pets);
-        jsonObject.put("dics", dics);
+        //得到宠物店信息
 
         //输出
-        pw.print(jsonObject);
+        pw.print(pets);
         pw.close();
     }
 

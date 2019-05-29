@@ -2,6 +2,7 @@ package dao;
 
 import entity.User;
 import util.DBUtil;
+import util.PageUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,6 +47,28 @@ public class UserDaoImpl implements UserDao {
     public List<User> findAllUser() throws SQLException {
         String sql = "select * from user;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
+        List<User> rtn = new ArrayList<>();
+        User user;
+        while (resultSet.next()) {
+            user = new User(
+                    resultSet.getInt("u_id"),
+                    resultSet.getInt("d_id"),
+                    resultSet.getString("username"),
+                    resultSet.getString("password")
+            );
+            rtn.add(user);
+        }
+        DBUtil.closeAll();
+        return rtn;
+    }
+
+    @Override
+    public List<User> findUserLimit(int page) throws SQLException {
+        String sql = "select * " +
+                "from user " +
+                "limit ?, ?;";
+        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
+        ResultSet resultSet = DBUtil.executeQuery(sql, para);
         List<User> rtn = new ArrayList<>();
         User user;
         while (resultSet.next()) {

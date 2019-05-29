@@ -1,6 +1,7 @@
 package dao;
 
 import entity.Employee;
+import entity.EmployeeCustom;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -28,8 +29,10 @@ public interface EmployeeDao {
     public boolean updateEmployee(Employee employee);
 
     /**
-     * 查询Employee表中的所有信息
+     * 查询Employee表中的所有详细信息
      * @return 将表中的所有信息封装成List<Employee>进行返回
      */
-    public List<Employee> findAllEmployee() throws SQLException;
+    public List<EmployeeCustom> findAllEmployeeInDetail() throws SQLException;
+
+    public List<EmployeeCustom> findEmployeeLimitInDetail(int page) throws SQLException;
 }

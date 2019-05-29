@@ -19,10 +19,10 @@
                           value：  1为注册成功，应跳转至登陆页面
                                    0为注册失败（用户名重复）
 
-//
-/BHY/FindAllUserServlet:
-    查询所有的用户,会根据session中的user对象的类型判断是否能进行查询(通过判断user对象的d_id属性来得到当前用户的类型)
-    参数：无
+
+/BHY/FindUserLimitServlet:
+    分页查询用户,会根据session中的user对象的类型判断是否能进行查询(通过判断user对象的d_id属性来得到当前用户的类型)
+    参数：页码-
     返回值：json类型，如果当前状态为未登录，put("ifLogin", "false")并进行页面跳转
                       如果已登陆，但权限不是店长，put("ifLogin", "true")，put("isLord", "false")由前端进行提示
                       如果是店长登陆put("ifLogin", "true")，put("isLord", "true")，jsonObject.put("users", users)
@@ -43,10 +43,11 @@
                 失败返回rtn：0（用户名不存在吧，一般前端规避这种错误，还有可能是数据库访问错误）
 
 //
-/BHY/FindAllPetServlet：
-    响应前台发来的查询所有宠物信息的请求
-    无参数
-    返回{pets:[{}, {}, {}], dics:[{}, {}, {}]}(返回一个json，其中pets对应宠物信息的json数组，dics对应字典数据json)
+/BHY/FindPetLimitServlet：
+    响应前台发来的分页查询宠物信息的请求
+    参数：查寻的页码
+    返回[{"cl_id":0,"cl_name":"小刚","d_id":0,"p_age":0,"p_healthy":"","p_height":0,"p_id":1,"p_sex":"","p_type":"短毛猫","s_id":0,"st_name":""}]
+    返回一个json，其中各个字段对应pet的详细信息
 
 //
 /BHY/AddPetServlet：
@@ -61,11 +62,24 @@
             用户不存在返回rtn：2
             数据库底层错误返回rtn：3
 
+//
+/BHY/FindClientLimitServlet:
+    分页查询顾客信息，在没有开发顾客板块的情况下，u_id全部为3，前端不需要解析这一属性
+    参数：当前的页数
+    返回由一条条顾客信息组成的JSONArray
 
+//
+/BHY/FindStoreLimitServlet:
+    分页查找宠物店信息
+    参数：页码page
+    返回一个json，stores的值是封装了全部宠物店详细信息的json数组
+    [{"d_id":0,"e_id":0,"e_name":"","s_address":"","st_grade":"总店","st_id":1,"st_time":null}]
 
-
-
-
+//
+/BHY/FindEmployeeLimitServlet:
+    分页查询所有的员工详细信息
+    参数：页码
+    返回值：[{"d_id":41,"e_age":0,"e_id":3,"e_name":"C","e_salary":5000,"e_sex":"","e_time":null,"e_type":"店长","s_id":1,"st_name":"","u_id":0,"username":""}]
 
 
 

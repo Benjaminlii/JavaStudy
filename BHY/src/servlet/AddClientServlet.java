@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
 
 @WebServlet("/AddClientServlet")
 public class AddClientServlet extends HttpServlet {

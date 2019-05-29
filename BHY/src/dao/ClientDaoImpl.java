@@ -1,7 +1,9 @@
 package dao;
 
 import entity.Client;
+import entity.ClientCustom;
 import util.DBUtil;
+import util.PageUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,6 +48,31 @@ public class ClientDaoImpl implements ClientDao {
     public List<Client> findAllClient() throws SQLException {
         String sql = "select * from client;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
+        List<Client> rtn = new ArrayList<>();
+        Client client;
+        while (resultSet.next()) {
+            client = new Client(
+                    resultSet.getInt("cl_id"),
+                    resultSet.getString("cl_name"),
+                    resultSet.getString("mobile"),
+                    resultSet.getInt("u_id"),
+                    resultSet.getInt("cl_age"),
+                    resultSet.getString("cl_sex"),
+                    resultSet.getString("cl_emil")
+            );
+            rtn.add(client);
+        }
+        DBUtil.closeAll();
+        return rtn;
+    }
+
+    @Override
+    public List<Client> findClientLimit(int page) throws SQLException {
+        String sql = "select * " +
+                "from client " +
+                "limit ?,?;";
+        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
+        ResultSet resultSet = DBUtil.executeQuery(sql, para);
         List<Client> rtn = new ArrayList<>();
         Client client;
         while (resultSet.next()) {

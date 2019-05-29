@@ -1,6 +1,7 @@
 package dao;
 
 import entity.Store;
+import entity.StoreCustom;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -32,4 +33,13 @@ public interface StoreDao {
      * @return 将表中的所有信息封装成List<Store>进行返回
      */
     public List<Store> findAllStore() throws SQLException;
+
+    /**
+     * 查询所有宠物店的详细信息（连接查询）
+     * @return 详细信息List
+     */
+    public List<StoreCustom> findAllStoreInDetail() throws SQLException;
+
+    public List<StoreCustom> findStoreLimitInDetail(int page) throws SQLException;
+
 }

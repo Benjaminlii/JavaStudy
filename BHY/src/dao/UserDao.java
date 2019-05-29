@@ -33,6 +33,8 @@ public interface UserDao {
      */
     public List<User> findAllUser() throws SQLException;
 
+    public List<User> findUserLimit(int page) throws SQLException;
+
     /**
      * 根据用户名查询用户
      * @param username 需要查询的用户名

@@ -24,7 +24,7 @@
     删除信息
 
 宠物店（store）管理
-    展示所有店铺信息
+    展示所有店铺信息 /BHY/FindAllStoreServlet
     注册新店铺
     修改店铺信息
     注销一个店铺
@@ -33,14 +33,14 @@
     货物清单
 
 员工（employee）管理
-    全部员工信息展示（部分）
+    全部员工信息展示（部分） /BHY/FindEmployeeLimitServlet
     添加新员工（同用户注册）
     单个员工信息展示
     员工信息更新
     删除员工信息
 
 顾客管理
-    展示所有顾客信息
+    展示所有顾客信息 /BHY/FindAllClientServlet
     更新顾客信息
     添加一条顾客信息 /BHY/AddClientServlet
 
