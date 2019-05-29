@@ -41,11 +41,11 @@ public interface DictionaryDao {
      */
     public List<Dictionary> findDictionaryByParValue(String parValue) throws SQLException;
 
-    /**
-     * 根据父字典的d_value查询其全部子孙字典的信息
-     * @param parValue 父字典的值
-     * @return 子字典组成的List
-     * @throws SQLException 遍历resultSet
-     */
-    public List<Dictionary> findAllDictionaryByParValue(String parValue) throws SQLException;
+//    /**
+//     * 根据父字典的d_value查询其全部子孙字典的信息
+//     * @param parValue 父字典的值
+//     * @return 子字典组成的List
+//     * @throws SQLException 遍历resultSet
+//     */
+//    public List<Dictionary> findAllDictionaryByParValue(String parValue) throws SQLException;
 }

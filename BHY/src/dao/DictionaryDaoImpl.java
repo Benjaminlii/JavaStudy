@@ -78,24 +78,24 @@ public class DictionaryDaoImpl implements DictionaryDao {
         return rtn;
     }
 
-    @Override
-    public List<Dictionary> findAllDictionaryByParValue(String parValue) throws SQLException {
-        String sql = "select d1.* from dictionary d1 inner join dictionary d2 on d1.d_par_id = d2.d_id where d2.d_value = ？;";
-        Object[] para = {parValue};
-        ResultSet resultSet = DBUtil.executeQuery(sql, para);
-        List<Dictionary> rtn = new ArrayList<>();
-        Dictionary dictionary;
-        while (resultSet.next()) {
-            dictionary = new Dictionary(
-                    resultSet.getInt("d_id"),
-                    resultSet.getInt("d_par_id"),
-                    resultSet.getString("d_name"),
-                    resultSet.getString("d_value")
-            );
-            rtn.add(dictionary);
-            rtn.addAll(findAllDictionaryByParValue(dictionary.getD_value()));
-        }
-        DBUtil.closeAll();
-        return rtn;
-    }
+//    @Override
+//    public List<Dictionary> findAllDictionaryByParValue(String parValue) throws SQLException {
+//        String sql = "select d1.* from dictionary d1 inner join dictionary d2 on d1.d_par_id = d2.d_id where d2.d_value = ？;";
+//        Object[] para = {parValue};
+//        ResultSet resultSet = DBUtil.executeQuery(sql, para);
+//        List<Dictionary> rtn = new ArrayList<>();
+//        Dictionary dictionary;
+//        while (resultSet.next()) {
+//            dictionary = new Dictionary(
+//                    resultSet.getInt("d_id"),
+//                    resultSet.getInt("d_par_id"),
+//                    resultSet.getString("d_name"),
+//                    resultSet.getString("d_value")
+//            );
+//            rtn.add(dictionary);
+//            rtn.addAll(findAllDictionaryByParValue(dictionary.getD_value()));
+//        }
+//        DBUtil.closeAll();
+//        return rtn;
+//    }
 }

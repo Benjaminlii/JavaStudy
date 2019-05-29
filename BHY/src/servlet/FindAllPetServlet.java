@@ -6,6 +6,7 @@ import dao.DictionaryDaoImpl;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import service.PetService;
+import util.DicUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +22,7 @@ public class FindAllPetServlet extends HttpServlet {
     /**
      * 响应前台发来的查询所有宠物信息的请求
      * 无参数
-     * 返回{pets:[{}, {}, {}], dics:[{}, {}, {}]}(返回一个json，其中pets对应宠物信息的json数组，dics对应字典数据json数组)
+     * 返回{pets:[{}, {}, {}], dics:[{}, {}, {}]}(返回一个json，其中pets对应宠物信息的json数组，dics对应字典数据json)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置编码
@@ -32,21 +33,17 @@ public class FindAllPetServlet extends HttpServlet {
         PrintWriter pw = response.getWriter();
         JSONObject jsonObject = new JSONObject();
         JSONArray pets = null;
-        JSONArray dics = null;
 
         //无参数
         //调用业务逻辑
         //得到全部pet
         pets = JSONArray.fromObject(PetService.findAllPet());
-        //得到宠物类型的字典
-        DictionaryDao dictionaryDao = new DictionaryDaoImpl();
-        try {
-            dics = JSONArray.fromObject(dictionaryDao.findAllDictionaryByParValue("宠物品种"));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        jsonObject.put("pets",pets);
-        jsonObject.put("dics",dics);
+
+        //得到数据字典
+        JSONObject dics = DicUtil.getDicMapJson();
+
+        jsonObject.put("pets", pets);
+        jsonObject.put("dics", dics);
 
         //输出
         pw.print(jsonObject);
