@@ -18,7 +18,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
         String sql = "insert into employee (e_name, e_salary, s_id, d_id, u_id, e_sex, e_age, e_time) " +
                 "values (?,?,?,?,?,?,?,?);";
         Object[] para = {
-                employee.getE_name(), employee.getE_salary(), employee.getS_id(), employee.getD_id(),
+                employee.getE_name(), employee.getE_salary(), employee.getSt_id(), employee.getD_id(),
                 employee.getU_id(), employee.getE_sex(), employee.getE_age(), employee.getE_time()
         };
         boolean rtn = DBUtil.executeUpdate(sql, para) == 1;
@@ -41,7 +41,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 "d_id = ?, u_id = ?, e_sex = ?, e_age = ?, e_time = ? " +
                 "where e_id = ?";
         Object[] para = {
-                employee.getE_name(), employee.getE_salary(), employee.getS_id(), employee.getD_id(),
+                employee.getE_name(), employee.getE_salary(), employee.getSt_id(), employee.getD_id(),
                 employee.getU_id(), employee.getE_sex(), employee.getE_age(), employee.getE_time(),
                 employee.getE_id()
         };

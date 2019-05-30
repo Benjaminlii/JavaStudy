@@ -19,7 +19,7 @@ public class CargoDaoImpl implements CargoDao {
                 "values (?,?,?,?,?,?,?);";
         Object[] para = {
                 cargo.getC_name(), cargo.getC_num(), cargo.getD_id(),
-                cargo.getS_id(), cargo.getC_getDate(), cargo.getC_producedDate(),
+                cargo.getSt_id(), cargo.getC_getDate(), cargo.getC_producedDate(),
                 cargo.getC_expirationDate()
         };
         boolean rtn = DBUtil.executeUpdate(sql, para) == 1;
@@ -40,7 +40,7 @@ public class CargoDaoImpl implements CargoDao {
                 "s_id = ?, c_getDate = ?, c_producedDate = ?, c_expirationDate = ? " +
                 "where c_id = ?";
         Object[] para = {cargo.getC_name(), cargo.getC_num(), cargo.getD_id(),
-                cargo.getS_id(), cargo.getC_getDate(), cargo.getC_producedDate(),
+                cargo.getSt_id(), cargo.getC_getDate(), cargo.getC_producedDate(),
                 cargo.getC_expirationDate(), cargo.getC_id()};
         boolean rtn = DBUtil.executeUpdate(sql, para) == 1;
         DBUtil.closeAll();
@@ -92,10 +92,6 @@ public class CargoDaoImpl implements CargoDao {
         return rtn;
     }
 
-    @Override
-    public List<CargoCustom> outputMapping(ResultSet resultSet) {
-        return null;
-    }
 
     @Override
     public List<CargoCustom> findCargoLimitInDetail(int page) throws SQLException {

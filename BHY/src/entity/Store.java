@@ -15,8 +15,8 @@ public class Store {
     public Store() {
     }
 
-    public Store(int s_id, int d_id) {
-        this.st_id = s_id;
+    public Store(int st_id, int d_id) {
+        this.st_id = st_id;
         this.d_id = d_id;
     }
 
@@ -26,8 +26,8 @@ public class Store {
         this.st_time = st_time;
     }
 
-    public Store(int s_id, int d_id, int e_id, String s_address, Date s_time) {
-        this.st_id = s_id;
+    public Store(int st_id, int d_id, int e_id, String s_address, Date s_time) {
+        this.st_id = st_id;
         this.d_id = d_id;
         this.e_id = e_id;
         this.s_address = s_address;

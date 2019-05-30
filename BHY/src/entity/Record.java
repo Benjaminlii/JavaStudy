@@ -8,7 +8,7 @@ import java.util.Date;
 public class Record {
     private int r_id;//销售记录id
     private int cl_id;//购买者id
-    private int s_id;//宠物店id
+    private int st_id;//宠物店id
     private int c_id;//货物id
     private Date r_time;//时间
     private float r_price;//售出价格
@@ -18,20 +18,20 @@ public class Record {
     public Record() {
     }
 
-    public Record(int r_id, int cl_id, int s_id, int c_id, Date r_time, float r_price, int r_num) {
+    public Record(int r_id, int cl_id, int st_id, int c_id, Date r_time, float r_price, int r_num) {
         this.r_id = r_id;
         this.cl_id = cl_id;
-        this.s_id = s_id;
+        this.st_id = st_id;
         this.c_id = c_id;
         this.r_time = r_time;
         this.r_price = r_price;
         this.r_num = r_num;
     }
 
-    public Record(int r_id, int cl_id, int s_id, int c_id, Date r_time, float r_price, int r_num, String r_pattern) {
+    public Record(int r_id, int cl_id, int st_id, int c_id, Date r_time, float r_price, int r_num, String r_pattern) {
         this.r_id = r_id;
         this.cl_id = cl_id;
-        this.s_id = s_id;
+        this.st_id = st_id;
         this.c_id = c_id;
         this.r_time = r_time;
         this.r_price = r_price;
@@ -55,12 +55,12 @@ public class Record {
         this.cl_id = cl_id;
     }
 
-    public int getS_id() {
-        return s_id;
+    public int getSt_id() {
+        return st_id;
     }
 
-    public void setS_id(int s_id) {
-        this.s_id = s_id;
+    public void setSt_id(int st_id) {
+        this.st_id = st_id;
     }
 
     public int getC_id() {
@@ -108,7 +108,7 @@ public class Record {
         return "Record{" +
                 "r_id=" + r_id +
                 ", cl_id=" + cl_id +
-                ", s_id=" + s_id +
+                ", st_id=" + st_id +
                 ", c_id=" + c_id +
                 ", r_time=" + r_time +
                 ", r_price=" + r_price +

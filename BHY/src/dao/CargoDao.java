@@ -47,5 +47,4 @@ public interface CargoDao {
      */
     public List<CargoCustom> findAllCargoInDetail() throws SQLException;
 
-    public List<CargoCustom> outputMapping(ResultSet resultSet);
 }

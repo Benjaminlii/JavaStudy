@@ -16,7 +16,7 @@ public class PetDaoImpl implements PetDao {
         String sql = "insert into pet (cl_id, d_id, s_id, p_age, p_sex, p_height, p_healthy) " +
                 "values (?,?,?,?,?,?,?);";
         Object[] para = {
-                pet.getCl_id(), pet.getD_id(), pet.getS_id(),
+                pet.getCl_id(), pet.getD_id(), pet.getSt_id(),
                 pet.getP_age(), pet.getP_sex(), pet.getP_height(),
                 pet.getP_healthy()
         };
@@ -41,7 +41,7 @@ public class PetDaoImpl implements PetDao {
                 "p_healthy = ? " +
                 "where p_id = ?";
         Object[] para = {
-                pet.getCl_id(), pet.getD_id(), pet.getS_id(),
+                pet.getCl_id(), pet.getD_id(), pet.getSt_id(),
                 pet.getP_age(), pet.getP_sex(), pet.getP_height(),
                 pet.getP_healthy(), pet.getP_id()
         };

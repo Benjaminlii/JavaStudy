@@ -10,7 +10,7 @@ public class Cargo {
     private String c_name;//货物名称
     private int c_num;//货物数量
     private int d_id;//字典id（货物类别）
-    private int s_id;//所属宠物店id
+    private int st_id;//所属宠物店id
     private Date c_getDate;//进货时间
     private Date c_producedDate;//生产日期
     private Date c_expirationDate;//保质日期
@@ -25,12 +25,12 @@ public class Cargo {
         this.d_id = d_id;
     }
 
-    public Cargo(int c_id, String c_name, int c_num, int d_id, int s_id, Date c_getDate, Date c_producedDate, Date c_expirationDate) {
+    public Cargo(int c_id, String c_name, int c_num, int d_id, int st_id, Date c_getDate, Date c_producedDate, Date c_expirationDate) {
         this.c_id = c_id;
         this.c_name = c_name;
         this.c_num = c_num;
         this.d_id = d_id;
-        this.s_id = s_id;
+        this.st_id = st_id;
         this.c_getDate = c_getDate;
         this.c_producedDate = c_producedDate;
         this.c_expirationDate = c_expirationDate;
@@ -68,12 +68,12 @@ public class Cargo {
         this.d_id = d_id;
     }
 
-    public int getS_id() {
-        return s_id;
+    public int getSt_id() {
+        return st_id;
     }
 
-    public void setS_id(int s_id) {
-        this.s_id = s_id;
+    public void setSt_id(int st_id) {
+        this.st_id = st_id;
     }
 
     public Date getC_getDate() {
@@ -107,7 +107,7 @@ public class Cargo {
                 ", c_name='" + c_name + '\'' +
                 ", c_num=" + c_num +
                 ", d_id=" + d_id +
-                ", s_id=" + s_id +
+                ", st_id=" + st_id +
                 ", c_getDate=" + c_getDate +
                 ", c_producedDate=" + c_producedDate +
                 ", c_expirationDate=" + c_expirationDate +

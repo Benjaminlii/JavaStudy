@@ -17,7 +17,7 @@ public class RecordDaoImpl implements RecordDao {
         String sql = "insert into record (cl_id, s_id, c_id, r_time, r_price, r_num, r_pattern) " +
                 "values (?,?,?,?,?,?,?);";
         Object[] para = {
-                record.getCl_id(), record.getS_id(), record.getC_id(),
+                record.getCl_id(), record.getSt_id(), record.getC_id(),
                 record.getR_time(), record.getR_price(), record.getR_num(),
                 record.getR_pattern()
         };
@@ -42,7 +42,7 @@ public class RecordDaoImpl implements RecordDao {
                 "r_pattern = ? " +
                 "where r_id = ?";
         Object[] para = {
-                record.getCl_id(), record.getS_id(), record.getC_id(),
+                record.getCl_id(), record.getSt_id(), record.getC_id(),
                 record.getR_time(), record.getR_price(), record.getR_num(),
                 record.getR_pattern(), record.getR_id()
         };

@@ -13,7 +13,7 @@
     参数:   username 用户名
             password 密码
             e_name 员工姓名
-            s_id 宠物店id（单选得到）
+            st_id 宠物店id（单选得到）
             d_id 职务id（单选得到）
     返回值：json格式：     key：    rtn
                           value：  1为注册成功，应跳转至登陆页面
@@ -46,7 +46,7 @@
 /BHY/FindPetLimitServlet：
     响应前台发来的分页查询宠物信息的请求
     参数：查寻的页码
-    返回[{"cl_id":0,"cl_name":"小刚","d_id":0,"p_age":0,"p_healthy":"","p_height":0,"p_id":1,"p_sex":"","p_type":"短毛猫","s_id":0,"st_name":""}]
+    返回[{"cl_id":0,"cl_name":"小刚","d_id":0,"p_age":0,"p_healthy":"","p_height":0,"p_id":1,"p_sex":"","p_type":"短毛猫","st_id":0,"st_name":""}]
     返回一个json，其中各个字段对应pet的详细信息
 
 //
@@ -54,7 +54,7 @@
     添加一条宠物信息
     参数： 宠物品种 d_id
            顾客手机号 mobile
-           宠物店id s_id
+           宠物店id st_id
            [年龄 p_age
            性别 p_sex
            体重 p_height]
@@ -79,7 +79,7 @@
 /BHY/FindEmployeeLimitServlet:
     分页查询所有的员工详细信息
     参数：页码
-    返回值：[{"d_id":41,"e_age":0,"e_id":3,"e_name":"C","e_salary":5000,"e_sex":"","e_time":null,"e_type":"店长","s_id":1,"st_name":"","u_id":0,"username":""}]
+    返回值：[{"d_id":41,"e_age":0,"e_id":3,"e_name":"C","e_salary":5000,"e_sex":"","e_time":null,"e_type":"店长","st_id":1,"st_name":"","u_id":0,"username":""}]
 
 //
 /BHY/FindRecordLimitServlet:
@@ -88,7 +88,7 @@
     返回值：json数组
             [{"c_id":1,"cl_id":1,"cl_name":"小刚","r_id":1,"r_name":"狗粮","r_num":1,"r_pattern":"","r_price":150,
             "r_time":{"date":25,"day":6,"hours":2,"minutes":0,"month":4,"nanos":0,"seconds":0,"time":1558720800000,"timezoneOffset":-480,"year":119},
-            "s_id":1,"st_name":""}]
+            "st_id":1,"st_name":""}]
 
 //
 /BHY/FindCargoLimitServlet:
@@ -96,14 +96,14 @@
     参数：页码page
     返回值：json数组
          [{"c_expirationDate":null,"c_getDate":null,"c_id":1,"c_name":"狗粮","c_num":200,
-         "c_producedDate":null,"c_type":"饲料","d_id":13,"s_id":1,"st_name":""}]
+         "c_producedDate":null,"c_type":"饲料","d_id":13,"st_id":1,"st_name":""}]
 
 //
 /BHY/FindServiceLimitServlet:
     分页查询服务项详细信息
     参数：页码page
     返回值：json数组
-         [{"d_id":37,"e_id":0,"e_name":"","p_id":1,"s_aTime":null,"s_id":1,
+         [{"d_id":37,"e_id":0,"e_name":"","p_id":1,"s_aTime":null,"st_id":1,
          "s_isDispose":"true","s_isFinish":"true","s_price":0,"s_type":"看病"}]
 
 

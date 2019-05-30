@@ -9,7 +9,7 @@ public class Employee {
     private int e_id;//员工id
     private String e_name;//姓名
     private int e_salary;//工资
-    private int s_id;//所属宠物店id
+    private int st_id;//所属宠物店id
     private int d_id;//字典id（职务）
     private int u_id;//用户id
     private String e_sex;//性别
@@ -19,26 +19,26 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String e_name, int e_salary, int s_id, int d_id) {
+    public Employee(String e_name, int e_salary, int st_id, int d_id) {
         this.e_name = e_name;
         this.e_salary = e_salary;
-        this.s_id = s_id;
+        this.st_id = st_id;
         this.d_id = d_id;
     }
 
-    public Employee(int e_id, String e_name, int e_salary, int s_id, int d_id) {
+    public Employee(int e_id, String e_name, int e_salary, int st_id, int d_id) {
         this.e_id = e_id;
         this.e_name = e_name;
         this.e_salary = e_salary;
-        this.s_id = s_id;
+        this.st_id = st_id;
         this.d_id = d_id;
     }
 
-    public Employee(int e_id, String e_name, int e_salary, int s_id, int d_id, int u_id, String e_sex, int e_age, Date e_time) {
+    public Employee(int e_id, String e_name, int e_salary, int st_id, int d_id, int u_id, String e_sex, int e_age, Date e_time) {
         this.e_id = e_id;
         this.e_name = e_name;
         this.e_salary = e_salary;
-        this.s_id = s_id;
+        this.st_id = st_id;
         this.d_id = d_id;
         this.u_id = u_id;
         this.e_sex = e_sex;
@@ -70,12 +70,12 @@ public class Employee {
         this.e_salary = e_salary;
     }
 
-    public int getS_id() {
-        return s_id;
+    public int getSt_id() {
+        return st_id;
     }
 
-    public void setS_id(int s_id) {
-        this.s_id = s_id;
+    public void setSt_id(int st_id) {
+        this.st_id = st_id;
     }
 
     public int getD_id() {
@@ -124,7 +124,7 @@ public class Employee {
                 "e_id=" + e_id +
                 ", e_name='" + e_name + '\'' +
                 ", e_salary=" + e_salary +
-                ", s_id=" + s_id +
+                ", st_id=" + st_id +
                 ", d_id=" + d_id +
                 ", u_id=" + u_id +
                 ", e_sex='" + e_sex + '\'' +

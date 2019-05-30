@@ -7,7 +7,7 @@ public class Pet {
     private int p_id;//宠物id
     private int cl_id;//所属顾客id
     private int d_id;//字典信息（品种）id
-    private int s_id;//宠物店id
+    private int st_id;//宠物店id
     private int p_age;//宠物年龄
     private String p_sex;//宠物性别
     private float p_height;//宠物体重
@@ -22,11 +22,11 @@ public class Pet {
         this.d_id = d_id;
     }
 
-    public Pet(int p_id, int cl_id, int d_id, int s_id, int p_age, String p_sex, float p_height, String p_healthy) {
+    public Pet(int p_id, int cl_id, int d_id, int st_id, int p_age, String p_sex, float p_height, String p_healthy) {
         this.p_id = p_id;
         this.cl_id = cl_id;
         this.d_id = d_id;
-        this.s_id = s_id;
+        this.st_id = st_id;
         this.p_age = p_age;
         this.p_sex = p_sex;
         this.p_height = p_height;
@@ -65,12 +65,12 @@ public class Pet {
         this.d_id = d_id;
     }
 
-    public int getS_id() {
-        return s_id;
+    public int getSt_id() {
+        return st_id;
     }
 
-    public void setS_id(int s_id) {
-        this.s_id = s_id;
+    public void setSt_id(int st_id) {
+        this.st_id = st_id;
     }
 
     public int getP_age() {
@@ -111,7 +111,7 @@ public class Pet {
                 "p_id=" + p_id +
                 ", cl_id=" + cl_id +
                 ", d_id=" + d_id +
-                ", s_id=" + s_id +
+                ", st_id=" + st_id +
                 ", p_age=" + p_age +
                 ", p_sex='" + p_sex + '\'' +
                 ", p_height=" + p_height +
