@@ -93,6 +93,11 @@ public class CargoDaoImpl implements CargoDao {
     }
 
     @Override
+    public List<CargoCustom> outputMapping(ResultSet resultSet) {
+        return null;
+    }
+
+    @Override
     public List<CargoCustom> findCargoLimitInDetail(int page) throws SQLException {
         String sql = "select * from cargocustom " +
                 "limit ?, ?;";

@@ -3,6 +3,7 @@ package dao;
 import entity.Cargo;
 import entity.CargoCustom;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -38,7 +39,13 @@ public interface CargoDao {
      * 查询cargo表中的所有详细信息
      * @return 将表中的所有信息封装成List<CargoCustom>进行返回
      */
+    public List<CargoCustom> findCargoLimitInDetail(int page) throws SQLException;
+
+    /**
+     * 分页查询cargo表中的所有详细信息
+     * @return 将表中的所有信息封装成List<CargoCustom>进行返回
+     */
     public List<CargoCustom> findAllCargoInDetail() throws SQLException;
 
-    public List<CargoCustom> findCargoLimitInDetail(int page) throws SQLException;
+    public List<CargoCustom> outputMapping(ResultSet resultSet);
 }

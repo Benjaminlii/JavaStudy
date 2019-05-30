@@ -158,3 +158,13 @@
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
+    查询：
+        输入映射：
+            传入表名，字段名，得到map，将表名等其他信息从map中抽取出来
+            page使用对象，不使用分页时传入null
+        动态SQL：
+            遍历字段名map，拼接sql语句
+        输出映射：
+            无？
