@@ -81,7 +81,14 @@
     参数：页码
     返回值：[{"d_id":41,"e_age":0,"e_id":3,"e_name":"C","e_salary":5000,"e_sex":"","e_time":null,"e_type":"店长","s_id":1,"st_name":"","u_id":0,"username":""}]
 
-
+//
+/BHY/FindRecordLimitServlet:
+    分页查询销售记录的详细信息
+    参数：页码page
+    返回值：json数组
+            [{"c_id":1,"cl_id":1,"cl_name":"小刚","r_id":1,"r_name":"狗粮","r_num":1,"r_pattern":"","r_price":150,
+            "r_time":{"date":25,"day":6,"hours":2,"minutes":0,"month":4,"nanos":0,"seconds":0,"time":1558720800000,"timezoneOffset":-480,"year":119},
+            "s_id":1,"st_name":""}]
 
 
 

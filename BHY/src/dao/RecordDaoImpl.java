@@ -1,7 +1,9 @@
 package dao;
 
 import entity.Record;
+import entity.RecordCustom;
 import util.DBUtil;
+import util.PageUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -67,6 +69,74 @@ public class RecordDaoImpl implements RecordDao {
                     resultSet.getString("r_pattern")
             );
             rtn.add(record);
+        }
+        DBUtil.closeAll();
+        return rtn;
+    }
+
+    @Override
+    public List<RecordCustom> findRecordInDetail() throws SQLException {
+        String sql = "select record.*, cl_name, s_address, c_name " +
+                "from record " +
+                "left join client " +
+                "on record.cl_id = client.cl_id " +
+                "left join store " +
+                "on record.s_id = store.st_id " +
+                "left join cargo " +
+                "on record.c_id = cargo.c_id;";
+        ResultSet resultSet = DBUtil.executeQuery(sql, null);
+        List<RecordCustom> rtn = new ArrayList<>();
+        RecordCustom recordCustom;
+        while (resultSet.next()) {
+            recordCustom = new RecordCustom(
+                    resultSet.getInt("r_id"),
+                    resultSet.getInt("cl_id"),
+                    resultSet.getInt("s_id"),
+                    resultSet.getInt("c_id"),
+                    (Date) resultSet.getObject("r_time"),
+                    resultSet.getFloat("r_price"),
+                    resultSet.getInt("r_num"),
+                    resultSet.getString("r_pattern"),
+                    resultSet.getString("cl_name"),
+                    resultSet.getString("s_address"),
+                    resultSet.getString("c_name")
+            );
+            rtn.add(recordCustom);
+        }
+        DBUtil.closeAll();
+        return rtn;
+    }
+
+    @Override
+    public List<RecordCustom> findRecordLimitInDetail(int page) throws SQLException {
+        String sql = "select record.*, cl_name, s_address, c_name " +
+                "from record " +
+                "left join client " +
+                "on record.cl_id = client.cl_id " +
+                "left join store " +
+                "on record.s_id = store.st_id " +
+                "left join cargo " +
+                "on record.c_id = cargo.c_id " +
+                "limit ?, ?;";
+        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
+        ResultSet resultSet = DBUtil.executeQuery(sql, para);
+        List<RecordCustom> rtn = new ArrayList<>();
+        RecordCustom recordCustom;
+        while (resultSet.next()) {
+            recordCustom = new RecordCustom(
+                    resultSet.getInt("r_id"),
+                    resultSet.getInt("cl_id"),
+                    resultSet.getInt("s_id"),
+                    resultSet.getInt("c_id"),
+                    (Date) resultSet.getObject("r_time"),
+                    resultSet.getFloat("r_price"),
+                    resultSet.getInt("r_num"),
+                    resultSet.getString("r_pattern"),
+                    resultSet.getString("cl_name"),
+                    resultSet.getString("s_address"),
+                    resultSet.getString("c_name")
+            );
+            rtn.add(recordCustom);
         }
         DBUtil.closeAll();
         return rtn;

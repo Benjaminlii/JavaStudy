@@ -1,6 +1,7 @@
 package dao;
 
 import entity.Record;
+import entity.RecordCustom;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -32,4 +33,13 @@ public interface RecordDao {
      * @return 将表中的所有信息封装成List<Record>进行返回
      */
     public List<Record> findAllRecord() throws SQLException;
+
+    /**
+     * 查询Record表中的所有详细信息
+     * @return 将表中的所有信息封装成List<RecordService>进行返回
+     */
+    public List<RecordCustom> findRecordInDetail() throws SQLException;
+
+    public List<RecordCustom> findRecordLimitInDetail(int page) throws SQLException;
+
 }
