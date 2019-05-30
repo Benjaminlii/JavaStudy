@@ -75,11 +75,7 @@ public class PetDaoImpl implements PetDao {
 
     @Override
     public List<PetCustom> findAllPetInDetail() throws SQLException {
-        String sql = "select pet.*,client.cl_name,dictionary.d_value,store.s_address " +
-                "from pet " +
-                "left join client on pet.cl_id = client.cl_id " +
-                "left join dictionary on pet.d_id = dictionary.d_id " +
-                "left join store on pet.s_id = store.st_id;";
+        String sql = "select * from petcustom;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
         List<PetCustom> rtn = new ArrayList<>();
         PetCustom petCustom;
@@ -102,11 +98,7 @@ public class PetDaoImpl implements PetDao {
 
     @Override
     public List<PetCustom> findPetLimitInDetail(int page) throws SQLException {
-        String sql = "select pet.*,client.cl_name,dictionary.d_value,store.s_address " +
-                "from pet " +
-                "left join client on pet.cl_id = client.cl_id " +
-                "left join dictionary on pet.d_id = dictionary.d_id " +
-                "left join store on pet.s_id = store.st_id " +
+        String sql = "select * from petcustom " +
                 "limit ?, ?;";
         Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
         ResultSet resultSet = DBUtil.executeQuery(sql, para);

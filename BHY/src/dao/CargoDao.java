@@ -1,6 +1,7 @@
 package dao;
 
 import entity.Cargo;
+import entity.CargoCustom;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -32,4 +33,12 @@ public interface CargoDao {
      * @return 将表中的所有信息封装成List<Cargo>进行返回
      */
     public List<Cargo> findAllCargo() throws SQLException;
+
+    /**
+     * 查询cargo表中的所有详细信息
+     * @return 将表中的所有信息封装成List<CargoCustom>进行返回
+     */
+    public List<CargoCustom> findAllCargoInDetail() throws SQLException;
+
+    public List<CargoCustom> findCargoLimitInDetail(int page) throws SQLException;
 }

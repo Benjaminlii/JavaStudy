@@ -76,14 +76,7 @@ public class RecordDaoImpl implements RecordDao {
 
     @Override
     public List<RecordCustom> findRecordInDetail() throws SQLException {
-        String sql = "select record.*, cl_name, s_address, c_name " +
-                "from record " +
-                "left join client " +
-                "on record.cl_id = client.cl_id " +
-                "left join store " +
-                "on record.s_id = store.st_id " +
-                "left join cargo " +
-                "on record.c_id = cargo.c_id;";
+        String sql = "select * from recordcustom;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
         List<RecordCustom> rtn = new ArrayList<>();
         RecordCustom recordCustom;
@@ -109,14 +102,7 @@ public class RecordDaoImpl implements RecordDao {
 
     @Override
     public List<RecordCustom> findRecordLimitInDetail(int page) throws SQLException {
-        String sql = "select record.*, cl_name, s_address, c_name " +
-                "from record " +
-                "left join client " +
-                "on record.cl_id = client.cl_id " +
-                "left join store " +
-                "on record.s_id = store.st_id " +
-                "left join cargo " +
-                "on record.c_id = cargo.c_id " +
+        String sql = "select * from recordcustom " +
                 "limit ?, ?;";
         Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
         ResultSet resultSet = DBUtil.executeQuery(sql, para);

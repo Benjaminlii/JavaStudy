@@ -52,14 +52,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public List<EmployeeCustom> findAllEmployeeInDetail() throws SQLException {
-        String sql = "select employee.*, store.s_address, dictionary.d_value, user.username " +
-                "from employee " +
-                "left join store " +
-                "on employee.s_id = store.st_id " +
-                "left join dictionary " +
-                "on employee.d_id = dictionary.d_id " +
-                "left join user " +
-                "on employee.u_id = user.u_id;";
+        String sql = "select * from employeecustom;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
         List<EmployeeCustom> rtn = new ArrayList<>();
         EmployeeCustom employeeCustom;
@@ -86,14 +79,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public List<EmployeeCustom> findEmployeeLimitInDetail(int page) throws SQLException {
-        String sql = "select employee.*, store.s_address, dictionary.d_value, user.username " +
-                "from employee " +
-                "left join store " +
-                "on employee.s_id = store.st_id " +
-                "left join dictionary " +
-                "on employee.d_id = dictionary.d_id " +
-                "left join user " +
-                "on employee.u_id = user.u_id " +
+        String sql = "select * from employeecustom " +
                 "limit ?, ?;";
         Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
         ResultSet resultSet = DBUtil.executeQuery(sql, para);

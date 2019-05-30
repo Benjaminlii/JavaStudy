@@ -70,12 +70,7 @@ public class StoreDaoImpl implements StoreDao {
 
     @Override
     public List<StoreCustom> findAllStoreInDetail() throws SQLException {
-        String sql = "select store.*, dictionary.d_value, employee.e_name " +
-                "from store " +
-                "left join dictionary " +
-                "on store.d_id = dictionary.d_id " +
-                "left join employee " +
-                "on store.e_id = employee.e_id";
+        String sql = "select * from storecustom;";
         ResultSet resultSet = DBUtil.executeQuery(sql, null);
         List<StoreCustom> rtn = new ArrayList<>();
         StoreCustom storeCustom;
@@ -95,12 +90,7 @@ public class StoreDaoImpl implements StoreDao {
 
     @Override
     public List<StoreCustom> findStoreLimitInDetail(int page) throws SQLException {
-        String sql = "select store.*, dictionary.d_value, employee.e_name " +
-                "from store " +
-                "left join dictionary " +
-                "on store.d_id = dictionary.d_id " +
-                "left join employee " +
-                "on store.e_id = employee.e_id " +
+        String sql = "select * from storecustom " +
                 "limit ?, ?;";
         Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
         ResultSet resultSet = DBUtil.executeQuery(sql, para);

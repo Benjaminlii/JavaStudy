@@ -11,7 +11,7 @@
     删除
 
 服务（service）管理
-    展示已提交的服务项清单
+    展示已提交的服务项清单 /BHY/FindServiceLimitServlet
     提交服务
     修改服务内容
     删除服务项
@@ -29,7 +29,7 @@
     注销一个店铺
 
 仓库货物（cargo）管理
-    货物清单
+    货物清单 /BHY/FindCargoLimitServlet
 
 员工（employee）管理
     全部员工信息展示（部分） /BHY/FindEmployeeLimitServlet
@@ -43,7 +43,9 @@
     更新顾客信息
     添加一条顾客信息 /BHY/AddClientServlet
 
-数据字典展示
+数据字典管理
+    展示
+    更改
 
 
 
