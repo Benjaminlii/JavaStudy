@@ -1,19 +1,20 @@
 package servlet;
 
-import entity.Client;
-import entity.Employee;
-import entity.User;
+import entity.*;
 import net.sf.json.JSONObject;
+import org.apache.commons.beanutils.BeanUtils;
 import service.UserService;
 
 import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends javax.servlet.http.HttpServlet {
     /**
      * 处理注册请求
+     * 目前全部设置成员工注册
      * 成功会返回1，失败返回0（json，key为rtn）
      */
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
@@ -22,26 +23,25 @@ public class RegisterServlet extends javax.servlet.http.HttpServlet {
         response.setCharacterEncoding("utf-8");
 
         //提取请求中的数据，封装成对象，u_id将在user添加成功后查询得到
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String e_name = request.getParameter("e_name");
-        int s_id = Integer.valueOf(request.getParameter("s_id"));
-        int d_id = Integer.valueOf(request.getParameter("d_id"));
-        User user = new User(d_id, username, password);
-        Object type = null;
-        if (d_id == 8) {//顾客client
-            type = new Client();
-            request.getSession().setAttribute("client", type);
-        } else {
-            type = new Employee(e_name, 3000, s_id, d_id);
-            request.getSession().setAttribute("employee", type);
+        UserQueryVo userQueryVo = new UserQueryVo();
+        UserCustom userCustom = new UserCustom();
+        EmployeeQueryVo employeeQueryVo = new EmployeeQueryVo();
+        EmployeeCustom employeeCustom = new EmployeeCustom();
+        try {
+            BeanUtils.populate(userCustom, request.getParameterMap());
+            BeanUtils.populate(employeeCustom, request.getParameterMap());
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
         }
+        userQueryVo.setUserCustom(userCustom);
+        employeeQueryVo.setEmployeeCustom(employeeCustom);
+
         //输出
         PrintWriter pw = response.getWriter();
         JSONObject jsonObject = new JSONObject();
-        if (UserService.registerUser(user, type)) {
+        if (UserService.registerUser(userQueryVo, employeeQueryVo)) {
             jsonObject.put("rtn", 1);
-        }else{
+        } else {
             jsonObject.put("rtn", 0);
         }
         pw.print(jsonObject);

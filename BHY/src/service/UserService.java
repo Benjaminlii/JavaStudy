@@ -46,34 +46,12 @@ public class UserService {
      * @param user 要添加的user信息
      * @return 添加成功返回true，添加失败则返回false
      */
-    public static boolean registerUser(User user, Object type) {
+    public static boolean registerUser(UserQueryVo userQueryVo, EmployeeQueryVo employeeQueryVo) {
         boolean rtn = false;
-        try {
-            DBUtil.getCon().setAutoCommit(false);
-            if (!userDao.isUserExist(user.getUsername()) && (user.getD_id() == 8 || user.getD_id() == 9)) {
-                if (user.getD_id() == 8) {
-                    Client client = (Client) type;
-                    boolean rtn1 = userDao.addUser(user);
-                    client.setU_id(userDao.findUserByUserName(user.getUsername()).getU_id());
-                    boolean rtn2 = new ClientDaoImpl().addClient(client);
-                    rtn = rtn1 && rtn2;
-                } else {
-                    Employee employee = (Employee) type;
-                    boolean rtn1 = userDao.addUser(user);
-                    employee.setU_id(userDao.findUserByUserName(user.getUsername()).getU_id());
-                    boolean rtn2 = new EmployeeDaoImpl().addEmployee(employee);
-                    rtn = rtn1 && rtn2;
-                }
-                DBUtil.getCon().commit();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            try {
-                DBUtil.getCon().rollback();
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-        }
+
+        userQueryVo.getUserCustom().setPassword(null);
+
+
         return rtn;
     }
 
@@ -84,25 +62,32 @@ public class UserService {
      * 如果查询到但密码不匹配，则返回password为null的User对象
      * 有servlet得到该对象之后进行判断将要进行的操作
      *
-     * @param user 登陆页面所填写信息封装成的User对象
+     * @param userQueryVo 登陆页面所填写信息封装成的User查询对象
      * @return 如果查询到并且密码匹配，则返回完整的User对象；如果查询到但密码不匹配，则返回password为null的User对象
      */
-    public static User loginUser(User user) {
-        User rtn = null;
+    public static UserCustom loginUser(UserQueryVo userQueryVo) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        List<UserCustom> userCustoms;
+        UserCustom userCustom = null;
+        String password = userQueryVo.getUserCustom().getPassword();
+        userQueryVo.getUserCustom().setPassword(null);
+
         try {
-            rtn = userDao.findUserByUserName(user.getUsername());
-            //查询到user对象，并进行密码的判断
-            if (rtn != null) {
+            userCustoms = userMapper.findUserLimitInDetail(userQueryVo);
+            if(userCustoms.size() >= 1) {
+                userCustom = userCustoms.get(0);
                 //有效用户名
-                if (!user.getPassword().equals(rtn.getPassword())) {
+                if (!userCustom.getPassword().equals(password)) {
                     //无效密码
-                    rtn.setPassword(null);
+                    userCustom.setPassword(null);
                 }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return rtn;
+        return userCustom;
     }
 
     /**

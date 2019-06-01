@@ -29,17 +29,17 @@
             <if test="recordCustom.r_num != null">
                 and r_num = #{recordCustom.r_num}
             </if>
-            <if test="recordCustom.r_pattern != null">
-                and r_pattern = '%${recordCustom.r_pattern}%'
+            <if test="recordCustom.r_pattern != null and recordCustom.r_pattern != ''">
+                and r_pattern like '%${recordCustom.r_pattern}%'
             </if>
-            <if test="recordCustom.cl_name != null">
-                and cl_name = '%${recordCustom.cl_name}%'
+            <if test="recordCustom.cl_name != null and recordCustom.cl_name != ''">
+                and cl_name like '%${recordCustom.cl_name}%'
             </if>
-            <if test="recordCustom.st_address != null">
-                and st_address = '%${recordCustom.st_address}%'
+            <if test="recordCustom.st_address != null and recordCustom.st_address != ''">
+                and st_address like '%${recordCustom.st_address}%'
             </if>
-            <if test="recordCustom.c_name != null">
-                and c_name = '%${recordCustom.c_name}%'
+            <if test="recordCustom.c_name != null and recordCustom.c_name != ''">
+                and c_name like '%${recordCustom.c_name}%'
             </if>
         </if>
     </sql>

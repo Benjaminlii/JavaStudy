@@ -12,4 +12,5 @@ public interface UserMapper {
      * @return 查询出的UserCustom列表
      */
     public List<UserCustom> findUserLimitInDetail(UserQueryVo userQueryVo) throws Exception;
+
 }

@@ -15,11 +15,11 @@
             <if test="serviceCustom.p_id != null">
                 and p_id = #{serviceCustom.p_id}
             </if>
-            <if test="serviceCustom.s_isDispose != null">
-                and s_isDispose = '%${serviceCustom.s_isDispose}%'
+            <if test="serviceCustom.s_isDispose != null and serviceCustom.s_isDispose != ''">
+                and s_isDispose like '%${serviceCustom.s_isDispose}%'
             </if>
-            <if test="serviceCustom.s_isFinish != null">
-                and s_isFinish = '%${serviceCustom.s_isFinish}%'
+            <if test="serviceCustom.s_isFinish != null and serviceCustom.s_isFinish != ''">
+                and s_isFinish like '%${serviceCustom.s_isFinish}%'
             </if>
             <if test="serviceCustom.d_id != null">
                 and d_id = #{serviceCustom.d_id}
@@ -33,11 +33,11 @@
             <if test="serviceCustom.s_price != null">
                 and s_price = #{serviceCustom.s_price}
             </if>
-            <if test="serviceCustom.d_value != null">
-                and d_value = '%${serviceCustom.d_value}%'
+            <if test="serviceCustom.d_value != null and serviceCustom.d_value != ''">
+                and d_value like '%${serviceCustom.d_value}%'
             </if>
-            <if test="serviceCustom.e_name != null">
-                and e_name = '%${serviceCustom.e_name}%'
+            <if test="serviceCustom.e_name != null and serviceCustom.e_name != ''">
+                and e_name like '%${serviceCustom.e_name}%'
             </if>
         </if>
     </sql>

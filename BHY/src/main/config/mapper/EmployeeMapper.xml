@@ -12,8 +12,8 @@
             <if test="employeeCustom.e_id != null">
                 and e_id = #{employeeCustom.e_id}
             </if>
-            <if test="employeeCustom.e_name != null">
-                and e_name = '%${employeeCustom.e_name}%'
+            <if test="employeeCustom.e_name != null and employeeCustom.e_name != ''">
+                and e_name like '%${employeeCustom.e_name}%'
             </if>
             <if test="employeeCustom.e_salary != null">
                 and e_salary = #{employeeCustom.e_salary}
@@ -28,7 +28,7 @@
                 and u_id = #{employeeCustom.u_id}
             </if>
             <if test="employeeCustom.e_sex != null">
-                and e_sex = '%${employeeCustom.e_sex}%'
+                and e_sex = #{employeeCustom.e_sex}
             </if>
             <if test="employeeCustom.e_age != null">
                 and e_age = #{employeeCustom.e_age}
@@ -36,14 +36,14 @@
             <if test="employeeCustom.e_time != null">
                 and e_time = #{employeeCustom.e_time}
             </if>
-            <if test="employeeCustom.st_address != null">
-                and st_address = '%${employeeCustom.st_address}%'
+            <if test="employeeCustom.st_address != null and employeeCustom.st_address != ''">
+                and st_address like '%${employeeCustom.st_address}%'
             </if>
-            <if test="employeeCustom.d_value != null">
-                and d_value = '%${employeeCustom.d_value}%'
+            <if test="employeeCustom.d_value != null and employeeCustom.d_value != ''">
+                and d_value like '%${employeeCustom.d_value}%'
             </if>
             <if test="employeeCustom.username != null">
-                and username = '%${employeeCustom.username}%'
+                and username = #{employeeCustom.username}
             </if>
         </if>
     </sql>

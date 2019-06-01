@@ -42,6 +42,7 @@ public class FindCargoLimitServlet extends HttpServlet {
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
+        cargoQueryVo.setCargoCustom(cargoCustom);
         String page = request.getParameter("page");
         if(!"".equals(page) && page != null){
             cargoQueryVo.setPage(new Page(Integer.valueOf(page)));

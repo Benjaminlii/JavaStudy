@@ -15,13 +15,12 @@
             var inputPassword = document.getElementById("password");
             $username = $("#username").val();
             $password = $("#password").val();
-            // alert("username:" + $username + ", password:" + $password)
             if ($username === "") {
-                inputUsername.setAttribute("style", "border: red");
-                inputPassword.setAttribute("style", "");
+                inputUsername.style.borderColor = "red";
+                inputPassword.style.borderColor = "#cacaca";
             } else if ($password === "") {
-                inputUsername.setAttribute("style", "");
-                inputPassword.setAttribute("style", "border: red");
+                inputUsername.style.borderColor = "#cacaca";
+                inputPassword.style.borderColor = "red";
             } else {
                 $.ajax({
                     url: "/BHY/LoginServlet",

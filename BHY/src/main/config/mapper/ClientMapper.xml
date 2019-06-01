@@ -12,11 +12,11 @@
             <if test="clientCustom.cl_id != null">
                 and cl_id = #{clientCustom.cl_id}
             </if>
-            <if test="clientCustom.cl_name != null">
-                and cl_name = '%${clientCustom.cl_name}%'
+            <if test="clientCustom.cl_name != null and clientCustom.cl_name != ''">
+                and cl_name like '%${clientCustom.cl_name}%'
             </if>
             <if test="clientCustom.mobile != null">
-                and mobile = '%${clientCustom.mobile}%'
+                and mobile = #{clientCustom.mobile}
             </if>
             <if test="clientCustom.u_id != null">
                 and u_id = #{clientCustom.u_id}
@@ -24,11 +24,11 @@
             <if test="clientCustom.cl_age != null">
                 and cl_age = #{clientCustom.cl_age}
             </if>
-            <if test="clientCustom.cl_sex != null">
-                and cl_sex = '%${clientCustom.cl_sex}%'
+            <if test="clientCustom.cl_sex != null and clientCustom.cl_sex != ''">
+                and cl_sex = #{clientCustom.cl_sex}
             </if>
-            <if test="clientCustom.cl_emil != null">
-                and cl_emil = '%${clientCustom.cl_emil}%'
+            <if test="clientCustom.cl_emil != null and clientCustom.cl_emil != ''">
+                and cl_emil = #{clientCustom.cl_emil}
             </if>
         </if>
     </sql>

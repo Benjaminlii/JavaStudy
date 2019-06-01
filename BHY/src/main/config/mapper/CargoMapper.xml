@@ -10,9 +10,9 @@
     <sql id="findCargoInDetailWhere">
         <if test="cargoCustom != null">
             <if test="cargoCustom.c_id != null">
-                and c_id = #{CargoCustom.c_id}
+                and c_id = #{cargoCustom.c_id}
             </if>
-            <if test="cargoCustom.c_name != null and CargoCustom.c_name != ''">
+            <if test="cargoCustom.c_name != null and cargoCustom.c_name != ''">
                 and c_name like '%${cargoCustom.c_name}%'
             </if>
             <if test="cargoCustom.c_num != null">
@@ -21,8 +21,8 @@
             <if test="cargoCustom.d_id != null">
                 and d_id = #{cargoCustom.d_id}
             </if>
-            <if test="cargoCustom.s_id != null">
-                and s_id = #{cargoCustom.s_id}
+            <if test="cargoCustom.st_id != null">
+                and st_id = #{cargoCustom.st_id}
             </if>
             <if test="cargoCustom.c_getDate != null">
                 and c_getDate = #{cargoCustom.c_getDate}

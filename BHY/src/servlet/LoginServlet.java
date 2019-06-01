@@ -1,6 +1,8 @@
 package servlet;
 
 import entity.User;
+import entity.UserCustom;
+import entity.UserQueryVo;
 import net.sf.json.JSONObject;
 import org.apache.commons.beanutils.BeanUtils;
 import service.UserService;
@@ -28,24 +30,26 @@ public class LoginServlet extends HttpServlet {
         response.setCharacterEncoding("utf-8");
 
         //封装response中的数据
-        User user = new User();
+        UserQueryVo userQueryVo = new UserQueryVo();
+        UserCustom userCustom = new UserCustom();
         try {
-            BeanUtils.populate(user, request.getParameterMap());
+            BeanUtils.populate(userCustom, request.getParameterMap());
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
+        userQueryVo.setUserCustom(userCustom);
 
-        //执行逻辑层的调用，用结果替换user的引用
-        user = UserService.loginUser(user);
+        //执行逻辑层的调用
+        userCustom = UserService.loginUser(userQueryVo);
 
         //设置输出
         PrintWriter pw = response.getWriter();
         JSONObject jsonObject = new JSONObject();
-        if(user != null){
+        if(userCustom != null){
             //用户名存在
-            if(user.getPassword()!=null){
+            if(userCustom.getPassword()!=null){
                 //密码匹配
-                request.getSession().setAttribute("user", user);
+                request.getSession().setAttribute("user", userCustom);
                 jsonObject.put("rtn", 1);
             }else{
                 //密码不匹配
@@ -56,6 +60,7 @@ public class LoginServlet extends HttpServlet {
             jsonObject.put("rtn", 3);
         }
         System.out.println(jsonObject);
+        pw.print(jsonObject);
         pw.close();
     }
 
