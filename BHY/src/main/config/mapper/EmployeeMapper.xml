@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.config.mapper.EmployeeMapper">
+
+    <!-- #################### SQL片段 #################### -->
+
+    <!-- 条件查询 -->
+    <sql id="findEmployeeInDetailWhere">
+        <if test="employeeCustom != null">
+            <if test="employeeCustom.e_id != null">
+                and e_id = #{employeeCustom.e_id}
+            </if>
+            <if test="employeeCustom.e_name != null">
+                and e_name = '%${employeeCustom.e_name}%'
+            </if>
+            <if test="employeeCustom.e_salary != null">
+                and e_salary = #{employeeCustom.e_salary}
+            </if>
+            <if test="employeeCustom.st_id != null">
+                and st_id = #{employeeCustom.st_id}
+            </if>
+            <if test="employeeCustom.d_id != null">
+                and d_id = #{employeeCustom.d_id}
+            </if>
+            <if test="employeeCustom.u_id != null">
+                and u_id = #{employeeCustom.u_id}
+            </if>
+            <if test="employeeCustom.e_sex != null">
+                and e_sex = '%${employeeCustom.e_sex}%'
+            </if>
+            <if test="employeeCustom.e_age != null">
+                and e_age = #{employeeCustom.e_age}
+            </if>
+            <if test="employeeCustom.e_time != null">
+                and e_time = #{employeeCustom.e_time}
+            </if>
+            <if test="employeeCustom.st_address != null">
+                and st_address = '%${employeeCustom.st_address}%'
+            </if>
+            <if test="employeeCustom.d_value != null">
+                and d_value = '%${employeeCustom.d_value}%'
+            </if>
+            <if test="employeeCustom.username != null">
+                and username = '%${employeeCustom.username}%'
+            </if>
+        </if>
+    </sql>
+
+    <!-- 分页查询 -->
+    <sql id="limit">
+        <if test="page != null">
+            limit #{page.offSet}, #{page.size}
+        </if>
+    </sql>
+
+    <!-- #################### resultMap #################### -->
+
+
+    <!-- #################### select #################### -->
+
+    <select id="findEmployeeLimitInDetail" parameterType="EmployeeQueryVo" resultType="EmployeeCustom">
+        select *
+        from employeecustom
+        <where>
+            <include refid="findEmployeeInDetailWhere"/>
+        </where>
+        <include refid="limit"/>
+    </select>
+
+
+
+
+    <!-- #################### insert #################### -->
+
+
+    <!-- #################### update #################### -->
+
+
+    <!-- #################### delete #################### -->
+
+</mapper>

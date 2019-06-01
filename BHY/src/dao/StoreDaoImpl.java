@@ -70,43 +70,45 @@ public class StoreDaoImpl implements StoreDao {
 
     @Override
     public List<StoreCustom> findAllStoreInDetail() throws SQLException {
-        String sql = "select * from storecustom;";
-        ResultSet resultSet = DBUtil.executeQuery(sql, null);
-        List<StoreCustom> rtn = new ArrayList<>();
-        StoreCustom storeCustom;
-        while (resultSet.next()) {
-            storeCustom = new StoreCustom(
-                    resultSet.getInt("st_id"),
-                    resultSet.getString("s_address"),
-                    (Date) resultSet.getObject("st_time"),
-                    resultSet.getString("d_value"),
-                    resultSet.getString("e_name")
-                    );
-            rtn.add(storeCustom);
-        }
-        DBUtil.closeAll();
-        return rtn;
+//        String sql = "select * from storecustom;";
+//        ResultSet resultSet = DBUtil.executeQuery(sql, null);
+//        List<StoreCustom> rtn = new ArrayList<>();
+//        StoreCustom storeCustom;
+//        while (resultSet.next()) {
+//            storeCustom = new StoreCustom(
+//                    resultSet.getInt("st_id"),
+//                    resultSet.getString("s_address"),
+//                    (Date) resultSet.getObject("st_time"),
+//                    resultSet.getString("d_value"),
+//                    resultSet.getString("e_name")
+//                    );
+//            rtn.add(storeCustom);
+//        }
+//        DBUtil.closeAll();
+//        return rtn;
+        return null;
     }
 
     @Override
     public List<StoreCustom> findStoreLimitInDetail(int page) throws SQLException {
-        String sql = "select * from storecustom " +
-                "limit ?, ?;";
-        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
-        ResultSet resultSet = DBUtil.executeQuery(sql, para);
-        List<StoreCustom> rtn = new ArrayList<>();
-        StoreCustom storeCustom;
-        while (resultSet.next()) {
-            storeCustom = new StoreCustom(
-                    resultSet.getInt("st_id"),
-                    resultSet.getString("s_address"),
-                    (Date) resultSet.getObject("st_time"),
-                    resultSet.getString("d_value"),
-                    resultSet.getString("e_name")
-            );
-            rtn.add(storeCustom);
-        }
-        DBUtil.closeAll();
-        return rtn;
+//        String sql = "select * from storecustom " +
+//                "limit ?, ?;";
+//        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
+//        ResultSet resultSet = DBUtil.executeQuery(sql, para);
+//        List<StoreCustom> rtn = new ArrayList<>();
+//        StoreCustom storeCustom;
+//        while (resultSet.next()) {
+//            storeCustom = new StoreCustom(
+//                    resultSet.getInt("st_id"),
+//                    resultSet.getString("s_address"),
+//                    (Date) resultSet.getObject("st_time"),
+//                    resultSet.getString("d_value"),
+//                    resultSet.getString("e_name")
+//            );
+//            rtn.add(storeCustom);
+//        }
+//        DBUtil.closeAll();
+//        return rtn;
+        return null;
     }
 }

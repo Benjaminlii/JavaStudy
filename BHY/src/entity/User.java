@@ -4,8 +4,8 @@ package entity;
  * 用户类
  */
 public class User {
-    private int u_id;//用户id
-    private int d_id;//字典id(用户类型)
+    private Integer u_id;//用户id
+    private Integer d_id;//字典id(用户类型)
     private String username;//用户名
     private String password;//密码
 
@@ -30,19 +30,19 @@ public class User {
         this.password = password;
     }
 
-    public int getU_id() {
+    public Integer getU_id() {
         return u_id;
     }
 
-    public void setU_id(int u_id) {
+    public void setU_id(Integer u_id) {
         this.u_id = u_id;
     }
 
-    public int getD_id() {
+    public Integer getD_id() {
         return d_id;
     }
 
-    public void setD_id(int d_id) {
+    public void setD_id(Integer d_id) {
         this.d_id = d_id;
     }
 

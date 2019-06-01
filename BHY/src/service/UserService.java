@@ -4,11 +4,16 @@ import dao.ClientDaoImpl;
 import dao.EmployeeDaoImpl;
 import dao.UserDao;
 import dao.UserDaoImpl;
-import entity.Client;
-import entity.Employee;
-import entity.User;
+import entity.*;
+import main.config.mapper.UserMapper;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import util.DBUtil;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -16,6 +21,21 @@ import java.util.List;
  * 关于user（用户）的业务逻辑层
  */
 public class UserService {
+    private static SqlSessionFactory sqlSessionFactory;
+
+    static  {
+        try (
+                InputStream inputStream = Resources.getResourceAsStream("main/config/SqlMapConfig.xml")
+        ) {
+            UserService.sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
     private static UserDao userDao = new UserDaoImpl();
 
     /**
@@ -89,14 +109,17 @@ public class UserService {
      * 查询所有的User（用户）对象
      * @return 返回list
      */
-    public static List<User> selectUserLimit(int page) {
-        List<User> users = null;
+    public static List<UserCustom> findUserLimitInDetail(UserQueryVo userQueryVo) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        List<UserCustom> userCustoms = null;
         try {
-            users = userDao.findUserLimit(page);
-        } catch (SQLException e) {
+            userCustoms = userMapper.findUserLimitInDetail(userQueryVo);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return users;
+        return userCustoms;
     }
 
     /**

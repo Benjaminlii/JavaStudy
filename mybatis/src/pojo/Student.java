@@ -1,7 +1,7 @@
 package pojo;
 
 /**
- * ¶ÔwebÊı¾İ¿âÖĞµÄstudent±íµÄÊı¾İ½øĞĞµÄÊı¾İ·â×°
+ * å¯¹webæ•°æ®åº“ä¸­çš„studentè¡¨çš„æ•°æ®è¿›è¡Œçš„æ•°æ®å°è£…
  */
 public class Student {
     private int sno;

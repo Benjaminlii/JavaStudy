@@ -4,13 +4,13 @@ package entity;
  * 宠物类
  */
 public class Pet {
-    private int p_id;//宠物id
-    private int cl_id;//所属顾客id
-    private int d_id;//字典信息（品种）id
-    private int st_id;//宠物店id
-    private int p_age;//宠物年龄
+    private Integer p_id;//宠物id
+    private Integer cl_id;//所属顾客id
+    private Integer d_id;//字典信息（品种）id
+    private Integer st_id;//宠物店id
+    private Integer p_age;//宠物年龄
     private String p_sex;//宠物性别
-    private float p_height;//宠物体重
+    private Float p_height;//宠物体重
     private String p_healthy;//宠物健康状况
 
     public Pet() {
@@ -41,43 +41,43 @@ public class Pet {
         this.p_healthy = p_healthy;
     }
 
-    public int getP_id() {
+    public Integer getP_id() {
         return p_id;
     }
 
-    public void setP_id(int p_id) {
+    public void setP_id(Integer p_id) {
         this.p_id = p_id;
     }
 
-    public int getCl_id() {
+    public Integer getCl_id() {
         return cl_id;
     }
 
-    public void setCl_id(int cl_id) {
+    public void setCl_id(Integer cl_id) {
         this.cl_id = cl_id;
     }
 
-    public int getD_id() {
+    public Integer getD_id() {
         return d_id;
     }
 
-    public void setD_id(int d_id) {
+    public void setD_id(Integer d_id) {
         this.d_id = d_id;
     }
 
-    public int getSt_id() {
+    public Integer getSt_id() {
         return st_id;
     }
 
-    public void setSt_id(int st_id) {
+    public void setSt_id(Integer st_id) {
         this.st_id = st_id;
     }
 
-    public int getP_age() {
+    public Integer getP_age() {
         return p_age;
     }
 
-    public void setP_age(int p_age) {
+    public void setP_age(Integer p_age) {
         this.p_age = p_age;
     }
 
@@ -89,11 +89,11 @@ public class Pet {
         this.p_sex = p_sex;
     }
 
-    public float getP_height() {
+    public Float getP_height() {
         return p_height;
     }
 
-    public void setP_height(float p_height) {
+    public void setP_height(Float p_height) {
         this.p_height = p_height;
     }
 

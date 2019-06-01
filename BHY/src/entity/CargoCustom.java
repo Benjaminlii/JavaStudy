@@ -21,4 +21,11 @@ public class CargoCustom extends Cargo {
         this.st_name = st_name;
     }
 
+    @Override
+    public String toString() {
+        return "CargoCustom{" +
+                "d_value='" + d_value + '\'' +
+                ", st_name='" + st_name + '\'' +
+                "} " + super.toString();
+    }
 }

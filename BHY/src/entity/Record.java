@@ -6,13 +6,13 @@ import java.util.Date;
  * 销售记录类
  */
 public class Record {
-    private int r_id;//销售记录id
-    private int cl_id;//购买者id
-    private int st_id;//宠物店id
-    private int c_id;//货物id
+    private Integer r_id;//销售记录id
+    private Integer cl_id;//购买者id
+    private Integer st_id;//宠物店id
+    private Integer c_id;//货物id
     private Date r_time;//时间
-    private float r_price;//售出价格
-    private int r_num;//购买数量
+    private Float r_price;//售出价格
+    private Integer r_num;//购买数量
     private String r_pattern;//支付方式
 
     public Record() {
@@ -39,35 +39,35 @@ public class Record {
         this.r_pattern = r_pattern;
     }
 
-    public int getR_id() {
+    public Integer getR_id() {
         return r_id;
     }
 
-    public void setR_id(int r_id) {
+    public void setR_id(Integer r_id) {
         this.r_id = r_id;
     }
 
-    public int getCl_id() {
+    public Integer getCl_id() {
         return cl_id;
     }
 
-    public void setCl_id(int cl_id) {
+    public void setCl_id(Integer cl_id) {
         this.cl_id = cl_id;
     }
 
-    public int getSt_id() {
+    public Integer getSt_id() {
         return st_id;
     }
 
-    public void setSt_id(int st_id) {
+    public void setSt_id(Integer st_id) {
         this.st_id = st_id;
     }
 
-    public int getC_id() {
+    public Integer getC_id() {
         return c_id;
     }
 
-    public void setC_id(int c_id) {
+    public void setC_id(Integer c_id) {
         this.c_id = c_id;
     }
 
@@ -79,19 +79,19 @@ public class Record {
         this.r_time = r_time;
     }
 
-    public float getR_price() {
+    public Float getR_price() {
         return r_price;
     }
 
-    public void setR_price(float r_price) {
+    public void setR_price(Float r_price) {
         this.r_price = r_price;
     }
 
-    public int getR_num() {
+    public Integer getR_num() {
         return r_num;
     }
 
-    public void setR_num(int r_num) {
+    public void setR_num(Integer r_num) {
         this.r_num = r_num;
     }
 

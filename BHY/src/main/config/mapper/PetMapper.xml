@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.config.mapper.PetMapper">
+
+    <!-- #################### SQL片段 #################### -->
+
+    <!-- 条件查询 -->
+    <sql id="findPetInDetailWhere">
+        <if test="petCustom != null">
+            <if test="petCustom.p_id != null">
+                and p_id = #{petCustom.p_id}
+            </if>
+            <if test="petCustom.cl_id != null">
+                and cl_id = #{petCustom.cl_id}
+            </if>
+            <if test="petCustom.d_id != null">
+                and d_id = #{petCustom.d_id}
+            </if>
+            <if test="petCustom.st_id != null">
+                and st_id = #{petCustom.st_id}
+            </if>
+            <if test="petCustom.p_age != null">
+                and p_age = #{petCustom.p_age}
+            </if>
+            <if test="petCustom.p_sex != null">
+                and p_sex = '%${petCustom.p_sex}%'
+            </if>
+            <if test="petCustom.p_height != null">
+                and p_height = #{petCustom.p_height}
+            </if>
+            <if test="petCustom.p_healthy != null">
+                and p_healthy = '%${petCustom.p_healthy}%'
+            </if>
+            <if test="petCustom.cl_name != null">
+                and cl_name = '%${petCustom.cl_name}%'
+            </if>
+            <if test="petCustom.d_value != null">
+                and d_value = '%${petCustom.d_value}%'
+            </if>
+            <if test="petCustom.st_address != null">
+                and st_address = '%${petCustom.st_address}%'
+            </if>
+        </if>
+    </sql>
+
+    <!-- 分页查询 -->
+    <sql id="limit">
+        <if test="page != null">
+            limit #{page.offSet}, #{page.size}
+        </if>
+    </sql>
+
+
+    <!-- #################### resultMap #################### -->
+
+    <!-- #################### select #################### -->
+
+    <!-- [分页][条件]查询所有宠物信息 -->
+    <select id="findPetLimitInDetail" parameterType="PetQueryVo" resultType="PetCustom">
+        select *
+        from petcustom
+        <where>
+            <include refid="findPetInDetailWhere"/>
+        </where>
+        <include refid="limit"/>
+    </select>
+
+    <!-- #################### insert #################### -->
+
+    <!-- #################### update #################### -->
+
+    <!-- #################### delete #################### -->
+
+</mapper>

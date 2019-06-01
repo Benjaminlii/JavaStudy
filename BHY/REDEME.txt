@@ -1,4 +1,4 @@
-//
+
 /BHY/LoginServlet:
     用户登陆的url
     参数：username（用户名）、password（密码）
@@ -7,7 +7,7 @@
                                 2为密码不正确，不跳转
                                 3为用户名不存在，不跳转
 
-//
+
 /BHY/RegisterServlet:
     员工用户注册的url
     参数:   username 用户名
@@ -19,23 +19,29 @@
                           value：  1为注册成功，应跳转至登陆页面
                                    0为注册失败（用户名重复）
 
-
+//
 /BHY/FindUserLimitServlet:
     分页查询用户,会根据session中的user对象的类型判断是否能进行查询(通过判断user对象的d_id属性来得到当前用户的类型)
     参数：页码-
     返回值：json类型，如果当前状态为未登录，put("ifLogin", "false")并进行页面跳转
-                      如果已登陆，但权限不是店长，put("ifLogin", "true")，put("isLord", "false")由前端进行提示
-                      如果是店长登陆put("ifLogin", "true")，put("isLord", "true")，jsonObject.put("users", users)
-                                      最后的users是jsonArray格式的List<User>
+                      如果已登陆，put("isLord", "false")由前端进行提示
+                      {"users":[
+                                    {"d_id":9,"password":"litao.","u_id":1,"username":"li305193188"},
+                                    {"d_id":9,"password":"123123123","u_id":2,"username":"zzwzzwzzw"},
+                                    {"d_id":9,"password":"12345678","u_id":3,"username":"hahaha"},
+                                    {"d_id":8,"password":"12341234","u_id":4,"username":"xiaogang"},
+                                    {"d_id":8,"password":"qiangqinagqaing","u_id":5,"username":"xiaoqing"}
+                                ]
+                       }
 
-//
+
 /BHY/AddClientServlet:
     增加顾客信息的servlet
     参数：姓名 cl_name，手机 mobile, 用户id u_id全部设置为3[，年龄 cl_age，性别 cl_sex，邮箱cl_emil]
     返回值：若添加成功，返回{rtn:"1"}
           ：若添加失败，返回{rtn:"0"}（手机号重复）
 
-//
+
 /BHY/UpdateUserServlet:
     响应前端发送的更新用户信息（大概就是改密码。。。）的请求
     参数：需要传入用户名(username)和新密码(password)
@@ -45,11 +51,17 @@
 //
 /BHY/FindPetLimitServlet：
     响应前台发来的分页查询宠物信息的请求
-    参数：查寻的页码
-    返回[{"cl_id":0,"cl_name":"小刚","d_id":0,"p_age":0,"p_healthy":"","p_height":0,"p_id":1,"p_sex":"","p_type":"短毛猫","st_id":0,"st_name":""}]
+    参数：查询宠物条件和分页信息
+    返回[
+            {"cl_id":1,"cl_name":"小刚","d_id":30,"d_value":"短毛猫","p_age":0,"p_healthy":"","p_height":0,"p_id":1,"p_sex":"","st_address":"","st_id":1},
+            {"cl_id":1,"cl_name":"小刚","d_id":33,"d_value":"橘猫","p_age":0,"p_healthy":"","p_height":0,"p_id":2,"p_sex":"","st_address":"","st_id":1},
+            {"cl_id":1,"cl_name":"小刚","d_id":27,"d_value":"柯基","p_age":0,"p_healthy":"","p_height":0,"p_id":3,"p_sex":"","st_address":"","st_id":1},
+            {"cl_id":2,"cl_name":"小强","d_id":28,"d_value":"萨摩耶","p_age":0,"p_healthy":"","p_height":0,"p_id":4,"p_sex":"","st_address":"","st_id":3},
+            {"cl_id":2,"cl_name":"小强","d_id":28,"d_value":"萨摩耶","p_age":0,"p_healthy":"","p_height":0,"p_id":5,"p_sex":"","st_address":"","st_id":3}
+        ]
     返回一个json，其中各个字段对应pet的详细信息
 
-//
+
 /BHY/AddPetServlet：
     添加一条宠物信息
     参数： 宠物品种 d_id
@@ -64,47 +76,67 @@
 
 //
 /BHY/FindClientLimitServlet:
-    分页查询顾客信息，在没有开发顾客板块的情况下，u_id全部为3，前端不需要解析这一属性
-    参数：当前的页数
-    返回由一条条顾客信息组成的JSONArray
+    [分页][条件]查询顾客信息
+    参数：顾客信息和页码
+    返回值：[
+                {"cl_age":0,"cl_emil":"","cl_id":1,"cl_name":"小刚","cl_sex":"","mobile":"13712341234","u_id":4},
+                {"cl_age":0,"cl_emil":"","cl_id":2,"cl_name":"小强","cl_sex":"","mobile":"13956785678","u_id":5}
+            ]
 
 //
 /BHY/FindStoreLimitServlet:
-    分页查找宠物店信息
-    参数：页码page
-    返回一个json，stores的值是封装了全部宠物店详细信息的json数组
-    [{"d_id":0,"e_id":0,"e_name":"","s_address":"","st_grade":"总店","st_id":1,"st_time":null}]
+    [分页][条件]查找宠物店信息
+    参数：查询条件和分页信息
+    返回值：[
+                 {"d_id":16,"d_value":"总店","e_id":0,"e_name":"","s_address":"","st_id":1,"st_time":null},
+                 {"d_id":17,"d_value":"省店","e_id":0,"e_name":"","s_address":"","st_id":2,"st_time":null},
+                 {"d_id":18,"d_value":"市店","e_id":0,"e_name":"","s_address":"","st_id":3,"st_time":null}
+            ]
 
 //
 /BHY/FindEmployeeLimitServlet:
-    分页查询所有的员工详细信息
-    参数：页码
-    返回值：[{"d_id":41,"e_age":0,"e_id":3,"e_name":"C","e_salary":5000,"e_sex":"","e_time":null,"e_type":"店长","st_id":1,"st_name":"","u_id":0,"username":""}]
+    [分页][条件]查询员工信息
+    参数：查询条件和分页
+    返回值：[
+                 {"d_id":43,"d_value":"服务员","e_age":0,"e_id":1,"e_name":"A","e_salary":3000,"e_sex":"","e_time":null,"st_address":"","st_id":3,"u_id":0,"username":""},
+                 {"d_id":42,"d_value":"医师","e_age":0,"e_id":2,"e_name":"B","e_salary":4000,"e_sex":"","e_time":null,"st_address":"","st_id":2,"u_id":0,"username":""},
+                 {"d_id":41,"d_value":"店长","e_age":0,"e_id":3,"e_name":"C","e_salary":5000,"e_sex":"","e_time":null,"st_address":"","st_id":1,"u_id":0,"username":""},
+                 {"d_id":42,"d_value":"医师","e_age":0,"e_id":4,"e_name":"D","e_salary":4000,"e_sex":"","e_time":null,"st_address":"","st_id":2,"u_id":0,"username":""}
+            ]
 
 //
 /BHY/FindRecordLimitServlet:
-    分页查询销售记录的详细信息
-    参数：页码page
-    返回值：json数组
-            [{"c_id":1,"cl_id":1,"cl_name":"小刚","r_id":1,"r_name":"狗粮","r_num":1,"r_pattern":"","r_price":150,
-            "r_time":{"date":25,"day":6,"hours":2,"minutes":0,"month":4,"nanos":0,"seconds":0,"time":1558720800000,"timezoneOffset":-480,"year":119},
-            "st_id":1,"st_name":""}]
+    [分页][条件]查询销售记录的详细信息
+    参数：查询条件和分页条件
+    返回值：[
+                 {"c_id":1,"c_name":"狗粮","cl_id":1,"cl_name":"小刚","r_id":1,"r_num":1,"r_pattern":"","r_price":150,"r_time":
+                            {"date":25,"day":6,"hours":2,"minutes":0,"month":4,"seconds":0,"time":1558720800000,"timezoneOffset":-480,"year":119},"st_address":"","st_id":1},
+                 {"c_id":1,"c_name":"狗粮","cl_id":1,"cl_name":"小刚","r_id":3,"r_num":1,"r_pattern":"","r_price":150,"r_time":
+                            {"date":5,"day":0,"hours":22,"minutes":0,"month":4,"seconds":0,"time":1557064800000,"timezoneOffset":-480,"year":119},"st_address":"","st_id":1},
+                 {"c_id":3,"c_name":"疫苗","cl_id":2,"cl_name":"小强","r_id":2,"r_num":1,"r_pattern":"","r_price":300,"r_time":
+                            {"date":25,"day":6,"hours":1,"minutes":0,"month":4,"seconds":0,"time":1558717200000,"timezoneOffset":-480,"year":119},"st_address":"","st_id":3}
+            ]
 
 //
 /BHY/FindCargoLimitServlet:
-    分页查询货物的详细信息
-    参数：页码page
+    [分页][条件]查询货物信息
+    参数：货物查询信息和分页信息
     返回值：json数组
-         [{"c_expirationDate":null,"c_getDate":null,"c_id":1,"c_name":"狗粮","c_num":200,
-         "c_producedDate":null,"c_type":"饲料","d_id":13,"st_id":1,"st_name":""}]
+         [
+            {"c_expirationDate":null,"c_getDate":null,"c_id":1,"c_name":"狗粮","c_num":200,"c_producedDate":null,"d_id":13,"d_value":"饲料","st_id":1,"st_name":""},
+            {"c_expirationDate":null,"c_getDate":null,"c_id":2,"c_name":"猫粮","c_num":100,"c_producedDate":null,"d_id":13,"d_value":"饲料","st_id":2,"st_name":""},
+            {"c_expirationDate":null,"c_getDate":null,"c_id":3,"c_name":"疫苗","c_num":50,"c_producedDate":null,"d_id":14,"d_value":"医疗用具","st_id":3,"st_name":""}
+         ]
 
 //
 /BHY/FindServiceLimitServlet:
-    分页查询服务项详细信息
-    参数：页码page
-    返回值：json数组
-         [{"d_id":37,"e_id":0,"e_name":"","p_id":1,"s_aTime":null,"st_id":1,
-         "s_isDispose":"true","s_isFinish":"true","s_price":0,"s_type":"看病"}]
+    分页][条件]查询服务项信息
+    参数：查询条件和分页
+    返回值：[
+             {"d_id":37,"d_value":"看病","e_id":0,"e_name":"","p_id":1,"s_aTime":null,"s_id":1,"s_isDispose":"true","s_isFinish":"true","s_price":0},
+             {"d_id":38,"d_value":"体检","e_id":0,"e_name":"","p_id":3,"s_aTime":null,"s_id":2,"s_isDispose":"false","s_isFinish":"false","s_price":0},
+             {"d_id":38,"d_value":"体检","e_id":0,"e_name":"","p_id":4,"s_aTime":null,"s_id":3,"s_isDispose":"true","s_isFinish":"false","s_price":0}
+            ]
 
 
 
@@ -134,6 +166,7 @@
 
         //设置输出
         PrintWriter pw = response.getWriter();
+
         JSONObject jsonObject = new JSONObject();
 
         //封装数据
@@ -141,30 +174,23 @@
         //调用业务逻辑
 
         //输出
+        pw.print();
+        pw.close();
 
 
+    <!-- #################### SQL片段 #################### -->
 
 
-
-        //得到宠物类型的字典
-        JSONObject dics = null;
-        DictionaryDao dictionaryDao = new DictionaryDaoImpl();
-        try {
-            dics = JSONObject.fromObject(
-                    DicUtil.dicToMap(
-                            dictionaryDao.findAllDictionary()
-                    )
-            );
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    <!-- #################### resultMap #################### -->
 
 
-    查询：
-        输入映射：
-            传入表名，字段名，得到map，将表名等其他信息从map中抽取出来
-            page使用对象，不使用分页时传入null
-        动态SQL：
-            遍历字段名map，拼接sql语句
-        输出映射：
-            无？
+    <!-- #################### select #################### -->
+
+
+    <!-- #################### insert #################### -->
+
+
+    <!-- #################### update #################### -->
+
+
+    <!-- #################### delete #################### -->

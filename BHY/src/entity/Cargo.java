@@ -6,11 +6,11 @@ import java.util.Date;
  * 货物（商品）类
  */
 public class Cargo {
-    private int c_id;//id
+    private Integer c_id;//id
     private String c_name;//货物名称
-    private int c_num;//货物数量
-    private int d_id;//字典id（货物类别）
-    private int st_id;//所属宠物店id
+    private Integer c_num;//货物数量
+    private Integer d_id;//字典id（货物类别）
+    private Integer st_id;//所属宠物店id
     private Date c_getDate;//进货时间
     private Date c_producedDate;//生产日期
     private Date c_expirationDate;//保质日期
@@ -36,11 +36,11 @@ public class Cargo {
         this.c_expirationDate = c_expirationDate;
     }
 
-    public int getC_id() {
+    public Integer getC_id() {
         return c_id;
     }
 
-    public void setC_id(int c_id) {
+    public void setC_id(Integer c_id) {
         this.c_id = c_id;
     }
 
@@ -52,27 +52,27 @@ public class Cargo {
         this.c_name = c_name;
     }
 
-    public int getC_num() {
+    public Integer getC_num() {
         return c_num;
     }
 
-    public void setC_num(int c_num) {
+    public void setC_num(Integer c_num) {
         this.c_num = c_num;
     }
 
-    public int getD_id() {
+    public Integer getD_id() {
         return d_id;
     }
 
-    public void setD_id(int d_id) {
+    public void setD_id(Integer d_id) {
         this.d_id = d_id;
     }
 
-    public int getSt_id() {
+    public Integer getSt_id() {
         return st_id;
     }
 
-    public void setSt_id(int st_id) {
+    public void setSt_id(Integer st_id) {
         this.st_id = st_id;
     }
 

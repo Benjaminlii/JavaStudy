@@ -52,57 +52,59 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public List<EmployeeCustom> findAllEmployeeInDetail() throws SQLException {
-        String sql = "select * from employeecustom;";
-        ResultSet resultSet = DBUtil.executeQuery(sql, null);
-        List<EmployeeCustom> rtn = new ArrayList<>();
-        EmployeeCustom employeeCustom;
-            while (resultSet.next()) {
-                employeeCustom = new EmployeeCustom(
-                        resultSet.getInt("e_id"),
-                        resultSet.getString("e_name"),
-                        resultSet.getInt("e_salary"),
-                        resultSet.getInt("s_id"),
-                        resultSet.getInt("d_id"),
-                        resultSet.getInt("u_id"),
-                        resultSet.getString("e_sex"),
-                        resultSet.getInt("e_age"),
-                        (Date) resultSet.getObject("e_time"),
-                        resultSet.getString("s_address"),
-                        resultSet.getString("d_value"),
-                        resultSet.getString("username")
-                        );
-                rtn.add(employeeCustom);
-            }
-        DBUtil.closeAll();
-        return rtn;
+//        String sql = "select * from employeecustom;";
+//        ResultSet resultSet = DBUtil.executeQuery(sql, null);
+//        List<EmployeeCustom> rtn = new ArrayList<>();
+//        EmployeeCustom employeeCustom;
+//            while (resultSet.next()) {
+//                employeeCustom = new EmployeeCustom(
+//                        resultSet.getInt("e_id"),
+//                        resultSet.getString("e_name"),
+//                        resultSet.getInt("e_salary"),
+//                        resultSet.getInt("s_id"),
+//                        resultSet.getInt("d_id"),
+//                        resultSet.getInt("u_id"),
+//                        resultSet.getString("e_sex"),
+//                        resultSet.getInt("e_age"),
+//                        (Date) resultSet.getObject("e_time"),
+//                        resultSet.getString("s_address"),
+//                        resultSet.getString("d_value"),
+//                        resultSet.getString("username")
+//                        );
+//                rtn.add(employeeCustom);
+//            }
+//        DBUtil.closeAll();
+//        return rtn;
+        return null;
     }
 
     @Override
     public List<EmployeeCustom> findEmployeeLimitInDetail(int page) throws SQLException {
-        String sql = "select * from employeecustom " +
-                "limit ?, ?;";
-        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
-        ResultSet resultSet = DBUtil.executeQuery(sql, para);
-        List<EmployeeCustom> rtn = new ArrayList<>();
-        EmployeeCustom employeeCustom;
-        while (resultSet.next()) {
-            employeeCustom = new EmployeeCustom(
-                    resultSet.getInt("e_id"),
-                    resultSet.getString("e_name"),
-                    resultSet.getInt("e_salary"),
-                    resultSet.getInt("s_id"),
-                    resultSet.getInt("d_id"),
-                    resultSet.getInt("u_id"),
-                    resultSet.getString("e_sex"),
-                    resultSet.getInt("e_age"),
-                    (Date) resultSet.getObject("e_time"),
-                    resultSet.getString("s_address"),
-                    resultSet.getString("d_value"),
-                    resultSet.getString("username")
-            );
-            rtn.add(employeeCustom);
-        }
-        DBUtil.closeAll();
-        return rtn;
+//        String sql = "select * from employeecustom " +
+//                "limit ?, ?;";
+//        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
+//        ResultSet resultSet = DBUtil.executeQuery(sql, para);
+//        List<EmployeeCustom> rtn = new ArrayList<>();
+//        EmployeeCustom employeeCustom;
+//        while (resultSet.next()) {
+//            employeeCustom = new EmployeeCustom(
+//                    resultSet.getInt("e_id"),
+//                    resultSet.getString("e_name"),
+//                    resultSet.getInt("e_salary"),
+//                    resultSet.getInt("s_id"),
+//                    resultSet.getInt("d_id"),
+//                    resultSet.getInt("u_id"),
+//                    resultSet.getString("e_sex"),
+//                    resultSet.getInt("e_age"),
+//                    (Date) resultSet.getObject("e_time"),
+//                    resultSet.getString("s_address"),
+//                    resultSet.getString("d_value"),
+//                    resultSet.getString("username")
+//            );
+//            rtn.add(employeeCustom);
+//        }
+//        DBUtil.closeAll();
+//        return rtn;
+        return null;
     }
 }

@@ -1,6 +1,10 @@
 package servlet;
 
+import entity.ClientCustom;
+import entity.ClientQueryVo;
+import entity.Page;
 import net.sf.json.JSONArray;
+import org.apache.commons.beanutils.BeanUtils;
 import service.ClientService;
 
 import javax.servlet.ServletException;
@@ -10,13 +14,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
 
 @WebServlet("/FindClientLimitServlet")
 public class FindClientLimitServlet extends HttpServlet {
     /**
-     * 分页查询顾客信息，在没有开发顾客板块的情况下，u_id全部为3，前端不需要解析这一属性
-     * 无参数
-     * 返回由一条条顾客信息组成的JSONArray
+     * [分页][条件]查询顾客信息
+     * 参数：顾客信息和页码
+     * 返回值：[
+     *          {"cl_age":0,"cl_emil":"","cl_id":1,"cl_name":"小刚","cl_sex":"","mobile":"13712341234","u_id":4},
+     *          {"cl_age":0,"cl_emil":"","cl_id":2,"cl_name":"小强","cl_sex":"","mobile":"13956785678","u_id":5}
+     *         ]
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置编码
@@ -25,16 +33,26 @@ public class FindClientLimitServlet extends HttpServlet {
 
         //设置输出
         PrintWriter pw = response.getWriter();
-        JSONArray jsonArray = null;
+        JSONArray Clients = null;
 
         //封装数据
-        int page = Integer.valueOf(request.getParameter("page"));
-
+        String page = request.getParameter("page");
+        ClientQueryVo clientQueryVo = new ClientQueryVo();
+        ClientCustom clientCustom = new ClientCustom();
+        try {
+            BeanUtils.populate(clientCustom, request.getParameterMap());
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        clientQueryVo.setClientCustom(clientCustom);
+        if(!"".equals(page) && page != null) {
+            clientQueryVo.setPage(new Page(Integer.valueOf(page)));
+        }
         //调用业务逻辑
-        jsonArray = JSONArray.fromObject(ClientService.findClientLimit(page));
+        Clients = JSONArray.fromObject(ClientService.findClientLimitInDetail(clientQueryVo));
 
         //输出
-        pw.print(jsonArray);
+        pw.print(Clients);
         pw.close();
     }
 

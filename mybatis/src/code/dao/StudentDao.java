@@ -3,34 +3,34 @@ package code.dao;
 import pojo.Student;
 
 /**
- * StudentµÄdao½Ó¿Ú£¬ÓÃÓÚ¹ÜÀíÑ§Éú
+ * Studentçš„daoæ¥å£ï¼Œç”¨äºç®¡ç†å­¦ç”Ÿ
  */
 public interface StudentDao {
     /**
-     * ²åÈëStudentĞÅÏ¢
-     * @param student ĞèÒª²åÈëµÄStudent¶ÔÏó
+     * æ’å…¥Studentä¿¡æ¯
+     * @param student éœ€è¦æ’å…¥çš„Studentå¯¹è±¡
      * @throws Exception
      */
     public void insertStudent(Student student) throws Exception;
 
     /**
-     * ¸ù¾İsnoÉ¾³ıÑ§ÉúĞÅÏ¢
-     * @param sno ĞèÒªÉ¾³ıµÄÑ§ÉúµÄsno
+     * æ ¹æ®snoåˆ é™¤å­¦ç”Ÿä¿¡æ¯
+     * @param sno éœ€è¦åˆ é™¤çš„å­¦ç”Ÿçš„sno
      * @throws Exception
      */
     public void deleteStudent(int sno) throws Exception;
 
     /**
-     * ¸üĞÂStudentĞÅÏ¢
-     * @param student ´«ÈëµÄĞèÒªĞŞ¸ÄµÄSutdentµÄĞÂµÄĞÅÏ¢
+     * æ›´æ–°Studentä¿¡æ¯
+     * @param student ä¼ å…¥çš„éœ€è¦ä¿®æ”¹çš„Sutdentçš„æ–°çš„ä¿¡æ¯
      * @throws Exception
      */
     public void updateStudent(Student student) throws Exception;
 
     /**
-     * Í¨¹ısno²éÑ¯Ñ§Éú
-     * @param sno ĞèÒª²éÑ¯µÄÑ§ÉúµÄsno
-     * @return ²éÑ¯µ½µÄStudent¶ÔÏó
+     * é€šè¿‡snoæŸ¥è¯¢å­¦ç”Ÿ
+     * @param sno éœ€è¦æŸ¥è¯¢çš„å­¦ç”Ÿçš„sno
+     * @return æŸ¥è¯¢åˆ°çš„Studentå¯¹è±¡
      * @throws Exception
      */
     public Student findStudentBySno(int sno) throws Exception;

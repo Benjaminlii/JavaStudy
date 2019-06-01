@@ -22,7 +22,7 @@ public class TestStudentDao {
     }
 
     @Test
-    // ²âÊÔstudentDao
+    // æµ‹è¯•studentDao
     public void testFindStudentById() throws Exception {
         StudentDao studentDao = new StudentDaoImpl(sqlSessionFactory);
         System.out.println(studentDao.findStudentBySno(2));

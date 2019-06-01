@@ -6,14 +6,14 @@ import java.util.Date;
  * 员工类
  */
 public class Employee {
-    private int e_id;//员工id
+    private Integer e_id;//员工id
     private String e_name;//姓名
-    private int e_salary;//工资
-    private int st_id;//所属宠物店id
-    private int d_id;//字典id（职务）
-    private int u_id;//用户id
+    private Integer e_salary;//工资
+    private Integer st_id;//所属宠物店id
+    private Integer d_id;//字典id（职务）
+    private Integer u_id;//用户id
     private String e_sex;//性别
-    private int e_age;//年龄
+    private Integer e_age;//年龄
     private Date e_time;//入职时间
 
     public Employee() {
@@ -46,11 +46,11 @@ public class Employee {
         this.e_time = e_time;
     }
 
-    public int getE_id() {
+    public Integer getE_id() {
         return e_id;
     }
 
-    public void setE_id(int e_id) {
+    public void setE_id(Integer e_id) {
         this.e_id = e_id;
     }
 
@@ -62,35 +62,35 @@ public class Employee {
         this.e_name = e_name;
     }
 
-    public int getE_salary() {
+    public Integer getE_salary() {
         return e_salary;
     }
 
-    public void setE_salary(int e_salary) {
+    public void setE_salary(Integer e_salary) {
         this.e_salary = e_salary;
     }
 
-    public int getSt_id() {
+    public Integer getSt_id() {
         return st_id;
     }
 
-    public void setSt_id(int st_id) {
+    public void setSt_id(Integer st_id) {
         this.st_id = st_id;
     }
 
-    public int getD_id() {
+    public Integer getD_id() {
         return d_id;
     }
 
-    public void setD_id(int d_id) {
+    public void setD_id(Integer d_id) {
         this.d_id = d_id;
     }
 
-    public int getU_id() {
+    public Integer getU_id() {
         return u_id;
     }
 
-    public void setU_id(int u_id) {
+    public void setU_id(Integer u_id) {
         this.u_id = u_id;
     }
 
@@ -102,11 +102,11 @@ public class Employee {
         this.e_sex = e_sex;
     }
 
-    public int getE_age() {
+    public Integer getE_age() {
         return e_age;
     }
 
-    public void setE_age(int e_age) {
+    public void setE_age(Integer e_age) {
         this.e_age = e_age;
     }
 

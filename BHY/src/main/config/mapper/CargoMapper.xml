@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.config.mapper.CargoMapper">
+
+    <!-- #################### SQL片段 #################### -->
+
+    <!-- 条件查询 -->
+    <sql id="findCargoInDetailWhere">
+        <if test="cargoCustom != null">
+            <if test="cargoCustom.c_id != null">
+                and c_id = #{CargoCustom.c_id}
+            </if>
+            <if test="cargoCustom.c_name != null and CargoCustom.c_name != ''">
+                and c_name like '%${cargoCustom.c_name}%'
+            </if>
+            <if test="cargoCustom.c_num != null">
+                and c_num = #{cargoCustom.c_num}
+            </if>
+            <if test="cargoCustom.d_id != null">
+                and d_id = #{cargoCustom.d_id}
+            </if>
+            <if test="cargoCustom.s_id != null">
+                and s_id = #{cargoCustom.s_id}
+            </if>
+            <if test="cargoCustom.c_getDate != null">
+                and c_getDate = #{cargoCustom.c_getDate}
+            </if>
+            <if test="cargoCustom.c_producedDate">
+                and c_produceddate = #{cargoCustom.c_producedDate}
+            </if>
+            <if test="cargoCustom.c_expirationDate">
+                and c_produceddate = #{cargoCustom.c_expirationDate}
+            </if>
+            <if test="cargoCustom.d_value != null and cargoCustom.d_value != ''">
+                and d_value = #{cargoCustom.d_value}
+            </if>
+            <if test="cargoCustom.st_name != null and cargoCustom.st_name != ''">
+                and st_name = #{cargoCustom.st_name}
+            </if>
+        </if>
+    </sql>
+
+    <!-- 分页查询 -->
+    <sql id="limit">
+        <if test="page != null">
+            limit #{page.offSet}, #{page.size}
+        </if>
+    </sql>
+
+    <!-- #################### resultMap #################### -->
+
+    <!-- #################### select #################### -->
+
+    <!-- [分页][条件]查询货物信息 -->
+    <select id="findCargoLimitInDetail" parameterType="CargoQueryVo" resultType="CargoCustom">
+        select *
+        from cargocustom
+        <where>
+            <include refid="findCargoInDetailWhere"/>
+        </where>
+        <include refid="limit"/>
+    </select>
+
+    <!-- #################### insert #################### -->
+
+    <!-- #################### update #################### -->
+
+    <!-- #################### delete #################### -->
+
+</mapper>

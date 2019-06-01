@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.config.mapper.UserMapper">
+    <!-- #################### SQL片段 #################### -->
+
+    <!-- 条件查询 -->
+    <sql id="findUserInDetailWhere">
+        <if test="userCustom != null">
+            <if test="userCustom.u_id != null">
+                and u_id = #{userCustom.i_id}
+            </if>
+            <if test="userCustom.d_id != null">
+                and d_id = #{userCustom.d_id}
+            </if>
+            <if test="userCustom.username != null">
+                and username like '%${userCustom.username}%'
+            </if>
+            <if test="userCustom.password != null">
+                and password like '%${userCustom.password}%'
+            </if>
+        </if>
+    </sql>
+
+    <!-- 分页查询 -->
+    <sql id="limit">
+        <if test="page != null">
+            limit #{page.offSet}, #{page.size}
+        </if>
+    </sql>
+
+    <!-- #################### resultMap #################### -->
+
+    <!-- #################### select #################### -->
+
+    <!-- [分页][条件]查询所有用户信息 -->
+    <select id="findUserLimitInDetail" parameterType="UserQueryVo" resultType="UserCustom">
+        select *
+        from user
+        <where>
+            <include refid="findUserInDetailWhere"/>
+        </where>
+        <include refid="limit"/>
+    </select>
+
+    <!-- #################### insert #################### -->
+
+    <!-- #################### update #################### -->
+
+    <!-- #################### delete #################### -->
+
+</mapper>

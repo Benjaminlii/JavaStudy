@@ -1,6 +1,10 @@
 package servlet;
 
+import entity.Page;
+import entity.PetCustom;
+import entity.PetQueryVo;
 import net.sf.json.JSONArray;
+import org.apache.commons.beanutils.BeanUtils;
 import service.PetService;
 
 import javax.servlet.ServletException;
@@ -10,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
 
 @WebServlet("/FindPetLimitServlet")
 public class FindPetLimitServlet extends HttpServlet {
@@ -27,12 +32,21 @@ public class FindPetLimitServlet extends HttpServlet {
         //设置输出
         PrintWriter pw = response.getWriter();
 
-        //参数
-        int page = Integer.valueOf(request.getParameter("page"));
+        //封装信息
+        PetQueryVo petQueryVo = new PetQueryVo();
+        PetCustom petCustom = new PetCustom();
+        try {
+            BeanUtils.populate(petCustom, request.getParameterMap());
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        petQueryVo.setPetCustom(petCustom);
+        String page = request.getParameter("page");
+        if(!"".equals(page) && page != null) {
+            petQueryVo.setPage(new Page(Integer.valueOf(page)));
+        }
         //调用业务逻辑
-        JSONArray pets = JSONArray.fromObject(PetService.findPetLimit(page));
-
-        //得到宠物店信息
+        JSONArray pets = JSONArray.fromObject(PetService.findPetLimitInDetail(petQueryVo));
 
         //输出
         pw.print(pets);

@@ -6,9 +6,9 @@ import java.util.Date;
  * 宠物店类
  */
 public class Store {
-    private int st_id;//宠物店id
-    private int d_id;//字典id（级别）
-    private int e_id;//店长id
+    private Integer st_id;//宠物店id
+    private Integer d_id;//字典id（级别）
+    private Integer e_id;//店长id
     private String s_address;//地址
     private Date st_time;//设立时间
 
@@ -34,27 +34,27 @@ public class Store {
         this.st_time = s_time;
     }
 
-    public int getSt_id() {
+    public Integer getSt_id() {
         return st_id;
     }
 
-    public void setSt_id(int st_id) {
+    public void setSt_id(Integer st_id) {
         this.st_id = st_id;
     }
 
-    public int getD_id() {
+    public Integer getD_id() {
         return d_id;
     }
 
-    public void setD_id(int d_id) {
+    public void setD_id(Integer d_id) {
         this.d_id = d_id;
     }
 
-    public int getE_id() {
+    public Integer getE_id() {
         return e_id;
     }
 
-    public void setE_id(int e_id) {
+    public void setE_id(Integer e_id) {
         this.e_id = e_id;
     }
 

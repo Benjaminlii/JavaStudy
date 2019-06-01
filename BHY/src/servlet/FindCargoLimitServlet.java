@@ -1,6 +1,10 @@
 package servlet;
 
+import entity.CargoCustom;
+import entity.CargoQueryVo;
+import entity.Page;
 import net.sf.json.JSONArray;
+import org.apache.commons.beanutils.BeanUtils;
 import service.CargoService;
 
 import javax.servlet.ServletException;
@@ -10,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
 
 @WebServlet("/FindCargoLimitServlet")
 public class FindCargoLimitServlet extends HttpServlet {
@@ -30,10 +35,20 @@ public class FindCargoLimitServlet extends HttpServlet {
         JSONArray cargos = null;
 
         //封装数据
-        int page = Integer.valueOf(request.getParameter("page"));
+        CargoQueryVo cargoQueryVo = new CargoQueryVo();
+        CargoCustom cargoCustom = new CargoCustom();
+        try {
+            BeanUtils.populate(cargoCustom,request.getParameterMap());
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        String page = request.getParameter("page");
+        if(!"".equals(page) && page != null){
+            cargoQueryVo.setPage(new Page(Integer.valueOf(page)));
+        }
 
         //调用业务逻辑
-        cargos = JSONArray.fromObject(CargoService.findCargoLimit(page));
+        cargos = JSONArray.fromObject(CargoService.findCargoLimitInDetail(cargoQueryVo));
 
         //输出
         pw.print(cargos);

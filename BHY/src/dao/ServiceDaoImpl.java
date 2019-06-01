@@ -76,53 +76,55 @@ public class ServiceDaoImpl implements ServiceDao {
 
     @Override
     public List<ServiceCustom> findAllServiceInDetail() throws SQLException {
-        String sql = "select * from servicecustom;";
-        ResultSet resultSet = DBUtil.executeQuery(sql, null);
-        List<ServiceCustom> rtn = new ArrayList<>();
-        ServiceCustom serviceCustom;
-        while (resultSet.next()) {
-            serviceCustom = new ServiceCustom(
-                    resultSet.getInt("s_id"),
-                    resultSet.getInt("p_id"),
-                    resultSet.getString("s_isDispose"),
-                    resultSet.getString("s_isFinish"),
-                    resultSet.getInt("d_id"),
-                    resultSet.getInt("e_id"),
-                    (Date) resultSet.getObject("s_aTime"),
-                    resultSet.getFloat("s_price"),
-                    resultSet.getString("d_value"),
-                    resultSet.getString("e_name")
-                    );
-            rtn.add(serviceCustom);
-        }
-        DBUtil.closeAll();
-        return rtn;
+//        String sql = "select * from servicecustom;";
+//        ResultSet resultSet = DBUtil.executeQuery(sql, null);
+//        List<ServiceCustom> rtn = new ArrayList<>();
+//        ServiceCustom serviceCustom;
+//        while (resultSet.next()) {
+//            serviceCustom = new ServiceCustom(
+//                    resultSet.getInt("s_id"),
+//                    resultSet.getInt("p_id"),
+//                    resultSet.getString("s_isDispose"),
+//                    resultSet.getString("s_isFinish"),
+//                    resultSet.getInt("d_id"),
+//                    resultSet.getInt("e_id"),
+//                    (Date) resultSet.getObject("s_aTime"),
+//                    resultSet.getFloat("s_price"),
+//                    resultSet.getString("d_value"),
+//                    resultSet.getString("e_name")
+//                    );
+//            rtn.add(serviceCustom);
+//        }
+//        DBUtil.closeAll();
+//        return rtn;
+        return null;
     }
 
     @Override
     public List<ServiceCustom> findServiceLimitInDetail(int page) throws SQLException {
-        String sql = "select * from servicecustom " +
-                "limit ?, ?;";
-        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
-        ResultSet resultSet = DBUtil.executeQuery(sql, para);
-        List<ServiceCustom> rtn = new ArrayList<>();
-        ServiceCustom serviceCustom;
-        while (resultSet.next()) {
-            serviceCustom = new ServiceCustom(
-                    resultSet.getInt("s_id"),
-                    resultSet.getInt("p_id"),
-                    resultSet.getString("s_isDispose"),
-                    resultSet.getString("s_isFinish"),
-                    resultSet.getInt("d_id"),
-                    resultSet.getInt("e_id"),
-                    (Date) resultSet.getObject("s_aTime"),
-                    resultSet.getFloat("s_price"),
-                    resultSet.getString("d_value"),
-                    resultSet.getString("e_name")
-            );
-            rtn.add(serviceCustom);
-        }
-        DBUtil.closeAll();
-        return rtn;
+//        String sql = "select * from servicecustom " +
+//                "limit ?, ?;";
+//        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
+//        ResultSet resultSet = DBUtil.executeQuery(sql, para);
+//        List<ServiceCustom> rtn = new ArrayList<>();
+//        ServiceCustom serviceCustom;
+//        while (resultSet.next()) {
+//            serviceCustom = new ServiceCustom(
+//                    resultSet.getInt("s_id"),
+//                    resultSet.getInt("p_id"),
+//                    resultSet.getString("s_isDispose"),
+//                    resultSet.getString("s_isFinish"),
+//                    resultSet.getInt("d_id"),
+//                    resultSet.getInt("e_id"),
+//                    (Date) resultSet.getObject("s_aTime"),
+//                    resultSet.getFloat("s_price"),
+//                    resultSet.getString("d_value"),
+//                    resultSet.getString("e_name")
+//            );
+//            rtn.add(serviceCustom);
+//    }
+//        DBUtil.closeAll();
+//        return rtn;
+        return null;
     }
 }

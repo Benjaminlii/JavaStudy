@@ -6,14 +6,14 @@ import java.util.Date;
  * 服务类
  */
 public class Service {
-    private int s_id;//服务id
-    private int p_id;//宠物id
+    private Integer s_id;//服务id
+    private Integer p_id;//宠物id
     private String s_isDispose;//是否受处理
     private String s_isFinish;//是否被完成
-    private int d_id;//字典id（服务类别）
-    private int e_id;//处理员工id
+    private Integer d_id;//字典id（服务类别）
+    private Integer e_id;//处理员工id
     private Date s_aTime;//服务预约时间
-    private float s_price;//服务价格
+    private Float s_price;//服务价格
 
     public Service() {
     }
@@ -37,19 +37,19 @@ public class Service {
         this.s_price = s_price;
     }
 
-    public int getS_id() {
+    public Integer getS_id() {
         return s_id;
     }
 
-    public void setS_id(int s_id) {
+    public void setS_id(Integer s_id) {
         this.s_id = s_id;
     }
 
-    public int getP_id() {
+    public Integer getP_id() {
         return p_id;
     }
 
-    public void setP_id(int p_id) {
+    public void setP_id(Integer p_id) {
         this.p_id = p_id;
     }
 
@@ -69,19 +69,19 @@ public class Service {
         this.s_isFinish = s_isFinish;
     }
 
-    public int getD_id() {
+    public Integer getD_id() {
         return d_id;
     }
 
-    public void setD_id(int d_id) {
+    public void setD_id(Integer d_id) {
         this.d_id = d_id;
     }
 
-    public int getE_id() {
+    public Integer getE_id() {
         return e_id;
     }
 
-    public void setE_id(int e_id) {
+    public void setE_id(Integer e_id) {
         this.e_id = e_id;
     }
 
@@ -93,11 +93,11 @@ public class Service {
         this.s_aTime = s_aTime;
     }
 
-    public float getS_price() {
+    public Float getS_price() {
         return s_price;
     }
 
-    public void setS_price(float s_price) {
+    public void setS_price(Float s_price) {
         this.s_price = s_price;
     }
 

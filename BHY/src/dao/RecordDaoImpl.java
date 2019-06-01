@@ -76,55 +76,57 @@ public class RecordDaoImpl implements RecordDao {
 
     @Override
     public List<RecordCustom> findRecordInDetail() throws SQLException {
-        String sql = "select * from recordcustom;";
-        ResultSet resultSet = DBUtil.executeQuery(sql, null);
-        List<RecordCustom> rtn = new ArrayList<>();
-        RecordCustom recordCustom;
-        while (resultSet.next()) {
-            recordCustom = new RecordCustom(
-                    resultSet.getInt("r_id"),
-                    resultSet.getInt("cl_id"),
-                    resultSet.getInt("s_id"),
-                    resultSet.getInt("c_id"),
-                    (Date) resultSet.getObject("r_time"),
-                    resultSet.getFloat("r_price"),
-                    resultSet.getInt("r_num"),
-                    resultSet.getString("r_pattern"),
-                    resultSet.getString("cl_name"),
-                    resultSet.getString("s_address"),
-                    resultSet.getString("c_name")
-            );
-            rtn.add(recordCustom);
-        }
-        DBUtil.closeAll();
-        return rtn;
+//        String sql = "select * from recordcustom;";
+//        ResultSet resultSet = DBUtil.executeQuery(sql, null);
+//        List<RecordCustom> rtn = new ArrayList<>();
+//        RecordCustom recordCustom;
+//        while (resultSet.next()) {
+//            recordCustom = new RecordCustom(
+//                    resultSet.getInt("r_id"),
+//                    resultSet.getInt("cl_id"),
+//                    resultSet.getInt("s_id"),
+//                    resultSet.getInt("c_id"),
+//                    (Date) resultSet.getObject("r_time"),
+//                    resultSet.getFloat("r_price"),
+//                    resultSet.getInt("r_num"),
+//                    resultSet.getString("r_pattern"),
+//                    resultSet.getString("cl_name"),
+//                    resultSet.getString("s_address"),
+//                    resultSet.getString("c_name")
+//            );
+//            rtn.add(recordCustom);
+//        }
+//        DBUtil.closeAll();
+//        return rtn;
+        return null;
     }
 
     @Override
     public List<RecordCustom> findRecordLimitInDetail(int page) throws SQLException {
-        String sql = "select * from recordcustom " +
-                "limit ?, ?;";
-        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
-        ResultSet resultSet = DBUtil.executeQuery(sql, para);
-        List<RecordCustom> rtn = new ArrayList<>();
-        RecordCustom recordCustom;
-        while (resultSet.next()) {
-            recordCustom = new RecordCustom(
-                    resultSet.getInt("r_id"),
-                    resultSet.getInt("cl_id"),
-                    resultSet.getInt("s_id"),
-                    resultSet.getInt("c_id"),
-                    (Date) resultSet.getObject("r_time"),
-                    resultSet.getFloat("r_price"),
-                    resultSet.getInt("r_num"),
-                    resultSet.getString("r_pattern"),
-                    resultSet.getString("cl_name"),
-                    resultSet.getString("s_address"),
-                    resultSet.getString("c_name")
-            );
-            rtn.add(recordCustom);
-        }
-        DBUtil.closeAll();
-        return rtn;
+//        String sql = "select * from recordcustom " +
+//                "limit ?, ?;";
+//        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
+//        ResultSet resultSet = DBUtil.executeQuery(sql, para);
+//        List<RecordCustom> rtn = new ArrayList<>();
+//        RecordCustom recordCustom;
+//        while (resultSet.next()) {
+//            recordCustom = new RecordCustom(
+//                    resultSet.getInt("r_id"),
+//                    resultSet.getInt("cl_id"),
+//                    resultSet.getInt("s_id"),
+//                    resultSet.getInt("c_id"),
+//                    (Date) resultSet.getObject("r_time"),
+//                    resultSet.getFloat("r_price"),
+//                    resultSet.getInt("r_num"),
+//                    resultSet.getString("r_pattern"),
+//                    resultSet.getString("cl_name"),
+//                    resultSet.getString("s_address"),
+//                    resultSet.getString("c_name")
+//            );
+//            rtn.add(recordCustom);
+//        }
+//        DBUtil.closeAll();
+//        return rtn;
+        return null;
     }
 }

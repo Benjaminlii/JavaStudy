@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.config.mapper.ServiceMapper">
+
+    <!-- #################### SQL片段 #################### -->
+
+    <!-- 条件查询 -->
+    <sql id="findServiceInDetailWhere">
+        <if test="serviceCustom != null">
+            <if test="serviceCustom.s_id != null">
+                and s_id = #{serviceCustom.s_id}
+            </if>
+            <if test="serviceCustom.p_id != null">
+                and p_id = #{serviceCustom.p_id}
+            </if>
+            <if test="serviceCustom.s_isDispose != null">
+                and s_isDispose = '%${serviceCustom.s_isDispose}%'
+            </if>
+            <if test="serviceCustom.s_isFinish != null">
+                and s_isFinish = '%${serviceCustom.s_isFinish}%'
+            </if>
+            <if test="serviceCustom.d_id != null">
+                and d_id = #{serviceCustom.d_id}
+            </if>
+            <if test="serviceCustom.e_id != null">
+                and e_id = #{serviceCustom.e_id}
+            </if>
+            <if test="serviceCustom.s_aTime != null">
+                and s_aTime = #{serviceCustom.s_aTime}
+            </if>
+            <if test="serviceCustom.s_price != null">
+                and s_price = #{serviceCustom.s_price}
+            </if>
+            <if test="serviceCustom.d_value != null">
+                and d_value = '%${serviceCustom.d_value}%'
+            </if>
+            <if test="serviceCustom.e_name != null">
+                and e_name = '%${serviceCustom.e_name}%'
+            </if>
+        </if>
+    </sql>
+
+    <!-- 分页查询 -->
+    <sql id="limit">
+        <if test="page != null">
+            limit #{page.offSet}, #{page.size}
+        </if>
+    </sql>
+
+    <!-- #################### resultMap #################### -->
+
+
+    <!-- #################### select #################### -->
+
+    <!-- [分页][条件]查询服务项 -->
+    <select id="findServiceLimitInDetail" parameterType="ServiceQueryVo" resultType="ServiceCustom">
+        select *
+        from servicecustom
+        <where>
+            <include refid="findServiceInDetailWhere"/>
+        </where>
+        <include refid="limit"/>
+    </select>
+
+    <!-- #################### insert #################### -->
+
+
+    <!-- #################### update #################### -->
+
+
+    <!-- #################### delete #################### -->
+
+</mapper>

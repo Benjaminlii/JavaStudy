@@ -1,23 +1,19 @@
 package entity;
 
-import java.util.Date;
 
 public class StoreCustom extends Store {
-    private String st_grade;//宠物店级别
+    private String d_value;//宠物店级别
     private String e_name;//员工姓名
 
-    public StoreCustom(int s_id, String s_address, Date s_time, String st_grade, String e_name) {
-        super(s_id, s_address, s_time);
-        this.st_grade = st_grade;
-        this.e_name = e_name;
+    public StoreCustom() {
     }
 
-    public String getSt_grade() {
-        return st_grade;
+    public String getD_value() {
+        return d_value;
     }
 
-    public void setSt_grade(String st_grade) {
-        this.st_grade = st_grade;
+    public void setD_value(String d_value) {
+        this.d_value = d_value;
     }
 
     public String getE_name() {

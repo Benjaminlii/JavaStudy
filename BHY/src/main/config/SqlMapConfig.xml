@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <!-- 配置properties -->
-    <properties resource="WEB-INF/config/db.properties"/>
+    <properties resource="main/config/db.properties"/>
 
     <!-- 定义别名 -->
     <typeAliases>
@@ -40,7 +40,7 @@
         <!-- 批量加载mapper
         指定mapper接口的包名，mybatis自动扫描包下边所有mapper接口进行加载
          -->
-        <package name="WEB-INF/config/mapper"/>
+        <package name="main.config.mapper"/>
     </mappers>
 
 </configuration>

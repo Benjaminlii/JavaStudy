@@ -69,54 +69,56 @@ public class CargoDaoImpl implements CargoDao {
 
     @Override
     public List<CargoCustom> findAllCargoInDetail() throws SQLException {
-        String sql = "select * from cargocustom;";
-        ResultSet resultSet = DBUtil.executeQuery(sql, null);
-        List<CargoCustom> rtn = new ArrayList<>();
-        CargoCustom cargoCustom;
-        while (resultSet.next()) {
-            cargoCustom = new CargoCustom(
-                    resultSet.getInt("c_id"),
-                    resultSet.getString("c_name"),
-                    resultSet.getInt("c_num"),
-                    resultSet.getInt("d_id"),
-                    resultSet.getInt("s_id"),
-                    (Date) resultSet.getObject("c_getDate"),
-                    (Date) resultSet.getObject("c_producedDate"),
-                    (Date) resultSet.getObject("c_expirationDate"),
-                    resultSet.getString("d_value"),
-                    resultSet.getString("s_address")
-                    );
-            rtn.add(cargoCustom);
-        }
-        DBUtil.closeAll();
-        return rtn;
+//        String sql = "select * from cargocustom;";
+//        ResultSet resultSet = DBUtil.executeQuery(sql, null);
+//        List<CargoCustom> rtn = new ArrayList<>();
+//        CargoCustom cargoCustom;
+//        while (resultSet.next()) {
+//            cargoCustom = new CargoCustom(
+//                    resultSet.getInt("c_id"),
+//                    resultSet.getString("c_name"),
+//                    resultSet.getInt("c_num"),
+//                    resultSet.getInt("d_id"),
+//                    resultSet.getInt("s_id"),
+//                    (Date) resultSet.getObject("c_getDate"),
+//                    (Date) resultSet.getObject("c_producedDate"),
+//                    (Date) resultSet.getObject("c_expirationDate"),
+//                    resultSet.getString("d_value"),
+//                    resultSet.getString("s_address")
+//                    );
+//            rtn.add(cargoCustom);
+//        }
+//        DBUtil.closeAll();
+//        return rtn;
+        return null;
     }
 
 
     @Override
     public List<CargoCustom> findCargoLimitInDetail(int page) throws SQLException {
-        String sql = "select * from cargocustom " +
-                "limit ?, ?;";
-        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
-        ResultSet resultSet = DBUtil.executeQuery(sql, para);
-        List<CargoCustom> rtn = new ArrayList<>();
-        CargoCustom cargoCustom;
-        while (resultSet.next()) {
-            cargoCustom = new CargoCustom(
-                    resultSet.getInt("c_id"),
-                    resultSet.getString("c_name"),
-                    resultSet.getInt("c_num"),
-                    resultSet.getInt("d_id"),
-                    resultSet.getInt("s_id"),
-                    (Date) resultSet.getObject("c_getDate"),
-                    (Date) resultSet.getObject("c_producedDate"),
-                    (Date) resultSet.getObject("c_expirationDate"),
-                    resultSet.getString("d_value"),
-                    resultSet.getString("s_address")
-            );
-            rtn.add(cargoCustom);
-        }
-        DBUtil.closeAll();
-        return rtn;
+//        String sql = "select * from cargocustom " +
+//                "limit ?, ?;";
+//        Object[] para = {PageUtil.getOffSet(page), PageUtil.getSize()};
+//        ResultSet resultSet = DBUtil.executeQuery(sql, para);
+//        List<CargoCustom> rtn = new ArrayList<>();
+//        CargoCustom cargoCustom;
+//        while (resultSet.next()) {
+//            cargoCustom = new CargoCustom(
+//                    resultSet.getInt("c_id"),
+//                    resultSet.getString("c_name"),
+//                    resultSet.getInt("c_num"),
+//                    resultSet.getInt("d_id"),
+//                    resultSet.getInt("s_id"),
+//                    (Date) resultSet.getObject("c_getDate"),
+//                    (Date) resultSet.getObject("c_producedDate"),
+//                    (Date) resultSet.getObject("c_expirationDate"),
+//                    resultSet.getString("d_value"),
+//                    resultSet.getString("s_address")
+//            );
+//            rtn.add(cargoCustom);
+//        }
+//        DBUtil.closeAll();
+//        return rtn;
+        return null;
     }
 }

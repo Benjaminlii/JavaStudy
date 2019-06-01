@@ -4,11 +4,11 @@ package entity;
  * 顾客类
  */
 public class Client {
-    private int cl_id;//顾客id
+    private Integer cl_id;//顾客id
     private String cl_name;//顾客姓名
     private String mobile;//顾客手机号码
-    private int u_id;//用户id
-    private int cl_age;//顾客年龄
+    private Integer u_id;//用户id
+    private Integer cl_age;//顾客年龄
     private String cl_sex;//顾客性别
     private String cl_emil;//顾客电子邮箱
 
@@ -44,11 +44,11 @@ public class Client {
         this.cl_emil = cl_emil;
     }
 
-    public int getCl_id() {
+    public Integer getCl_id() {
         return cl_id;
     }
 
-    public void setCl_id(int cl_id) {
+    public void setCl_id(Integer cl_id) {
         this.cl_id = cl_id;
     }
 
@@ -68,19 +68,19 @@ public class Client {
         this.mobile = mobile;
     }
 
-    public int getU_id() {
+    public Integer getU_id() {
         return u_id;
     }
 
-    public void setU_id(int u_id) {
+    public void setU_id(Integer u_id) {
         this.u_id = u_id;
     }
 
-    public int getCl_age() {
+    public Integer getCl_age() {
         return cl_age;
     }
 
-    public void setCl_age(int cl_age) {
+    public void setCl_age(Integer cl_age) {
         this.cl_age = cl_age;
     }
 

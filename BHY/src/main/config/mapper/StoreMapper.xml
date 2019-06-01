@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.config.mapper.StoreMapper">
+
+    <!-- #################### SQL片段 #################### -->
+
+    <!-- 条件查询 -->
+    <sql id="findStoreInDetailWhere">
+        <if test="storeCustom != null">
+            <if test="storeCustom.st_id != null">
+                and st_id = #{storeCustom.st_id}
+            </if>
+            <if test="storeCustom.d_id != null">
+                and d_id = #{storeCustom.d_id}
+            </if>
+            <if test="storeCustom.e_id != null">
+                and e_id = #{storeCustom.e_id}
+            </if>
+            <if test="storeCustom.s_address != null">
+                and s_address = '%${storeCustom.s_address}%'
+            </if>
+            <if test="storeCustom.st_time != null">
+                and st_time = #{storeCustom.st_time}
+            </if>
+            <if test="storeCustom.d_value != null">
+                and d_value = '%${storeCustom.d_value}%'
+            </if>
+            <if test="storeCustom.e_name != null">
+                and e_name = '%${storeCustom.e_name}%'
+            </if>
+        </if>
+    </sql>
+
+    <!-- 分页查询 -->
+    <!-- 分页查询 -->
+    <sql id="limit">
+        <if test="page != null">
+            limit #{page.offSet}, #{page.size}
+        </if>
+    </sql>
+
+
+    <!-- #################### resultMap #################### -->
+
+
+    <!-- #################### select #################### -->
+
+    <!-- [分页][条件]查询宠物店信息 -->
+    <select id="findStoreLimitInDetail" parameterType="StoreQueryVo" resultType="StoreCustom">
+        select *
+        from storecustom
+        <where>
+            <include refid="findStoreInDetailWhere"/>
+        </where>
+        <include refid="limit"/>
+    </select>
+
+    <!-- #################### insert #################### -->
+
+
+    <!-- #################### update #################### -->
+
+
+    <!-- #################### delete #################### -->
+
+</mapper>

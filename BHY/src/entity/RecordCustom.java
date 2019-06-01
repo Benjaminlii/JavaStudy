@@ -1,43 +1,34 @@
 package entity;
 
-import java.util.Date;
-
 public class RecordCustom extends Record {
-    private String cl_mobile;//顾客手机号
-    private String st_name;//宠物店名
+    private String cl_name;//顾客手机号
+    private String st_address;//宠物店名
     private String c_name;//货物名
 
-    public RecordCustom(int r_id, int cl_id, int s_id, int c_id, Date r_time,
-                        float r_price, int r_num, String r_pattern, String cl_mobile,
-                        String st_name, String c_name) {
-
-        super(r_id, cl_id, s_id, c_id, r_time, r_price, r_num, r_pattern);
-        this.cl_mobile = cl_mobile;
-        this.st_name = st_name;
-        this.c_name = c_name;
+    public RecordCustom() {
     }
 
     public String getCl_name() {
-        return cl_mobile;
+        return cl_name;
     }
 
     public void setCl_name(String cl_name) {
-        this.cl_mobile = cl_name;
+        this.cl_name = cl_name;
     }
 
-    public String getSt_name() {
-        return st_name;
+    public String getSt_address() {
+        return st_address;
     }
 
-    public void setSt_name(String st_name) {
-        this.st_name = st_name;
+    public void setSt_address(String st_address) {
+        this.st_address = st_address;
     }
 
-    public String getR_name() {
+    public String getC_name() {
         return c_name;
     }
 
-    public void setR_name(String r_name) {
-        this.c_name = r_name;
+    public void setC_name(String c_name) {
+        this.c_name = c_name;
     }
 }
