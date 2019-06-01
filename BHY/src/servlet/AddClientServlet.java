@@ -1,6 +1,8 @@
 package servlet;
 
 import entity.Client;
+import entity.ClientCustom;
+import entity.ClientQueryVo;
 import net.sf.json.JSONObject;
 import org.apache.commons.beanutils.BeanUtils;
 import service.ClientService;
@@ -18,7 +20,7 @@ import java.lang.reflect.InvocationTargetException;
 public class AddClientServlet extends HttpServlet {
     /**
      * 增加顾客信息的servlet
-     * 需要从前端获得的信息：姓名，手机[，年龄，性别，emil]
+     * 参数：姓名 cl_name，手机 mobile, 用户id u_id全部设置为3[，年龄 cl_age，性别 cl_sex，邮箱cl_emil]
      * 手机号唯一
      * <p>
      * 若添加成功，返回{rtn:"1"}
@@ -34,15 +36,17 @@ public class AddClientServlet extends HttpServlet {
         JSONObject jsonObject = new JSONObject();
 
         //封装信息
-        Client client = new Client();
+        ClientQueryVo clientQueryVo = new ClientQueryVo();
+        ClientCustom clientCustom = new ClientCustom();
         try {
-            BeanUtils.populate(client, request.getParameterMap());
+            BeanUtils.populate(clientCustom, request.getParameterMap());
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
+        clientQueryVo.setClientCustom(clientCustom);
 
         //调用逻辑层
-        if(ClientService.addClient(client)){
+        if(ClientService.addClient(clientQueryVo)){
             jsonObject.put("rtn", 1);
         }else{
             jsonObject.put("rtn", 0);

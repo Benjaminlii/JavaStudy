@@ -55,7 +55,23 @@
         <include refid="limit"/>
     </select>
 
+    <!-- 根据手机号查询用户 -->
+    <select id="findClientByMobile" parameterType="ClientQueryVo" resultType="ClientCustom">
+        select *
+        from client
+        where mobile = #{clientCustom.mobile};
+    </select>
+
     <!-- #################### insert #################### -->
+
+    <!-- 插入一条client数据(这里本来应该通过视图插入，但是client表未产生视图) -->
+    <insert id="insertClient" parameterType="ClientCustom">
+        insert into client (cl_name, mobile, u_id, cl_age, cl_sex, cl_emil)
+        VALUES (#{cl_name}, #{mobile}, #{u_id}, #{cl_age}, #{cl_sex}, #{cl_emil});
+        <selectKey keyProperty="cl_id" order="AFTER" resultType="java.lang.Integer">
+            select last_insert_id();
+        </selectKey>
+    </insert>
 
     <!-- #################### update #################### -->
 

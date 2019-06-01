@@ -32,34 +32,33 @@ public class ClientService {
         }
     }
 
-
-    private static ClientDao clientDao = new ClientDaoImpl();
-
     /**
-     * 增加一个Client
-     *
-     * @param client 要增加的Client信息 手机号为唯一表示
-     * @return 成功返回true，失败返回false
+     * 插入一条client数据
+     * @param clientQueryVo 插入的数据的封装（因为要使用查询，所以不使用ClientQueryVo）
+     * @return 插入成功返回true，否则返回false
      */
-    public static boolean addClient(Client client) {
-        return clientDao.addClient(client);
-    }
+    public static boolean addClient(ClientQueryVo clientQueryVo) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ClientMapper clientMapper = sqlSession.getMapper(ClientMapper.class);
+        boolean rtn = false;
 
-    /**
-     * 查询全部的Client
-     *
-     * @return 返回所有Client组成的List
-     */
-    public static List<Client> findClientLimit(int page) {
-        List<Client> clients = null;
         try {
-            clients = clientDao.findClientLimit(page);
-        } catch (SQLException e) {
+            if(clientMapper.findClientByMobile(clientQueryVo)==null){
+                //未找到已有的数据，手机号未登记
+                rtn = clientMapper.insertClient(clientQueryVo.getClientCustom());
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return clients;
+
+        return rtn;
     }
 
+    /**
+     * [分页][条件]查询顾客信息
+     * @param clientQueryVo 查询条件
+     * @return 查询出的数据
+     */
     public static List<ClientCustom> findClientLimitInDetail(ClientQueryVo clientQueryVo){
         SqlSession sqlSession = sqlSessionFactory.openSession();
         ClientMapper clientMapper = sqlSession.getMapper(ClientMapper.class);

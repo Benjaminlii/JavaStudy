@@ -34,7 +34,7 @@
                                 ]
                        }
 
-
+//
 /BHY/AddClientServlet:
     增加顾客信息的servlet
     参数：姓名 cl_name，手机 mobile, 用户id u_id全部设置为3[，年龄 cl_age，性别 cl_sex，邮箱cl_emil]
