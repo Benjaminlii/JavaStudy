@@ -18,24 +18,6 @@ public class Cargo {
     public Cargo() {
     }
 
-    public Cargo(int c_id, String c_name, int c_num, int d_id) {
-        this.c_id = c_id;
-        this.c_name = c_name;
-        this.c_num = c_num;
-        this.d_id = d_id;
-    }
-
-    public Cargo(int c_id, String c_name, int c_num, int d_id, int st_id, Date c_getDate, Date c_producedDate, Date c_expirationDate) {
-        this.c_id = c_id;
-        this.c_name = c_name;
-        this.c_num = c_num;
-        this.d_id = d_id;
-        this.st_id = st_id;
-        this.c_getDate = c_getDate;
-        this.c_producedDate = c_producedDate;
-        this.c_expirationDate = c_expirationDate;
-    }
-
     public Integer getC_id() {
         return c_id;
     }
@@ -80,24 +62,24 @@ public class Cargo {
         return c_getDate;
     }
 
-    public void setC_getdate(Date c_getdate) {
-        this.c_getDate = c_getdate;
+    public void setC_getDate(Date c_getDate) {
+        this.c_getDate = c_getDate;
     }
 
     public Date getC_producedDate() {
         return c_producedDate;
     }
 
-    public void setC_producedDate(Date c_produceddate) {
-        this.c_producedDate = c_produceddate;
+    public void setC_producedDate(Date c_producedDate) {
+        this.c_producedDate = c_producedDate;
     }
 
     public Date getC_expirationDate() {
         return c_expirationDate;
     }
 
-    public void setC_expirationDate(Date c_expirationdate) {
-        this.c_expirationDate = c_expirationdate;
+    public void setC_expirationDate(Date c_expirationDate) {
+        this.c_expirationDate = c_expirationDate;
     }
 
     @Override

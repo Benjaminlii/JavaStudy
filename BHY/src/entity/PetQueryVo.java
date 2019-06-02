@@ -22,4 +22,5 @@ public class PetQueryVo {
     public void setPage(Page page) {
         this.page = page;
     }
+
 }

@@ -9,25 +9,25 @@
     <!-- 条件查询 -->
     <sql id="findPetInDetailWhere">
         <if test="petCustom != null">
-            <if test="petCustom.p_id != null">
+            <if test="petCustom.p_id != null and petCustom.p_id != 0">
                 and p_id = #{petCustom.p_id}
             </if>
-            <if test="petCustom.cl_id != null">
+            <if test="petCustom.cl_id != null and petCustom.cl_id != 0">
                 and cl_id = #{petCustom.cl_id}
             </if>
-            <if test="petCustom.d_id != null">
+            <if test="petCustom.d_id != null and petCustom.d_id != 0">
                 and d_id = #{petCustom.d_id}
             </if>
-            <if test="petCustom.st_id != null">
+            <if test="petCustom.st_id != null and petCustom.st_id != 0">
                 and st_id = #{petCustom.st_id}
             </if>
-            <if test="petCustom.p_age != null">
+            <if test="petCustom.p_age != null and petCustom.p_age != 0">
                 and p_age = #{petCustom.p_age}
             </if>
-            <if test="petCustom.p_sex != null">
+            <if test="petCustom.p_sex != null and petCustom.p_sex != ''">
                 and p_sex = #{petCustom.p_sex}
             </if>
-            <if test="petCustom.p_height != null">
+            <if test="petCustom.p_height != null and petCustom.p_height != 0">
                 and p_height = #{petCustom.p_height}
             </if>
             <if test="petCustom.p_healthy != null and petCustom.p_healthy != ''">
@@ -67,10 +67,24 @@
         <include refid="limit"/>
     </select>
 
+
     <!-- #################### insert #################### -->
+
+    <!-- 增加一条宠物信息 -->
+    <insert id="insertPet" parameterType="PetCustom">
+        insert into pet (cl_id, d_id, st_id, p_age, p_sex, p_height, p_healthy)
+        values (#{cl_id},#{d_id},#{st_id},#{p_age},#{p_sex},#{p_height},#{p_healthy});
+        <selectKey keyProperty="p_id" order="AFTER" resultType="java.lang.Integer">
+            select last_insert_id();
+        </selectKey>
+    </insert>
 
     <!-- #################### update #################### -->
 
+    <!-- 更新宠物信息 -->
+    <update id="updatePet" parameterType="PetCustom">
+        update pet set st_id=#{st_id},p_age=#{p_age},p_sex=#{p_sex},p_height=#{p_height},p_healthy=#{p_healthy},cl_id=#{cl_id} where p_id=#{p_id};
+    </update>
     <!-- #################### delete #################### -->
 
 </mapper>

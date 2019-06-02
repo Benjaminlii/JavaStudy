@@ -7,7 +7,7 @@
                                 2为密码不正确，不跳转
                                 3为用户名不存在，不跳转
 
-
+//
 /BHY/RegisterServlet:
     员工用户注册的url
     参数:   username 用户名
@@ -41,7 +41,7 @@
     返回值：若添加成功，返回{rtn:"1"}
           ：若添加失败，返回{rtn:"0"}（手机号重复）
 
-
+//
 /BHY/UpdateUserServlet:
     响应前端发送的更新用户信息（大概就是改密码。。。）的请求
     参数：需要传入用户名(username)和新密码(password)
@@ -61,7 +61,7 @@
         ]
     返回一个json，其中各个字段对应pet的详细信息
 
-
+//
 /BHY/AddPetServlet：
     添加一条宠物信息
     参数： 宠物品种 d_id
@@ -71,8 +71,7 @@
            性别 p_sex
            体重 p_height]
     返回值：添加成功返回rtn：1
-            用户不存在返回rtn：2
-            数据库底层错误返回rtn：3
+            失败返回rtn：3
 
 //
 /BHY/FindClientLimitServlet:
@@ -130,7 +129,7 @@
 
 //
 /BHY/FindServiceLimitServlet:
-    分页][条件]查询服务项信息
+    [分页][条件]查询服务项信息
     参数：查询条件和分页
     返回值：[
              {"d_id":37,"d_value":"看病","e_id":0,"e_name":"","p_id":1,"s_aTime":null,"s_id":1,"s_isDispose":"true","s_isFinish":"true","s_price":0},
@@ -138,6 +137,11 @@
              {"d_id":38,"d_value":"体检","e_id":0,"e_name":"","p_id":4,"s_aTime":null,"s_id":3,"s_isDispose":"true","s_isFinish":"false","s_price":0}
             ]
 
+//
+/BHY/UpdatePetServlet:
+    更新一条宠物信息
+    p_id为检索信息，其他为更新信息，包括st_id， p_age， p_sex， p_height， p_healthy， cl_id
+    更新成功返回rtn：1， 失败返回rtn：0
 
 
 

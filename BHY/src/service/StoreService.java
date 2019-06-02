@@ -1,7 +1,5 @@
 package service;
 
-import dao.StoreDao;
-import dao.StoreDaoImpl;
 import entity.StoreCustom;
 import entity.StoreQueryVo;
 import main.config.mapper.StoreMapper;
@@ -12,7 +10,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -29,24 +26,6 @@ public class StoreService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-
-
-    private static StoreDao storeDao = new StoreDaoImpl();
-
-    /**
-     * 分页查询宠物店信息,并且封装好
-     * @return 所有宠物店信息组成的List
-     */
-    public static List<StoreCustom> findStoreLimit(int page){
-        List<StoreCustom> stores = null;
-        try {
-            stores = storeDao.findStoreLimitInDetail(page);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return stores;
     }
 
     /**

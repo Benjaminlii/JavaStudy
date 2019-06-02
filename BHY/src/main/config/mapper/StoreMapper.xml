@@ -9,21 +9,21 @@
     <!-- 条件查询 -->
     <sql id="findStoreInDetailWhere">
         <if test="storeCustom != null">
-            <if test="storeCustom.st_id != null">
+            <if test="storeCustom.st_id != null and storeCustom.st_id != 0">
                 and st_id = #{storeCustom.st_id}
             </if>
-            <if test="storeCustom.d_id != null">
+            <if test="storeCustom.d_id != null and storeCustom.d_id != 0">
                 and d_id = #{storeCustom.d_id}
             </if>
-            <if test="storeCustom.e_id != null">
+            <if test="storeCustom.e_id != null and storeCustom.e_id != 0">
                 and e_id = #{storeCustom.e_id}
             </if>
             <if test="storeCustom.s_address != null and storeCustom.s_address != ''">
                 and s_address like '%${storeCustom.s_address}%'
             </if>
-            <if test="storeCustom.st_time != null">
-                and st_time = #{storeCustom.st_time}
-            </if>
+            <!--<if test="storeCustom.st_time != null">-->
+                <!--and st_time = #{storeCustom.st_time}-->
+            <!--</if>-->
             <if test="storeCustom.d_value != null and storeCustom.d_value != ''">
                 and d_value like '%${storeCustom.d_value}%'
             </if>

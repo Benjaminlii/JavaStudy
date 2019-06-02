@@ -8,16 +8,16 @@
     <!-- 条件查询 -->
     <sql id="findUserInDetailWhere">
         <if test="userCustom != null">
-            <if test="userCustom.u_id != null">
+            <if test="userCustom.u_id != null and userCustom.u_id != 0">
                 and u_id = #{userCustom.i_id}
             </if>
-            <if test="userCustom.d_id != null">
+            <if test="userCustom.d_id != null and userCustom.d_id != 0">
                 and d_id = #{userCustom.d_id}
             </if>
-            <if test="userCustom.username != null and userCustom.username!=''">
+            <if test="userCustom.username != null and userCustom.username !=''">
                 and username = #{userCustom.username}
             </if>
-            <if test="userCustom.password != null and userCustom.password">
+            <if test="userCustom.password != null and userCustom.password != ''">
                 and password = #{userCustom.password}
             </if>
         </if>
@@ -44,9 +44,32 @@
         <include refid="limit"/>
     </select>
 
+    <!-- 根据username查询用户信息 -->
+    <select id="findUserByUserName" parameterType="java.lang.String" resultType="UserCustom">
+        select *
+        from user
+        where username = #{value};
+    </select>
+
     <!-- #################### insert #################### -->
 
+    <!-- 插入一条信息 -->
+    <insert id="insertUser" parameterType="UserCustom">
+        insert into user (d_id, username, password)
+        VALUES (9, #{username}, #{password});
+        <selectKey keyProperty="u_id" order="AFTER" resultType="java.lang.Integer">
+            select last_insert_id();
+        </selectKey>
+    </insert>
+
+
     <!-- #################### update #################### -->
+
+    <!-- 更新用户信息 -->
+    <update id="updateUser" parameterType="UserCustom">
+        update user set password = #{password} where username = #{username};
+    </update>
+
 
     <!-- #################### delete #################### -->
 

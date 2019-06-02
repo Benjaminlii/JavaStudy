@@ -1,13 +1,7 @@
 package service;
 
-import dao.ClientDao;
-import dao.ClientDaoImpl;
-import dao.PetDao;
-import dao.PetDaoImpl;
-import entity.Client;
-import entity.Pet;
-import entity.PetCustom;
-import entity.PetQueryVo;
+import entity.*;
+import main.config.mapper.ClientMapper;
 import main.config.mapper.PetMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -16,7 +10,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -35,43 +28,31 @@ public class PetService {
         }
     }
 
-
-
-
-    private static PetDao petDao = new PetDaoImpl();
-    private static ClientDao clientDao = new ClientDaoImpl();
-
-    /**
-     * 查询所有的宠物信息，封装成List返回
-     * @return 所有宠物信息构成的List
-     */
-    public static List<PetCustom> findPetLimit(int page){
-        List<PetCustom> pets = null;
-        try {
-            pets = petDao.findPetLimitInDetail(page);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return pets;
-    }
-
     /**
      * 添加宠物信息
      * 需要传入宠物品种（d_id），顾客姓名，顾客手机号（唯一索引）
-     * @param pet 宠物信息
-     * @param client 封装顾客信息
+     * @param petQueryVo 宠物信息，需要宠物类型（d_id）
+     * @param clientQueryVo 顾客信息，只需要包装手机号mobile
      * @return 顾客不存在或者数据库底层出现问题时返回false，成功添加返回true
      */
-    public static boolean addPet(Pet pet, Client client){
+    public static boolean addPet(PetQueryVo petQueryVo, ClientQueryVo clientQueryVo){
         boolean rtn = false;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PetMapper petMapper = sqlSession.getMapper(PetMapper.class);
+        ClientMapper clientMapper = sqlSession.getMapper(ClientMapper.class);
+
         try {
-            if(clientDao.isClientExist(client.getMobile())){
-                //顾客信息存在
-                rtn = petDao.addPet(pet);
+            ClientCustom clientCustom = clientMapper.findClientByMobile(clientQueryVo);
+            if(clientCustom != null){
+                //手机号存在
+                petQueryVo.getPetCustom().setCl_id(clientCustom.getCl_id());
+                rtn = petMapper.insertPet(petQueryVo.getPetCustom());
+                sqlSession.commit();
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
         return rtn;
     }
 
@@ -91,5 +72,25 @@ public class PetService {
             e.printStackTrace();
         }
         return petCustoms;
+    }
+
+    /**
+     * 更新一条宠物信息
+     * @param petCustom p_id为检索信息，其他为更新信息，包括st_id， p_age， p_sex， p_height， p_healthy， cl_id
+     * @return 是否更新成功
+     */
+    public static boolean updatePet(PetCustom petCustom){
+        boolean rtn = false;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PetMapper petMapper = sqlSession.getMapper(PetMapper.class);
+
+        try {
+            rtn = petMapper.updatePet(petCustom);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return rtn;
     }
 }

@@ -8,25 +8,25 @@
 
     <sql id="findRecordInDetailWhere">
         <if test="recordCustom != null">
-            <if test="recordCustom.r_id != null">
+            <if test="recordCustom.r_id != null and recordCustom.r_id != 0">
                 and r_id = #{recordCustom.r_id}
             </if>
-            <if test="recordCustom.cl_id != null">
+            <if test="recordCustom.cl_id != null and recordCustom.cl_id != 0">
                 and cl_id = #{recordCustom.cl_id}
             </if>
-            <if test="recordCustom.st_id != null">
+            <if test="recordCustom.st_id != null and recordCustom.st_id != 0">
                 and st_id = #{recordCustom.st_id}
             </if>
-            <if test="recordCustom.c_id != null">
+            <if test="recordCustom.c_id != null and recordCustom.c_id != 0">
                 and c_id = #{recordCustom.c_id}
             </if>
-            <if test="recordCustom.r_time != null">
-                and r_time = #{recordCustom.r_time}
-            </if>
-            <if test="recordCustom.r_price != null">
+            <!--<if test="recordCustom.r_time != null">-->
+                <!--and r_time = #{recordCustom.r_time}-->
+            <!--</if>-->
+            <if test="recordCustom.r_price != null and recordCustom.r_price != 0">
                 and r_price = #{recordCustom.r_price}
             </if>
-            <if test="recordCustom.r_num != null">
+            <if test="recordCustom.r_num != null and recordCustom.r_num != 0">
                 and r_num = #{recordCustom.r_num}
             </if>
             <if test="recordCustom.r_pattern != null and recordCustom.r_pattern != ''">

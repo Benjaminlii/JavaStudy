@@ -1,7 +1,5 @@
 package service;
 
-import dao.ServiceDao;
-import dao.ServiceDaoImpl;
 import entity.ServiceCustom;
 import entity.ServiceQueryVo;
 import main.config.mapper.ServiceMapper;
@@ -12,7 +10,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -46,19 +43,5 @@ public class ServiceService {
             e.printStackTrace();
         }
         return serviceCustoms;
-    }
-
-
-
-    private static ServiceDao serviceDao = new ServiceDaoImpl();
-
-    public static List<ServiceCustom> findServiceLimitInDetail(int page){
-        List<ServiceCustom> services = null;
-        try {
-            services = serviceDao.findServiceLimitInDetail(page);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return services;
     }
 }

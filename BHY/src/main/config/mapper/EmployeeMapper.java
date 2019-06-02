@@ -12,4 +12,11 @@ public interface EmployeeMapper {
      * @return 查询出的员工信息
      */
     public List<EmployeeCustom> findEmployeeLimitInDetail(EmployeeQueryVo employeeQueryVo) throws Exception;
+
+    /**
+     * 添加一条员工信息，将e_id回返
+     * @param employeeCustom 添加的信息
+     * @return 成功返回true，否则返回false
+     */
+    public boolean insertEmployee(EmployeeCustom employeeCustom) throws Exception;
 }

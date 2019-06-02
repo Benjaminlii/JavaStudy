@@ -15,6 +15,8 @@ public class RegisterServlet extends javax.servlet.http.HttpServlet {
     /**
      * 处理注册请求
      * 目前全部设置成员工注册
+     * 注册信息中的用户信息，username和password字段必须被填充
+     * 注册信息中的员工信息，e_name、st_id必须被填充
      * 成功会返回1，失败返回0（json，key为rtn）
      */
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {

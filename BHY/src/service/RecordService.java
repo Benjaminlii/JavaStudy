@@ -1,7 +1,5 @@
 package service;
 
-import dao.RecordDao;
-import dao.RecordDaoImpl;
 import entity.RecordCustom;
 import entity.RecordQueryVo;
 import main.config.mapper.RecordMapper;
@@ -12,7 +10,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -48,27 +45,4 @@ public class RecordService {
         }
         return recordCustoms;
     }
-
-
-
-
-    private static RecordDao recordDao = new RecordDaoImpl();
-
-    /**
-     * 分页查询所有的销售记录的详细信息
-     * @param page 页码
-     * @return 当前页码的销售记录包装类的List
-     */
-    public static List<RecordCustom> findRecordLimit(int page){
-        List<RecordCustom> recordCustoms = null;
-        try {
-            recordCustoms = recordDao.findRecordLimitInDetail(page);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return recordCustoms;
-    }
-
-
-
 }

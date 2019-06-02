@@ -1,6 +1,6 @@
 package servlet;
 
-import entity.User;
+import entity.UserCustom;
 import net.sf.json.JSONObject;
 import org.apache.commons.beanutils.BeanUtils;
 import service.UserService;
@@ -32,15 +32,15 @@ public class UpdateUserServlet extends HttpServlet {
         JSONObject jsonObject = new JSONObject();
 
         //封装数据
-        User user = new User();
+        UserCustom userCustom = new UserCustom();
         try {
-            BeanUtils.populate(user, request.getParameterMap());
+            BeanUtils.populate(userCustom, request.getParameterMap());
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
 
         //调用业务逻辑
-        if(UserService.updateUser(user)){
+        if(UserService.updateUser(userCustom)){
             jsonObject.put("rtn", 1);
         }else{
             jsonObject.put("rtn", 0);

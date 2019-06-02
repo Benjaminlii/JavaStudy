@@ -9,19 +9,19 @@
     <!-- 条件查询 -->
     <sql id="findClientInDetailWhere">
         <if test="clientCustom != null">
-            <if test="clientCustom.cl_id != null">
+            <if test="clientCustom.cl_id != null and clientCustom.cl_id != 0">
                 and cl_id = #{clientCustom.cl_id}
             </if>
             <if test="clientCustom.cl_name != null and clientCustom.cl_name != ''">
                 and cl_name like '%${clientCustom.cl_name}%'
             </if>
-            <if test="clientCustom.mobile != null">
+            <if test="clientCustom.mobile != null and clientCustom.mobile != ''">
                 and mobile = #{clientCustom.mobile}
             </if>
-            <if test="clientCustom.u_id != null">
+            <if test="clientCustom.u_id != null and clientCustom.u_id != 0">
                 and u_id = #{clientCustom.u_id}
             </if>
-            <if test="clientCustom.cl_age != null">
+            <if test="clientCustom.cl_age != null and clientCustom.cl_age != 0">
                 and cl_age = #{clientCustom.cl_age}
             </if>
             <if test="clientCustom.cl_sex != null and clientCustom.cl_sex != ''">

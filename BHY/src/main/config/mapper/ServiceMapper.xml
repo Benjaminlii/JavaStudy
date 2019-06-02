@@ -9,10 +9,10 @@
     <!-- 条件查询 -->
     <sql id="findServiceInDetailWhere">
         <if test="serviceCustom != null">
-            <if test="serviceCustom.s_id != null">
+            <if test="serviceCustom.s_id != null and serviceCustom.s_id != 0">
                 and s_id = #{serviceCustom.s_id}
             </if>
-            <if test="serviceCustom.p_id != null">
+            <if test="serviceCustom.p_id != null and serviceCustom.p_id != 0">
                 and p_id = #{serviceCustom.p_id}
             </if>
             <if test="serviceCustom.s_isDispose != null and serviceCustom.s_isDispose != ''">
@@ -21,16 +21,16 @@
             <if test="serviceCustom.s_isFinish != null and serviceCustom.s_isFinish != ''">
                 and s_isFinish like '%${serviceCustom.s_isFinish}%'
             </if>
-            <if test="serviceCustom.d_id != null">
+            <if test="serviceCustom.d_id != null and serviceCustom.d_id != 0">
                 and d_id = #{serviceCustom.d_id}
             </if>
-            <if test="serviceCustom.e_id != null">
+            <if test="serviceCustom.e_id != null and serviceCustom.e_id != 0">
                 and e_id = #{serviceCustom.e_id}
             </if>
-            <if test="serviceCustom.s_aTime != null">
-                and s_aTime = #{serviceCustom.s_aTime}
-            </if>
-            <if test="serviceCustom.s_price != null">
+            <!--<if test="serviceCustom.s_aTime != null">-->
+                <!--and s_aTime = #{serviceCustom.s_aTime}-->
+            <!--</if>-->
+            <if test="serviceCustom.s_price != null and serviceCustom.s_price != 0">
                 and s_price = #{serviceCustom.s_price}
             </if>
             <if test="serviceCustom.d_value != null and serviceCustom.d_value != ''">
