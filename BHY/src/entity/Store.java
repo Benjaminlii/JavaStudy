@@ -9,7 +9,7 @@ public class Store {
     private Integer st_id;//宠物店id
     private Integer d_id;//字典id（级别）
     private Integer e_id;//店长id
-    private String s_address;//地址
+    private String st_address;//地址
     private Date st_time;//设立时间
 
     public Store() {
@@ -22,7 +22,7 @@ public class Store {
 
     public Store(int st_id, String s_address, Date st_time) {
         this.st_id = st_id;
-        this.s_address = s_address;
+        this.st_address = s_address;
         this.st_time = st_time;
     }
 
@@ -30,7 +30,7 @@ public class Store {
         this.st_id = st_id;
         this.d_id = d_id;
         this.e_id = e_id;
-        this.s_address = s_address;
+        this.st_address = s_address;
         this.st_time = s_time;
     }
 
@@ -58,12 +58,12 @@ public class Store {
         this.e_id = e_id;
     }
 
-    public String getS_address() {
-        return s_address;
+    public String getSt_address() {
+        return st_address;
     }
 
-    public void setS_address(String s_address) {
-        this.s_address = s_address;
+    public void setSt_address(String st_address) {
+        this.st_address = st_address;
     }
 
     public Date getSt_time() {
@@ -80,7 +80,7 @@ public class Store {
                 "st_id=" + st_id +
                 ", d_id=" + d_id +
                 ", e_id=" + e_id +
-                ", s_address='" + s_address + '\'' +
+                ", st_address='" + st_address + '\'' +
                 ", st_time=" + st_time +
                 '}';
     }

@@ -93,4 +93,24 @@ public class PetService {
 
         return rtn;
     }
+
+    /**
+     * 删除一条宠物信息
+     * @param petCustom 要删除的宠物，只需要填充p_id字段
+     * @return 成功返回true，否则返回false
+     */
+    public static boolean deletePet(PetCustom petCustom){
+        boolean rtn = false;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PetMapper petMapper = sqlSession.getMapper(PetMapper.class);
+
+        try {
+            rtn = petMapper.deletePet(petCustom.getP_id());
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return rtn;
+    }
 }

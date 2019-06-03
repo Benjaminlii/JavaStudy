@@ -8,11 +8,11 @@ import java.util.Date;
 public class Service {
     private Integer s_id;//服务id
     private Integer p_id;//宠物id
-    private String s_isDispose;//是否受处理
-    private String s_isFinish;//是否被完成
+    private String s_isdispose;//是否受处理
+    private String s_isfinish;//是否被完成
     private Integer d_id;//字典id（服务类别）
     private Integer e_id;//处理员工id
-    private Date s_aTime;//服务预约时间
+    private Date s_atime;//服务预约时间
     private Float s_price;//服务价格
 
     public Service() {
@@ -21,19 +21,19 @@ public class Service {
     public Service(int s_id, int p_id, String s_isdispose, String s_isfinish, int d_id) {
         this.s_id = s_id;
         this.p_id = p_id;
-        this.s_isDispose = s_isdispose;
-        this.s_isFinish = s_isfinish;
+        this.s_isdispose = s_isdispose;
+        this.s_isfinish = s_isfinish;
         this.d_id = d_id;
     }
 
     public Service(int s_id, int p_id, String s_isDispose, String s_isFinish, int d_id, int e_id, Date s_aTime, float s_price) {
         this.s_id = s_id;
         this.p_id = p_id;
-        this.s_isDispose = s_isDispose;
-        this.s_isFinish = s_isFinish;
+        this.s_isdispose = s_isDispose;
+        this.s_isfinish = s_isFinish;
         this.d_id = d_id;
         this.e_id = e_id;
-        this.s_aTime = s_aTime;
+        this.s_atime = s_aTime;
         this.s_price = s_price;
     }
 
@@ -53,20 +53,20 @@ public class Service {
         this.p_id = p_id;
     }
 
-    public String getS_isDispose() {
-        return s_isDispose;
+    public String getS_isdispose() {
+        return s_isdispose;
     }
 
-    public void setS_isDispose(String s_isDispose) {
-        this.s_isDispose = s_isDispose;
+    public void setS_isdispose(String s_isdispose) {
+        this.s_isdispose = s_isdispose;
     }
 
-    public String getS_isFinish() {
-        return s_isFinish;
+    public String getS_isfinish() {
+        return s_isfinish;
     }
 
-    public void setS_isFinish(String s_isFinish) {
-        this.s_isFinish = s_isFinish;
+    public void setS_isfinish(String s_isfinish) {
+        this.s_isfinish = s_isfinish;
     }
 
     public Integer getD_id() {
@@ -85,12 +85,12 @@ public class Service {
         this.e_id = e_id;
     }
 
-    public Date getS_aTime() {
-        return s_aTime;
+    public Date getS_atime() {
+        return s_atime;
     }
 
-    public void setS_aTime(Date s_aTime) {
-        this.s_aTime = s_aTime;
+    public void setS_atime(Date s_atime) {
+        this.s_atime = s_atime;
     }
 
     public Float getS_price() {
@@ -106,11 +106,11 @@ public class Service {
         return "Service{" +
                 "s_id=" + s_id +
                 ", p_id=" + p_id +
-                ", s_isDispose='" + s_isDispose + '\'' +
-                ", s_isFinish='" + s_isFinish + '\'' +
+                ", s_isdispose='" + s_isdispose + '\'' +
+                ", s_isfinish='" + s_isfinish + '\'' +
                 ", d_id=" + d_id +
                 ", e_id=" + e_id +
-                ", s_aTime=" + s_aTime +
+                ", s_atime=" + s_atime +
                 ", s_price=" + s_price +
                 '}';
     }

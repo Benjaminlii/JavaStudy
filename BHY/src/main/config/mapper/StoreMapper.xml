@@ -18,12 +18,12 @@
             <if test="storeCustom.e_id != null and storeCustom.e_id != 0">
                 and e_id = #{storeCustom.e_id}
             </if>
-            <if test="storeCustom.s_address != null and storeCustom.s_address != ''">
-                and s_address like '%${storeCustom.s_address}%'
+            <if test="storeCustom.st_address != null and storeCustom.st_address != ''">
+                and st_address like '%${storeCustom.st_address}%'
             </if>
-            <!--<if test="storeCustom.st_time != null">-->
-                <!--and st_time = #{storeCustom.st_time}-->
-            <!--</if>-->
+            <if test="storeCustom.st_time != null">
+                and st_time = #{storeCustom.st_time}
+            </if>
             <if test="storeCustom.d_value != null and storeCustom.d_value != ''">
                 and d_value like '%${storeCustom.d_value}%'
             </if>
@@ -59,10 +59,35 @@
 
     <!-- #################### insert #################### -->
 
+    <!-- 添加一条宠物店信息 -->
+    <!-- 必须填充d_id(宠物店类型，前端下拉列表获得)字段 -->
+    <insert id="insertStore" parameterType="StoreCustom">
+        insert into store (d_id, e_id, st_address, st_time)
+        VALUES (#{d_id}, #{e_id}, #{st_address}, #{st_time});
+        <selectKey keyProperty="st_id" resultType="java.lang.Integer">
+            select last_insert_id();
+        </selectKey>
+    </insert>
+
 
     <!-- #################### update #################### -->
 
+    <!-- 更新一条宠物店信息 -->
+    <!-- st_id为检索信息，其他字段都为更改后的新信息 -->
+    <update id="updateStore" keyProperty="StoreCustom">
+        update store
+        set d_id       = #{d_id},
+            e_id       = #{e_id},
+            st_address = #{st_address},
+            st_time    = #{st_time}
+        where st_id = #{st_id};
+    </update>
+
 
     <!-- #################### delete #################### -->
+    <!-- 根据st_id删除一个店铺 -->
+    <delete id="deleteStore" parameterType="java.lang.Integer">
+        delete from store where st_id = #{value};
+    </delete>
 
 </mapper>

@@ -1,9 +1,12 @@
+import entity.EmployeeQueryVo;
+import service.EmployeeService;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        Map<String, String> map = new HashMap<>();
-
+        EmployeeQueryVo employeeQueryVo = new EmployeeQueryVo();
+        System.out.println(EmployeeService.findEmployeeLimitInDetail(employeeQueryVo));
     }
 }

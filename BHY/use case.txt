@@ -7,29 +7,31 @@
 宠物（Pet）信息管理
     展示全部信息，列表 /BHY/FindAllPetServlet
     添加 /BHY/AddPetServlet
-    更新
-    删除
+    更新 /BHY/UpdatePetServlet
+    删除 /BHY/DeletePetServlet
 
 服务（service）管理
     展示已提交的服务项清单 /BHY/FindServiceLimitServlet
-    提交服务
-    修改服务内容
-    删除服务项
+    提交服务 /BHY/AddServiceServlet
+    修改服务内容 /BHY/UpdateServiceServlet
+    删除服务项 /BHY/DeleteServiceServlet
 
 销售单（record）管理
     展示所有销售记录 /BHY/FindRecordLimitServlet
-    添加一条销售记录（页面分为进货和出售）
-    修改信息
-    删除信息
+    添加一条销售记录（页面分为进货和出售） /BHY/AddRecordServlet
+    修改信息 /BHY/UpdateRecordServlet
+    删除信息 /BHY/DeleteRecordServlet
 
 宠物店（store）管理
     展示所有店铺信息 /BHY/FindAllStoreServlet
-    注册新店铺
-    修改店铺信息
-    注销一个店铺
+    注册新店铺 /BHY/AddStoreServlet
+    修改店铺信息 /BHY/UpdateStoreServlet
+    注销一个店铺 /BHY/DeleteStoreServlet
 
 仓库货物（cargo）管理
     货物清单 /BHY/FindCargoLimitServlet
+    进货关联
+    销售关联
 
 员工（employee）管理
     全部员工信息展示（部分） /BHY/FindEmployeeLimitServlet

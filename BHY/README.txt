@@ -87,9 +87,9 @@
     [分页][条件]查找宠物店信息
     参数：查询条件和分页信息
     返回值：[
-                 {"d_id":16,"d_value":"总店","e_id":0,"e_name":"","s_address":"","st_id":1,"st_time":null},
-                 {"d_id":17,"d_value":"省店","e_id":0,"e_name":"","s_address":"","st_id":2,"st_time":null},
-                 {"d_id":18,"d_value":"市店","e_id":0,"e_name":"","s_address":"","st_id":3,"st_time":null}
+                 {"d_id":16,"d_value":"总店","e_id":0,"e_name":"","st_address":"","st_id":1,"st_time":null},
+                 {"d_id":17,"d_value":"省店","e_id":0,"e_name":"","st_address":"","st_id":2,"st_time":null},
+                 {"d_id":18,"d_value":"市店","e_id":0,"e_name":"","st_address":"","st_id":3,"st_time":null}
             ]
 
 //
@@ -132,9 +132,9 @@
     [分页][条件]查询服务项信息
     参数：查询条件和分页
     返回值：[
-             {"d_id":37,"d_value":"看病","e_id":0,"e_name":"","p_id":1,"s_aTime":null,"s_id":1,"s_isDispose":"true","s_isFinish":"true","s_price":0},
-             {"d_id":38,"d_value":"体检","e_id":0,"e_name":"","p_id":3,"s_aTime":null,"s_id":2,"s_isDispose":"false","s_isFinish":"false","s_price":0},
-             {"d_id":38,"d_value":"体检","e_id":0,"e_name":"","p_id":4,"s_aTime":null,"s_id":3,"s_isDispose":"true","s_isFinish":"false","s_price":0}
+             {"d_id":37,"d_value":"看病","e_id":0,"e_name":"","p_id":1,"s_atime":null,"s_id":1,"s_isdispose":"true","s_isfinish":"true","s_price":0},
+             {"d_id":38,"d_value":"体检","e_id":0,"e_name":"","p_id":3,"s_atime":null,"s_id":2,"s_isdispose":"false","s_isfinish":"false","s_price":0},
+             {"d_id":38,"d_value":"体检","e_id":0,"e_name":"","p_id":4,"s_atime":null,"s_id":3,"s_isdispose":"true","s_isfinish":"false","s_price":0}
             ]
 
 //
@@ -143,6 +143,65 @@
     p_id为检索信息，其他为更新信息，包括st_id， p_age， p_sex， p_height， p_healthy， cl_id
     更新成功返回rtn：1， 失败返回rtn：0
 
+//
+/BHY/DeletePetServlet:
+    删除一条宠物信息,宠物被连接的外键需要被清空（服务）
+    参数：p_id
+    删除成功返回rtn：1， 否则rtn：0
+
+//
+/BHY/AddServiceServlet：
+    插入一条服务项信息
+    插入的服务信息必须要提供宠物id， 字典id（服务类型）， 员工id
+    插入成功返回rtn:1，否则返回rtn:0
+
+//
+/BHY/UpdateServiceServlet:
+    更新服务项内容
+    serviceCustom s_id作为见多信息，其他都为要修改的新信息,宠物id， 字典id（服务类型）不为空
+    更新成功返回rtn:1，否则返回rtn:0
+
+//
+/BHY/DeleteServiceServlet:
+    删除一条服务项信息
+    只需要s_id字段
+    删除成功返回rtn:1，否则返回rtn:0
+
+//
+/BHY/AddRecordServlet:
+    添加一条销售单信息，回返r_id
+    必须包括顾客手机号码，登陆状态，c_id前端下拉菜单（或通过点击货物进入下单页面），当前时间，售出价格，购买数量
+    插入成功返回rtn:1，否则返回rtn:0
+
+//
+/BHY/UpdateRecordServlet:
+    更新一条销售记录，r_id为查找索引，其他信息都为更新信息
+    可以更改的信息：销售物品（c_id）销售时间（r_time），销售金额（r_price），销售数量（r_num），支付方式（r_pattern）
+    更新成功返回rtn:1，否则返回rtn:0
+
+//
+/BHY/DeleteRecordServlet:
+    删除一条销售记录
+    要删除的销售记录信息，只需要填充r_id字段
+    删除成功返回rtn:1，否则返回rtn:0
+
+//
+/BHY/AddStoreServlet:
+    添加一条宠物店信息
+    新建的宠物店信息，必须填充d_id(宠物店类型，前端下拉列表获得)字段
+    插入成功返回true，否则返回false
+
+//
+/BHY/UpdateStoreServlet:
+    更新一条宠物店信息
+    更新的信息，st_id为检索信息，其他字段都为更改后的新信息
+    成功返回rtn:1，否则返回rtn:0
+
+//
+/BHY/DeleteStoreServlet:
+    删除一条宠物店信息
+    要进行删除的宠物店的信息，其中st_id必须被填充,并且st_id字段不能被其他表的外键关联
+    删除成功返回rtn:1，否则返回rtn:0
 
 
 
@@ -163,6 +222,33 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+！！！！！！！！！！！！！！！！！！！！！！！！
+        关于宠物店的连接查询填充字段
+！！！！！！！！！！！！！！！！！！！！！！！！
 
         //设置编码
         request.setCharacterEncoding("utf-8");
@@ -170,7 +256,6 @@
 
         //设置输出
         PrintWriter pw = response.getWriter();
-
         JSONObject jsonObject = new JSONObject();
 
         //封装数据
@@ -178,23 +263,14 @@
         //调用业务逻辑
 
         //输出
-        pw.print();
+        pw.print(jsonObject);
         pw.close();
 
 
-    <!-- #################### SQL片段 #################### -->
-
-
-    <!-- #################### resultMap #################### -->
-
-
-    <!-- #################### select #################### -->
-
-
-    <!-- #################### insert #################### -->
-
-
-    <!-- #################### update #################### -->
-
-
-    <!-- #################### delete #################### -->
+            //封装数据
+            //注册转换器
+            DateConverter dateConverter = new DateConverter();
+            //设置日期格式
+            dateConverter.setPatterns(new String[]{"yyyy-MM-dd","yyyy-MM-dd HH:mm:ss"});
+            //注册格式
+            ConvertUtils.register(dateConverter, Date.class);

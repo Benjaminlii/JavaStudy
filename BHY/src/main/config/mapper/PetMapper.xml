@@ -87,4 +87,9 @@
     </update>
     <!-- #################### delete #################### -->
 
+    <!-- 删除宠物信息 -->
+    <delete id="deletePet" parameterType="java.lang.Integer">
+        delete from pet where p_id = #{value};
+    </delete>
+
 </mapper>

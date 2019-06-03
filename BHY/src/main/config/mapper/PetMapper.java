@@ -27,4 +27,11 @@ public interface PetMapper {
      * @return 是否更新成功
      */
     public boolean updatePet(PetCustom petCustom) throws Exception;
+
+    /**
+     * 删除一条宠物信息
+     * @param p_id 要删除的宠物信息的p_id
+     * @return 删除成功返回true，否则返回
+     */
+    public boolean deletePet(Integer p_id) throws Exception;
 }

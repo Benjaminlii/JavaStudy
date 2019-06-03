@@ -15,11 +15,11 @@
             <if test="serviceCustom.p_id != null and serviceCustom.p_id != 0">
                 and p_id = #{serviceCustom.p_id}
             </if>
-            <if test="serviceCustom.s_isDispose != null and serviceCustom.s_isDispose != ''">
-                and s_isDispose like '%${serviceCustom.s_isDispose}%'
+            <if test="serviceCustom.s_isdispose != null and serviceCustom.s_isdispose != ''">
+                and s_isdispose like '%${serviceCustom.s_isdispose}%'
             </if>
-            <if test="serviceCustom.s_isFinish != null and serviceCustom.s_isFinish != ''">
-                and s_isFinish like '%${serviceCustom.s_isFinish}%'
+            <if test="serviceCustom.s_isfinish != null and serviceCustom.s_isfinish != ''">
+                and s_isfinish like '%${serviceCustom.s_isfinish}%'
             </if>
             <if test="serviceCustom.d_id != null and serviceCustom.d_id != 0">
                 and d_id = #{serviceCustom.d_id}
@@ -27,8 +27,8 @@
             <if test="serviceCustom.e_id != null and serviceCustom.e_id != 0">
                 and e_id = #{serviceCustom.e_id}
             </if>
-            <!--<if test="serviceCustom.s_aTime != null">-->
-                <!--and s_aTime = #{serviceCustom.s_aTime}-->
+            <!--<if test="serviceCustom.s_atime != null">-->
+                <!--and s_atime = #{serviceCustom.s_atime}-->
             <!--</if>-->
             <if test="serviceCustom.s_price != null and serviceCustom.s_price != 0">
                 and s_price = #{serviceCustom.s_price}
@@ -66,10 +66,32 @@
 
     <!-- #################### insert #################### -->
 
+    <!-- 添加一条服务信息，回返服务信息s_id -->
+    <!-- 必须要提供的信息：宠物id， 字典id， 员工id -->
+    <insert id="insertService" parameterType="ServiceCustom">
+        insert into service (p_id, s_isdispose, s_isfinish, d_id, e_id, s_atime, s_price)
+        VALUES (#{p_id},#{s_isdispose},#{s_isfinish},#{d_id},#{e_id},#{s_atime},#{s_price});
+        <selectKey keyProperty="p_id" order="AFTER" resultType="java.lang.Integer">
+            select last_insert_id();
+        </selectKey>
+    </insert>
+
 
     <!-- #################### update #################### -->
 
+    <!-- 更新服务项内容 -->
+    <!-- 传入的信息中，s_id作为见多信息，其他都为要修改的新信息 -->
+    <update id="updateService" parameterType="ServiceCustom">
+        update service set p_id=#{p_id},s_isdispose=#{s_isdispose},s_isfinish=#{s_isfinish},d_id=#{d_id},e_id=#{e_id},s_atime=#{s_atime},s_price=#{s_price} where s_id = #{s_id}
+    </update>
+
 
     <!-- #################### delete #################### -->
+
+    <!-- 根据s_id删除一条服务记录 -->
+    <delete id="deleteService" parameterType="java.lang.Integer">
+        delete from service where s_id = #{value};
+    </delete>
+
 
 </mapper>

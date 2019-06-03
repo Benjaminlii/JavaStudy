@@ -1,6 +1,5 @@
 package servlet;
 
-import entity.User;
 import entity.UserCustom;
 import entity.UserQueryVo;
 import net.sf.json.JSONObject;

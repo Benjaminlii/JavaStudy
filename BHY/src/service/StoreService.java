@@ -45,4 +45,64 @@ public class StoreService {
         }
         return storeCustoms;
     }
+
+    /**
+     * 添加一条宠物店信息
+     * @param storeCustom 新建的宠物店信息，必须填充d_id(宠物店类型，前端下拉列表获得)字段
+     * @return 插入成功返回true，否则返回false
+     */
+    public static boolean insertStore(StoreCustom storeCustom){
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
+        boolean rtn = false;
+
+        try {
+            rtn = storeMapper.insertStore(storeCustom);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return rtn;
+    }
+
+    /**
+     * 更新一条宠物店信息
+     * @param storeCustom 更新的信息，st_id为检索信息，其他字段都为更改后的新信息
+     * @return 成功返回true，否则返回false
+     */
+    public static boolean updateStore(StoreCustom storeCustom){
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
+        boolean rtn = false;
+
+        try {
+            rtn = storeMapper.updateStore(storeCustom);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return rtn;
+    }
+
+    /**
+     * 删除一条宠物店信息
+     * @param storeCustom 要进行删除的宠物店的信息，其中st_id必须被填充
+     * @return 删除成功返回true，否则返回false
+     */
+    public static boolean deleteStore(StoreCustom storeCustom){
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        StoreMapper storeMapper = sqlSession.getMapper(StoreMapper.class);
+        boolean rtn = false;
+
+        try {
+            rtn = storeMapper.deleteStore(storeCustom.getSt_id());
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return rtn;
+    }
 }
