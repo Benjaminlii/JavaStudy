@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.config.mapper.ClientMapper">
+
+    <!-- #################### SQL片段 #################### -->
+
+    <!-- 条件查询 -->
+    <sql id="findClientInDetailWhere">
+        <if test="clientCustom != null">
+            <if test="clientCustom.cl_id != null and clientCustom.cl_id != 0">
+                and cl_id = #{clientCustom.cl_id}
+            </if>
+            <if test="clientCustom.cl_name != null and clientCustom.cl_name != ''">
+                and cl_name like '%${clientCustom.cl_name}%'
+            </if>
+            <if test="clientCustom.mobile != null and clientCustom.mobile != ''">
+                and mobile = #{clientCustom.mobile}
+            </if>
+            <if test="clientCustom.u_id != null and clientCustom.u_id != 0">
+                and u_id = #{clientCustom.u_id}
+            </if>
+            <if test="clientCustom.cl_age != null and clientCustom.cl_age != 0">
+                and cl_age = #{clientCustom.cl_age}
+            </if>
+            <if test="clientCustom.cl_sex != null and clientCustom.cl_sex != ''">
+                and cl_sex = #{clientCustom.cl_sex}
+            </if>
+            <if test="clientCustom.cl_emil != null and clientCustom.cl_emil != ''">
+                and cl_emil = #{clientCustom.cl_emil}
+            </if>
+        </if>
+    </sql>
+
+    <!-- 分页查询 -->
+    <sql id="limit">
+        <if test="page != null">
+            limit #{page.offSet}, #{page.size}
+        </if>
+    </sql>
+
+
+    <!-- #################### resultMap #################### -->
+
+    <!-- #################### select #################### -->
+
+    <!-- [分页][条件]查询用户 -->
+    <select id="findClientLimitInDetail" parameterType="ClientQueryVo" resultType="ClientCustom">
+        select *
+        from client
+        <where>
+            <include refid="findClientInDetailWhere"/>
+        </where>
+        <include refid="limit"/>
+    </select>
+
+    <!-- 根据手机号查询用户 -->
+    <select id="findClientByMobile" parameterType="ClientQueryVo" resultType="ClientCustom">
+        select *
+        from client
+        where mobile = #{clientCustom.mobile};
+    </select>
+
+    <!-- #################### insert #################### -->
+
+    <!-- 插入一条client数据(这里本来应该通过视图插入，但是client表未产生视图) -->
+    <insert id="insertClient" parameterType="ClientCustom">
+        insert into client (cl_name, mobile, u_id, cl_age, cl_sex, cl_emil)
+        VALUES (#{cl_name}, #{mobile}, #{u_id}, #{cl_age}, #{cl_sex}, #{cl_emil});
+        <selectKey keyProperty="cl_id" order="AFTER" resultType="java.lang.Integer">
+            select last_insert_id();
+        </selectKey>
+    </insert>
+
+    <!-- #################### update #################### -->
+
+    <!-- #################### delete #################### -->
+
+</mapper>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.config.mapper.ServiceMapper">
+
+    <!-- #################### SQL片段 #################### -->
+
+    <!-- 条件查询 -->
+    <sql id="findServiceInDetailWhere">
+        <if test="serviceCustom != null">
+            <if test="serviceCustom.s_id != null and serviceCustom.s_id != 0">
+                and s_id = #{serviceCustom.s_id}
+            </if>
+            <if test="serviceCustom.p_id != null and serviceCustom.p_id != 0">
+                and p_id = #{serviceCustom.p_id}
+            </if>
+            <if test="serviceCustom.s_isdispose != null and serviceCustom.s_isdispose != ''">
+                and s_isdispose like '%${serviceCustom.s_isdispose}%'
+            </if>
+            <if test="serviceCustom.s_isfinish != null and serviceCustom.s_isfinish != ''">
+                and s_isfinish like '%${serviceCustom.s_isfinish}%'
+            </if>
+            <if test="serviceCustom.d_id != null and serviceCustom.d_id != 0">
+                and d_id = #{serviceCustom.d_id}
+            </if>
+            <if test="serviceCustom.e_id != null and serviceCustom.e_id != 0">
+                and e_id = #{serviceCustom.e_id}
+            </if>
+            <!--<if test="serviceCustom.s_atime != null">-->
+                <!--and s_atime = #{serviceCustom.s_atime}-->
+            <!--</if>-->
+            <if test="serviceCustom.s_price != null and serviceCustom.s_price != 0">
+                and s_price = #{serviceCustom.s_price}
+            </if>
+            <if test="serviceCustom.d_value != null and serviceCustom.d_value != ''">
+                and d_value like '%${serviceCustom.d_value}%'
+            </if>
+            <if test="serviceCustom.e_name != null and serviceCustom.e_name != ''">
+                and e_name like '%${serviceCustom.e_name}%'
+            </if>
+        </if>
+    </sql>
+
+    <!-- 分页查询 -->
+    <sql id="limit">
+        <if test="page != null">
+            limit #{page.offSet}, #{page.size}
+        </if>
+    </sql>
+
+    <!-- #################### resultMap #################### -->
+
+
+    <!-- #################### select #################### -->
+
+    <!-- [分页][条件]查询服务项 -->
+    <select id="findServiceLimitInDetail" parameterType="ServiceQueryVo" resultType="ServiceCustom">
+        select *
+        from servicecustom
+        <where>
+            <include refid="findServiceInDetailWhere"/>
+        </where>
+        <include refid="limit"/>
+    </select>
+
+    <!-- #################### insert #################### -->
+
+    <!-- 添加一条服务信息，回返服务信息s_id -->
+    <!-- 必须要提供的信息：宠物id， 字典id， 员工id -->
+    <insert id="insertService" parameterType="ServiceCustom">
+        insert into service (p_id, s_isdispose, s_isfinish, d_id, e_id, s_atime, s_price)
+        VALUES (#{p_id},#{s_isdispose},#{s_isfinish},#{d_id},#{e_id},#{s_atime},#{s_price});
+        <selectKey keyProperty="p_id" order="AFTER" resultType="java.lang.Integer">
+            select last_insert_id();
+        </selectKey>
+    </insert>
+
+
+    <!-- #################### update #################### -->
+
+    <!-- 更新服务项内容 -->
+    <!-- 传入的信息中，s_id作为见多信息，其他都为要修改的新信息 -->
+    <update id="updateService" parameterType="ServiceCustom">
+        update service set p_id=#{p_id},s_isdispose=#{s_isdispose},s_isfinish=#{s_isfinish},d_id=#{d_id},e_id=#{e_id},s_atime=#{s_atime},s_price=#{s_price} where s_id = #{s_id}
+    </update>
+
+
+    <!-- #################### delete #################### -->
+
+    <!-- 根据s_id删除一条服务记录 -->
+    <delete id="deleteService" parameterType="java.lang.Integer">
+        delete from service where s_id = #{value};
+    </delete>
+
+
+</mapper>

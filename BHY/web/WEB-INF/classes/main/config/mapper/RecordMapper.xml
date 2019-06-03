@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.config.mapper.RecordMapper">
+
+    <!-- #################### SQL片段 #################### -->
+
+    <sql id="findRecordInDetailWhere">
+        <if test="recordCustom != null">
+            <if test="recordCustom.r_id != null and recordCustom.r_id != 0">
+                and r_id = #{recordCustom.r_id}
+            </if>
+            <if test="recordCustom.cl_id != null and recordCustom.cl_id != 0">
+                and cl_id = #{recordCustom.cl_id}
+            </if>
+            <if test="recordCustom.st_id != null and recordCustom.st_id != 0">
+                and st_id = #{recordCustom.st_id}
+            </if>
+            <if test="recordCustom.c_id != null and recordCustom.c_id != 0">
+                and c_id = #{recordCustom.c_id}
+            </if>
+            <!--<if test="recordCustom.r_time != null">-->
+            <!--and r_time = #{recordCustom.r_time}-->
+            <!--</if>-->
+            <if test="recordCustom.r_price != null and recordCustom.r_price != 0">
+                and r_price = #{recordCustom.r_price}
+            </if>
+            <if test="recordCustom.r_num != null and recordCustom.r_num != 0">
+                and r_num = #{recordCustom.r_num}
+            </if>
+            <if test="recordCustom.r_pattern != null and recordCustom.r_pattern != ''">
+                and r_pattern like '%${recordCustom.r_pattern}%'
+            </if>
+            <if test="recordCustom.cl_name != null and recordCustom.cl_name != ''">
+                and cl_name like '%${recordCustom.cl_name}%'
+            </if>
+            <if test="recordCustom.st_address != null and recordCustom.st_address != ''">
+                and st_address like '%${recordCustom.st_address}%'
+            </if>
+            <if test="recordCustom.c_name != null and recordCustom.c_name != ''">
+                and c_name like '%${recordCustom.c_name}%'
+            </if>
+        </if>
+    </sql>
+
+    <!-- 分页查询 -->
+    <sql id="limit">
+        <if test="page != null">
+            limit #{page.offSet}, #{page.size}
+        </if>
+    </sql>
+
+    <!-- #################### resultMap #################### -->
+
+
+    <!-- #################### select #################### -->
+
+    <select id="findRecordLimitInDetail" parameterType="RecordQueryVo" resultType="RecordCustom">
+        select *
+        from recordcustom
+        <where>
+            <include refid="findRecordInDetailWhere"/>
+        </where>
+        <include refid="limit"/>
+    </select>
+
+
+    <!-- #################### insert #################### -->
+
+    <!-- 添加一条销售单信息，回返r_id -->
+    <!-- 必须包括顾客手机号码，登陆状态，c_id前端下拉菜单（或通过点击货物进入下单页面），当前时间，售出价格，购买数量 -->
+    <insert id="insertRecord" parameterType="RecordQueryVo">
+        insert into record (cl_id, st_id, c_id, r_time, r_price, r_num, r_pattern)
+        VALUES ((select client.cl_id from client where mobile = #{mobile}),(select employee.st_id from employee where
+        u_id=#{user.u_id}),#{recordCustom.c_id},#{recordCustom.r_time},#{recordCustom.r_price},#{recordCustom.r_num},#{recordCustom.r_pattern});
+        <selectKey keyProperty="recordCustom.r_id" order="AFTER" resultType="java.lang.Integer">
+            select last_insert_id();
+        </selectKey>
+    </insert>
+
+
+    <!-- #################### update #################### -->
+
+    <!-- 更新一条销售记录，r_id为查找索引，其他信息都为更新信息 -->
+    <!-- 可以更改的信息：销售物品（c_id）销售时间（r_time），销售金额（r_price），销售数量（r_num），支付方式（r_pattern） -->
+    <update id="updateRecord" parameterType="RecordCustom">
+        update record
+        set c_id      = #{c_id},
+            r_time    = #{r_time},
+            r_price   = #{r_price},
+            r_num     = #{r_num},
+            r_pattern = #{r_pattern}
+        where r_id = #{r_id};
+    </update>
+
+
+    <!-- #################### delete #################### -->
+
+    <!-- 删除一条销售记录 -->
+    <delete id="deleteRecord" parameterType="java.lang.Integer">
+        delete from record where r_id = #{value}
+    </delete>
+
+</mapper>
