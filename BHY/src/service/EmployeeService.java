@@ -45,4 +45,43 @@ public class EmployeeService {
         }
         return employeeCustoms;
     }
+
+    /**
+     * 更新员工信息
+     * @param employeeCustom 包装更新信息，e_id为检索信息，其他为更新信息
+     *                       可以更新的信息：姓名e_name，工资e_salary，所属宠物店st_id，职务d_id，年龄e_age
+     * @return 更新成功返回true，否则返回false
+     */
+    public static boolean updateEmployee(EmployeeCustom employeeCustom){
+        boolean rtn = false;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
+
+        try {
+            rtn = employeeMapper.updateEmployee(employeeCustom);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rtn;
+    }
+
+    /**
+     * 删除一条员工信息
+     * @param employeeCustom 要删除的员工的信息，只需要填充e_id字段
+     * @return 删除成功返回true，否则返回false
+     */
+    public static boolean deleteEmployee(EmployeeCustom employeeCustom){
+        boolean rtn = false;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
+
+        try {
+            rtn = employeeMapper.deleteEmployee(employeeCustom.getE_id());
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rtn;
+    }
 }

@@ -64,14 +64,8 @@
 //
 /BHY/AddPetServlet：
     添加一条宠物信息
-    参数： 宠物品种 d_id
-           顾客手机号 mobile
-           宠物店id st_id
-           [年龄 p_age
-           性别 p_sex
-           体重 p_height]
-    返回值：添加成功返回rtn：1
-            失败返回rtn：3
+    参数： 宠物品种 d_id，顾客手机号 mobile，宠物店id s_id(不需要提供，后台根据登陆用户查询)[，年龄 p_age，性别 p_sex，体重 p_height]
+    返回值：添加成功返回rtn：1，否则返回rtn：0
 
 //
 /BHY/FindClientLimitServlet:
@@ -203,12 +197,64 @@
     要进行删除的宠物店的信息，其中st_id必须被填充,并且st_id字段不能被其他表的外键关联
     删除成功返回rtn:1，否则返回rtn:0
 
+//
+/BHY/UpdateEmployeeServlet:
+    更新员工信息
+    参数：包装更新信息，e_id为检索信息，其他为更新信息
+          可以更新的信息：姓名e_name，工资e_salary，所属宠物店st_id，职务d_id，年龄e_age
+          更新成功返回rtn:1，否则返回rtn:0
 
+//
+/BHY/DeleteEmployeeServlet:
+    删除一条员工信息
+    要删除的员工的信息，只需要填充e_id字段
+    删除成功返回rtn:1，否则返回rtn:0
 
+//
+/BHY/UpdateClientServlet:
+    更新一条顾客信息
+    cl_id为检索信息，其他为更新信息
+    更新成功返回true，否则返回false
 
+//
+/BHY/FindDicByParValueServlet：
+    根据父节点的value查找其子结点
+    参数：查询信息，只需要填充d_value字段
+    返回值：[
+                 {"d_name":"dog","d_par_id":19,"d_id":22,"d_value":"杂种狗"},
+                 {"d_name":"dog","d_par_id":19,"d_id":25,"d_value":"哈士奇"},
+                 {"d_name":"dog","d_par_id":19,"d_id":26,"d_value":"阿拉斯加"},
+                 {"d_name":"dog","d_par_id":19,"d_id":27,"d_value":"柯基"},
+                 {"d_name":"dog","d_par_id":19,"d_id":28,"d_value":"萨摩耶"},
+                 {"d_name":"dog","d_par_id":19,"d_id":29,"d_value":"泰迪"}
+            ]
 
-
-
+//
+/BHY/FindDicLimitServlet:
+    分页查询字典信息
+    只需要填充分页信息 page = ?
+    返回值：[
+                 {"d_name":"dog","d_par_id":19,"d_id":22,"d_value":"杂种狗"},
+                 {"d_name":"cat","d_par_id":20,"d_id":23,"d_value":"杂种猫"},
+                 {"d_name":"dog","d_par_id":19,"d_id":25,"d_value":"哈士奇"},
+                 {"d_name":"dog","d_par_id":19,"d_id":26,"d_value":"阿拉斯加"},
+                 {"d_name":"dog","d_par_id":19,"d_id":27,"d_value":"柯基"},
+                 {"d_name":"dog","d_par_id":19,"d_id":28,"d_value":"萨摩耶"},
+                 {"d_name":"dog","d_par_id":19,"d_id":29,"d_value":"泰迪"},
+                 {"d_name":"cat","d_par_id":20,"d_id":30,"d_value":"短毛猫"},
+                 {"d_name":"cat","d_par_id":20,"d_id":31,"d_value":"布偶猫"},
+                 {"d_name":"cat","d_par_id":20,"d_id":32,"d_value":"加菲猫"},
+                 {"d_name":"cat","d_par_id":20,"d_id":33,"d_value":"橘猫"},
+                 {"d_name":"medical","d_par_id":6,"d_id":34,"d_value":"医疗"},
+                 {"d_name":"clean","d_par_id":6,"d_id":35,"d_value":"清洁"},
+                 {"d_name":"medical","d_par_id":34,"d_id":36,"d_value":"疫苗注射"},
+                 {"d_name":"medical","d_par_id":34,"d_id":37,"d_value":"看病"},
+                 {"d_name":"medical","d_par_id":34,"d_id":38,"d_value":"体检"},
+                 {"d_name":"clean","d_par_id":35,"d_id":39,"d_value":"洗澡"},
+                 {"d_name":"clean","d_par_id":35,"d_id":40,"d_value":"剪指甲"},
+                 {"d_name":"EmplpyeeType","d_par_id":7,"d_id":41,"d_value":"店长"},
+                 {"d_name":"EmplpyeeType","d_par_id":7,"d_id":42,"d_value":"医师"}
+           ]
 
 
 

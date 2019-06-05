@@ -12,4 +12,11 @@ public interface CargoMapper {
      * @return 查询出的CargoCustom列表
      */
     public List<CargoCustom> findCargoLimitInDetail(CargoQueryVo cargoQueryVo) throws Exception;
+
+    /**
+     * 进货和销售
+     * @param cargoCustom 通过c_id确定销售的货物，根据c_num对数量进行更更新
+     * @return 成功返回true，否则返回false
+     */
+    public boolean inAndOutCargo(CargoCustom cargoCustom)throws Exception;
 }

@@ -18,7 +18,7 @@ import java.util.List;
 public class CargoService {
     private static SqlSessionFactory sqlSessionFactory;
 
-    static  {
+    static {
         try (
                 InputStream inputStream = Resources.getResourceAsStream("main/config/SqlMapConfig.xml")
         ) {
@@ -30,10 +30,11 @@ public class CargoService {
 
     /**
      * [分页][条件]查询货物信息
+     *
      * @param cargoQueryVo 查询条件
      * @return 查询出的list
      */
-    public static List<CargoCustom> findCargoLimitInDetail(CargoQueryVo cargoQueryVo){
+    public static List<CargoCustom> findCargoLimitInDetail(CargoQueryVo cargoQueryVo) {
         //得到SqlSession，这是不可少的步骤
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
@@ -47,4 +48,24 @@ public class CargoService {
         }
         return cargoCustoms;
     }
+
+//    /**
+//     * 进货和销售
+//     * @param cargoCustom 通过c_id确定销售的货物，根据c_num对数量进行更更新
+//     * @return 成功返回true，否则返回false
+//     */
+//    public static boolean inAndOutCargo(CargoCustom cargoCustom) {
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+//        CargoMapper cargoMapper = sqlSession.getMapper(CargoMapper.class);
+//        boolean rtn = false;
+//
+//        try {
+//            rtn = cargoMapper.inAndOutCargo(cargoCustom);
+//            sqlSession.commit();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        return rtn;
+//    }
 }

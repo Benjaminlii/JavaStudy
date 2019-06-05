@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.config.mapper.DictionaryMapper">
+
+    <!-- SQL片段 -->
+
+    <!-- 分页查询 -->
+    <sql id="limit">
+        <if test="page != null">
+            limit #{page.offSet}, #{page.size}
+        </if>
+    </sql>
+
+    <!-- resultMap -->
+
+    <!-- select -->
+
+    <!-- 分页查询所有字典数据 -->
+    <select id="findDicLimit" parameterType="DictionaryQueryVo" resultType="Dictionary">
+        select * from dictionary
+        <include refid="limit"/>
+    </select>
+
+    <!-- 根据父节点的value查找其子结点 -->
+    <select id="findDicByParValue" parameterType="Dictionary" resultType="Dictionary">
+        select * from dictionary where d_par_id = (select d_id from dictionary where d_value = #{d_value});
+    </select>
+
+    <!-- insert -->
+
+    <!-- update -->
+
+    <!-- delete -->
+
+</mapper>

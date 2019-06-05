@@ -34,7 +34,7 @@
                 and e_age = #{employeeCustom.e_age}
             </if>
             <!--<if test="employeeCustom.e_time != null">-->
-                <!--and e_time = #{employeeCustom.e_time}-->
+            <!--and e_time = #{employeeCustom.e_time}-->
             <!--</if>-->
             <if test="employeeCustom.st_address != null and employeeCustom.st_address != ''">
                 and st_address like '%${employeeCustom.st_address}%'
@@ -70,8 +70,6 @@
     </select>
 
 
-
-
     <!-- #################### insert #################### -->
 
     <!-- 插入一条数据 -->
@@ -85,7 +83,27 @@
 
     <!-- #################### update #################### -->
 
+    <!-- 更新员工信息 -->
+    <!-- e_id为检索信息，其他为更新信息 可以更新的信息：姓名e_name，工资e_salary，所属宠物店st_id，职务d_id，年龄e_age -->
+    <update id="updateEmployee" parameterType="EmployeeCustom">
+        update employee
+        set e_name   = #{e_name},
+            e_salary = #{e_salary},
+            st_id    = #{st_id},
+            d_id     = #{d_id},
+            e_age    = #{e_age},
+            e_sex    = #{e_sex},
+            e_time   = #{e_time},
+            u_id     = #{u_id}
+        where e_id = #{e_id};
+    </update>
 
     <!-- #################### delete #################### -->
+
+    <!-- 删除一条员工信息 -->
+    <!-- 根据e_id删除 -->
+    <delete id="deleteEmployee" parameterType="java.lang.Integer">
+        delete from employee where e_id = #{value};
+    </delete>
 
 </mapper>

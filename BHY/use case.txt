@@ -30,24 +30,24 @@
 
 仓库货物（cargo）管理
     货物清单 /BHY/FindCargoLimitServlet
-    进货关联
-    销售关联
+    进货关联 //
+    销售关联 //
 
 员工（employee）管理
     全部员工信息展示（部分） /BHY/FindEmployeeLimitServlet
-    添加新员工（同用户注册）
-    单个员工信息展示
-    员工信息更新
-    删除员工信息
+    添加新员工（同用户注册） (注册中实现了该功能)
+    员工信息更新 /BHY/UpdateEmployeeServlet
+    删除员工信息 /BHY/DeleteEmployeeServlet
 
 顾客管理
     展示所有顾客信息 /BHY/FindAllClientServlet
-    更新顾客信息
+    更新顾客信息 /BHY/UpdateClientServlet
     添加一条顾客信息 /BHY/AddClientServlet
 
 数据字典管理
-    展示
+    分页展示 /BHY/FindDicLimitServlet
     更改
+    根据父value查询子字典 /BHY/FindDicByParValueServlet
 
 
 

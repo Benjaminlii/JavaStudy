@@ -56,10 +56,10 @@
     </select>
 
     <!-- 根据手机号查询用户 -->
-    <select id="findClientByMobile" parameterType="ClientQueryVo" resultType="ClientCustom">
+    <select id="findClientByMobile" parameterType="java.lang.String" resultType="ClientCustom">
         select *
         from client
-        where mobile = #{clientCustom.mobile};
+        where mobile = #{value};
     </select>
 
     <!-- #################### insert #################### -->
@@ -74,6 +74,18 @@
     </insert>
 
     <!-- #################### update #################### -->
+
+    <!-- 更新一条顾客信息 -->
+    <!-- ci_id为检索条件，其他为更新的信息，没有必选项 -->
+    <update id="updateClient" parameterType="ClientCustom">
+        update client
+        set cl_name = #{cl_name},
+            mobile  = #{mobile},
+            cl_age  = #{cl_age},
+            cl_sex  = #{cl_sex},
+            cl_emil = #{cl_emil}
+        where cl_id = #{cl_id};
+    </update>
 
     <!-- #################### delete #################### -->
 

@@ -16,10 +16,10 @@ public interface PetMapper {
 
     /**
      * 插入一条宠物信息
-     * @param petCustom 插入的宠物信息
+     * @param petQueryVo 插入的宠物信息
      * @return 插入成功返回true，否则返回false
      */
-    public boolean insertPet(PetCustom petCustom) throws Exception;
+    public boolean insertPet(PetQueryVo petQueryVo) throws Exception;
 
     /**
      * 更新宠物信息

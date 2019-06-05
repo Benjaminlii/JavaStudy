@@ -31,22 +31,21 @@ public class PetService {
     /**
      * 添加宠物信息
      * 需要传入宠物品种（d_id），顾客姓名，顾客手机号（唯一索引）
-     * @param petQueryVo 宠物信息，需要宠物类型（d_id）
-     * @param clientQueryVo 顾客信息，只需要包装手机号mobile
+     * @param petQueryVo 宠物信息，需要宠物类型（d_id），其中的顾客信息，只需要包装手机号mobile
      * @return 顾客不存在或者数据库底层出现问题时返回false，成功添加返回true
      */
-    public static boolean addPet(PetQueryVo petQueryVo, ClientQueryVo clientQueryVo){
+    public static boolean addPet(PetQueryVo petQueryVo){
         boolean rtn = false;
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PetMapper petMapper = sqlSession.getMapper(PetMapper.class);
         ClientMapper clientMapper = sqlSession.getMapper(ClientMapper.class);
 
         try {
-            ClientCustom clientCustom = clientMapper.findClientByMobile(clientQueryVo);
+            ClientCustom clientCustom = clientMapper.findClientByMobile(petQueryVo.getClient().getMobile());
             if(clientCustom != null){
                 //手机号存在
                 petQueryVo.getPetCustom().setCl_id(clientCustom.getCl_id());
-                rtn = petMapper.insertPet(petQueryVo.getPetCustom());
+                rtn = petMapper.insertPet(petQueryVo);
                 sqlSession.commit();
             }
         } catch (Exception e) {

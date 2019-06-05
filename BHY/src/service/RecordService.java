@@ -53,15 +53,22 @@ public class RecordService {
     public static boolean insertRecord(RecordQueryVo recordQueryVo){
         SqlSession sqlSession = sqlSessionFactory.openSession();
         RecordMapper recordMapper = sqlSession.getMapper(RecordMapper.class);
-
+        CargoMapper cargoMapper = sqlSession.getMapper(CargoMapper.class);
         boolean rtn = false;
 
         try {
             rtn = recordMapper.insertRecord(recordQueryVo);
+            //更新货物信息
+            CargoCustom cargoCustom = new CargoCustom();
+            cargoCustom.setC_id(recordQueryVo.getRecordCustom().getC_id());
+            cargoCustom.setC_num(recordQueryVo.getRecordCustom().getR_num());
+//            CargoService.inAndOutCargo(cargoCustom);
+            cargoMapper.inAndOutCargo(cargoCustom);
             sqlSession.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
         return rtn;
     }

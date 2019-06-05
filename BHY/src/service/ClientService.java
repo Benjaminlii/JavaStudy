@@ -39,9 +39,10 @@ public class ClientService {
         boolean rtn = false;
 
         try {
-            if(clientMapper.findClientByMobile(clientQueryVo)==null){
+            if(clientMapper.findClientByMobile(clientQueryVo.getClientCustom().getMobile())==null){
                 //未找到已有的数据，手机号未登记
                 rtn = clientMapper.insertClient(clientQueryVo.getClientCustom());
+                sqlSession.commit();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,5 +67,25 @@ public class ClientService {
             e.printStackTrace();
         }
         return clientCustoms;
+    }
+
+    /**
+     * 更新一条顾客信息
+     * @param clientCustom cl_id为检索信息，其他为更新信息
+     * @return 更新成功返回true，否则返回false
+     */
+    public static boolean updateClient(ClientCustom clientCustom){
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ClientMapper clientMapper = sqlSession.getMapper(ClientMapper.class);
+        boolean rtn = false;
+
+        try {
+            rtn = clientMapper.updateClient(clientCustom);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return rtn;
     }
 }
