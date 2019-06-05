@@ -24,15 +24,15 @@
             <if test="cargoCustom.st_id != null and cargoCustom.st_id != 0">
                 and st_id = #{cargoCustom.st_id}
             </if>
-            <!--<if test="cargoCustom.c_getDate != null">-->
-                <!--and c_getDate = #{cargoCustom.c_getDate}-->
-            <!--</if>-->
-            <!--<if test="cargoCustom.c_producedDate != null">-->
-                <!--and c_producedDate = #{cargoCustom.c_producedDate}-->
-            <!--</if>-->
-            <!--<if test="cargoCustom.c_expirationDate != null">-->
-                <!--and c_expirationDate = #{cargoCustom.c_expirationDate}-->
-            <!--</if>-->
+            <if test="cargoCustom.c_getDate != null">
+                and c_getDate = #{cargoCustom.c_getDate}
+            </if>
+            <if test="cargoCustom.c_producedDate != null">
+                and c_producedDate = #{cargoCustom.c_producedDate}
+            </if>
+            <if test="cargoCustom.c_expirationDate != null">
+                and c_expirationDate = #{cargoCustom.c_expirationDate}
+            </if>
             <if test="cargoCustom.d_value != null and cargoCustom.d_value != ''">
                 and d_value = #{cargoCustom.d_value}
             </if>
@@ -66,6 +66,12 @@
     <!-- #################### insert #################### -->
 
     <!-- #################### update #################### -->
+
+    <!-- 进货和销售 -->
+    <!-- 通过c_id确定销售的货物，对数量进行更更新 -->
+    <update id="inAndOutCargo" parameterType="CargoCustom">
+        update cargo set c_num = c_num + #{c_num} where c_id = #{c_id};
+    </update>
 
     <!-- #################### delete #################### -->
 

@@ -71,10 +71,11 @@
     <!-- #################### insert #################### -->
 
     <!-- 增加一条宠物信息 -->
-    <insert id="insertPet" parameterType="PetCustom">
+    <insert id="insertPet" parameterType="PetQueryVo">
         insert into pet (cl_id, d_id, st_id, p_age, p_sex, p_height, p_healthy)
-        values (#{cl_id},#{d_id},#{st_id},#{p_age},#{p_sex},#{p_height},#{p_healthy});
-        <selectKey keyProperty="p_id" order="AFTER" resultType="java.lang.Integer">
+        values (#{petCustom.cl_id},#{petCustom.d_id},(select st_id from employee where u_id =
+        #{user.u_id}),#{petCustom.p_age},#{petCustom.p_sex},#{petCustom.p_height},#{petCustom.p_healthy});
+        <selectKey keyProperty="petCustom.p_id" order="AFTER" resultType="java.lang.Integer">
             select last_insert_id();
         </selectKey>
     </insert>
@@ -83,13 +84,23 @@
 
     <!-- 更新宠物信息 -->
     <update id="updatePet" parameterType="PetCustom">
-        update pet set st_id=#{st_id},p_age=#{p_age},p_sex=#{p_sex},p_height=#{p_height},p_healthy=#{p_healthy},cl_id=#{cl_id} where p_id=#{p_id};
+        update pet
+        set st_id     = #{st_id},
+            p_age     = #{p_age},
+            p_sex     = #{p_sex},
+            p_height  = #{p_height},
+            p_healthy = #{p_healthy},
+            cl_id     = #{cl_id}
+        where p_id = #{p_id};
     </update>
+
     <!-- #################### delete #################### -->
 
     <!-- 删除宠物信息 -->
     <delete id="deletePet" parameterType="java.lang.Integer">
-        delete from pet where p_id = #{value};
+        delete
+        from pet
+        where p_id = #{value};
     </delete>
 
 </mapper>
