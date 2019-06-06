@@ -20,4 +20,29 @@
     <bean id="service" class="testDI.ServiceImpl">
         <property name="dao" ref="dao"/>
     </bean>
+
+    <!--
+            使用Spring实现静态工厂
+            这里class为静态工厂的全类名
+            factory-method为静态工厂生产该对象是调用的静态方法名
+        -->
+    <bean id="demoBeanStaticFactory" class="testInject.staticFactory.MyBeanFactory" factory-method="getDemo"/>
+
+    <!--
+        Spring实例工厂
+        先配置实例工厂的bean
+        在要生产的bean中设置实例工厂以及方法
+        factory-bean为实例工厂的bean id
+        factory-method为实例工厂中的相应方法
+    -->
+    <bean id="factory" class="testInject.factory.MyBeanFactory"/>
+    <bean id="demoBeanFactory" factory-bean="factory" factory-method="getDemo"/>
+
+    <!--
+        作用域
+        singleton 单例
+        prototype 多例
+    -->
+    <!--<bean id="demoBeanScope" class="testScope.DemoImpl" scope="singleton"/>-->
+    <bean id="demoBeanScope" class="testScope.DemoImpl" scope="prototype"/>
 </beans>

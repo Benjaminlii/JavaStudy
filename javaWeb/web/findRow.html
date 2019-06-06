@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>findRow</title>
+    <script type="text/javascript">
+
+        function play() {
+            var tb = document.getElementById("tb");
+            for(var i = 0; i < 10; i++){
+                var tr = document.createElement("tr");
+
+                var td_id = document.createElement("td");
+                td_id.innerText = i;
+                var td_butten = document.createElement("td");
+                var button = document.createElement("button");
+                button.setAttribute("value", "alert("+i+")" );
+                button.setAttribute("onclick", "alert(" + i + ")");
+                td_butten.appendChild(button);
+
+                tr.appendChild(td_id);
+                tr.appendChild(td_butten);
+
+                tb.appendChild(tr);
+
+            }
+        }
+
+        function a(i) {
+            alert(i);
+        }
+    </script>
+</head>
+<body>
+<table>
+    <thead>
+    <th>id</th>
+    <th>button</th>
+    </thead>
+    <tbody id="tb">
+
+    </tbody>
+</table>
+<button onclick="play()"></button>
+</body>
+</html>
