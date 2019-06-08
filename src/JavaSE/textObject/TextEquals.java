@@ -1,7 +1,7 @@
 package JavaSE.textObject;
 
 /**
- * ÓÃÓÚ²âÊÔÖØĞ´object.equals()·½·¨
+ * ç”¨äºæµ‹è¯•é‡å†™object.equals()æ–¹æ³•
  * author Benjamin
  *
  */
@@ -29,16 +29,16 @@ class User{
     }
 
     public boolean equals(Object obj) {
-        if(this == obj)//ÏÈÅĞ¶ÏµØÖ·ÊÇ·ñÒ»ÖÂ
+        if(this == obj)//å…ˆåˆ¤æ–­åœ°å€æ˜¯å¦ä¸€è‡´
             return true;
-        if(obj == null)//ÅĞ¶Ï²ÎÊıÊÇ·ñÓĞÒıÓÃ¶ÔÏó
+        if(obj == null)//åˆ¤æ–­å‚æ•°æ˜¯å¦æœ‰å¼•ç”¨å¯¹è±¡
             return false;
-        if(this.getClass() != obj.getClass())//ÅĞ¶ÏÊÇ·ñÀàĞÍÏàÍ¬
+        if(this.getClass() != obj.getClass())//åˆ¤æ–­æ˜¯å¦ç±»å‹ç›¸åŒ
             return false;
-        if(!(obj instanceof User))//ÅĞ¶ÏÊÇ·ñ¿ÉÒÔÔìĞÍ
+        if(!(obj instanceof User))//åˆ¤æ–­æ˜¯å¦å¯ä»¥é€ å‹
             return false;
         else {
-            User one = (User)obj;//ÔìĞÍ£¬²¢ÖğÒ»±È½Ï¸÷ÏîÊµÀıÓò
+            User one = (User)obj;//é€ å‹ï¼Œå¹¶é€ä¸€æ¯”è¾ƒå„é¡¹å®ä¾‹åŸŸ
             return this.userName.equals(one.userName) && this.pwd.equals(one.pwd) && this.id == one.id;
         }
     }

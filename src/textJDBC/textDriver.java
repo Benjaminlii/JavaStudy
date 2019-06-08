@@ -7,17 +7,17 @@ import java.sql.SQLException;
 /**
  * ---------------------------------------------------------------------------------------------------------------------
  * JDBC
- * Ê×ÏÈÑ§Ï°driver
- * ÈçºÎÌí¼ÓjdbcµÄjar°ü£ºhttps://blog.csdn.net/diligentkong/article/details/79587464
+ * é¦–å…ˆå­¦ä¹ driver
+ * å¦‚ä½•æ·»åŠ jdbcçš„jaråŒ…ï¼šhttps://blog.csdn.net/diligentkong/article/details/79587464
  * ---------------------------------------------------------------------------------------------------------------------
- * Á¬½ÓÊı¾İ¿âÊ×ÏÈÒª×öµÄ¾ÍÊÇ¼ÓÔØÇı¶¯ÀàDriver
- * ¡¤¡¤¡¤¡¤Class.forName("com.mysql.cj.jdbc.Driver");
- * È»ºóÍ¨¹ıDriverManager½¨Á¢Á¬½Ó
- * ¡¤¡¤¡¤¡¤Connection con = DriverManager.getConnection("url", "userName", "passWorld");
- * ¡¤¡¤¡¤¡¤MySQLµÄJDBC URL±àĞ´·½Ê½£ºjdbc:mysql://Ö÷»úÃû³Æ£ºÁ¬½Ó¶Ë¿Ú/Êı¾İ¿âµÄÃû³Æ?²ÎÊı=Öµ&²ÎÊı=Öµ
- * ¡¤¡¤¡¤¡¤ÕâÀïĞèÒªÔÚurlÖÖÉèÖÃ×Ö·û¼¯ºÍÊ±Çø
- * ¡¤¡¤¡¤¡¤ÍêÕûµÄurlÎª£ºjdbc:mysql://localhost:3306/demo?characterEncoding=UTF8&serverTimezone=UTC
- * ½¨Á¢Á´½Ó¶¼±È½ÏºÄÊ±£¬ÒÔºóÍ¨³£Ê¹ÓÃÁ¬½Ó³ØÀ´¹ÜÀíÁ¬½Ó¶ÔÏó£»
+ * è¿æ¥æ•°æ®åº“é¦–å…ˆè¦åšçš„å°±æ˜¯åŠ è½½é©±åŠ¨ç±»Driver
+ * Â·Â·Â·Â·Class.forName("com.mysql.cj.jdbc.Driver");
+ * ç„¶åé€šè¿‡DriverManagerå»ºç«‹è¿æ¥
+ * Â·Â·Â·Â·Connection con = DriverManager.getConnection("url", "userName", "passWorld");
+ * Â·Â·Â·Â·MySQLçš„JDBC URLç¼–å†™æ–¹å¼ï¼šjdbc:mysql://ä¸»æœºåç§°ï¼šè¿æ¥ç«¯å£/æ•°æ®åº“çš„åç§°?å‚æ•°=å€¼&å‚æ•°=å€¼
+ * Â·Â·Â·Â·è¿™é‡Œéœ€è¦åœ¨urlç§è®¾ç½®å­—ç¬¦é›†å’Œæ—¶åŒº
+ * Â·Â·Â·Â·å®Œæ•´çš„urlä¸ºï¼šjdbc:mysql://localhost:3306/demo?characterEncoding=UTF8&serverTimezone=UTC
+ * å»ºç«‹é“¾æ¥éƒ½æ¯”è¾ƒè€—æ—¶ï¼Œä»¥åé€šå¸¸ä½¿ç”¨è¿æ¥æ± æ¥ç®¡ç†è¿æ¥å¯¹è±¡ï¼›
  * ---------------------------------------------------------------------------------------------------------------------
  * author:Benjamin
  * date:2019.4.14
