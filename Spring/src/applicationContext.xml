@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?testXml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -35,8 +35,8 @@
         factory-bean为实例工厂的bean id
         factory-method为实例工厂中的相应方法
     -->
-    <bean id="factory" class="testInject.factory.MyBeanFactory"/>
-    <bean id="demoBeanFactory" factory-bean="factory" factory-method="getDemo"/>
+    <!--<bean id="demoFactory" class="testInject.factory.MyBeanFactory"/>-->
+    <!--<bean id="demoBeanFactory" factory-bean="demoFactory" factory-method="createDemoImpl"/>-->
 
     <!--
         作用域
@@ -47,13 +47,25 @@
     <bean id="demoBeanScope" class="testScope.DemoImpl" scope="prototype"/>
 
     <!--
-        Bean的声明周期
+        Bean的生命周期
         初始化和销毁
         init-method为初始化函数
         destroy-method为销毁函数
     -->
     <bean id="demoBeanInitDestroy" class="testLifeCycle.DemoImpl" init-method="myInit" destroy-method="myDestroy"/>
 
+    <!--
+        前后置处理器，动态代理
+    -->
+    <!--<bean id="demoBeanPostProcessor" class="testLifeCycle.testBeanPostProcessor.DemoImpl"/>-->
+    <!--<bean class="testLifeCycle.testBeanPostProcessor.MyBeanPostProcessor"/>-->
 
-
+    <!--
+        构造函数配置
+    -->
+    <bean id="studentConstructor" class="testXml.constructor.Student">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="name" value="Benjamin"/>
+        <constructor-arg name="age" value="19"/>
+    </bean>
 </beans>

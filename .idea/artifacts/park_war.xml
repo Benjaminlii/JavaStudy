@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="park:war">
+    <output-path>E:/Benjamin/0110/park/park/target</output-path>
+    <root id="archive" name="park.war">
+      <element id="artifact" artifact-name="park:war exploded" />
+    </root>
+  </artifact>
+</component>

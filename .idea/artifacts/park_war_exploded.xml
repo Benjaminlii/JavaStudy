@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="park:war exploded">
+    <output-path>E:/Benjamin/0110/park/park/target/park</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="park" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="E:/Benjamin/0110/park/park/target/park/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="park/web/Web" />
+    </root>
+  </artifact>
+</component>
