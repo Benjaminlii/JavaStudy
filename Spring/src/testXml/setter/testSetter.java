@@ -1,18 +1,16 @@
-package testDI;
+package testXml.setter;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class TestDI {
+public class testSetter {
     @Test
-    public void test(){
-        //获得spring容器
+    public void test1(){
         String xmlPath = "applicationContext.xml";
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
 
-        //获得进行了依赖注入的bean对象
-        Service service = (Service) applicationContext.getBean("Service");
-        service.demo();
+        Person person = applicationContext.getBean("personBeanSetter", Person.class);
+        System.out.println(person);
     }
 }
