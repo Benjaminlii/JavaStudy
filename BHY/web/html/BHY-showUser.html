@@ -18,12 +18,12 @@
             $("#username").val(jsons.username);
             $("#password").val(jsons.password);
 
-            $("#updateButton").attr("onclick", "jumpWithCookie(" + item + ",'/BHY/html/BHY-updateEmployee.html')")
+            $("#updateButton").attr("onclick", "jumpWithCookie(" + item + ",'/BHY/html/BHY-updateUser.html')")
         }
 
-            function decision() {
+            function deleteUser() {
                 $.ajax({
-                    url: "/BHY/UpdateUserServlet",
+                    url: "##########################",
                     type: "post",
                     data: {"u_id": $("#u_id").val()},
                     success: function (result) {
@@ -41,9 +41,9 @@
                 })
             }
 
-            function deleted(){
+            function doDelete(){
                 if(window.confirm("是否删除")){
-                    decision();
+                    deleteUser();
                 }
             }
 
@@ -61,7 +61,7 @@
     </div>
     <div>
         <button id="updateButton">修改</button>
-        <button onclick="deleted()">删除</button>
+        <!--<button onclick="doDelete()">删除</button>-->
     </div>
 </div>
 <script>

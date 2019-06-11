@@ -4,69 +4,50 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/setSelect.js"></script>
     <script type="text/javascript">
         var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
-        delCookie("item");
-
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i].trim();
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-        }
-
-        function delCookie(key) {
-            var date = new Date();
-            date.setTime(date.getTime() - 1);
-            var delValue = getCookie(key);
-            if (!!delValue) {
-                document.cookie = key+'='+delValue+';expires='+date.toGMTString();
-            }
-        }
+        // delCookie("item");
 
         function set(item) {
             var jsons = jQuery.parseJSON(item);
 
             $("#cl_id").val(jsons.cl_id);
             $("#cl_name").val(jsons.cl_name);
-            $("#d_id").val(jsons.d_id);
             $("#d_value").val(jsons.d_value);
             $("#p_age").val(jsons.p_age);
             $("#p_healthy").val(jsons.p_healthy);
             $("#p_height").val(jsons.p_height);
             $("#p_id").val(jsons.p_id);
             $("#p_sex").val(jsons.p_sex);
-            $("#st_address").val(jsons.st_address);
+            getStoreSelect("selectStore", jsons.st_id);
             $("#st_id").val(jsons.st_id);
         }
 
         function updateUser() {
             $.ajax({
-                url: "",
+                url: "/BHY/UpdatePetServlet",
                 type: "post",
                 data: {
                     "cl_id": $("#cl_id").val(),
-                    "cl_name": $("#cl_name").val(),
-                    "d_id": $("#d_id").val(),
-                    "d_value": $("#d_value").val(),
                     "p_age": $("#p_age").val(),
                     "p_healthy": $("#p_healthy").val(),
                     "p_height": $("#p_height").val(),
                     "p_id": $("#p_id").val(),
                     "p_sex": $("#p_sex").val(),
-                    "st_address": $("st_address").val(),
-                    "st_id": $("st_id").val()
+                    "st_id": $("#selectStore").val()
                 },success: function (result) {
                     var json = jQuery.parseJSON(result);
                     if (json.rtn == 1) {
                         alert("修改成功");
+                        $(location).attr("href", "/BHY/html/BHY-findPetLimit.html")
+
                     } else {
                         alert("请重试");
                     }
+                },error:function () {
+                    alert("error!")
                 }
             })
         }
@@ -75,17 +56,15 @@
 <body>
 <div>
     <form>
-        顾客id：<input type="text" id="cl_id"><br>
-        顾客姓名：<input type="text" id="cl_name"><br>
-        宠物id：<input type="text" id = "d_id"><br>
-        宠物类型：<input type="text" id="d_value"><br>
+        宠物id：<input type="text" id="p_id" readonly="readonly"><br>
+        宠物类型：<input type="text" id="d_value" readonly="readonly"><br>
         宠物年龄：<input type="text" id="p_age"><br>
         健康状况：<input type="text" id="p_healthy"><br>
         宠物体重：<input type="text" id="p_height"><br>
-        宠物id：<input type="text" id="p_id"><br>
         宠物性别：<input type="text" id="p_sex"><br>
-        宠物店地址：<input type="text" id="st_address"><br>
-        宠物店：<input type="text" id="st_id"><br>
+        宠物店：<select id="selectStore"></select><br>
+        顾客姓名：<input type="text" id="cl_name" readonly="readonly"><br>
+        顾客id：<input type="text" id="cl_id" readonly="readonly"><br>
     </form>
     <button type="submit" onclick="updateUser()">提交</button>
 </div>

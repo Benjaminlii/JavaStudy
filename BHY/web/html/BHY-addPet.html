@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/setSelect.js"></script>
     <script type="text/javascript">
         function addPet(){
             $.ajax({
                 url: "/BHY/AddPetServlet",
                 type: "post",
-                data:{"d_id":$("#d_id").val(),
+                data:{"d_id":$("#selectPetType").val(),
                     "mobile":$("#mobile").val(),
                     "st_id":$("#st_id").val(),
                     "p_age":$("#p_age").val(),
@@ -17,9 +18,10 @@
                     "p_height":$("#height").val()},
                 success: function(result) {
                     var jsons = jQuery.parseJSON(result);
-                    if (json.rtn == 1) {
+                    if (jsons.rtn == 1) {
                         alert("添加成功");
-                    } else if (json.rtn == 2) {
+                        $(location).attr('href','/BHY/html/BHY-findPetLimit.html');
+                    } else if (jsons.rtn == 2) {
                         alert("用户名不存在");
                     } else {
                         alert("数据库底层错误");
@@ -34,31 +36,37 @@
     <table border="2">
         <tr>
             <td>宠物品种</td>
-            <td><input type="text"></td>
+            <td><select id="selectPetType"></select></td>
         </tr>
         <tr>
             <td>顾客手机号</td>
-            <td><input type="text"></td>
+            <td><input type="text" id="mobile"></td>
         </tr>
-        <tr>
-            <td>宠物店id</td>
-            <td><input type="text"></td>
-        </tr>
+        <!--<tr>-->
+            <!--<td>宠物店id</td>-->
+            <!--<td><input type="text"></td>-->
+        <!--</tr>-->
         <tr>
             <td>宠物年龄</td>
-            <td><input type="text"></td>
+            <td><input type="text" id="p_age"></td>
         </tr>
         <tr>
             <td>宠物性别</td>
-            <td><input type="text"></td>
+            <td><select id="p_sex">
+                <option value="雄">雄性</option>
+                <option value="雌">雌性</option>
+            </select></td>
         </tr>
         <tr>
             <td>宠物体重</td>
-            <td><input type="text"></td>
+            <td><input type="text" id="p_height"></td>
         </tr>
     </table>
     <button type="submit" onclick="addPet()">添加</button>
 </div>
 </body>
+<script>
+    getDicSelect("selectPetType", "宠物品种", 1000)
+</script>
 </head>
 </html>

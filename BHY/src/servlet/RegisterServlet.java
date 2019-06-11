@@ -31,6 +31,8 @@ public class RegisterServlet extends javax.servlet.http.HttpServlet {
         EmployeeCustom employeeCustom = new EmployeeCustom();
         try {
             BeanUtils.populate(userCustom, request.getParameterMap());
+            //避免重复且强制设置为员工
+            userCustom.setD_id(9);
             BeanUtils.populate(employeeCustom, request.getParameterMap());
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();

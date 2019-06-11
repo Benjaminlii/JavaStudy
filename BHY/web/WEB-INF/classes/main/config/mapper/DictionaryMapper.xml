@@ -28,6 +28,11 @@
         select * from dictionary where d_par_id = (select d_id from dictionary where d_value = #{d_value});
     </select>
 
+    <!-- 根据d_id查询 -->
+    <select id="findDicByID" parameterType="java.lang.Integer" resultType="entity.Dictionary">
+        select * from dictionary where d_id = #{value};
+    </select>
+
     <!-- insert -->
 
     <!-- update -->

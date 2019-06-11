@@ -3,26 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
     <script type="text/javascript">
-        function updateUser(){
-            $.ajax({
-                url: "/BHY/UpdateUserServlet",
-                type: "post",
-                data:{"username":$("#username").val(),
-                    "oldpassword":$("#oldpassword").val(),
-                    "newpassword":$("#newpassword").val(),
-                    "newpassword":$("#newpassword").val()},
-                success: function(result){
-                    var jsons = jQuery.parseJSON(result);
-                    if(json.rtn == 1){
-                        alert("修改成功");
-                    }else{
-                        alert("请重试");
-                    }
-                }
+        var oldPassword = "";
+        var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
+        delCookie("item")
 
-            })
+        function set(item) {
+            var jsons = jQuery.parseJSON(item);
+            oldPassword = jsons.password;
+            // alert("old = " + oldPassword);
+            $("#username").val(jsons.username);
+        }
+
+        function checkOldPwd() {
+            var pwd = $("#oldPassword").val();
+            // alert("pwd1 = " + pwd + ", pwd2 = " + oldPassword);
+            if(pwd == oldPassword){
+                return true;
+            }else{
+                alert("原密码错误");
+                return false;
+            }
+        }
+
+        function checkNewPwd() {
+            var pwd1 = $("#newPassword1").val();
+            var pwd2 = $("#newPassword2").val();
+            if(pwd1 == pwd2){
+                return true;
+            }else{
+                alert("两次输入不一致");
+                return false;
+            }
+        }
+
+        function checkIsNotNull() {
+            var pwd = $("#newPassword1").value;
+            if(pwd == ""){
+                alert("请输入新密码");
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        function checkAll() {
+            return checkOldPwd()&&checkNewPwd()&&checkIsNotNull();
+        }
+
+        function updateUser(){
+            if(checkAll()) {
+                $.ajax({
+                    url: "/BHY/UpdateUserServlet",
+                    type: "post",
+                    data: {
+                        "username": $("#username").val(),
+                        "password": $("#newPassword1").val()
+                    },
+                    success: function (result) {
+                        var jsons = jQuery.parseJSON(result);
+                        if (jsons.rtn == 1) {
+                            alert("修改成功");
+                            $(location).attr("href", "/BHY/html/BHY-findUserLimit.html")
+                        } else {
+                            alert("请重试");
+                        }
+                    }
+                })
+            }
         }
     </script>
 </head>
@@ -31,22 +81,25 @@
         <table border="1">
             <tr>
                 <td>用户名</td>
-                <td><input type="text"></td>
+                <td><input type="text" id="username"></td>
             </tr>
             <tr>
                 <td>旧密码</td>
-                <td><input type="text"></td>
+                <td><input type="password" id="oldPassword"></td>
             </tr>
             <tr>
                 <td>新密码</td>
-                <td><input type="text"></td>
+                <td><input type="password" id="newPassword1"></td>
             </tr>
             <tr>
                 <td>再次确认</td>
-                <td><input type="text"></td>
+                <td><input type="password" id="newPassword2"></td>
             </tr>
         </table>
         <button type="submit" onclick="updateUser()">提交</button>
     </div>
+<script>
+    set(json);
+</script>
 </body>
 </html>

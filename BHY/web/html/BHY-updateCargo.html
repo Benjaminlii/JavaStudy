@@ -4,30 +4,29 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../js/cookie.js"></script>
     <script type="text/javascript">
         var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
         delCookie("item");
 
-        // function getCookie(cname) {
-        //     var name = cname + "=";
-        //     var ca = document.cookie.split(';');
-        //     for (var i = 0; i < ca.length; i++) {
-        //         var c = ca[i].trim();
-        //         if (c.indexOf(name) == 0) {
-        //             return c.substring(name.length, c.length);
-        //         }
-        //     }
-        // }
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i].trim();
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+        }
 
-        // function delCookie(key) {
-        //     var date = new Date();
-        //     date.setTime(date.getTime() - 1);
-        //     var delValue = getCookie(key);
-        //     if (!!delValue) {
-        //         document.cookie = key+'='+delValue+';expires='+date.toGMTString();
-        //     }
-        // }
+        function delCookie(key) {
+            var date = new Date();
+            date.setTime(date.getTime() - 1);
+            var delValue = getCookie(key);
+            if (!!delValue) {
+                document.cookie = key+'='+delValue+';expires='+date.toGMTString();
+            }
+        }
 
         function set(item) {
             var jsons = jQuery.parseJSON(item);

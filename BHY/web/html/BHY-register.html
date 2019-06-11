@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/setSelect.js"></script>
     <script>
         function register() {
             $.ajax({
@@ -16,7 +17,8 @@
                     "st_id": $("#st_id").val(),
                     "d_id": $("#d_id").val()
                 },
-                success: function () {
+                success: function (result) {
+                    var json = jQuery.parseJSON(result);
                     if (json.rtn == 1) {
                         alert("注册成功");
                     } else {
@@ -34,26 +36,30 @@
     <table border="2">
         <tr>
             <td>用户名</td>
-            <td><input type="text"></td>
+            <td><input type="text" id="username"></td>
         </tr>
         <tr>
             <td>密码</td>
-            <td><input type="text"></td>
+            <td><input type="password" id="password"></td>
         </tr>
         <tr>
             <td>员工姓名</td>
-            <td><input type="text"></td>
+            <td><input type="text" id="e_name"></td>
         </tr>
         <tr>
             <td>宠物店id</td>
-            <td><input type="text"></td>
+            <td><select id="st_id"></select></td>
         </tr>
         <tr>
             <td>职务id</td>
-            <td><input type="text"></td>
+            <td><select id="d_id"></select></td>
         </tr>
     </table>
     <button type="submit" onclick="register()">注册</button>
 </div>
 </body>
+<script>
+    getStoreSelect("st_id", 1000);
+    getDicSelect("d_id", "员工职务", 1000)
+</script>
 </html>

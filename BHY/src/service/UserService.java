@@ -41,7 +41,7 @@ public class UserService {
         boolean rtn = false;
         //设置初始工资为5000，职务为服务员
         employeeQueryVo.getEmployeeCustom().setE_salary(5000);
-        employeeQueryVo.getEmployeeCustom().setD_id(43);
+//        employeeQueryVo.getEmployeeCustom().setD_id(43);
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
