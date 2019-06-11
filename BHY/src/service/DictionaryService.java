@@ -1,6 +1,7 @@
 package service;
 
 import entity.Dictionary;
+import entity.DictionaryCustom;
 import entity.DictionaryQueryVo;
 import main.config.mapper.DictionaryMapper;
 import org.apache.ibatis.io.Resources;
@@ -61,5 +62,24 @@ public class DictionaryService {
         }
 
         return dictionaries;
+    }
+
+    /**
+     * 通过字典id查询字典对象
+     * @param dictionaryCustom 封装的对象，只需要填充d_id字段
+     * @return 查询成功返回字典对象，失败返回null
+     */
+    public static Dictionary findDicByID(DictionaryCustom dictionaryCustom){
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        DictionaryMapper dictionaryMapper = sqlSession.getMapper(DictionaryMapper.class);
+        Dictionary dictionary = null;
+
+        try {
+            dictionary = dictionaryMapper.findDicByID(dictionaryCustom.getD_id());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return dictionary;
     }
 }

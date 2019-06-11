@@ -1,0 +1,12 @@
+.all{
+    width: 600px;
+    height: 700px;
+    background-color: aqua;
+}
+.body{
+    background-color: white;
+    margin: 20px;
+}
+input{
+    background-color: aquamarine;
+}

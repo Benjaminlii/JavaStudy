@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="cargoDelete.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
+        delCookie("item");
+
+        function set(item) {
+            var jsons = jQuery.parseJSON(item);
+
+            $("#r_id").val(jsons.r_id);
+            $("#cl_id").val(jsons.cl_id);
+            $("#s_id").val(jsons.s_id);
+            $("#c_id").val(jsons.c_id);
+            $("#r_time").val(jsons.r_time);
+            $("#r_price").val(jsons.r_price);
+            $("#r_num").val(jsons.r_num);
+            $("#r_pattern").val(jsons.r_pattern);
+        }
+        function decision() {
+            $.ajax({
+                url: "/BHY/DeleteRecordServlet",
+                type: "post",
+                data: {"r_id": $("#r_id").val()},
+                success: function (result) {
+                    var jsons = jQuery.parseJSON(result);
+                    if (json.rtn == 1) {
+                        alert("删除成功");
+                        $(location).attr('href','');
+                    } else {
+                        alert("删除失败，请重试");
+                    }
+                },
+                error: function(){
+                    alert("error");
+                }
+            })
+        }
+
+        function deleted(){
+            if(window.confirm("是否删除")){
+                decision();
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="all">
+    <h1>销售信息</h1>
+    <div class="body">
+        <div>id<input type="text" id="r_id" readonly="readonly"></div>
+        <div>购买者id<input type="text" id="cl_id" readonly="readonly"></div>
+        <div>宠物店<input type="text" id="s_id" readonly="readonly"></div>
+        <div>货物id<input type="text" id="c_id" readonly="readonly"></div>
+        <div>时间<input type="text" id="r_time" readonly="readonly"></div>
+        <div>出售价格<input type="text" id="r_price" readonly="readonly"></div>
+        <div>购买数量<input type="text" id="r_num" readonly="readonly"></div>
+        <div>支付方式<input type="text" id="r_pattern" readonly="readonly"></div>
+    </div>
+    <div>
+        <button onclick="jumpWithCookie(item,'/BHY/html/BHY-updateEmployee.html')">修改</button>
+        <button onclick="deleted()">删除</button>
+    </div>
+</div>
+</body>
+</html>

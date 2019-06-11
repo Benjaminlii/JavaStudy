@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="cargoDelete.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
+        delCookie("item");
+
+        function set(item) {
+            var jsons = jQuery.parseJSON(item);
+
+            $("#p_id").val(jsons.p_id);
+            $("#cl_id").val(jsons.cl_id);
+            $("#d_value").val(jsons.d_value);
+            $("#s_id").val(jsons.s_id);
+            $("#p_age").val(jsons.p_age);
+            $("#p_sex").val(jsons.p_sex);
+            $("#p_height").val(jsons.p_height);
+            $("#p_healthy").val(jsons.p_healthy);
+        }
+        function decision() {
+            $.ajax({
+                url: "/BHY/DeletePetServlet",
+                type: "post",
+                data: {"p_id": $("#p_id").val()},
+                success: function (result) {
+                    var jsons = jQuery.parseJSON(result);
+                    if (json.rtn == 1) {
+                        alert("删除成功");
+                        $(location).attr('href','');
+                    } else {
+                        alert("删除失败，请重试");
+                    }
+                },
+                error: function(){
+                    alert("error");
+                }
+            })
+        }
+
+        function deleted(){
+            if(window.confirm("是否删除")){
+                decision();
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="all">
+    <h1>宠物信息</h1>
+    <div class="body">
+        <div>id<input type="text" id="p_id" readonly="readonly"></div>
+        <div>所属用户id<input type="text" id="cl_id" readonly="readonly"></div>
+        <div>品种类型<input type="text" id="d_value" readonly="readonly"></div>
+        <div>宠物店id<input type="text" id="s_id" readonly="readonly"></div>
+        <div>年龄<input type="text" id="p_age" readonly="readonly"></div>
+        <div>性别<input type="text" id="p_sex" readonly="readonly"></div>
+        <div>体重<input type="text" id="p_height" readonly="readonly"></div>
+        <div>健康状况<input type="text" id="p_healthy" readonly="readonly"></div>
+    </div>
+    <div>
+        <button onclick="jumpWithCookie(item,'/BHY/html/BHY-updateEmployee.html')">修改</button>
+        <button onclick="deleted()">删除</button>
+    </div>
+</div>
+</body>
+</html>

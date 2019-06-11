@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="cargoDelete.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+           var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
+           delCookie("item");
+
+           function set(item) {
+               var jsons = jQuery.parseJSON(item);
+
+               $("#c_id").val(jsons.c_id);
+               $("#c_name").val(jsons.c_name);
+               $("#c_num").val(jsons.c_num);
+               $("#d_value").val(jsons.d_value);
+               $("#s_id").val(jsons.s_id);
+               $("#c_getDate").val(jsons.c_getDate);
+               $("#c_produceDate").val(jsons.c_produceDate);
+               $("#c_expirationDate").val(jsons.c_expirationDate);
+           }
+           function decision() {
+               $.ajax({
+                   url: "",
+                   type: "post",
+                   data: {"d_id": $("#d_id").val()},
+                   success: function (result) {
+                       var jsons = jQuery.parseJSON(result);
+                       if (json.rtn == 1) {
+                           alert("删除成功");
+                           $(location).attr('href','BHY-findCargoLimit.html');
+                       } else {
+                           alert("删除失败，请重试");
+                       }
+                   },
+                   error: function(){
+                       alert("error");
+                   }
+               })
+           }
+
+           function deleted(){
+               if(window.confirm("是否删除")){
+                   decision();
+               }
+           }
+    </script>
+</head>
+<body>
+    <div class="all">
+        <h1>货物信息</h1>
+        <div class="body">
+            <div>id<input type="text" id="c_id" readonly="readonly"></div>
+            <div>货物名称<input type="text" id="c_name" readonly="readonly"></div>
+            <div>货物数量<input type="text" id="c_num" readonly="readonly"></div>
+            <div>货物类型<input type="text" id="d_value" readonly="readonly"></div>
+            <div>所属宠物店id<input type="text" id="s_id" readonly="readonly"></div>
+            <div>进货日期<input type="text" id="c_getDate" readonly="readonly"></div>
+            <div>生产日期<input type="text" id="c_produceDate" readonly="readonly"></div>
+            <div>保质期<input type="text" id="c_expirationDate" readonly="readonly"></div>
+        </div>
+        <div>
+            <button onclick="jumpWithCookie(item,'/BHY/html/BHY-findCargoLimit.html')">修改</button>
+            <button onclick="deleted()">删除</button>
+        </div>
+    </div>
+</body>
+</html>

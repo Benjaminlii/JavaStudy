@@ -256,6 +256,10 @@
                  {"d_name":"EmplpyeeType","d_par_id":7,"d_id":42,"d_value":"医师"}
            ]
 
+/BHY/FindDValueByIDServlet:
+    通过字典id查询字典对象
+    参数： 封装的对象，只需要填充d_id字段
+    返回值 返回d_value
 
 
 

@@ -12,20 +12,23 @@ function jumpWithCookie(date, url) {
 input.setAttribute("onclick", "jumpWithCookie(" + JSON.stringify(item) + ",\"/BHY/html/BHY-BHY-showPet.html\" )");
 
 * */
+
 //设置cookie
 function setCookie(data) {
     var json = JSON.stringify(data);
     document.cookie = "item=" + json;
 }
+
 //删除cookie
 function delCookie(key) {
     var date = new Date();
     date.setTime(date.getTime() - 1);
     var delValue = getCookie(key);
     if (!!delValue) {
-        document.cookie = key+'='+delValue+';expires='+date.toGMTString();
+        document.cookie = key + '=' + delValue + ';expires=' + date.toGMTString();
     }
 }
+
 //得到cookie中的数据
 function getCookie(cname) {
     var name = cname + "=";
@@ -40,7 +43,7 @@ function getCookie(cname) {
 
 function clearElement(id) {
     var div = document.getElementById(id);
-    while(div.hasChildNodes()) //当div下还存在子节点时 循环继续
+    while (div.hasChildNodes()) //当div下还存在子节点时 循环继续
     {
         div.removeChild(div.firstChild);
     }
@@ -64,4 +67,20 @@ function setAddButton(tb, num, url) {
     td.appendChild(addButton);
     tr.appendChild(td);
     tb.appendChild(tr);
+}
+
+//根据d_id查询d_value
+function getValueByID(d_id) {
+    var rtn = "11";
+    $.ajax({
+        url: "/BHY/FindDValueByIDServlet",
+        type: "post",
+        async: false,
+        data: {"d_id": d_id},
+        success: function (result) {
+            var json = jQuery.parseJSON(result);
+            rtn = json.d_value;
+        }
+    });
+    return rtn;
 }
