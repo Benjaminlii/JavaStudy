@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript">
+        var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
+        delCookie("item");
+
+        // function getCookie(cname) {
+        //     var name = cname + "=";
+        //     var ca = document.cookie.split(';');
+        //     for (var i = 0; i < ca.length; i++) {
+        //         var c = ca[i].trim();
+        //         if (c.indexOf(name) == 0) {
+        //             return c.substring(name.length, c.length);
+        //         }
+        //     }
+        // }
+
+        // function delCookie(key) {
+        //     var date = new Date();
+        //     date.setTime(date.getTime() - 1);
+        //     var delValue = getCookie(key);
+        //     if (!!delValue) {
+        //         document.cookie = key+'='+delValue+';expires='+date.toGMTString();
+        //     }
+        // }
+
+        function set(item) {
+            var jsons = jQuery.parseJSON(item);
+
+            $("#c_id").val(jsons.c_id);
+            $("#c_name").val(jsons.c_name);
+            $("#c_num").val(jsons.c_num);
+            $("#c_produceDate").val(jsons.c_produceDate);
+            $("#d_value").val(jsons.d_value);
+            $("#st_name").val(jsons.st_name);
+            $("#c_expirationDate").val(jsons.c_expirationDate);
+            $("#c_getDate").val(jsons.c_getDate);
+        }
+
+        function updateUser() {
+            $.ajax({
+                url: "/javaWeb/Main",
+                type: "post",
+                data: {
+                    "c_id": $("#c_id").val(),
+                    "c_name": $("#c_name").val(),
+                    "c_num": $("#c_num").val(),
+                    "c_produceDate": $("#c_produceDate").val(),
+                    "d_value": $("#d_value").val(),
+                    "st_name": $("#st_name").val(),
+                    "c_expirationDate": $("#c_expirationDate").val(),
+                    "c_getDate": $("#c_getDate").val()
+                },success: function (result) {
+                    var json = jQuery.parseJSON(result);
+                    if (json.rtn == 1) {
+                        alert("修改成功");
+                    } else {
+                        alert("请重试");
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div>
+    <form>
+        商品id：<input type="text" id="c_id"><br>
+        商品名称：<input type="text" id="c_name"><br>
+        商品数量：<input type="text" id = "c_num"><br>
+        生产日期：<input type="text" id="c_produceDate"><br>
+        商品种类：<input type="text" id="d_value"><br>
+        宠物店：<input type="text" id="st_name"><br>
+        保质日期：<input type="text" id="c_expirationDate"><br>
+        进货日期：<input type="text" id="c_getDate"><br>
+    </form>
+    <button type="submit" onclick="updateUser()">提交</button>
+</div>
+<script>
+    set(json);
+</script>
+</body>
+</html>

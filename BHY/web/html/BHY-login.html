@@ -30,7 +30,7 @@
                         var rtn = jQuery.parseJSON(result).rtn;
                         if (rtn == 1) {
                             //登陆成功
-                            $(location).attr('href', '/BHY/html/BHY.html');
+                            $(location).attr('href', '/BHY/html/index.html');
                         } else if (rtn == 2) {
                             //密码不正确
                             inputUsername.style.borderColor = "#cacaca";
@@ -50,7 +50,7 @@
         }
 
         function registerCheck() {
-
+            $(location).attr('href', '/BHY/html/BHY-register.html');
         }
     </script>
 </head>

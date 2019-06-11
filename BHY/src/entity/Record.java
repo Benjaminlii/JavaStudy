@@ -1,6 +1,8 @@
 package entity;
 
-import java.util.Date;
+import util.JsonTimeUtil;
+
+import java.sql.Date;
 
 /**
  * 销售记录类
@@ -10,7 +12,7 @@ public class Record {
     private Integer cl_id;//购买者id
     private Integer st_id;//宠物店id
     private Integer c_id;//货物id
-    private Date r_time;//时间
+    private String r_time;//时间
     private Float r_price;//售出价格
     private Integer r_num;//购买数量
     private String r_pattern;//支付方式
@@ -18,7 +20,7 @@ public class Record {
     public Record() {
     }
 
-    public Record(int r_id, int cl_id, int st_id, int c_id, Date r_time, float r_price, int r_num) {
+    public Record(int r_id, int cl_id, int st_id, int c_id, String r_time, float r_price, int r_num) {
         this.r_id = r_id;
         this.cl_id = cl_id;
         this.st_id = st_id;
@@ -28,7 +30,7 @@ public class Record {
         this.r_num = r_num;
     }
 
-    public Record(int r_id, int cl_id, int st_id, int c_id, Date r_time, float r_price, int r_num, String r_pattern) {
+    public Record(int r_id, int cl_id, int st_id, int c_id, String r_time, float r_price, int r_num, String r_pattern) {
         this.r_id = r_id;
         this.cl_id = cl_id;
         this.st_id = st_id;
@@ -71,12 +73,12 @@ public class Record {
         this.c_id = c_id;
     }
 
-    public Date getR_time() {
+    public String getR_time() {
         return r_time;
     }
 
     public void setR_time(Date r_time) {
-        this.r_time = r_time;
+        this.r_time = JsonTimeUtil.getdate(r_time);
     }
 
     public Float getR_price() {

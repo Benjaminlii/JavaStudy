@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        function addService(){
+            $.ajax({
+                url: "/BHY/AddServiceServlet",
+                type: "post",
+                data:{"p_id":$("#p_id").val(),
+                    "st_id":$("#st_id").val(),
+                    "d_value":$("#d_value").val()},
+                success: function(result) {
+                    var jsons = jQuery.parseJSON(result);
+                    if(json.rtn == 1){
+                        alert("添加成功");
+                        $(location).attr('href','');
+                    }else{
+                        alert("添加失败！请重试");
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<body>
+    <div>
+        <table border="2">
+            <tr>
+                <td>员工id</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>宠物id</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>服务类型</td>
+                <td><select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+                </td>
+                <td><input type="text"></td>
+            </tr>
+        </table>
+        <button onclick="addClient()">添加</button>
+    </div>
+</body>
+</html>

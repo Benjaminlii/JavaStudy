@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
     <script type="text/javascript">
-        window.onload = function () {
-            findCargoLimit(0);               //window.onload将要执行的script函数放在前面执行
-        }
-
         function findCargoLimit(num) {
             var page = eval(document.getElementById("page").innerText);
             if (page === 1 && num === -1) {
@@ -25,7 +22,6 @@
                     var jsons = jQuery.parseJSON(result);
 
                     $.each(jsons, function (i, item) {
-                        // alert(JSON.stringify(item));
 
                         var tr = document.createElement("tr");
 
@@ -35,22 +31,22 @@
                         td_cname.innerHTML = item.c_name;
                         var td_num = document.createElement("td");
                         td_num.innerHTML = item.c_num;
-                        var td_produceDate = document.createElement("td");
-                        td_produceDate.innerHTML = item.c_producedDate;
+                        // var td_produceDate = document.createElement("td");
+                        // td_produceDate.innerHTML = item.c_producedDate;
                         var td_dValue = document.createElement("td");
                         td_dValue.innerHTML = item.d_value;
-                        var td_stName = document.createElement("td");
-                        td_stName.innerHTML = item.st_name;
-                        var td_expirationDate = document.createElement("td");
-                        td_expirationDate.innerHTML = item.c_expirationDate;
-                        var td_getDate = document.createElement("td");
-                        td_getDate.innerHTMl = item.c_getDate;
+                        // var td_stName = document.createElement("td");
+                        // td_stName.innerHTML = item.st_name;
+                        // var td_expirationDate = document.createElement("td");
+                        // td_expirationDate.innerHTML = item.c_expirationDate;
+                        // var td_getDate = document.createElement("td");
+                        // td_getDate.innerHTMl = item.c_getDate;
 
                         var td_input = document.createElement("td");
                         var input = document.createElement("input");
-                        input.value = "按钮";
+                        input.value = "📝";
                         input.type = "button";
-                        input.setAttribute("onclick", "a(" + JSON.stringify(item) + ")");     //setAttribute() 方法添加指定的属性，并为其赋指定的值。
+                        input.setAttribute("onclick", "jumpWithCookie(" + JSON.stringify(item) + ",\"/BHY/html/BHY-showCargo.html\" )");
 
                         // JSON.stringify() 方法用于将 JavaScript 值转换为 JSON 字符串。
                         td_input.appendChild(input);
@@ -58,57 +54,22 @@
                         tr.appendChild(td_cid);
                         tr.appendChild(td_cname);
                         tr.appendChild(td_num);
-                        tr.appendChild(td_produceDate);
+                        // tr.appendChild(td_produceDate);
                         tr.appendChild(td_dValue);
-                        tr.appendChild(td_stName);
-                        tr.appendChild(td_expirationDate);
-                        tr.appendChild(td_getDate);
+                        // tr.appendChild(td_stName);
+                        // tr.appendChild(td_expirationDate);
+                        // tr.appendChild(td_getDate);
                         tr.appendChild(td_input);
 
                         tb.appendChild(tr);
-                    })
+                    });
+                    setAddButton(tb, 5, "/BHY/html/BHY-addCargo.html")
                 },
                 error: function () {
                     alert("error");
                 }
-            })
+            });
         }
-
-        function a(i) {
-            // alert(JSON.stringify(json));
-            // alert(JSON.stringify(i));
-            // var json = jQuery.parseJSON(i);
-            var json = JSON.stringify(i)
-            // alert("jason = " + json);
-            document.cookie = "item=" + json;
-            $(location).attr("href", "/BHY/html/更新页面.html");
-
-        }
-
-        // function setCookie(cname,value,exdays){
-        //     var d = new Date();
-        //     d.setTime(d.getTime()+(exdays*24*60*60*1000));
-        //     var expires = "exptres="+d.toGMTString();
-        //     document.cookie = cname+"="+cvalue+";"+expires;
-        // }
-
-        // function getCookie(cname){
-        //     var name = cname + "=";
-        //     var ca = document.cookie.split(';');
-        //     for(var i=0; i<ca.length; i++) {
-        //         var c = ca[i].trim();
-        //         if (c.indexOf(name) == 0) {
-        //             return c.substring(name.length, c.length);
-        //         }
-        //     }
-        // }
-        // function checkCookie() {
-        //     var news = getCookie("news");
-        //     var jsons = jQuery.parseJSON(news);
-        //
-        // }
-
-
     </script>
 </head>
 <body>
@@ -117,11 +78,12 @@
     <th>商品id</th>
     <th>商品名称</th>
     <th>商品数量</th>
-    <th>生产日期</th>
+    <!--<th>生产日期</th>-->
     <th>商品种类</th>
-    <th>宠物店</th>
-    <th>保质日期</th>
-    <th>进货日期</th>
+    <!--<th>宠物店</th>-->
+    <!--<th>保质日期</th>-->
+    <!--<th>进货日期</th>-->
+    <th>详情</th>
     </thead>
     <tbody id="tb">
 
@@ -132,5 +94,8 @@
     当前在第<label id="page">1</label>页
 </label>
 <input type="button" onclick="findCargoLimit(1)" value="下一页">
+<script>
+    findCargoLimit(0);
+</script>
 </body>
 </html>

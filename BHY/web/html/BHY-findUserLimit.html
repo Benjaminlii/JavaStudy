@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript">
+        function findUserLimit(num) {
+            var page = eval(document.getElementById("page").innerText);
+            if (page === 1 && num === -1) {
+                num = 0;
+            }
+            page += num;
+            document.getElementById("page").innerText = page;
+            clearElement("tb");
+            $.ajax({
+                url: "/BHY/FindUserLimitServlet",
+                type: "post",
+                data: {"page": page},
+                success: function (result) {
+                    var tb = document.getElementById("tb");
+                    var json = jQuery.parseJSON(result);
+                    var jsons = json.users;
+                    $.each(jsons, function (i, item) {
+
+                        var tr = document.createElement("tr");
+                        var td_uid = document.createElement("td");
+                        td_uid.innerHTML = item.u_id;
+                        var td_username = document.createElement("td");
+                        td_username.innerHTML = item.username;
+
+                        var td_input = document.createElement("td");
+                        var input = document.createElement("input");
+                        input.value = "📝";
+                        input.type = "button";
+                        input.setAttribute("onclick", "jumpWithCookie(" + JSON.stringify(item) + ",\"/BHY/html/BHY-showUser.html\" )");
+
+                        td_input.appendChild(input);
+                        tr.appendChild(td_uid);
+                        tr.appendChild(td_username);
+                        tr.appendChild(td_input);
+                        tb.appendChild(tr);
+                    })
+                },
+                error: function () {
+                    alert("error");
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <th>员工id</th>
+    <th>用户名</th>
+    <th>详情</th>
+    </thead>
+    <tbody id="tb">
+
+    </tbody>
+</table>
+<input type="button" onclick="findUserLimit(-1)" value="上一页">
+<label>
+    当前在第<label id="page">1</label>页
+</label>
+<input type="button" onclick="findUserLimit(1)" value="下一页">
+<script>
+    findUserLimit(0);
+</script>
+</body>
+</html>

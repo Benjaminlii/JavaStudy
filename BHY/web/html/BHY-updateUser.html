@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        function updateUser(){
+            $.ajax({
+                url: "/BHY/UpdateUserServlet",
+                type: "post",
+                data:{"username":$("#username").val(),
+                    "oldpassword":$("#oldpassword").val(),
+                    "newpassword":$("#newpassword").val(),
+                    "newpassword":$("#newpassword").val()},
+                success: function(result){
+                    var jsons = jQuery.parseJSON(result);
+                    if(json.rtn == 1){
+                        alert("修改成功");
+                    }else{
+                        alert("请重试");
+                    }
+                }
+
+            })
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <table border="1">
+            <tr>
+                <td>用户名</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>旧密码</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>新密码</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>再次确认</td>
+                <td><input type="text"></td>
+            </tr>
+        </table>
+        <button type="submit" onclick="updateUser()">提交</button>
+    </div>
+</body>
+</html>

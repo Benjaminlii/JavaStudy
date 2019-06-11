@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript">
+        function findRecordLimit(num) {
+            var page = eval(document.getElementById("page").innerText);
+            if (page === 1 && num === -1) {
+                num = 0;
+            }
+            page += num;
+            document.getElementById("page").innerText = page;
+            $.ajax({
+                url: "/BHY/FindRecordLimitServlet",
+                type: "post",
+                data: {"page": page},
+                success: function (result) {
+                    var tb = document.getElementById("tb");
+                    var jsons = jQuery.parseJSON(result);
+
+                    $.each(jsons, function (i, item) {
+
+                        var tr = document.createElement("tr");
+                        var td_rid = document.createElement("td");
+                        td_rid.innerHTML = item.r_id;
+                        var td_cname = document.createElement("td");
+                        td_cname.innerHTML = item.c_name;
+                        var td_clname = document.createElement("td");
+                        td_clname.innerHTML = item.cl_name;
+                        var td_rtime = document.createElement("td");
+                        td_rtime.innerHTML = item.r_time;
+
+                        var td_input = document.createElement("td");
+                        var input = document.createElement("input");
+                        input.value = "📝";
+                        input.type = "button";
+                        input.setAttribute("onclick", "jumpWithCookie(" + JSON.stringify(item) + ",\"/BHY/html/BHY-showRecord.html\" )");
+
+                        td_input.appendChild(input);
+
+                        tr.appendChild(td_rid);
+                        tr.appendChild(td_cname);
+                        tr.appendChild(td_clname);
+                        tr.appendChild(td_rtime);
+                        tr.appendChild(td_input);
+                        tb.appendChild(tr);
+                    });
+                    setAddButton(tb, 5, "/BHY/html/BHY-addRecord.html")
+                },
+                error: function () {
+                    alert("error");
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <th>订单ID</th>
+    <th>商品名称</th>
+    <th>顾客姓名</th>
+    <th>出售时间</th>
+    <th>详情</th>
+    </thead>
+    <tbody id="tb">
+
+    </tbody>
+</table>
+<input type="button" onclick="findRecordLimit(-1)" value="上一页">
+<label>
+    当前在第<label id="page">1</label>页
+</label>
+<input type="button" onclick="findRecordLimit(1)" value="下一页">
+<script>
+    findRecordLimit(0);
+</script>
+</body>
+</html>

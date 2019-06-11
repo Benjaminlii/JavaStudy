@@ -1,7 +1,7 @@
 package entity;
 
 public class Page {
-    private int size = 20;//每一页的数据条数
+    private int size = 10;//每一页的数据条数
     private int page;//当前页数
     private int offSet;//起始行数
 

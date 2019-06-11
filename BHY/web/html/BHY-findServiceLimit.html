@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript">
+        function findServiceLimit(num){
+            var page = eval(document.getElementById("page").innerText);
+            if(page === 1&&num === -1){
+                num = 0;
+            }
+            page+=num;
+            document.getElementById("page").innerText = page;
+            clearElement("tb");
+            $.ajax({
+                url: "/BHY/FindServiceLimitServlet",
+                type: "post",
+                data: {"page":page},
+                success: function(result){
+                    var tb = document.getElementById("tb");
+                    var jsons = jQuery.parseJSON(result);
+
+                    $.each(jsons,function(i,item){
+
+                        var tr = document.createElement("tr");
+                        var td_sid = document.createElement("td");
+                        td_sid.innerHTML = item.s_id;
+                        var td_dvalue = document.createElement("td");
+                        td_dvalue.innerHTML = item.d_value;
+                        var td_ename = document.createElement("td");
+                        td_ename.innerHTML = item.e_name;
+                        var td_satime = document.createElement("td");
+                        td_satime.innerHTML = item.s_atime;
+                        var td_isdispose = document.createElement("td");
+                        td_isdispose.innerHTML = item.s_isdispose;
+                        var td_isfinish = document.createElement("td");
+                        td_isfinish.innerHTML = item.s_isfinish;
+
+                        var td_input = document.createElement("td");
+                        var input = document.createElement("input");
+                        input.value = "📝";
+                        input.type = "button";
+                        input.setAttribute("onclick", "a(" + JSON.stringify(item) + ")");
+
+                        td_input.appendChild(input);
+
+                        tr.appendChild(td_sid);
+                        tr.appendChild(td_dvalue);
+                        tr.appendChild(td_ename);
+                        tr.appendChild(td_satime);
+                        tr.appendChild(td_isdispose);
+                        tr.appendChild(td_isfinish);
+                        tr.appendChild(td_input);
+                        tb.appendChild(tr);
+                    });
+                    setAddButton(tb, 7, "/BHY/html/BHY-addService.html")
+                },
+                error: function(){
+                    alert("error");
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <th>服务编号</th>
+    <th>服务类型</th>
+    <th>处理员工姓名</th>
+    <th>服务预约时间</th>
+    <th>是否受处理</th>
+    <th>是否被完成</th>
+    <th>详情</th>
+    </thead>
+    <tbody id="tb">
+
+    </tbody>
+</table>
+<input type="button" onclick="findServiceLimit(-1)" value="上一页">
+<label>
+    当前在第<label id="page">1</label>页
+</label>
+<input type="button" onclick="findServiceLimit(1)" value="下一页">
+<script>
+    findServiceLimit(0);
+</script>
+</body>
+</html>

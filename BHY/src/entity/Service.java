@@ -1,6 +1,8 @@
 package entity;
 
-import java.util.Date;
+import util.JsonTimeUtil;
+
+import java.sql.Date;
 
 /**
  * 服务类
@@ -12,7 +14,7 @@ public class Service {
     private String s_isfinish;//是否被完成
     private Integer d_id;//字典id（服务类别）
     private Integer e_id;//处理员工id
-    private Date s_atime;//服务预约时间
+    private String s_atime;//服务预约时间
     private Float s_price;//服务价格
 
     public Service() {
@@ -26,7 +28,7 @@ public class Service {
         this.d_id = d_id;
     }
 
-    public Service(int s_id, int p_id, String s_isDispose, String s_isFinish, int d_id, int e_id, Date s_aTime, float s_price) {
+    public Service(int s_id, int p_id, String s_isDispose, String s_isFinish, int d_id, int e_id, String s_aTime, float s_price) {
         this.s_id = s_id;
         this.p_id = p_id;
         this.s_isdispose = s_isDispose;
@@ -85,12 +87,12 @@ public class Service {
         this.e_id = e_id;
     }
 
-    public Date getS_atime() {
+    public String getS_atime() {
         return s_atime;
     }
 
     public void setS_atime(Date s_atime) {
-        this.s_atime = s_atime;
+        this.s_atime = JsonTimeUtil.getdate(s_atime);
     }
 
     public Float getS_price() {

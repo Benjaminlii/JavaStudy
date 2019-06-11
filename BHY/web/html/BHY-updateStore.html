@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
+        delCookie("item");
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i].trim();
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+        }
+
+        function delCookie(key) {
+            var date = new Date();
+            date.setTime(date.getTime() - 1);
+            var delValue = getCookie(key);
+            if (!!delValue) {
+                document.cookie = key+'='+delValue+';expires='+date.toGMTString();
+            }
+        }
+
+        function set(item) {
+            var jsons = jQuery.parseJSON(item);
+
+            $("#d_id").val(jsons.d_id);
+            $("#e_id").val(jsons.e_id);
+            $("#e_name").val(jsons.e_name);
+            $("#s_address").val(jsons.s_address);
+            $("#st_grade").val(jsons.st_grade);
+        }
+
+        function updateUser() {
+            $.ajax({
+                url: "/javaWeb/Main",
+                type: "post",
+                data: {
+                    "d_id": $("#d_id").val(),
+                    "e_id": $("#e_id").val(),
+                    "e_name": $("#e_name").val(),
+                    "s_address": $("#s_address").val(),
+                    "st_grade": $("#st_grade").val(),
+                },success: function (result) {
+                    var json = jQuery.parseJSON(result);
+                    if (json.rtn == 1) {
+                        alert("修改成功");
+                    } else {
+                        alert("请重试");
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div>
+    <form>
+        ：<input type="text" id="d_id"><br>
+        宠物店id：<input type="text" id="e_id"><br>
+        店主姓名：<input type="text" id = "e_name"><br>
+        地址：<input type="text" id="s_address"><br>
+        宠物店级别：<input type="text" id="st_grade"><br>
+    </form>
+    <button type="submit" onclick="updateUser()">提交</button>
+</div>
+<script>
+    set(json);
+</script>
+</body>

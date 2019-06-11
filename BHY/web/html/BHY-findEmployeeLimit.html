@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript">
+        function findEmployeeLimit(num){
+            var page = eval(document.getElementById("page").innerText);
+            if(page === 1&&num === -1){
+                num = 0;
+            }
+            page+=num;
+            document.getElementById("page").innerText = page;
+            clearElement("tb");
+            $.ajax({
+                url: "/BHY/FindEmployeeLimitServlet",
+                type: "post",
+                data: {"page":page},
+                success: function(result){
+                    var tb = document.getElementById("tb");
+                    var jsons = jQuery.parseJSON(result);
+
+                    $.each(jsons,function(i,item){
+
+                        var tr = document.createElement("tr");
+                        var td_eid = document.createElement("td");
+                        td_eid.innerHTML = item.e_id;
+                        var td_ename = document.createElement("td");
+                        td_ename.innerHTML = item.e_name;
+                        var td_dvalue = document.createElement("td");
+                        td_dvalue.innerHTML = item.d_value;
+                        var td_staddress  =  document.createElement("td");
+                        td_staddress.innerHTML = item.st_address;
+
+                        var td_input = document.createElement("td");
+                        var input = document.createElement("input");
+                        input.value = "📝";
+                        input.type = "button";
+                        input.setAttribute("onclick", "jumpWithCookie(" + JSON.stringify(item) + ",\"/BHY/html/BHY-showEmployee.html\" )");
+                        td_input.appendChild(input);
+
+                        tr.appendChild(td_eid);
+                        tr.appendChild(td_ename);
+                        tr.appendChild(td_dvalue);
+                        tr.appendChild(td_staddress);
+                        tr.appendChild(td_input);
+
+                        tb.appendChild(tr);
+                    });
+                },
+                error: function(){
+                    alert("error");
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <th>员工id</th>
+    <th>姓名</th>
+    <th>职务</th>
+    <th>宠物店名称</th>
+    <th>详情</th>
+    </thead>
+    <tbody id="tb">
+
+    </tbody>
+</table>
+    <input type="button" onclick="findEmployeeLimit(-1)" value="上一页">
+    <label>
+        当前在第<label id="page">1</label>页
+    </label>
+    <input type="button" onclick="findEmployeeLimit(1)" value="下一页">
+<script>
+    findEmployeeLimit(0);
+</script>
+</body>
+</html>

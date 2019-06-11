@@ -31,29 +31,35 @@
         function set(item) {
             var jsons = jQuery.parseJSON(item);
 
-            $("#c_id").val(jsons.c_id);
-            $("#c_name").val(jsons.c_name);
-            $("#c_num").val(jsons.c_num);
-            $("#c_produceDate").val(jsons.c_produceDate);
+            $("#cl_id").val(jsons.cl_id);
+            $("#cl_name").val(jsons.cl_name);
+            $("#d_id").val(jsons.d_id);
             $("#d_value").val(jsons.d_value);
-            $("#st_name").val(jsons.st_name);
-            $("#c_expirationDate").val(jsons.c_expirationDate);
-            $("#c_getDate").val(jsons.c_getDate);
+            $("#p_age").val(jsons.p_age);
+            $("#p_healthy").val(jsons.p_healthy);
+            $("#p_height").val(jsons.p_height);
+            $("#p_id").val(jsons.p_id);
+            $("#p_sex").val(jsons.p_sex);
+            $("#st_address").val(jsons.st_address);
+            $("#st_id").val(jsons.st_id);
         }
 
         function updateUser() {
             $.ajax({
-                url: "/javaWeb/Main",
+                url: "",
                 type: "post",
                 data: {
-                    "c_id": $("#c_id").val(),
-                    "c_name": $("#c_name").val(),
-                    "c_num": $("#c_num").val(),
-                    "c_produceDate": $("#c_produceDate").val(),
+                    "cl_id": $("#cl_id").val(),
+                    "cl_name": $("#cl_name").val(),
+                    "d_id": $("#d_id").val(),
                     "d_value": $("#d_value").val(),
-                    "st_name": $("#st_name").val(),
-                    "c_expirationDate": $("#c_expirationDate").val(),
-                    "c_getDate": $("#c_getDate").val()
+                    "p_age": $("#p_age").val(),
+                    "p_healthy": $("#p_healthy").val(),
+                    "p_height": $("#p_height").val(),
+                    "p_id": $("#p_id").val(),
+                    "p_sex": $("#p_sex").val(),
+                    "st_address": $("st_address").val(),
+                    "st_id": $("st_id").val()
                 },success: function (result) {
                     var json = jQuery.parseJSON(result);
                     if (json.rtn == 1) {
@@ -69,14 +75,17 @@
 <body>
 <div>
     <form>
-        商品id：<input type="text" id="c_id"><br>
-        商品名称：<input type="text" id="c_name"><br>
-        商品数量：<input type="text" id = "c_num"><br>
-        生产日期：<input type="text" id="c_produceDate"><br>
-        商品种类：<input type="text" id="d_value"><br>
-        宠物店：<input type="text" id="st_name"><br>
-        保质日期：<input type="text" id="c_expirationDate"><br>
-        进货日期：<input type="text" id="c_getDate"><br>
+        顾客id：<input type="text" id="cl_id"><br>
+        顾客姓名：<input type="text" id="cl_name"><br>
+        宠物id：<input type="text" id = "d_id"><br>
+        宠物类型：<input type="text" id="d_value"><br>
+        宠物年龄：<input type="text" id="p_age"><br>
+        健康状况：<input type="text" id="p_healthy"><br>
+        宠物体重：<input type="text" id="p_height"><br>
+        宠物id：<input type="text" id="p_id"><br>
+        宠物性别：<input type="text" id="p_sex"><br>
+        宠物店地址：<input type="text" id="st_address"><br>
+        宠物店：<input type="text" id="st_id"><br>
     </form>
     <button type="submit" onclick="updateUser()">提交</button>
 </div>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
+        delCookie("item");
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i].trim();
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+        }
+
+        function delCookie(key) {
+            var date = new Date();
+            date.setTime(date.getTime() - 1);
+            var delValue = getCookie(key);
+            if (!!delValue) {
+                document.cookie = key+'='+delValue+';expires='+date.toGMTString();
+            }
+        }
+
+        function set(item) {
+            var jsons = jQuery.parseJSON(item);
+
+            $("#username").val(jsons.username);
+            $("#d_id").val(jsons.d_id);
+            $("#d_value").val(jsons.d_value);
+            $("#e_age").val(jsons.e_age);
+            $("#e_id").val(jsons.e_id);
+            $("#e_name").val(jsons.e_name);
+            $("#e_salary").val(jsons.e_salary);
+            $("#e_sex").val(jsons.e_sex);
+            $("#e_time").val(jsons.e_time);
+            $("#st_address").val(jsons.st_address);
+            $("#st_id").val(jsons.st_id);
+            $("#u_id").val(jsons.u_id);
+        }
+
+        function updateUser() {
+            $.ajax({
+                url: "",
+                type: "post",
+                data: {
+                    "username":$("#username"),
+                    "d_id": $("#d_id").val(),
+                    "d_value":$("#d_value").val(),
+                    "e_age": $("#e_age").val(),
+                    "e_id": $("#e_id").val(),
+                    "e_name": $("#e_name").val(),
+                    "e_salary": $("#e_salary").val(),
+                    "e_sex": $("#e_sex").val(),
+                    "e_time": $("#e_time").val(),
+                    "st_address": $("#st_address").val(),
+                    "st_id": $("#st_id").val(),
+                    "u_id": $("#u_id")
+                },success: function (result) {
+                    var json = jQuery.parseJSON(result);
+                    if (json.rtn == 1) {
+                        alert("修改成功");
+                    } else {
+                        alert("请重试");
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div>
+    <form>
+        员工姓名：<input type="text" id="username"><br>
+        员工id：<input type="text" id="d_id"><br>
+        职务：<input type="text" id ="d_value"><br>
+        年龄：<input type="text" id="e_age"><br>
+        所属宠物店id：<input type="text" id="e_id"><br>
+        宠物店名称：<input type="text" id="e_name"><br>
+        工资：<input type="text" id="e_salary"><br>
+        性别：<input type="text" id="e_sex"><br>
+        入职时间：<input type="text" id="e_time"><br>
+        宠物店地址：<input type="text" id="st_address"><br>
+        ：<input type="text" id="st_id"><br>
+    </form>
+    <button type="submit" onclick="updateUser()">提交</button>
+</div>
+<script>
+    set(json);
+</script>
+</body>
+</html>

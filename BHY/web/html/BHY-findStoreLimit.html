@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript">
+        function findStoreLimit(num){
+            var page = eval(document.getElementById("page").innerText);
+            if(page === 1&&num === -1){
+                num = 0;
+            }
+            page+=num;
+            document.getElementById("page").innerText = page;
+            $.ajax({
+                url: "/BHY/FindStoreLimitServlet",
+                type: "post",
+                data: {"page":page},
+                success: function(result){
+                    var tb = document.getElementById("tb");
+                    var jsons = jQuery.parseJSON(result);
+
+                    $.each(jsons,function(i,item){
+
+                        var tr = document.createElement("tr");
+                        var td_sid = document.createElement("td");
+                        td_sid.innerHTML = item.st_id;
+                        var td_saddress = document.createElement("td");
+                        td_saddress.innerHTML = "BHY-" + item.st_address;
+
+                        var td_input = document.createElement("td");
+                        var input = document.createElement("input");
+                        input.value = "📝";
+                        input.type = "button";
+                        input.setAttribute("onclick", "jumpWithCookie(" + JSON.stringify(item) + ",\"/BHY/html/BHY-showStore.html\" )");
+                        td_input.appendChild(input);
+
+                        tr.appendChild(td_sid);
+                        tr.appendChild(td_saddress);
+                        tr.appendChild(td_input);
+                        tb.appendChild(tr);
+                    });
+                    setAddButton(tb, 3, "/BHY/html/BHY-addStore.html");
+                },
+                error: function(){
+                    alert("error");
+                }
+            });
+        }
+
+        function a(i) {
+            var json = JSON.stringify(i);
+            // alert("jason = " + json);
+            document.cookie = "item=" + json;
+            $(location).attr("href", "/BHY/html/更新页面.html");}
+    </script>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <th>宠物店id</th>
+    <th>店名</th>
+    <th>详情</th>
+    </thead>
+    <tbody id="tb">
+
+    </tbody>
+</table>
+<input type="button" onclick="findStoreLimit(-1)" value="上一页">
+    <label>
+        当前在第<label id="page">1</label>页
+    </label>
+<input type="button" onclick="findStoreLimit(1)" value="下一页">
+<script>
+    findStoreLimit(0);
+</script>
+</body>
+</html>

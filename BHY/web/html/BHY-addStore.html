@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        function addClient(){
+            $.ajax({
+                url: "/BHY/AddStoreServlet",
+                type: "post",
+                data:{"cl_name":$("#cl_name").val(),
+                    "st_name":$("#st_name").val(),
+                    "st_id":$("#st_id").val(),
+                    "type":$("#type").val()},
+                success: function(result){
+                    var jsons = jQuery.parseJSON(result);
+                    if(json.rtn == 1){
+                        alert("添加成功");
+                        $(location).attr('href','');
+                    }else{
+                        alert("添加失败！请重试");
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div>
+    <table border="2">
+        <tr>
+            <td></td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>地址</td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>宠物店id</td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>服务类型</td>
+            </td>
+            <td><select>
+                <option>宠物购买</option>
+                <option>饲料购买</option>
+                <option>医疗服务</option>
+            </select></td>
+        </tr>
+    </table>
+    <button onclick="addClient()">添加</button>
+</div>
+</body>
+</html>

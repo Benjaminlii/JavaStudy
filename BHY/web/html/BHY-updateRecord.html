@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
+        delCookie("item");
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i].trim();
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+        }
+
+        function delCookie(key) {
+            var date = new Date();
+            date.setTime(date.getTime() - 1);
+            var delValue = getCookie(key);
+            if (!!delValue) {
+                document.cookie = key+'='+delValue+';expires='+date.toGMTString();
+            }
+        }
+
+        function set(item) {
+            var jsons = jQuery.parseJSON(item);
+
+            $("#c_id").val(jsons.c_id);
+            $("#c_name").val(jsons.c_name);
+            $("#cl_id").val(jsons.cl_id);
+            $("#cl_name").val(jsons.cl_name);
+            $("#r_id").val(jsons.r_id);
+            $("#r_num").val(jsons.r_num);
+            $("#r_pattern").val(jsons.r_pattern);
+            $("#r_price").val(jsons.r_price);
+            $("#r_time").val(jsons.r_time)
+        }
+
+        function updateUser() {
+            $.ajax({
+                url: "/javaWeb/Main",
+                type: "post",
+                data: {
+                    "c_id": $("#c_id").val(),
+                    "c_name": $("#c_name").val(),
+                    "cl_id": $("#cl_id").val(),
+                    "cl_name": $("#cl_name").val(),
+                    "r_id": $("#r_id").val(),
+                    "r_num": $("#r_num").val(),
+                    "r_pattern": $("#r_pattern").val(),
+                    "r_price": $("#r_price").val(),
+                    "r_time": $("#r_time").val()
+                },success: function (result) {
+                    var json = jQuery.parseJSON(result);
+                    if (json.rtn == 1) {
+                        alert("修改成功");
+                    } else {
+                        alert("请重试");
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div>
+    <form>
+        商品种类：<input type="text" id="c_id"><br>
+        商品名称：<input type="text" id="c_name"><br>
+        顾客id：<input type="text" id = "cl_id"><br>
+        顾客姓名：<input type="text" id="cl_name"><br>
+        商品编号：<input type="text" id="r_id"><br>
+        数量：<input type="text" id="r_num"><br>
+        支付方式：<input type="text" id="r_pattern"><br>
+        价格：<input type="text" id="r_price"><br>
+        出售时间：<input type="text" id="r_time"><br>
+    </form>
+    <button type="submit" onclick="updateUser()">提交</button>
+</div>
+<script>
+    set(json);
+</script>
+</body>
+</html>

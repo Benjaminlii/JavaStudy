@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+<script type="text/javascript">
+    function fingClientLimit(num){
+        var page = eval(document.getElementById("page").innerText);
+        if(page === 1&&num === -1){
+            num = 0;
+        }
+        page+=num;
+        document.getElementById("page").innerText = page;
+        clearElement("tb");
+        $.ajax({
+            url: "/BHY/FindClientLimitServlet",
+            type: "post",
+            data: {"page":page},
+            success: function(result){
+                var tb = document.getElementById("tb");
+                var jsons = jQuery.parseJSON(result);
+
+                $.each(jsons,function(i,item){
+
+                    var tr = document.createElement("tr");
+                    var td_clid = document.createElement("td");
+                    td_clid.innerHTML = item.cl_id;
+                    var td_clname = document.createElement("td");
+                    td_clname.innerHTML = item.cl_name;
+                    var td_clsex = document.createElement("td");
+                    td_clsex.innerHTML = item.cl_sex;
+                    var td_mobile = document.createElement("td");
+                    td_mobile.innerHTML = item.mobile;
+
+                    var td_input = document.createElement("td");
+                    var input = document.createElement("input");
+                    input.value = "📝";
+                    input.type = "button";
+                    input.setAttribute("onclick", "jumpWithCookie(" + JSON.stringify(item) + ",\"/BHY/html/BHY-showClient.html\" )");
+
+                    // JSON.stringify() 方法用于将 JavaScript 值转换为 JSON 字符串。
+                    td_input.appendChild(input);
+
+                    tr.appendChild(td_clid);
+                    tr.appendChild(td_clname);
+                    tr.appendChild(td_clsex);
+                    tr.appendChild(td_mobile);
+                    tr.appendChild(td_input);
+                    tb.appendChild(tr);
+                });
+                setAddButton(tb, 5, "/BHY/html/BHY-addClient.html")
+            },
+            error: function(){
+                alert("error");
+            }
+        })
+    }
+</script>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <th>顾客id</th>
+    <th>姓名</th>
+    <th>性别</th>
+    <th>手机号</th>
+    <th>详情</th>
+    </thead>
+    <tbody id="tb">
+
+    </tbody>
+</table>
+    <input type="button" onclick="fingClientLimit(-1)" value="上一页">
+    <label>
+        当前在第<label id="page">1</label>页
+    </label>
+    <input type="button" onclick="fingClientLimit(1)" value="下一页">
+<script>
+    fingClientLimit(0);
+</script>
+</body>
+</html>

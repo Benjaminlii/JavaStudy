@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
+        delCookie("item");
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i].trim();
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+        }
+
+        function delCookie(key) {
+            var date = new Date();
+            date.setTime(date.getTime() - 1);
+            var delValue = getCookie(key);
+            if (!!delValue) {
+                document.cookie = key+'='+delValue+';expires='+date.toGMTString();
+            }
+        }
+
+        function set(item) {
+            var jsons = jQuery.parseJSON(item);
+
+            $("#cl_name").val(jsons.cl_name);
+            $("#cl_id").val(jsons.cl_id);
+            $("#cl_emil").val(jsons.cl_emil);
+            $("#cl_sex").val(jsons.cl_sex);
+            $("#cl_age").val(jsons.cl_age);
+            $("#mobile").val(jsons.mobile);
+            $("#u_id").val(jsons.u_id);
+        }
+
+        function updateUser() {
+            $.ajax({
+                url: "",
+                type: "post",
+                data: {
+                    "cl_name":$("#cl_name"),
+                    "cl_id": $("#cl_id").val(),
+                    "cl_emil":$("#cl_emil").val(),
+                    "cl_sex": $("#cl_sex").val(),
+                    "cl_age": $("#cl_age").val(),
+                    "mobile": $("#mobile").val(),
+                    "u_id": $("#u_id").val()
+                },success: function (result) {
+                    var json = jQuery.parseJSON(result);
+                    if (json.rtn == 1) {
+                        alert("修改成功");
+                    } else {
+                        alert("请重试");
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div>
+    <form>
+        顾客姓名：<input type="text" id="cl_name"><br>
+        顾客id：<input type="text" id="cl_id"><br>
+        顾客邮箱：<input type="text" id ="cl_emil"><br>
+        顾客性别：<input type="text" id="cl_sex"><br>
+        顾客年龄：<input type="text" id="cl_age"><br>
+        顾客手机号：<input type="text" id="mobile"><br>
+        所属用户id：<input type="text" id="u_id"><br>
+    </form>
+    <button type="submit" onclick="updateUser()">提交</button>
+</div>
+<script>
+    set(json);
+</script>
+</body>
+</html>
