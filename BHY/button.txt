@@ -1,0 +1,13 @@
+class= btn btn-primary
+
+详细信息
+<span class="glyphicon glyphicon-list-alt" style="color: rgb(255, 255, 255); font-size: 15px;"></span>
+
+添加
+<span class="glyphicon glyphicon-plus" style="color: rgb(255, 255, 255); font-size: 15px;"></span>
+
+删除
+<span class="glyphicon glyphicon-remove" style="color: rgb(255, 255, 255); font-size: 15px;"></span>
+
+修改
+<span class="glyphicon glyphicon-pencil" style="color: rgb(255, 255, 255); font-size: 15px;"></span>
