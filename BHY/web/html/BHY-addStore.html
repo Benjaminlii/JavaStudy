@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/setSelect.js"></script>
     <script type="text/javascript">
-        function addClient(){
+        function addClient() {
             $.ajax({
                 url: "/BHY/AddStoreServlet",
                 type: "post",
-                data:{"cl_name":$("#cl_name").val(),
-                    "st_name":$("#st_name").val(),
-                    "st_id":$("#st_id").val(),
-                    "type":$("#type").val()},
-                success: function(result){
+                data: {
+                    "d_id": $("#d_id").val(),
+                    "st_address": $("#st_address").val(),
+                    "e_id": $("#e_id").val(),
+                    "st_time": $("#st_time").val()
+                },
+                success: function (result) {
                     var jsons = jQuery.parseJSON(result);
-                    if(json.rtn == 1){
+                    if (jsons.rtn == 1) {
                         alert("添加成功");
-                        $(location).attr('href','');
-                    }else{
+                        $(location).attr('href', '/BHY/html/BHY-findStoreLimit.html');
+                    } else {
                         alert("添加失败！请重试");
                     }
                 }
@@ -30,28 +34,27 @@
 <div>
     <table border="2">
         <tr>
-            <td></td>
-            <td><input type="text"></td>
+            <td>宠物店类型</td>
+            <td><select id="d_id"></select></td>
         </tr>
         <tr>
             <td>地址</td>
-            <td><input type="text"></td>
+            <td><input type="text" id="st_address"></td>
         </tr>
         <tr>
-            <td>宠物店id</td>
-            <td><input type="text"></td>
+            <td>店长id</td>
+            <td><input type="text" id="e_id"></td>
         </tr>
         <tr>
-            <td>服务类型</td>
-            </td>
-            <td><select>
-                <option>宠物购买</option>
-                <option>饲料购买</option>
-                <option>医疗服务</option>
-            </select></td>
+            <td>宠物店设置时间</td>
+            <td><input type="date" id="st_time"/></td>
         </tr>
     </table>
     <button onclick="addClient()">添加</button>
 </div>
+<script>
+    getDicSelect("d_id", "宠物店级别", 0);
+    $("#st_time").val(getDate());
+</script>
 </body>
 </html>

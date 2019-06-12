@@ -12,6 +12,17 @@ public class CargoQueryVo {
         this.cargoCustom = cargoCustom;
     }
 
+    //用户信息，用于查询宠物店
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     //分页
     private Page page;
 

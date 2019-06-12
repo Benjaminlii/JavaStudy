@@ -1,8 +1,9 @@
 package entity;
 
-import util.JsonTimeUtil;
+import util.DateStringUtil;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * 服务类
@@ -91,8 +92,8 @@ public class Service {
         return s_atime;
     }
 
-    public void setS_atime(Date s_atime) {
-        this.s_atime = JsonTimeUtil.getdate(s_atime);
+    public void setS_atime(Timestamp s_atime) {
+        this.s_atime = DateStringUtil.dateToString(s_atime);
     }
 
     public Float getS_price() {

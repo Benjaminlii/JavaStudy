@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/setSelect.js"></script>
+    <script type="text/javascript">
+
+        function updateUser() {
+            $.ajax({
+                url: "/BHY/addCargoServlet",
+                type: "post",
+                data: {
+                    "c_name": $("#c_name").val(),
+                    "c_num": $("#c_num").val(),
+                    "d_id": $("#d_id").val(),
+                    "s_id": $("#s_id").val(),
+                    "c_getDate": $("#c_getDate").val(),
+                    "c_producedDate": $("#c_producedDate").val(),
+                    "c_expirationDate": $("#c_expirationDate").val(),
+                }, success: function (result) {
+                    var json = jQuery.parseJSON(result);
+                    if (json.rtn == 1) {
+                        alert("添加成功");
+                        $(location).attr('href','/BHY/BHY-findCargoLimit.html');
+                    } else {
+                        alert("失败");
+                    }
+                },
+                error: function () {
+                    alert("error");
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div>
+    <form>
+        货物名称：<input type="text" id="cl_name"><br>
+        货物数量：<input type="text" id="c_num"><br>
+        货物类型：<select id="d_id"></select><br>
+        所属宠物店：<select id="st_id"></select><br>
+        进货时间：<input type="date" id="c_getDate"><br>
+        生产日期：<input type="date" id="c_producedDate"><br>
+        保质日期：<input type="date" id="c_expirationDate"><br>
+    </form>
+    <button type="submit" onclick="updateUser()">增加</button>
+</div>
+<script>
+    // set(json);
+    getDicSelect("d_id", "货物类型", 0);
+    getStoreSelect("st_id", 0);
+    $("#c_getDate").val(getDate());
+    $("#c_producedDate").val(getDate());
+    $("#c_expirationDate").val(getDate());
+</script>
+</body>
+</html>

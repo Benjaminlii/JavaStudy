@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/setSelect.js"></script>
     <script>
-        function addClient(){
+        function addClient() {
             $.ajax({
                 url: "/BHY/AddClientServlet",
                 type: "post",
-                data:{"cl_name":$("#cl_name").val(),
-                    "mobile":$("#mobile").val(),
-                    "u_id":$("#u_id").val(),
-                    "cl_age":$("#cl_age").val(),
-                    "cl_sex":$("#cl_sex").val(),
-                    "cl-emil":$("#cl_emil").val()},
-                success: function(result){
+                data: {
+                    "cl_name": $("#cl_name").val(),
+                    "mobile": $("#mobile").val(),
+                    "u_id": "3",
+                    "cl_age": $("#cl_age").val(),
+                    "cl_sex": $("#cl_sex").val(),
+                    "cl-emil": $("#cl_emil").val()
+                },
+                success: function (result) {
                     var jsons = jQuery.parseJSON(result);
-                    if(json.rtn == 1){
+                    if (jsons.rtn == 1) {
                         alert("添加成功");
-                        $(location).attr('href','');
-                    }else{
+                        $(location).attr('href', '/BHY/html/BHY-findClientLimit.html');
+                    } else {
                         alert("电话号码重复！请重试");
                     }
                 }
@@ -33,30 +37,26 @@
     <table border="2">
         <tr>
             <td>姓名</td>
-            <td><input type="text"></td>
+            <td><input type="text" id="cl_name"></td>
         </tr>
         <tr>
             <td>手机</td>
-            <td><input type="text"></td>
-        </tr>
-        <tr>
-            <td>用户id</td>
-            <td><input type="text"></td>
+            <td><input type="text" id="mobile"></td>
         </tr>
         <tr>
             <td>年龄</td>
-            <td><input type="text"></td>
+            <td><input type="text" id="cl_age"></td>
         </tr>
         <tr>
-        <td>性别</td>
-        <td><input type="text"></td>
+            <td>性别</td>
+            <td><input type="text" id="cl_sex"></td>
         </tr>
         <tr>
             <td>邮箱</td>
-            <td><input type="text"></td>
+            <td><input type="text" id="cl_emil"></td>
         </tr>
     </table>
-    <button type="submit" onclick="addClient()">添加</button>
+    <button onclick="addClient()">添加</button>
 </div>
 </body>
 </html>

@@ -33,9 +33,9 @@
             <if test="employeeCustom.e_age != null and employeeCustom.e_age != 0">
                 and e_age = #{employeeCustom.e_age}
             </if>
-            <!--<if test="employeeCustom.e_time != null">-->
-            <!--and e_time = #{employeeCustom.e_time}-->
-            <!--</if>-->
+            <if test="employeeCustom.e_time != null">
+            and e_time = #{employeeCustom.e_time}
+            </if>
             <if test="employeeCustom.st_address != null and employeeCustom.st_address != ''">
                 and st_address like '%${employeeCustom.st_address}%'
             </if>

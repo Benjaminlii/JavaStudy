@@ -1,6 +1,9 @@
 package entity;
 
-import java.util.Date;
+import util.DateStringUtil;
+
+import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * 货物（商品）类
@@ -11,9 +14,9 @@ public class Cargo {
     private Integer c_num;//货物数量
     private Integer d_id;//字典id（货物类别）
     private Integer st_id;//所属宠物店id
-    private Date c_getDate;//进货时间
-    private Date c_producedDate;//生产日期
-    private Date c_expirationDate;//保质日期
+    private String c_getDate;//进货时间
+    private String c_producedDate;//生产日期
+    private String c_expirationDate;//保质日期
 
     public Cargo() {
     }
@@ -58,28 +61,28 @@ public class Cargo {
         this.st_id = st_id;
     }
 
-    public Date getC_getDate() {
+    public String getC_getDate() {
         return c_getDate;
     }
 
-    public void setC_getDate(Date c_getDate) {
-        this.c_getDate = c_getDate;
+    public void setC_getDate(Timestamp c_getDate) {
+        this.c_getDate = DateStringUtil.dateToString(c_getDate);
     }
 
-    public Date getC_producedDate() {
+    public String getC_producedDate() {
         return c_producedDate;
     }
 
-    public void setC_producedDate(Date c_producedDate) {
-        this.c_producedDate = c_producedDate;
+    public void setC_producedDate(Timestamp c_producedDate) {
+        this.c_producedDate = DateStringUtil.dateToString(c_producedDate);
     }
 
-    public Date getC_expirationDate() {
+    public String getC_expirationDate() {
         return c_expirationDate;
     }
 
-    public void setC_expirationDate(Date c_expirationDate) {
-        this.c_expirationDate = c_expirationDate;
+    public void setC_expirationDate(Timestamp c_expirationDate) {
+        this.c_expirationDate = DateStringUtil.dateToString(c_expirationDate);
     }
 
     @Override

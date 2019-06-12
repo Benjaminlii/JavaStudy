@@ -9,12 +9,18 @@ function jumpWithCookie(date, url) {
 ➕
 🛠
 📝
-input.setAttribute("onclick", "jumpWithCookie(" + JSON.stringify(item) + ",\"/BHY/html/BHY-BHY-showPet.html\" )");
+input.setAttribute("onclick", "jumpWithCookie(" + JSON.stringify(item) + ",\"/BHY/html/BHY-showPet.html\" )");
 
+$("#updateButton").attr("onclick", "jumpWithCookie(" + item + ",'/BHY/html/BHY-updatePet.html')")
+<button id="updateButton">修改</button>
+
+
+$(location).attr("href", url);
 * */
 
 //设置cookie
 function setCookie(data) {
+    delCookie("item");
     var json = JSON.stringify(data);
     document.cookie = "item=" + json;
 }
@@ -41,6 +47,7 @@ function getCookie(cname) {
     }
 }
 
+//清空标签的子标签
 function clearElement(id) {
     var div = document.getElementById(id);
     while (div.hasChildNodes()) //当div下还存在子节点时 循环继续
@@ -83,4 +90,12 @@ function getValueByID(d_id) {
         }
     });
     return rtn;
+}
+
+function getDate(){
+    var time = new Date();
+    var day = ("0" + time.getDate()).slice(-2);
+    var month = ("0" + (time.getMonth() + 1)).slice(-2);
+    var today = time.getFullYear() + "-" + (month) + "-" + (day)
+    return today
 }

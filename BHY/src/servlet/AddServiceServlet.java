@@ -4,6 +4,7 @@ import entity.ServiceCustom;
 import net.sf.json.JSONObject;
 import org.apache.commons.beanutils.BeanUtils;
 import service.ServiceService;
+import util.DateStringUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,6 +35,7 @@ public class AddServiceServlet extends HttpServlet {
         ServiceCustom serviceCustom = new ServiceCustom();
         try {
             BeanUtils.populate(serviceCustom, request.getParameterMap());
+            serviceCustom.setS_atime(DateStringUtil.stringToDate(request.getParameter("s_atime")));
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

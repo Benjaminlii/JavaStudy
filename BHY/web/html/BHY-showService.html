@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="cargoDelete.css" type="text/css" rel="stylesheet">
+    <link href="../css/cargoDelete.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="../js/cookie.js"></script>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
     <script type="text/javascript">
         var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
-        delCookie("item");
+        // delCookie("item");
 
         function set(item) {
             var jsons = jQuery.parseJSON(item);
@@ -21,6 +21,8 @@
             $("#e_id").val(jsons.e_id);
             $("#s_atime").val(jsons.s_atime);
             $("#s_price").val(jsons.s_price);
+            $("#updateButton").attr("onclick", "jumpWithCookie(" + item + ",'/BHY/html/BHY-updateService.html')")
+
         }
         function decision() {
             $.ajax({
@@ -29,9 +31,9 @@
                 data: {"s_id": $("#s_id").val()},
                 success: function (result) {
                     var jsons = jQuery.parseJSON(result);
-                    if (json.rtn == 1) {
+                    if (jsons.rtn == 1) {
                         alert("删除成功");
-                        $(location).attr('href','');
+                        $(location).attr('href','/BHY/html/BHY-findServiceLimit.html');
                     } else {
                         alert("删除失败，请重试");
                     }
@@ -53,19 +55,22 @@
 <div class="all">
     <h1>服务信息</h1>
     <div class="body">
-        <div>id<input type="text" id="s_id" readonly="readonly"></div>
+        <div>服务id<input type="text" id="s_id" readonly="readonly"></div>
         <div>宠物id<input type="text" id="p_id" readonly="readonly"></div>
+        <div>服务类型<input type="text" id="d_value" readonly="readonly"></div>
         <div>是否处理<input type="text" id="s_isdispose" readonly="readonly"></div>
         <div>是否完成<input type="text" id="s_isfinish" readonly="readonly"></div>
-        <div>服务类型<input type="text" id="d_value" readonly="readonly"></div>
         <div>处理员工id<input type="text" id="e_id" readonly="readonly"></div>
         <div>预约时间<input type="text" id="s_atime" readonly="readonly"></div>
         <div>服务价格<input type="text" id="s_price" readonly="readonly"></div>
     </div>
     <div>
-        <button onclick="jumpWithCookie(item,'/BHY/html/BHY-updateEmployee.html')">修改</button>
+        <button id="updateButton">修改</button>
         <button onclick="deleted()">删除</button>
     </div>
 </div>
+<script>
+    set(json)
+</script>
 </body>
 </html>

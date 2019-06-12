@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/setSelect.js"></script>
     <script type="text/javascript">
         var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
-        delCookie("item");
+        // delCookie("item");
 
         function getCookie(cname) {
             var name = cname + "=";
@@ -31,23 +33,24 @@
         function set(item) {
             var jsons = jQuery.parseJSON(item);
 
-            $("#d_id").val(jsons.d_id);
             $("#e_id").val(jsons.e_id);
             $("#e_name").val(jsons.e_name);
-            $("#s_address").val(jsons.s_address);
-            $("#st_grade").val(jsons.st_grade);
+            $("#st_address").val(jsons.st_address);
+            $("#st_id").val(jsons.st_id);
+            $("#st_time").val(jsons.st_time.toString().substring(0,10));
+
+            getDicSelect("d_id", "宠物店级别", jsons.d_id);
         }
 
         function updateUser() {
             $.ajax({
-                url: "/javaWeb/Main",
+                url: "/BHY/UpdateStoreServlet",
                 type: "post",
                 data: {
                     "d_id": $("#d_id").val(),
+                    "st_id": $("#st_id").val(),
                     "e_id": $("#e_id").val(),
-                    "e_name": $("#e_name").val(),
-                    "s_address": $("#s_address").val(),
-                    "st_grade": $("#st_grade").val(),
+                    "st_address": $("#st_address").val()
                 },success: function (result) {
                     var json = jQuery.parseJSON(result);
                     if (json.rtn == 1) {
@@ -63,11 +66,11 @@
 <body>
 <div>
     <form>
-        ：<input type="text" id="d_id"><br>
-        宠物店id：<input type="text" id="e_id"><br>
-        店主姓名：<input type="text" id = "e_name"><br>
-        地址：<input type="text" id="s_address"><br>
-        宠物店级别：<input type="text" id="st_grade"><br>
+        宠物店id：<input type="text" id="st_id" readonly="readonly"><br>
+        宠物店类型：<select id="d_id"></select><br>
+        店主id：<input type="text" id = "e_id"><br>
+        地址：<input type="text" id="st_address"><br>
+        设立时间：<input type="date" id="st_time"><br>
     </form>
     <button type="submit" onclick="updateUser()">提交</button>
 </div>

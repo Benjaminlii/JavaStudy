@@ -1,9 +1,11 @@
 package servlet;
 
-import entity.ServiceCustom;
+import entity.CargoCustom;
+import entity.CargoQueryVo;
+import entity.User;
 import net.sf.json.JSONObject;
 import org.apache.commons.beanutils.BeanUtils;
-import service.ServiceService;
+import service.CargoService;
 import util.DateStringUtil;
 
 import javax.servlet.ServletException;
@@ -14,15 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Date;
 
-@WebServlet("/UpdateServiceServlet")
-public class UpdateServiceServlet extends HttpServlet {
-    /**
-     * 更新服务项内容
-     * serviceCustom s_id作为见多信息，其他都为要修改的新信息,宠物id， 字典id（服务类型）不为空
-     * 更新成功返回rtn:1，否则返回rtn:0
-     */
+@WebServlet("/addCargoServlet")
+public class addCargoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置编码
         request.setCharacterEncoding("utf-8");
@@ -33,16 +29,21 @@ public class UpdateServiceServlet extends HttpServlet {
         JSONObject jsonObject = new JSONObject();
 
         //封装数据
-        ServiceCustom serviceCustom = new ServiceCustom();
+        CargoQueryVo cargoQueryVo = new CargoQueryVo();
+        CargoCustom cargoCustom = new CargoCustom();
         try {
-            BeanUtils.populate(serviceCustom, request.getParameterMap());
-            serviceCustom.setS_atime(DateStringUtil.stringToDate(request.getParameter("s_atime")));
+            BeanUtils.populate(cargoCustom, request.getParameterMap());
+            cargoCustom.setC_getDate(DateStringUtil.stringToDate(request.getParameter("c_getDate")));
+            cargoCustom.setC_expirationDate(DateStringUtil.stringToDate(request.getParameter("c_expirationDate")));
+            cargoCustom.setC_producedDate(DateStringUtil.stringToDate(request.getParameter("c_getDate")));
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
+        cargoQueryVo.setCargoCustom(cargoCustom);
+        cargoQueryVo.setUser((User) request.getSession().getAttribute("user"));
 
         //调用业务逻辑
-        if(ServiceService.updateService(serviceCustom)){
+        if(CargoService.addCargo(cargoQueryVo)){
             jsonObject.put("rtn", 1);
         }else{
             jsonObject.put("rtn", 0);

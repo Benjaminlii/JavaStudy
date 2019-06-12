@@ -6,6 +6,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.DateConverter;
 import service.StoreService;
+import util.DateStringUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,6 +45,7 @@ public class AddStoreServlet extends HttpServlet {
         StoreCustom storeCustom = new StoreCustom();
         try {
             BeanUtils.populate(storeCustom, request.getParameterMap());
+            storeCustom.setSt_time(DateStringUtil.stringToDate(request.getParameter("st_time")));
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

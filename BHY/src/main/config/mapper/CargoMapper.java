@@ -19,4 +19,12 @@ public interface CargoMapper {
      * @return 成功返回true，否则返回false
      */
     public boolean inAndOutCargo(CargoCustom cargoCustom)throws Exception;
+
+    /**
+     * 进货
+     * @param cargoQueryVo
+     * @return
+     * @throws Exception
+     */
+    public boolean addCargo(CargoQueryVo cargoQueryVo)throws Exception;
 }

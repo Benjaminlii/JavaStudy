@@ -8,6 +8,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.DateConverter;
 import service.RecordService;
+import util.DateStringUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,6 +49,7 @@ public class AddRecordServlet extends HttpServlet {
         try {
             BeanUtils.populate(recordQueryVo, request.getParameterMap());
             BeanUtils.populate(recordCustom, request.getParameterMap());
+            recordCustom.setR_time(DateStringUtil.stringToDate(request.getParameter("r_time")));
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

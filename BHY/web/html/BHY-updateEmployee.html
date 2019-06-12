@@ -4,50 +4,31 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/setSelect.js"></script>
     <script type="text/javascript">
         var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
-        delCookie("item");
-
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i].trim();
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-        }
-
-        function delCookie(key) {
-            var date = new Date();
-            date.setTime(date.getTime() - 1);
-            var delValue = getCookie(key);
-            if (!!delValue) {
-                document.cookie = key+'='+delValue+';expires='+date.toGMTString();
-            }
-        }
+        // delCookie("item");
 
         function set(item) {
             var jsons = jQuery.parseJSON(item);
 
             $("#username").val(jsons.username);
-            $("#d_id").val(jsons.d_id);
-            $("#d_value").val(jsons.d_value);
-            $("#e_age").val(jsons.e_age);
             $("#e_id").val(jsons.e_id);
+            getDicSelect("d_id", "员工职务", jsons.d_id);
+            $("#e_age").val(jsons.e_age);
             $("#e_name").val(jsons.e_name);
             $("#e_salary").val(jsons.e_salary);
             $("#e_sex").val(jsons.e_sex);
-            $("#e_time").val(jsons.e_time);
+            $("#e_time").val(jsons.e_time.toString().substring(0, 10));
             $("#st_address").val(jsons.st_address);
-            $("#st_id").val(jsons.st_id);
+            getStoreSelect("st_id", jsons.st_id);
             $("#u_id").val(jsons.u_id);
         }
 
         function updateUser() {
             $.ajax({
-                url: "",
+                url: "/BHY/UpdateEmployeeServlet",
                 type: "post",
                 data: {
                     "username":$("#username").val(),
@@ -66,6 +47,7 @@
                     var json = jQuery.parseJSON(result);
                     if (json.rtn == 1) {
                         alert("修改成功");
+                        $(location).attr("href", "/BHY/html/BHY-findEmployeeLimit.html");
                     } else {
                         alert("请重试");
                     }
@@ -77,17 +59,15 @@
 <body>
 <div>
     <form>
-        员工姓名：<input type="text" id="username" readonly="readonly"><br>
-        员工id：<input type="text" id="d_id"><br>
-        职务：<input type="text" id ="d_value"readonly="readonly"><br>
+        员工id：<input type="text" id="e_id" readonly="readonly"><br>
+        员工姓名：<input type="text" id="e_name"><br>
+        用户名：<input type="text" id="username" readonly="readonly"><br>
+        性别：<input type="text" id="" readonly="readonly"><br>
         年龄：<input type="text" id="e_age"><br>
-        所属宠物店id：<input type="text" id="e_id readonly="readonly"><br>
-        宠物店名称：<input type="text" id="e_name"><br>
+        职务：<select id="d_id"></select><br>
+        所属宠物店：<select id="st_id"></select><br>
         工资：<input type="text" id="e_salary"><br>
-        性别：<input type="text" id="e_sex" readonly="readonly"><br>
-        入职时间：<input type="text" id="e_time" readonly="readonly"><br>
-        宠物店地址：<input type="text" id="st_address" readonly="readonly"><br>
-        ：<input type="text" id="st_id"><br>
+        入职时间：<input type="date" id="e_time" readonly="readonly"><br>
     </form>
     <button type="submit" onclick="updateUser()">提交</button>
 </div>

@@ -20,9 +20,9 @@
             <if test="recordCustom.c_id != null and recordCustom.c_id != 0">
                 and c_id = #{recordCustom.c_id}
             </if>
-            <!--<if test="recordCustom.r_time != null">-->
-            <!--and r_time = #{recordCustom.r_time}-->
-            <!--</if>-->
+            <if test="recordCustom.r_time != null">
+            and r_time = #{recordCustom.r_time}
+            </if>
             <if test="recordCustom.r_price != null and recordCustom.r_price != 0">
                 and r_price = #{recordCustom.r_price}
             </if>

@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/setSelect.js"></script>
     <script type="text/javascript">
         var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
-        delCookie("item");
 
         function getCookie(cname) {
             var name = cname + "=";
@@ -24,7 +25,7 @@
             date.setTime(date.getTime() - 1);
             var delValue = getCookie(key);
             if (!!delValue) {
-                document.cookie = key+'='+delValue+';expires='+date.toGMTString();
+                document.cookie = key + '=' + delValue + ';expires=' + date.toGMTString();
             }
         }
 
@@ -33,7 +34,7 @@
 
             $("#e_name").val(jsons.e_name);
             $("#e_id").val(jsons.e_id);
-            $("#d_id").val(jsons.d_id);
+            getDicSelect("d_id", "服务类别", jsons.d_id)
             $("#d_value").val(jsons.d_value);
             $("#p_id").val(jsons.p_id);
             $("#s_atime").val(jsons.s_atime);
@@ -45,26 +46,26 @@
 
         function updateUser() {
             $.ajax({
-                url: "/javaWeb/Main",
+                url: "/BHY/UpdateServiceServlet",
                 type: "post",
                 data: {
-                    "e_name": $("#e_name").val(),
                     "e_id": $("#e_id").val(),
                     "d_id": $("#d_id").val(),
-                    "d_value": $("#d_value").val(),
                     "p_id": $("#p_id").val(),
                     "s_atime": $("#s_atime").val(),
                     "s_id": $("#s_id").val(),
                     "s_isdispose": $("#s_isdispose").val(),
-                    "s_isfinish": $("#s_isfinish"),
-                    "r_price": $("#r_price").val(),
-                },success: function (result) {
+                    "s_isfinish": $("#s_isfinish").val(),
+                    "r_price": $("#r_price").val()
+                }, success: function (result) {
                     var json = jQuery.parseJSON(result);
                     if (json.rtn == 1) {
                         alert("修改成功");
                     } else {
                         alert("请重试");
                     }
+                },error:function () {
+                    alert("error");
                 }
             })
         }
@@ -73,15 +74,19 @@
 <body>
 <div>
     <form>
-        顾客姓名：<input type="text" id="e_name"><br>
-        顾客id：<input type="text" id="e_id"><br>
-        服务编号：<input type="text" id = "d_id"><br>
-        服务项目：<input type="text" id="d_value"><br>
-        商品编号：<input type="text" id="p_id"><br>
-        服务时间：<input type="text" id="s_atime"><br>
-        宠物id：<input type="text" id="s_id"><br>
-        ：<input type="text" id="s_isdispose"><br>
-        ：<input type="text" id="s_isfinish"><br>
+        服务id：<input type="text" id="s_id" readonly="readonly"><br>
+        服务类型：<select id="d_id"></select><br>
+        服务时间：<input type="date" id="s_atime"><br>
+        宠物id：<input type="text" id="p_id"><br>
+        是否被处理：<select id="s_isdispose">
+        <option value="是">是</option>
+        <option value="否">否</option>
+    </select><br>
+        是否被完成：<select id="s_isfinish">
+        <option value="是">是</option>
+        <option value="否">否</option>
+    </select><br>
+        处理员工id：<input type="text" id="e_id"><br>
         价格：<input type="text" id="r_price"><br>
     </form>
     <button type="submit" onclick="updateUser()">提交</button>

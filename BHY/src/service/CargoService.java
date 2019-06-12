@@ -49,23 +49,23 @@ public class CargoService {
         return cargoCustoms;
     }
 
-//    /**
-//     * 进货和销售
-//     * @param cargoCustom 通过c_id确定销售的货物，根据c_num对数量进行更更新
-//     * @return 成功返回true，否则返回false
-//     */
-//    public static boolean inAndOutCargo(CargoCustom cargoCustom) {
-//        SqlSession sqlSession = sqlSessionFactory.openSession();
-//        CargoMapper cargoMapper = sqlSession.getMapper(CargoMapper.class);
-//        boolean rtn = false;
-//
-//        try {
-//            rtn = cargoMapper.inAndOutCargo(cargoCustom);
-//            sqlSession.commit();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return rtn;
-//    }
+    /**
+     * 进货和销售
+     * 通过c_id确定销售的货物，根据c_num对数量进行更更新
+     * @return 成功返回true，否则返回false
+     */
+    public static boolean addCargo(CargoQueryVo cargoQueryVo) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        CargoMapper cargoMapper = sqlSession.getMapper(CargoMapper.class);
+        boolean rtn = false;
+
+        try {
+            rtn = cargoMapper.addCargo(cargoQueryVo);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return rtn;
+    }
 }

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="cargoDelete.css" type="text/css" rel="stylesheet">
+    <link href="../css/cargoDelete.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="../js/cookie.js"></script>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
     <script type="text/javascript">
         var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
-        delCookie("item");
+        // delCookie("item");
 
         function set(item) {
             var jsons = jQuery.parseJSON(item);
@@ -18,6 +18,8 @@
             $("#e_name").val(jsons.e_name);
             $("#s_address").val(jsons.st_address);
             $("#st_time").val(jsons.st_time);
+            $("#updateButton").attr("onclick", "jumpWithCookie(" + item + ",'/BHY/html/BHY-updateStore.html')")
+
         }
         function decision() {
             $.ajax({
@@ -26,9 +28,9 @@
                 data: {"st_id": $("#st_id").val()},
                 success: function (result) {
                     var jsons = jQuery.parseJSON(result);
-                    if (json.rtn == 1) {
+                    if (jsons.rtn == 1) {
                         alert("删除成功");
-                        $(location).attr('href','');
+                        $(location).attr('href','/BHY/html/BHY-findStoreLimit.html');
                     } else {
                         alert("删除失败，请重试");
                     }
@@ -59,8 +61,9 @@
         <div>设立时间<input type="text" id="st_time" readonly="readonly"></div>
     </div>
     <div>
-        <button onclick="jumpWithCookie(item,'/BHY/html/BHY-updateEmployee.html')">修改</button>
         <button onclick="deleted()">删除</button>
+        <button id="updateButton">修改</button>
+
     </div>
 </div>
 <script>

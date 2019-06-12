@@ -65,12 +65,28 @@
 
     <!-- #################### insert #################### -->
 
+    <!-- 进货 -->
+    <insert id="addCargo" parameterType="entity.CargoQueryVo">
+        insert into cargo
+        set c_name           = #{cargoCustom.c_name},
+            c_num            = #{cargoCustom.c_num},
+            d_id             = #{cargoCustom.d_id},
+            st_id            = (select st_id
+                                from employee
+                                where u_id = #{cargoCustom.user.u_id}),
+            c_getdate        = #{cargoCustom.c_getdate},
+            c_produceddate   = #{cargoCustom.c_produceddate},
+            c_expirationdate = #{cargoCustom.c_expirationdate};
+    </insert>
+
     <!-- #################### update #################### -->
 
     <!-- 进货和销售 -->
     <!-- 通过c_id确定销售的货物，对数量进行更更新 -->
     <update id="inAndOutCargo" parameterType="CargoCustom">
-        update cargo set c_num = c_num + #{c_num} where c_id = #{c_id};
+        update cargo
+        set c_num = c_num + #{c_num}
+        where c_id = #{c_id};
     </update>
 
     <!-- #################### delete #################### -->

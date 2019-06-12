@@ -27,9 +27,9 @@
             <if test="serviceCustom.e_id != null and serviceCustom.e_id != 0">
                 and e_id = #{serviceCustom.e_id}
             </if>
-            <!--<if test="serviceCustom.s_atime != null">-->
-                <!--and s_atime = #{serviceCustom.s_atime}-->
-            <!--</if>-->
+            <if test="serviceCustom.s_atime != null">
+                and s_atime = #{serviceCustom.s_atime}
+            </if>
             <if test="serviceCustom.s_price != null and serviceCustom.s_price != 0">
                 and s_price = #{serviceCustom.s_price}
             </if>

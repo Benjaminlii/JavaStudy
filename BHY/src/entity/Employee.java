@@ -1,6 +1,9 @@
 package entity;
 
-import java.util.Date;
+import util.DateStringUtil;
+
+import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * 员工类
@@ -14,7 +17,7 @@ public class Employee {
     private Integer u_id;//用户id
     private String e_sex;//性别
     private Integer e_age;//年龄
-    private Date e_time;//入职时间
+    private String e_time;//入职时间
 
     public Employee() {
     }
@@ -34,7 +37,7 @@ public class Employee {
         this.d_id = d_id;
     }
 
-    public Employee(int e_id, String e_name, int e_salary, int st_id, int d_id, int u_id, String e_sex, int e_age, Date e_time) {
+    public Employee(int e_id, String e_name, int e_salary, int st_id, int d_id, int u_id, String e_sex, int e_age, String e_time) {
         this.e_id = e_id;
         this.e_name = e_name;
         this.e_salary = e_salary;
@@ -110,12 +113,12 @@ public class Employee {
         this.e_age = e_age;
     }
 
-    public Date getE_time() {
+    public String getE_time() {
         return e_time;
     }
 
-    public void setE_time(Date e_time) {
-        this.e_time = e_time;
+    public void setE_time(Timestamp e_time) {
+        this.e_time = DateStringUtil.dateToString(e_time);
     }
 
     @Override

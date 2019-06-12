@@ -3,71 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="cargoDelete.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="../js/cookie.js"></script>
+    <link href="../css/cargoDelete.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
-        <script type="text/javascript">
-            var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
-            delCookie("item");
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/setSelect.js"></script>
+    <script type="text/javascript">
+        var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
 
-            function set(item) {
-                var jsons = jQuery.parseJSON(item);
+        // delCookie("item");
 
-                $("#e_id").val(jsons.e_id);
-                $("#e_name").val(jsons.e_name);
-                $("#e_salary").val(jsons.e_salary);
-                $("#s_id").val(jsons.s_id);
-                $("#d_value").val(jsons.d_value);
-                $("#u_id").val(jsons.u_id);
-                $("#e_sex").val(jsons.e_sex);
-                $("#e_age").val(jsons.e_age);
-                $("#e_time").val(jsons.e_time);
-            }
-            function decision() {
-                $.ajax({
-                    url: "/BHY/DeleteEmployeeServlet",
-                    type: "post",
-                    data: {"e_id": $("#e_id").val()},
-                    success: function (result) {
-                        var jsons = jQuery.parseJSON(result);
-                        if (json.rtn == 1) {
-                            alert("删除成功");
-                            $(location).attr('href','BHY-findEmployeeLimit.html');
-                        } else {
-                            alert("删除失败，请重试");
-                        }
-                    },
-                    error: function(){
-                        alert("error");
+        function set(item) {
+            var jsons = jQuery.parseJSON(item);
+
+            $("#e_id").val(jsons.e_id);
+            $("#e_name").val(jsons.e_name);
+            $("#e_salary").val(jsons.e_salary);
+            $("#st_address").val(jsons.st_address);
+            $("#d_value").val(jsons.d_value);
+            $("#username").val(jsons.username);
+            $("#e_sex").val(jsons.e_sex);
+            $("#e_age").val(jsons.e_age);
+            $("#e_time").val(jsons.e_time);
+            $("#updateButton").attr("onclick", "jumpWithCookie(" + item + ",'/BHY/html/BHY-updateEmployee.html')")
+
+        }
+
+        function decision() {
+            $.ajax({
+                url: "/BHY/DeleteEmployeeServlet",
+                type: "post",
+                data: {"e_id": $("#e_id").val()},
+                success: function (result) {
+                    var jsons = jQuery.parseJSON(result);
+                    if (jsons.rtn == 1) {
+                        alert("删除成功");
+                        $(location).attr('href', 'BHY-findEmployeeLimit.html');
+                    } else {
+                        alert("删除失败，请重试");
                     }
-                })
-            }
-
-            function deleted(){
-                if(window.confirm("是否删除")){
-                    decision();
+                },
+                error: function () {
+                    alert("error");
                 }
+            })
+        }
+
+        function deleted() {
+            if (window.confirm("是否删除")) {
+                decision();
             }
-        </script>
+        }
+    </script>
 </head>
 <body>
 <div class="all">
     <h1>员工信息</h1>
     <div class="body">
-        <div>id<input type="text" id="c_id" readonly="readonly"></div>
-        <div>姓名<input type="text" id="c_name" readonly="readonly"></div>
-        <div>工资<input type="text" id="c_num" readonly="readonly"></div>
-        <div>所属宠物店<input type="text" id="s_id" readonly="readonly"></div>
+        <div>id<input type="text" id="e_id" readonly="readonly"></div>
+        <div>姓名<input type="text" id="e_name" readonly="readonly"></div>
+        <div>工资<input type="text" id="e_salary" readonly="readonly"></div>
+        <div>所属宠物店<input type="text" id="st_address" readonly="readonly"></div>
         <div>职务类型<input type="text" id="d_value" readonly="readonly"></div>
-        <div>用户id<input type="text" id="u_id" readonly="readonly"></div>
+        <div>用户名<input type="text" id="username" readonly="readonly"></div>
         <div>性别<input type="text" id="e_sex" readonly="readonly"></div>
         <div>年龄<input type="text" id="e_age" readonly="readonly"></div>
         <div>入职时间<input type="text" id="e_time" readonly="readonly"></div>
     </div>
     <div>
-        <button onclick="jumpWithCookie(item,'/BHY/html/BHY-findEmployeeLimit.html')">修改</button>
+        <button id="updateButton">修改</button>
         <button onclick="deleted()">删除</button>
     </div>
 </div>
+<script>
+    set(json);
+</script>
 </body>
 </html>

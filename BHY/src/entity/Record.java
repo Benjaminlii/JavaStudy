@@ -1,8 +1,9 @@
 package entity;
 
-import util.JsonTimeUtil;
+import util.DateStringUtil;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * 销售记录类
@@ -77,8 +78,8 @@ public class Record {
         return r_time;
     }
 
-    public void setR_time(Date r_time) {
-        this.r_time = JsonTimeUtil.getdate(r_time);
+    public void setR_time(Timestamp r_time) {
+        this.r_time = DateStringUtil.dateToString(r_time);
     }
 
     public Float getR_price() {

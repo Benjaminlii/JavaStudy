@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/setSelect.js"></script>
     <script type="text/javascript">
-        function addService(){
+        function addService() {
             $.ajax({
                 url: "/BHY/AddServiceServlet",
                 type: "post",
-                data:{"p_id":$("#p_id").val(),
-                    "st_id":$("#st_id").val(),
-                    "d_value":$("#d_value").val()},
-                success: function(result) {
+                data: {
+                    "d_id": $("#d_id").val(),
+                    "p_id": $("#p_id").val(),
+                    "s_isdispose": $("#s_isdispose").val(),
+                    "s_isfinish": $("#s_isfinish").val(),
+                    "e_id": $("#e_id").val(),
+                    "s_price": $("#s_price").val(),
+                    "s_atime": $("#s_atime").val()
+                },
+                success: function (result) {
                     var jsons = jQuery.parseJSON(result);
-                    if(json.rtn == 1){
+                    if (jsons.rtn == 1) {
                         alert("添加成功");
-                        $(location).attr('href','');
-                    }else{
+                        $(location).attr('href','/BHY/BHY-findServiceLimit.html');
+                    } else {
                         alert("添加失败！请重试");
                     }
                 }
@@ -26,37 +34,50 @@
     </script>
 </head>
 <body>
-<body>
-    <div>
-        <table border="2">
-            <tr>
-                <td>员工id</td>
-                <td><input type="text"></td>
-            </tr>
-            <tr>
-                <td>宠物id</td>
-                <td><input type="text"></td>
-            </tr>
-            <tr>
-                <td>服务类型</td>
-                <td><select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-                </td>
-            </tr>
-            <tr>
-                <td><select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-                </td>
-                <td><input type="text"></td>
-            </tr>
-        </table>
-        <button onclick="addClient()">添加</button>
-    </div>
+<div>
+    <table border="2">
+        <tr>
+            <td>服务类型</td>
+            <td><select id="d_id">
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td>宠物id</td>
+            <td><input type="text" id="p_id"></td>
+        </tr>
+        <tr>
+            <td>是否被处理</td>
+            <td><select id="s_isdispose">
+                <option value="是">是</option>
+                <option value="否">否</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>是否已完成</td>
+            <td><select id="s_isfinish">
+                <option value="是">是</option>
+                <option value="否">否</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>员工id</td>
+            <td><input type="text" id="e_id"></td>
+        </tr>
+        <tr>
+            <td>服务时间</td>
+            <td><input type="date" id="s_atime"></td>
+        </tr>
+        <tr>
+            <td>服务价格</td>
+            <td><input type="text" id="s_price"></td>
+        </tr>
+    </table>
+    <button onclick="addService()">添加</button>
+</div>
+<script>
+    $("#s_atime").val(getDate());
+    getDicSelect("d_id", "服务类别", 1000)
+</script>
 </body>
 </html>
