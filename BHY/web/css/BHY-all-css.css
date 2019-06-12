@@ -25,9 +25,13 @@
     font-size:20px;
     list-style: none;
 }
-.BHY-logo .BHY-header-linker li a{
+.BHY-logo .BHY-header-linker li span,div{
     color:#808080;
     text-decoration: none;
+}
+
+#adm-people{
+    width: 30px;
 }
 
 .BHY-body{
