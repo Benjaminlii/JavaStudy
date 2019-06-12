@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>BHY</title>
     <link rel="stylesheet" type="text/css" href="../css/BHY-all-css.css"/>
 
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
@@ -78,6 +78,7 @@
                 }
             });
         }
+
         function setAdm() {
             $.ajax({
                 type:"post",
@@ -103,11 +104,11 @@
 <body>
 <div class="BHY-header">
     <div class="BHY-logo BHY-Ajax.Main-content">
-        <a href="#"><img src="../image/logo.png" alt="LOGO" height="74"/></a>
+        <a href="/BHY/html/BHY-findUserLimit.html"><img src="../image/logo.png" alt="LOGO" height="74"/></a>
         <ul class="BHY-header-linker">
             <li><span>当前登录</span></li>
             <li><span id="adm-people">[admin]</span></li>
-            <li><a>退出</a></li>
+            <li><a onclick="logout()">退出</a></li>
         </ul>
     </div>
 </div>
@@ -117,12 +118,12 @@
     <div class="body-box panel-body">
         <div class="body-left ">
             <ul class="nav nav-pills nav-stacked" style="font-size: 20px">
-                <li class="active"><a href="/BHY/html/BHY-findUserLimit.html">用户管理</a></li>
+                <li><a href="/BHY/html/BHY-findUserLimit.html">用户管理</a></li>
                 <li><a href="/BHY/html/BHY-findPetLimit.html">宠物管理</a></li>
                 <li><a href="/BHY/html/BHY-findServiceLimit.html">服务管理</a></li>
                 <li><a href="/BHY/html/BHY-findRecordLimit.html">销售管理</a></li>
                 <li><a href="/BHY/html/BHY-findStoreLimit.html">店铺管理</a></li>
-                <li><a href="/BHY/html/BHY-findCargoLimit.html">货物管理</a></li>
+                <li class="active"><a href="/BHY/html/BHY-findCargoLimit.html">货物管理</a></li>
                 <li><a href="/BHY/html/BHY-findEmployeeLimit.html">员工管理</a></li>
                 <li><a href="/BHY/html/BHY-findClientLimit.html">顾客管理</a></li>
             </ul>
@@ -131,7 +132,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <span class="text-primary" style="font-size: 25px">用户信息一览</span>
+                        <span class="text-primary" style="font-size: 25px">货物信息一览</span>
                     </h3>
                 </div>
                 <div class="panel-body">
@@ -152,7 +153,7 @@
                         </tbody>
                     </table>
                     <div style="width:300px;margin:0 200px">
-                        <button type="button" class="btn btn-primary" onclick="findCargoLimit(-1)">
+                        <button class="btn btn-primary" onclick="findCargoLimit(-1)">
                         <span class="glyphicon glyphicon-chevron-left"
                               style="color: rgb(255, 255, 255); font-size: 15px;">
                             前一页
@@ -161,7 +162,7 @@
                         <label class="text-primary">
                             当前在第&nbsp<label id="page">1</label>&nbsp页
                         </label>
-                        <button type="button" class="btn btn-primary" onclick="findCargoLimit(1)">
+                        <button class="btn btn-primary" onclick="findCargoLimit(1)">
                         <span class="glyphicon glyphicon-chevron-right"
                               style="color: rgb(255, 255, 255); font-size: 15px;">
                             后一页

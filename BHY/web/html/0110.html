@@ -13,7 +13,7 @@
     <script type="text/javascript" src="../js/setSelect.js"></script>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
     <script type="text/javascript">
-        function findPetLimit(num) {
+        function findUserLimit(num) {
             var page = eval(document.getElementById("page").innerText);
             if (page === 1 && num === -1) {
                 num = 0;
@@ -22,44 +22,33 @@
             document.getElementById("page").innerText = page;
             clearElement("tb");
             $.ajax({
-                url: "/BHY/FindPetLimitServlet",
+                url: "/BHY/FindUserLimitServlet",
                 type: "post",
                 data: {"page": page},
                 success: function (result) {
                     var tb = document.getElementById("tb");
-                    var jsons = jQuery.parseJSON(result);
-
+                    var json = jQuery.parseJSON(result);
+                    var jsons = json.users;
                     $.each(jsons, function (i, item) {
 
                         var tr = document.createElement("tr");
-                        var td_pid = document.createElement("td");
-                        td_pid.innerHTML = item.p_id;
-                        var td_dvalue = document.createElement("td");
-                        td_dvalue.innerHTML = item.d_value;
-                        var td_psex = document.createElement("td");
-                        td_psex.innerHTML = item.p_sex;
-                        var td_clname = document.createElement("td");
-                        td_clname.innerHTML = item.cl_name;
-                        var td_staddress = document.createElement("td");
-                        td_staddress.innerHTML = item.st_address;
+                        var td_uid = document.createElement("td");
+                        td_uid.innerHTML = item.u_id;
+                        var td_username = document.createElement("td");
+                        td_username.innerHTML = item.username;
 
                         var td_input = document.createElement("td");
                         var input = document.createElement("input");
                         input.value = "📝";
                         input.type = "button";
-                        input.setAttribute("onclick",
-                            "jumpWithCookie(" + JSON.stringify(item) + ",\"/BHY/html/BHY-showPet.html\" )");
-                        td_input.appendChild(input);
+                        input.setAttribute("onclick", "jumpWithCookie(" + JSON.stringify(item) + ",\"/BHY/html/BHY-showUser.html\" )");
 
-                        tr.appendChild(td_pid);
-                        tr.appendChild(td_dvalue);
-                        tr.appendChild(td_psex);
-                        tr.appendChild(td_clname);
-                        tr.appendChild(td_staddress);
+                        td_input.appendChild(input);
+                        tr.appendChild(td_uid);
+                        tr.appendChild(td_username);
                         tr.appendChild(td_input);
                         tb.appendChild(tr);
-                    });
-                    setAddButton(tb, 6, "/BHY/html/BHY-addPet.html")
+                    })
                 },
                 error: function () {
                     alert("error");
@@ -103,8 +92,8 @@
     <div class="body-box panel-body">
         <div class="body-left ">
             <ul class="nav nav-pills nav-stacked" style="font-size: 20px">
-                <li><a href="/BHY/html/BHY-findUserLimit.html">用户管理</a></li>
-                <li class="active"><a href="/BHY/html/BHY-findPetLimit.html">宠物管理</a></li>
+                <li class="active"><a href="/BHY/html/BHY-findUserLimit.html">用户管理</a></li>
+                <li><a href="/BHY/html/BHY-findPetLimit.html">宠物管理</a></li>
                 <li><a href="/BHY/html/BHY-findServiceLimit.html">服务管理</a></li>
                 <li><a href="/BHY/html/BHY-findRecordLimit.html">销售管理</a></li>
                 <li><a href="/BHY/html/BHY-findStoreLimit.html">店铺管理</a></li>
@@ -117,23 +106,22 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <span class="text-primary" style="font-size: 25px">宠物信息一览</span>
+                        <span class="text-primary" style="font-size: 25px">员工信息一览</span>
                     </h3>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
-                        <th>宠物id</th>
-                        <th>宠物类型</th>
-                        <th>宠物性别</th>
-                        <th>顾客姓名</th>
-                        <th>宠物店</th>
+                        <th>员工id</th>
+                        <th>用户名</th>
                         <th>详情</th>
                         </thead>
                         <tbody id="tb">
+
+                        </tbody>
                     </table>
                     <div style="width:300px;margin:0 200px">
-                        <button class="btn btn-primary" onclick="findPetLimit(-1)">
+                        <button class="btn btn-primary" onclick="findUserLimit(-1)">
                         <span class="glyphicon glyphicon-chevron-left"
                               style="color: rgb(255, 255, 255); font-size: 15px;">
                             前一页
@@ -142,7 +130,7 @@
                         <label class="text-primary">
                             当前在第&nbsp<label id="page">1</label>&nbsp页
                         </label>
-                        <button class="btn btn-primary" onclick="findPetLimit(1)">
+                        <button class="btn btn-primary" onclick="findUserLimit(1)">
                         <span class="glyphicon glyphicon-chevron-right"
                               style="color: rgb(255, 255, 255); font-size: 15px;">
                             后一页
@@ -170,7 +158,7 @@
 </div>
 
 <script>
-    findPetLimit(0);
+    findUserLimit(0);
     setAdm();
 </script>
 </body>

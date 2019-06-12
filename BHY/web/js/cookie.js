@@ -66,9 +66,9 @@ function setAddButton(tb, num, url) {
     var tr = document.createElement("tr");
     var td = document.createElement("td");
     td.colSpan = num.toString();
-    var addButton = document.createElement("input");
-    addButton.value = "➕";
-    addButton.type = "button";
+    var addButton = document.createElement("button");
+    addButton.innerHTML = "<span class=\"glyphicon glyphicon-plus\" style=\"color: rgb(255, 255, 255); font-size: 15px;\"></span>";
+    addButton.className = "btn btn-primary";
     addButton.setAttribute("onclick", "jump(\'" + url + "\')");
     addButton.style = "width:100%;height:100%";
     td.appendChild(addButton);
@@ -98,4 +98,14 @@ function getDate(){
     var month = ("0" + (time.getMonth() + 1)).slice(-2);
     var today = time.getFullYear() + "-" + (month) + "-" + (day)
     return today
+}
+
+function logout() {
+    $.ajax({
+        type:"post",
+        url:"/BHY/logoutServlet",
+        success:function () {
+            $(location).attr("href", "/BHY/html/BHY-login.html");
+        }
+    })
 }

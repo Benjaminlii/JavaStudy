@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <title>BHY</title>
+    <link rel="stylesheet" type="text/css" href="../css/BHY-all-css.css"/>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/setSelect.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
     <script type="text/javascript">
         function findStoreLimit(num){
             var page = eval(document.getElementById("page").innerText);
@@ -50,31 +57,110 @@
             });
         }
 
-        function a(i) {
-            var json = JSON.stringify(i);
-            // alert("jason = " + json);
-            document.cookie = "item=" + json;
-            $(location).attr("href", "/BHY/html/更新页面.html");}
+        function setAdm() {
+            $.ajax({
+                type: "post",
+                url: "/BHY/getAdminServlet",
+                success: function (resule) {
+                    var json = jQuery.parseJSON(resule);
+                    if (json.isLogin == 1) {
+                        $("#adm-people").val("[" + json.username + "]");
+                    } else {
+                        $(location).attr("href", "/BHY/html/BHY-login.html");
+                    }
+                }
+            })
+        }
     </script>
+    <link rel="stylesheet" href="../css/BHY-login-css.css">
 </head>
-<body>
-<table border="1">
-    <thead>
-    <th>宠物店id</th>
-    <th>店名</th>
-    <th>详情</th>
-    </thead>
-    <tbody id="tb">
 
-    </tbody>
-</table>
-<input type="button" onclick="findStoreLimit(-1)" value="上一页">
-    <label>
-        当前在第<label id="page">1</label>页
-    </label>
-<input type="button" onclick="findStoreLimit(1)" value="下一页">
+
+<body>
+<div class="BHY-header">
+    <div class="BHY-logo BHY-Ajax.Main-content">
+        <a href="/BHY/html/BHY-findUserLimit.html"><img src="../image/logo.png" alt="LOGO" height="74"/></a>
+        <ul class="BHY-header-linker">
+            <li><span>当前登录</span></li>
+            <li><span id="adm-people">[admin]</span></li>
+            <li><a onclick="logout()">退出</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class=BHY-body>
+    <!-- 这里放置body的内容 -->
+    <div class="body-box panel-body">
+        <div class="body-left ">
+            <ul class="nav nav-pills nav-stacked" style="font-size: 20px">
+                <li><a href="/BHY/html/BHY-findUserLimit.html">用户管理</a></li>
+                <li><a href="/BHY/html/BHY-findPetLimit.html">宠物管理</a></li>
+                <li><a href="/BHY/html/BHY-findServiceLimit.html">服务管理</a></li>
+                <li><a href="/BHY/html/BHY-findRecordLimit.html">销售管理</a></li>
+                <li class="active"><a href="/BHY/html/BHY-findStoreLimit.html">店铺管理</a></li>
+                <li><a href="/BHY/html/BHY-findCargoLimit.html">货物管理</a></li>
+                <li><a href="/BHY/html/BHY-findEmployeeLimit.html">员工管理</a></li>
+                <li><a href="/BHY/html/BHY-findClientLimit.html">顾客管理</a></li>
+            </ul>
+        </div>
+        <div class="body-main" style="margin-left: 5px">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="text-primary" style="font-size: 25px">店铺信息一览</span>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <th>宠物店id</th>
+                        <th>店名</th>
+                        <th>详情</th>
+                        </thead>
+                        <tbody id="tb">
+
+                        </tbody>
+                    </table>
+                    <div style="width:300px;margin:0 200px">
+                        <button class="btn btn-primary" onclick="findStoreLimit(-1)">
+                        <span class="glyphicon glyphicon-chevron-left"
+                              style="color: rgb(255, 255, 255); font-size: 15px;">
+                            前一页
+                        </span>
+                        </button>
+                        <label class="text-primary">
+                            当前在第&nbsp<label id="page">1</label>&nbsp页
+                        </label>
+                        <button class="btn btn-primary" onclick="findStoreLimit(1)">
+                        <span class="glyphicon glyphicon-chevron-right"
+                              style="color: rgb(255, 255, 255); font-size: 15px;">
+                            后一页
+                        </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="BHY-footer" class="BHY-footer">
+    <div class="BHY-footer-copyright">
+        <p class="BHY-clearfix BHY-links">
+            <a href="javascript:;" target="_blank">关于我们</a>
+            <a href="javascript:;" target="_blank">法律声明</a>
+            <a href="javascript:;" target="_blank">服务条款</a>
+            <a href="javascript:;" target="_blank">联系方式</a>
+        <p style="font-family:arial;">地址：陕西省西安市长安区&nbsp;&nbsp;许可证B1-20190601&nbsp;&nbsp;COPYRIGHT&nbsp;&nbsp;©&nbsp;
+            2019-2029 uimaker &nbsp;版权所有&nbsp;ICP证：xx00000000</p>
+        <p style="font-family:arial;">许可证B1-20190601&nbsp;&nbsp;&nbsp;&nbsp;版权所有:不会养宠物舍</p>
+        </p>
+    </div>
+</div>
+
 <script>
     findStoreLimit(0);
+    setAdm();
 </script>
 </body>
 </html>
