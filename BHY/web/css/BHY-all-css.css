@@ -1,73 +1,111 @@
-.BHY-header{
+.BHY-header {
     width: 1672px;
 }
-.BHY-logo{
+
+.BHY-logo {
     height: 74px;
     line-height: 74px;
 }
-.BHY-main-content{
-    margin:0 auto;
-    width:1200px;
-}
-.BHY-logo h1{
-    float:left;
+
+.BHY-main-content {
+    margin: 0 auto;
+    width: 1200px;
 }
 
-.BHY-logo h1 a:hover{
-    text-decoration:none;
+.BHY-logo a, h1 {
+    float: left;
 }
-.BHY-logo .BHY-header-linker{
-    float:right;
+
+.BHY-logo h1 {
+    margin-left: 315px;
+    font-size: 45px;
+    color: #0166ca;
 }
-.BHY-logo .BHY-header-linker li{
-    float:left;
-    margin-left:20px;
-    font-size:20px;
-    list-style: none;
-}
-.BHY-logo .BHY-header-linker li span,div{
-    color:#808080;
+
+.BHY-logo h1 a:hover {
     text-decoration: none;
 }
 
-#adm-people{
+.BHY-logo .BHY-header-linker {
+    float: right;
+}
+
+.BHY-logo .BHY-header-linker li {
+    float: left;
+    margin-left: 20px;
+    font-size: 18px;
+    list-style: none;
+}
+
+.BHY-logo .BHY-header-linker li span, div {
+    color: #808080;
+    text-decoration: none;
+}
+
+#adm-people {
     width: 30px;
 }
 
-.BHY-body{
+.BHY-body {
     position: relative;
     margin: 0 auto 38px;
-    height:600px;
+    height: 600px;
     width: 1672px;
     background: #00a2ca; /*#29a176*/
+    padding-top: 40px;
+}
 
+.body-box {
+    width: 900px;
+    height: 500px;
+    margin: auto;
+    background-color: white;
+}
+
+.body-box .body-left {
+    float: left;
+    width: 15%;
+    height: 100%;
+}
+
+.body-box .body-main {
+    float: left;;
+    width: 80%;
+    height: 100%;
 }
 
 
 
-.BHY-footer{
+
+
+.BHY-footer {
     width: 1672px;
-    padding-top:20px;
+    padding-top: 20px;
     padding-bottom: 35px;
-    border-top:1px solid #e5e5e5;
-    font-size:12px;
+    border-top: 1px solid #e5e5e5;
+    font-size: 12px;
 }
-.BHY-footer .BHY-footer-copyright{
+
+.BHY-footer .BHY-footer-copyright {
     text-align: center;
 }
-.BHY-footer .BHY-footer-copyright p{
-    color:#999;
-    margin-top:10px;
+
+.BHY-footer .BHY-footer-copyright p {
+    color: #999;
+    margin-top: 10px;
 }
-.BHY-footer .BHY-footer-copyright p:first-child{
-    margin-top:0px;
+
+.BHY-footer .BHY-footer-copyright p:first-child {
+    margin-top: 0px;
 }
+
 .BHY-footer .BHY-footer-copyright .BHY-links a {
-    margin-left:15px;
-    color:#666666;
+    margin-left: 15px;
+    color: #666666;
 }
+
 .BHY-footer .BHY-footer-copyright .BHY-links a:first-child {
-    margin-left:0
+    margin-left: 0
 }
 
 

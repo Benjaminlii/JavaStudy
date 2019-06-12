@@ -3,25 +3,47 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>不会养宠物</title>
+
     <link rel="stylesheet" type="text/css" href="../css/BHY-all-css.css"/>
+
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/setSelect.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 </head>
 
 <body>
 <div class="BHY-header">
     <div class="BHY-logo BHY-Ajax.Main-content">
         <a href="#"><img src="../image/logo.png" alt="LOGO" height="74"/></a>
+        <h1>不会养宠物舍服务管理系统</h1>
         <ul class="BHY-header-linker">
-            <li><span>登录状态</span></li>
-            <li><div id="adm-people"><span></span></div></li>
+            <li><span>当前登录</span></li>
+            <li><span id="adm-people">[admin]</span></li>
+            <li><a>退出</a></li>
         </ul>
     </div>
 </div>
 
 <div class=BHY-body>
     <!-- 这里放置body的内容 -->
+    <div class="body-box">
+        <div class="body-left">
+            <ul class="nav nav-pills nav-stacked" style="font-size: 20px">
+                <li class="active"><a href="/BHY/html/BHY-findUserLimit.html">用户管理</a></li>
+                <li><a href="/BHY/html/BHY-findPetLimit.html">宠物管理</a></li>
+                <li><a href="/BHY/html/BHY-findServiceLimit.html">服务管理</a></li>
+                <li><a href="/BHY/html/BHY-findRecordLimit.html">销售管理</a></li>
+                <li><a href="/BHY/html/BHY-findStoreLimit.html">店铺管理</a></li>
+                <li><a href="/BHY/html/BHY-findCargoLimit.html">货物管理</a></li>
+                <li><a href="/BHY/html/BHY-findEmployeeLimit.html">员工管理</a></li>
+                <li><a href="/BHY/html/BHY-findClientLimit.html">顾客管理</a></li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <div id="BHY-footer" class="BHY-footer">
