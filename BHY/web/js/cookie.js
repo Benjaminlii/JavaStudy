@@ -103,7 +103,7 @@ function getDate(){
 function logout() {
     $.ajax({
         type:"post",
-        url:"/BHY/logoutServlet",
+        url:"/BHY/LogoutServlet",
         success:function () {
             $(location).attr("href", "/BHY/html/BHY-login.html");
         }

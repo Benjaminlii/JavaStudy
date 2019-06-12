@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>BHY</title>
     <link rel="stylesheet" type="text/css" href="../css/BHY-all-css.css"/>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
@@ -13,9 +13,9 @@
     <script type="text/javascript" src="../js/setSelect.js"></script>
     <script type="text/javascript">
 
-        function updateUser() {
+        function addUser() {
             $.ajax({
-                url: "/BHY/addCargoServlet",
+                url: "/BHY/AddCargoServlet",
                 type: "post",
                 data: {
                     "c_name": $("#c_name").val(),
@@ -29,13 +29,27 @@
                     var json = jQuery.parseJSON(result);
                     if (json.rtn == 1) {
                         alert("添加成功");
-                        $(location).attr('href','/BHY/BHY-findCargoLimit.html');
+                        $(location).attr('href', '/BHY/BHY-findCargoLimit.html');
                     } else {
                         alert("失败");
                     }
                 },
                 error: function () {
                     alert("error");
+                }
+            })
+        }
+        function setAdm() {
+            $.ajax({
+                type: "post",
+                url: "/BHY/GetAdminServlet",
+                success: function (resule) {
+                    var json = jQuery.parseJSON(resule);
+                    if (json.isLogin == 1) {
+                        $("#adm-people").html("[" + json.username + "]");
+                    } else {
+                        $(location).attr("href", "/BHY/html/BHY-login.html");
+                    }
                 }
             })
         }
@@ -57,24 +71,24 @@
     <div class="body-box panel-body">
         <div class="body-left ">
             <ul class="nav nav-pills nav-stacked" style="font-size: 20px">
-                <li class="active"><a href="/BHY/html/BHY-findUserLimit.html">用户管理</a></li>
+                <li><a href="/BHY/html/BHY-findUserLimit.html">用户管理</a></li>
                 <li><a href="/BHY/html/BHY-findPetLimit.html">宠物管理</a></li>
                 <li><a href="/BHY/html/BHY-findServiceLimit.html">服务管理</a></li>
                 <li><a href="/BHY/html/BHY-findRecordLimit.html">销售管理</a></li>
                 <li><a href="/BHY/html/BHY-findStoreLimit.html">店铺管理</a></li>
-                <li><a href="/BHY/html/BHY-findCargoLimit.html">货物管理</a></li>
+                <li class="active"><a href="/BHY/html/BHY-findCargoLimit.html">货物管理</a></li>
                 <li><a href="/BHY/html/BHY-findEmployeeLimit.html">员工管理</a></li>
                 <li><a href="/BHY/html/BHY-findClientLimit.html">顾客管理</a></li>
             </ul>
         </div>
 
-    <div class="body-main" style="margin-left: 5px">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <span class="text-primary" style="font-size: 25px">用户信息一览</span>
-                </h3>
-            </div>
+        <div class="body-main" style="margin-left: 5px">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="text-primary" style="font-size: 25px">添加货物信息</span>
+                    </h3>
+                </div>
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">货物名称</label>
@@ -93,72 +107,65 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">货物类型</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="d_id"
-                                   placeholder="请输入货物类型">
+                            <select class="form-control" id="d_id"></select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">所属宠物店</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="st_id"
-                                   placeholder="请输入所属宠物店">
+                            <select class="form-control" id="st_id"></select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">进货时间</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="c_getDate"
+                            <input type="date" class="form-control" id="c_getDate"
                                    placeholder="请输入进货时间">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">生产日期</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="c_producedDate"
+                            <input type="date" class="form-control" id="c_producedDate"
                                    placeholder="请输入生日日期">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">保质日期</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="c_expirationDate"
+                            <input type="date" class="form-control" id="c_expirationDate"
                                    placeholder="请输入保质日期">
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> 请记住我
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">登录</button>
+                        <div class="col-sm-offset-2 col-sm-10" style=" padding: 0 180px">
+                            <button type="submit" class="btn btn-primary" onclick="addUser()">
+                                <span class="glyphicon glyphicon-ok"
+                                      style="color: rgb(255, 255, 255); font-size: 15px; width: 150px;"></span>
+                            </button>
                         </div>
                     </div>
                 </form>
+            </div>
         </div>
     </div>
+</div>
+<div id="BHY-footer" class="BHY-footer">
+    <div class="BHY-footer-copyright">
+        <p class="BHY-clearfix BHY-links">
+            <a href="javascript:;" target="_blank">关于我们</a>
+            <a href="javascript:;" target="_blank">法律声明</a>
+            <a href="javascript:;" target="_blank">服务条款</a>
+            <a href="javascript:;" target="_blank">联系方式</a>
+        <p style="font-family:arial;">地址：陕西省西安市长安区&nbsp;&nbsp;许可证B1-20190601&nbsp;&nbsp;COPYRIGHT&nbsp;&nbsp;©&nbsp;
+            2019-2029 uimaker &nbsp;版权所有&nbsp;ICP证：xx00000000</p>
+        <p style="font-family:arial;">许可证B1-20190601&nbsp;&nbsp;&nbsp;&nbsp;版权所有:不会养宠物舍</p>
+        </p>
     </div>
 </div>
-            <div id="BHY-footer" class="BHY-footer">
-                <div class="BHY-footer-copyright">
-                    <p class="BHY-clearfix BHY-links">
-                        <a href="javascript:;" target="_blank">关于我们</a>
-                        <a href="javascript:;" target="_blank">法律声明</a>
-                        <a href="javascript:;" target="_blank">服务条款</a>
-                        <a href="javascript:;" target="_blank">联系方式</a>
-                    <p style="font-family:arial;">地址：陕西省西安市长安区&nbsp;&nbsp;许可证B1-20190601&nbsp;&nbsp;COPYRIGHT&nbsp;&nbsp;©&nbsp;
-                    2019-2029 uimaker &nbsp;版权所有&nbsp;ICP证：xx00000000</p>
-                    <p style="font-family:arial;">许可证B1-20190601&nbsp;&nbsp;&nbsp;&nbsp;版权所有:不会养宠物舍</p>
-                    </p>
-                </div>
-            </div>
 <script>
     // set(json);
+    setAdm()
     getDicSelect("d_id", "货物类型", 0);
     getStoreSelect("st_id", 0);
     $("#c_getDate").val(getDate());

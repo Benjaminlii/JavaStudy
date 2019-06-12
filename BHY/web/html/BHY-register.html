@@ -1,11 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>BHY</title>
+    <link rel="stylesheet" type="text/css" href="../css/BHY-all-css.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/BHY-login-css.css"/>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
     <script type="text/javascript" src="../js/setSelect.js"></script>
-    <script>
+
+    <script type="text/javascript">
+
         function register() {
             $.ajax({
                 url: "/BHY/RegisterServlet",
@@ -17,10 +27,10 @@
                     "st_id": $("#st_id").val(),
                     "d_id": $("#d_id").val()
                 },
-                success: function (result) {
-                    var json = jQuery.parseJSON(result);
+                success: function () {
                     if (json.rtn == 1) {
                         alert("注册成功");
+                        $(location).attr("href", "/BHY/html/BHY-login.html")
                     } else {
                         alert("注册失败");
                     }
@@ -29,37 +39,109 @@
                 }
             })
         }
+
+        function registerCheck() {
+            if($("#password").value == $("#password1").value) {
+                register()
+            }else{
+                alert("两次输入不一致")
+            }
+        }
     </script>
 </head>
+
 <body>
-<div>
-    <table border="2">
-        <tr>
-            <td>用户名</td>
-            <td><input type="text" id="username"></td>
-        </tr>
-        <tr>
-            <td>密码</td>
-            <td><input type="password" id="password"></td>
-        </tr>
-        <tr>
-            <td>员工姓名</td>
-            <td><input type="text" id="e_name"></td>
-        </tr>
-        <tr>
-            <td>宠物店id</td>
-            <td><select id="st_id"></select></td>
-        </tr>
-        <tr>
-            <td>职务id</td>
-            <td><select id="d_id"></select></td>
-        </tr>
-    </table>
-    <button type="submit" onclick="register()">注册</button>
+<div class="BHY-header">
+    <div class="BHY-logo BHY-Ajax.Main-content">
+        <a href="#"><img src="../image/logo.png" alt="LOGO" height="74"/></a>
+        <ul class="BHY-header-linker">
+            <li><a href="#">关于我们</a></li>
+            <li><a href="#">帮助中心</a></li>
+        </ul>
+    </div>
 </div>
-</body>
+
+<div class=BHY-body>
+    <div id="login-bd" class="BHY-login-bd">
+        <div class="BHY-Ajax.Main-content">
+            <div class="BHY-input-box" style="width: 420px">
+                <div class="BHY-input-title">
+                    <h2>用户注册</h2>
+                </div>
+                <div class="BHY-input-area">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="width: 100px; float:left;">用户名</label>
+                            <div class="col-sm-10" style="width: 300px">
+                                <input type="text" class="form-control" id="cl_name" style="float: left"
+                                       placeholder="请输入用户名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="width: 100px; float:left;">密码</label>
+                            <div class="col-sm-10" style="width: 300px">
+                                <input type="password" class="form-control" id="password" style="float: left"
+                                       placeholder="请输入密码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="width: 100px; float:left;">重复密码</label>
+                            <div class="col-sm-10" style="width: 300px">
+                                <input type="password" class="form-control" id="password1" style="float: left"
+                                       placeholder="请再次输入密码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="width: 100px; float:left;">员工姓名</label>
+                            <div class="col-sm-10" style="width: 300px">
+                                <input type="text" class="form-control" id="e_name" style="float: left"
+                                       placeholder="请输入员工姓名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="width: 100px; float:left;">宠物店</label>
+                            <div class="col-sm-10" style="width: 294px">
+                                <select class="form-control" id="st_id" style="float: left"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="width: 100px; float:left;">职务</label>
+                            <div class="col-sm-10" style="width: 294px">
+                                <select class="form-control" id="d_id" style="float: left"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <!--<div class="col-sm-offset-2 col-sm-10" style=" padding: 0 180px">-->
+                            <!--<button type="submit" class="btn btn-primary" onclick="addUser()">-->
+                            <!--<span class="glyphicon glyphicon-ok"-->
+                            <!--style="color: rgb(255, 255, 255); font-size: 15px; width: 150px;"></span>-->
+                            <!--</button>-->
+                            <!--</div>-->
+                            <div class="BHY-login-btn" onclick="registerCheck();" style="width: 264px;margin-left: 115px">注册</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="BHY-footer" class="BHY-footer">
+    <div class="BHY-footer-copyright">
+        <p class="BHY-clearfix BHY-links">
+            <a href="javascript:;" target="_blank">关于我们</a>
+            <a href="javascript:;" target="_blank">法律声明</a>
+            <a href="javascript:;" target="_blank">服务条款</a>
+            <a href="javascript:;" target="_blank">联系方式</a>
+        <p style="font-family:arial;">地址：陕西省西安市长安区&nbsp;&nbsp;许可证B1-20190601&nbsp;&nbsp;COPYRIGHT&nbsp;&nbsp;©&nbsp;
+            2019-2029 uimaker &nbsp;版权所有&nbsp;ICP证：xx00000000</p>
+        <p style="font-family:arial;">许可证B1-20190601&nbsp;&nbsp;&nbsp;&nbsp;版权所有:不会养宠物舍</p>
+        </p>
+    </div>
+</div>
 <script>
     getStoreSelect("st_id", 1000);
     getDicSelect("d_id", "员工职务", 1000)
 </script>
+</body>
 </html>

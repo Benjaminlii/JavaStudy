@@ -42,9 +42,10 @@
                         td_mobile.innerHTML = item.mobile;
 
                         var td_input = document.createElement("td");
-                        var input = document.createElement("input");
-                        input.value = "📝";
+                        var input = document.createElement("button");
+                        input.innerHTML = "<span class=\"glyphicon glyphicon-list-alt\" style=\"color: rgb(255, 255, 255); font-size: 15px;\"></span>";
                         input.type = "button";
+                        input.className = "btn btn-primary";
                         input.setAttribute("onclick", "jumpWithCookie(" + JSON.stringify(item) + ",\"/BHY/html/BHY-showClient.html\" )");
 
                         // JSON.stringify() 方法用于将 JavaScript 值转换为 JSON 字符串。
@@ -68,11 +69,11 @@
         function setAdm() {
             $.ajax({
                 type: "post",
-                url: "/BHY/getAdminServlet",
+                url: "/BHY/GetAdminServlet",
                 success: function (resule) {
                     var json = jQuery.parseJSON(resule);
                     if (json.isLogin == 1) {
-                        $("#adm-people").val("[" + json.username + "]");
+                        $("#adm-people").html("[" + json.username + "]");
                     } else {
                         $(location).attr("href", "/BHY/html/BHY-login.html");
                     }

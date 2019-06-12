@@ -1,142 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>BHY</title>
     <link rel="stylesheet" type="text/css" href="../css/BHY-all-css.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/BHY-login-css.css"/>
 
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="../js/cookie.js"></script>
-    <script type="text/javascript" src="../js/setSelect.js"></script>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+
     <script type="text/javascript">
-        function findUserLimit(num) {
-            var page = eval(document.getElementById("page").innerText);
-            if (page === 1 && num === -1) {
-                num = 0;
+
+        function registerCheck() {
+            if($("#password").value == $("#password1").value) {
+                $(location).attr('href', '/BHY/html/BHY-register.html');
+            }else{
+                alert("两次输入不一致")
             }
-            page += num;
-            document.getElementById("page").innerText = page;
-            clearElement("tb");
-            $.ajax({
-                url: "/BHY/FindUserLimitServlet",
-                type: "post",
-                data: {"page": page},
-                success: function (result) {
-                    var tb = document.getElementById("tb");
-                    var json = jQuery.parseJSON(result);
-                    var jsons = json.users;
-                    $.each(jsons, function (i, item) {
-
-                        var tr = document.createElement("tr");
-                        var td_uid = document.createElement("td");
-                        td_uid.innerHTML = item.u_id;
-                        var td_username = document.createElement("td");
-                        td_username.innerHTML = item.username;
-
-                        var td_input = document.createElement("td");
-                        var input = document.createElement("input");
-                        input.value = "📝";
-                        input.type = "button";
-                        input.setAttribute("onclick", "jumpWithCookie(" + JSON.stringify(item) + ",\"/BHY/html/BHY-showUser.html\" )");
-
-                        td_input.appendChild(input);
-                        tr.appendChild(td_uid);
-                        tr.appendChild(td_username);
-                        tr.appendChild(td_input);
-                        tb.appendChild(tr);
-                    })
-                },
-                error: function () {
-                    alert("error");
-                }
-            })
-        }
-
-        function setAdm() {
-            $.ajax({
-                type: "post",
-                url: "/BHY/getAdminServlet",
-                success: function (resule) {
-                    var json = jQuery.parseJSON(resule);
-                    if (json.isLogin == 1) {
-                        $("#adm-people").val("[" + json.username + "]");
-                    } else {
-                        $(location).attr("href", "/BHY/html/BHY-login.html");
-                    }
-                }
-            })
         }
     </script>
-    <link rel="stylesheet" href="../css/BHY-login-css.css">
 </head>
-
 
 <body>
 <div class="BHY-header">
     <div class="BHY-logo BHY-Ajax.Main-content">
-        <a href="/BHY/html/BHY-findUserLimit.html"><img src="../image/logo.png" alt="LOGO" height="74"/></a>
+        <a href="#"><img src="../image/logo.png" alt="LOGO" height="74"/></a>
         <ul class="BHY-header-linker">
             <li><span>当前登录</span></li>
             <li><span id="adm-people">[admin]</span></li>
-            <li><a onclick="logout()">退出</a></li>
+            <li><a>退出</a></li>
         </ul>
     </div>
 </div>
 
 <div class=BHY-body>
-    <!-- 这里放置body的内容 -->
-    <div class="body-box panel-body">
-        <div class="body-left ">
-            <ul class="nav nav-pills nav-stacked" style="font-size: 20px">
-                <li class="active"><a href="/BHY/html/BHY-findUserLimit.html">用户管理</a></li>
-                <li><a href="/BHY/html/BHY-findPetLimit.html">宠物管理</a></li>
-                <li><a href="/BHY/html/BHY-findServiceLimit.html">服务管理</a></li>
-                <li><a href="/BHY/html/BHY-findRecordLimit.html">销售管理</a></li>
-                <li><a href="/BHY/html/BHY-findStoreLimit.html">店铺管理</a></li>
-                <li><a href="/BHY/html/BHY-findCargoLimit.html">货物管理</a></li>
-                <li><a href="/BHY/html/BHY-findEmployeeLimit.html">员工管理</a></li>
-                <li><a href="/BHY/html/BHY-findClientLimit.html">顾客管理</a></li>
-            </ul>
-        </div>
-        <div class="body-main" style="margin-left: 5px">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        <span class="text-primary" style="font-size: 25px">员工信息一览</span>
-                    </h3>
+    <div id="login-bd" class="BHY-login-bd">
+        <div class="BHY-Ajax.Main-content">
+            <div class="BHY-input-box">
+                <div class="BHY-input-title">
+                    <h2>用户注册</h2>
                 </div>
-                <div class="panel-body">
-                    <table class="table table-striped">
-                        <thead>
-                        <th>员工id</th>
-                        <th>用户名</th>
-                        <th>详情</th>
-                        </thead>
-                        <tbody id="tb">
-
-                        </tbody>
-                    </table>
-                    <div style="width:300px;margin:0 200px">
-                        <button class="btn btn-primary" onclick="findUserLimit(-1)">
-                        <span class="glyphicon glyphicon-chevron-left"
-                              style="color: rgb(255, 255, 255); font-size: 15px;">
-                            前一页
-                        </span>
-                        </button>
-                        <label class="text-primary">
-                            当前在第&nbsp<label id="page">1</label>&nbsp页
-                        </label>
-                        <button class="btn btn-primary" onclick="findUserLimit(1)">
-                        <span class="glyphicon glyphicon-chevron-right"
-                              style="color: rgb(255, 255, 255); font-size: 15px;">
-                            后一页
-                        </span>
-                        </button>
-                    </div>
+                <div class="BHY-input-area">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">用户名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="cl_name"
+                                       placeholder="请输入用户名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">重复密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="password1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">员工姓名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="e_name"
+                                       placeholder="请输入员工姓名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">宠物店</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="st_id"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">职务id</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="d_id"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <!--<div class="col-sm-offset-2 col-sm-10" style=" padding: 0 180px">-->
+                                <!--<button type="submit" class="btn btn-primary" onclick="addUser()">-->
+                                <!--<span class="glyphicon glyphicon-ok"-->
+                                      <!--style="color: rgb(255, 255, 255); font-size: 15px; width: 150px;"></span>-->
+                                <!--</button>-->
+                            <!--</div>-->
+                            <div class="BHY-login-btn" onclick="registerCheck();">注册</div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -156,10 +109,9 @@
         </p>
     </div>
 </div>
-
-<script>
-    findUserLimit(0);
-    setAdm();
+<script type="text/javascript">
+    getStoreSelect("st_id", 1000);
+    getDicSelect("d_id", "员工职务", 1000)
 </script>
 </body>
 </html>

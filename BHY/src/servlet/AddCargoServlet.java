@@ -17,8 +17,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 
-@WebServlet("/addCargoServlet")
-public class addCargoServlet extends HttpServlet {
+@WebServlet("/AddCargoServlet")
+public class AddCargoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置编码
         request.setCharacterEncoding("utf-8");

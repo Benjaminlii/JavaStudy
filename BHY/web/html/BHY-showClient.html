@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>BHY</title>
+    <link rel="stylesheet" type="text/css" href="../css/BHY-all-css.css"/>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="../css/cargoDelete.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="../js/cookie.js"></script>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
@@ -52,24 +56,130 @@
                 decision();
             }
         }
+
+        function setAdm() {
+            $.ajax({
+                type: "post",
+                url: "/BHY/GetAdminServlet",
+                success: function (resule) {
+                    var json = jQuery.parseJSON(resule);
+                    if (json.isLogin == 1) {
+                        $("#adm-people").html("[" + json.username + "]");
+                    } else {
+                        $(location).attr("href", "/BHY/html/BHY-login.html");
+                    }
+                }
+            })
+        }
     </script>
 </head>
 <body>
-<div class="all">
-    <h1>顾客信息</h1>
-    <div class="body">
-        <div>顾客id<input type="text" id="cl_id" readonly="readonly"></div>
-        <div>姓名<input type="text" id="cl_name" readonly="readonly"></div>
-        <div>手机<input type="text" id="mobile" readonly="readonly"></div>
-        <div>年龄<input type="text" id="cl_age" readonly="readonly"></div>
-        <div>性别<input type="text" id="cl_sex" readonly="readonly"></div>
-        <div>Emil<input type="text" id="cl_emil" readonly="readonly"></div>
+<div class="BHY-header">
+    <div class="BHY-logo BHY-Ajax.Main-content">
+        <a href="#"><img src="../image/logo.png" alt="LOGO" height="74"/></a>
+        <ul class="BHY-header-linker">
+            <li><span>当前登录</span></li>
+            <li><span id="adm-people">[admin]</span></li>
+            <li><a>退出</a></li>
+        </ul>
     </div>
-    <div>
-        <button id="updateButton">修改</button>
+</div>
+
+<div class="BHY-body">
+    <div class="body-box panel-body">
+        <div class="body-left ">
+            <ul class="nav nav-pills nav-stacked" style="font-size: 20px">
+                <li><a href="/BHY/html/BHY-findUserLimit.html">用户管理</a></li>
+                <li><a href="/BHY/html/BHY-findPetLimit.html">宠物管理</a></li>
+                <li><a href="/BHY/html/BHY-findServiceLimit.html">服务管理</a></li>
+                <li><a href="/BHY/html/BHY-findRecordLimit.html">销售管理</a></li>
+                <li><a href="/BHY/html/BHY-findStoreLimit.html">店铺管理</a></li>
+                <li><a href="/BHY/html/BHY-findCargoLimit.html">货物管理</a></li>
+                <li><a href="/BHY/html/BHY-findEmployeeLimit.html">员工管理</a></li>
+                <li class="active"><a href="/BHY/html/BHY-findClientLimit.html">顾客管理</a></li>
+            </ul>
+        </div>
+
+        <div class="body-main" style="margin-left: 5px">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="text-primary" style="font-size: 25px">顾客信息详情</span>
+                    </h3>
+                </div>
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">顾客id</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="cl_id" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="cl_name" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">手机</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="mobile" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">年龄</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="cl_age" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="cl_sex" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Emil</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="cl_emil" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10" style=" padding: 0 90px; float:left;">
+                            <button type="button" id="updateButton" class="btn btn-primary" onclick="updateUser()"
+                                    style="margin: 0 45px">
+                                <!-- 修改按钮 -->
+                                <span class="glyphicon glyphicon-pencil"
+                                      style="color: rgb(255, 255, 255); font-size: 15px; width: 75px;"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="deleted()" style="margin: 0 45px">
+                                <!-- 删除按钮 -->
+                                <span class="glyphicon glyphicon-remove"
+                                      style="color: rgb(255, 255, 255); font-size: 15px; width: 75px;"></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <script>
-        set(json);
-    </script>
+</div>
+<<div id="BHY-footer" class="BHY-footer">
+    <div class="BHY-footer-copyright">
+        <p class="BHY-clearfix BHY-links">
+            <a href="javascript:;" target="_blank">关于我们</a>
+            <a href="javascript:;" target="_blank">法律声明</a>
+            <a href="javascript:;" target="_blank">服务条款</a>
+            <a href="javascript:;" target="_blank">联系方式</a>
+        <p style="font-family:arial;">地址：陕西省西安市长安区&nbsp;&nbsp;许可证B1-20190601&nbsp;&nbsp;COPYRIGHT&nbsp;&nbsp;©&nbsp;
+            2019-2029 uimaker &nbsp;版权所有&nbsp;ICP证：xx00000000</p>
+        <p style="font-family:arial;">许可证B1-20190601&nbsp;&nbsp;&nbsp;&nbsp;版权所有:不会养宠物舍</p>
+        </p>
+    </div>
+</div>
+<script>
+    set(json);
+    setAdm()
+</script>
 </body>
 </html>

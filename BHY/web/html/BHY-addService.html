@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>BHY</title>
+    <link rel="stylesheet" type="text/css" href="../css/BHY-all-css.css"/>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="../js/cookie.js"></script>
     <script type="text/javascript" src="../js/setSelect.js"></script>
@@ -31,53 +35,144 @@
                 }
             })
         }
+        function setAdm() {
+            $.ajax({
+                type: "post",
+                url: "/BHY/GetAdminServlet",
+                success: function (resule) {
+                    var json = jQuery.parseJSON(resule);
+                    if (json.isLogin == 1) {
+                        $("#adm-people").html("[" + json.username + "]");
+                    } else {
+                        $(location).attr("href", "/BHY/html/BHY-login.html");
+                    }
+                }
+            })
+        }
     </script>
 </head>
 <body>
-<div>
-    <table border="2">
-        <tr>
-            <td>服务类型</td>
-            <td><select id="d_id">
-            </select>
-            </td>
-        </tr>
-        <tr>
-            <td>宠物id</td>
-            <td><input type="text" id="p_id"></td>
-        </tr>
-        <tr>
-            <td>是否被处理</td>
-            <td><select id="s_isdispose">
-                <option value="是">是</option>
-                <option value="否">否</option>
-            </select></td>
-        </tr>
-        <tr>
-            <td>是否已完成</td>
-            <td><select id="s_isfinish">
-                <option value="是">是</option>
-                <option value="否">否</option>
-            </select></td>
-        </tr>
-        <tr>
-            <td>员工id</td>
-            <td><input type="text" id="e_id"></td>
-        </tr>
-        <tr>
-            <td>服务时间</td>
-            <td><input type="date" id="s_atime"></td>
-        </tr>
-        <tr>
-            <td>服务价格</td>
-            <td><input type="text" id="s_price"></td>
-        </tr>
-    </table>
-    <button onclick="addService()">添加</button>
+<div class="BHY-header">
+    <div class="BHY-logo BHY-Ajax.Main-content">
+        <a href="#"><img src="../image/logo.png" alt="LOGO" height="74"/></a>
+        <ul class="BHY-header-linker">
+            <li><span>当前登录</span></li>
+            <li><span id="adm-people">[admin]</span></li>
+            <li><a>退出</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="BHY-body">
+    <div class="body-box panel-body">
+        <div class="body-left ">
+            <ul class="nav nav-pills nav-stacked" style="font-size: 20px">
+                <li><a href="/BHY/html/BHY-findUserLimit.html">用户管理</a></li>
+                <li><a href="/BHY/html/BHY-findPetLimit.html">宠物管理</a></li>
+                <li class="active"><a href="/BHY/html/BHY-findServiceLimit.html">服务管理</a></li>
+                <li><a href="/BHY/html/BHY-findRecordLimit.html">销售管理</a></li>
+                <li><a href="/BHY/html/BHY-findStoreLimit.html">店铺管理</a></li>
+                <li><a href="/BHY/html/BHY-findCargoLimit.html">货物管理</a></li>
+                <li><a href="/BHY/html/BHY-findEmployeeLimit.html">员工管理</a></li>
+                <li><a href="/BHY/html/BHY-findClientLimit.html">顾客管理</a></li>
+            </ul>
+        </div>
+
+        <div class="body-main" style="margin-left: 5px">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="text-primary" style="font-size: 25px">添加服务信息</span>
+                    </h3>
+                </div>
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">服务类型</label>
+                        <div class="col-sm-10">
+                            <select id="d_id" class="form-control" >
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">宠物id</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="mobile"
+                                   placeholder="请输入宠物id">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">是否处理</label>
+                        <div class="col-sm-10">
+                            <select id="s_isdispose" class="form-control" >
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">是否完成</label>
+                        <div class="col-sm-10">
+                            <select id="s_isfinish" class="form-control" >
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">员工id</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="e_id"
+                                   placeholder="请输入员工id">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">服务时间</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" id="s_atime"
+                                   placeholder="请输入时间">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">服务价格</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="s_price"
+                                   placeholder="请输入价格">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10" style=" padding: 0 180px">
+                            <button type="submit" class="btn btn-primary" onclick="addService()">
+                                <span class="glyphicon glyphicon-ok"
+                                      style="color: rgb(255, 255, 255); font-size: 15px; width: 150px;"></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="BHY-footer" class="BHY-footer">
+    <div class="BHY-footer-copyright">
+        <p class="BHY-clearfix BHY-links">
+            <a href="javascript:;" target="_blank">关于我们</a>
+            <a href="javascript:;" target="_blank">法律声明</a>
+            <a href="javascript:;" target="_blank">服务条款</a>
+            <a href="javascript:;" target="_blank">联系方式</a>
+        <p style="font-family:arial;">地址：陕西省西安市长安区&nbsp;&nbsp;许可证B1-20190601&nbsp;&nbsp;COPYRIGHT&nbsp;&nbsp;©&nbsp;
+            2019-2029 uimaker &nbsp;版权所有&nbsp;ICP证：xx00000000</p>
+        <p style="font-family:arial;">许可证B1-20190601&nbsp;&nbsp;&nbsp;&nbsp;版权所有:不会养宠物舍</p>
+        </p>
+    </div>
 </div>
 <script>
-    $("#s_atime").val(getDate());
-    getDicSelect("d_id", "服务类别", 1000)
+    // set(json);
+    setAdm()
+    getDicSelect("d_id", "货物类型", 0);
+    getStoreSelect("st_id", 0);
+    $("#c_getDate").val(getDate());
+    $("#c_producedDate").val(getDate());
+    $("#c_expirationDate").val(getDate());
 </script>
 </body>
 </html>

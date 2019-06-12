@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>不会养宠物</title>
+    <title>BHY</title>
     <link rel="stylesheet" type="text/css" href="../css/BHY-all-css.css"/>
     <link rel="stylesheet" type="text/css" href="../css/BHY-login-css.css"/>
 
@@ -30,7 +30,7 @@
                         var rtn = jQuery.parseJSON(result).rtn;
                         if (rtn == 1) {
                             //登陆成功
-                            $(location).attr('href', '/BHY/html/index.html');
+                            $(location).attr('href', '/BHY/html/BHY-findUserLimit.html');
                         } else if (rtn == 2) {
                             //密码不正确
                             inputUsername.style.borderColor = "#cacaca";
@@ -83,11 +83,11 @@
                             <p>登录密码：</p>
                             <input id="password" type="password" name="password" placeholder="请输入密码"/>
                         </div>
-                        <div class="BHY-input-item">
-                            <p>验证码：</p>
-                            <input type="text" placeholder="" id="code" class="BHY-img-code"/>
-                            <img src="############################" id="codeImg" alt="点击更换" title="点击更换"/>
-                        </div>
+                        <!--<div class="BHY-input-item">-->
+                            <!--<p>验证码：</p>-->
+                            <!--<input type="text" placeholder="" id="code" class="BHY-img-code"/>-->
+                            <!--<img src="############################" id="codeImg" alt="点击更换" title="点击更换"/>-->
+                        <!--</div>-->
                         <div class="BHY-login-btn" onclick="loginCheck();">登录</div>
                         <div class="BHY-login-btn" onclick="registerCheck();">注册</div>
                     </form>

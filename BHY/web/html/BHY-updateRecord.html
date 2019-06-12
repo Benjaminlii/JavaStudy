@@ -2,31 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>BHY</title>
+    <link rel="stylesheet" type="text/css" href="../css/BHY-all-css.css"/>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/setSelect.js"></script>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
     <script type="text/javascript">
         var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
-        delCookie("item");
-
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i].trim();
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-        }
-
-        function delCookie(key) {
-            var date = new Date();
-            date.setTime(date.getTime() - 1);
-            var delValue = getCookie(key);
-            if (!!delValue) {
-                document.cookie = key+'='+delValue+';expires='+date.toGMTString();
-            }
-        }
 
         function set(item) {
             var jsons = jQuery.parseJSON(item);
@@ -56,7 +43,7 @@
                     "r_pattern": $("#r_pattern").val(),
                     "r_price": $("#r_price").val(),
                     "r_time": $("#r_time").val()
-                },success: function (result) {
+                }, success: function (result) {
                     var json = jQuery.parseJSON(result);
                     if (json.rtn == 1) {
                         alert("修改成功");
@@ -66,25 +53,148 @@
                 }
             })
         }
+
+        function setAdm() {
+            $.ajax({
+                type: "post",
+                url: "/BHY/GetAdminServlet",
+                success: function (resule) {
+                    var json = jQuery.parseJSON(resule);
+                    if (json.isLogin == 1) {
+                        $("#adm-people").html("[" + json.username + "]");
+                    } else {
+                        $(location).attr("href", "/BHY/html/BHY-login.html");
+                    }
+                }
+            })
+        }
     </script>
+    <link rel="stylesheet" href="../css/BHY-login-css.css">
 </head>
+
+
 <body>
-<div>
-    <form>
-        商品种类：<input type="text" id="c_id"><br>
-        商品名称：<input type="text" id="c_name" readonly="readonly"><br>
-        顾客id：<input type="text" id = "cl_id" readonly="readonly"><br>
-        顾客姓名：<input type="text" id="cl_name" readonly="readonly"><br>
-        商品编号：<input type="text" id="r_id" readonly="readonly"><br>
-        数量：<input type="text" id="r_num"><br>
-        支付方式：<input type="text" id="r_pattern"><br>
-        价格：<input type="text" id="r_price"><br>
-        出售时间：<input type="text" id="r_time"><br>
-    </form>
-    <button type="submit" onclick="updateUser()">提交</button>
+<div class="BHY-header">
+    <div class="BHY-logo BHY-Ajax.Main-content">
+        <a href="/BHY/html/BHY-findUserLimit.html"><img src="../image/logo.png" alt="LOGO" height="74"/></a>
+        <ul class="BHY-header-linker">
+            <li><span>当前登录</span></li>
+            <li><span id="adm-people">[admin]</span></li>
+            <li><a onclick="logout()">退出</a></li>
+        </ul>
+    </div>
 </div>
+
+<div class=BHY-body>
+    <!-- 这里放置body的内容 -->
+    <div class="body-box panel-body">
+        <div class="body-left ">
+            <ul class="nav nav-pills nav-stacked" style="font-size: 20px">
+                <li><a href="/BHY/html/BHY-findUserLimit.html">用户管理</a></li>
+                <li><a href="/BHY/html/BHY-findPetLimit.html">宠物管理</a></li>
+                <li><a href="/BHY/html/BHY-findServiceLimit.html">服务管理</a></li>
+                <li class="active"><a href="/BHY/html/BHY-findRecordLimit.html">销售管理</a></li>
+                <li><a href="/BHY/html/BHY-findStoreLimit.html">店铺管理</a></li>
+                <li><a href="/BHY/html/BHY-findCargoLimit.html">货物管理</a></li>
+                <li><a href="/BHY/html/BHY-findEmployeeLimit.html">员工管理</a></li>
+                <li><a href="/BHY/html/BHY-findClientLimit.html">顾客管理</a></li>
+            </ul>
+        </div>
+        <div class="body-main" style="margin-left: 5px">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="text-primary" style="font-size: 25px">更新销售信息</span>
+                    </h3>
+                </div>
+                <div class="panel-body">
+
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">订单id</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="r_id" readonly="readonly"
+                                       placeholder="请输入订单id">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">商品id</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="c_id" readonly="readonly"
+                                       placeholder="请输入商品id">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">顾客id</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="cl_id" readonly="readonly"
+                                       placeholder="请输入顾客id">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">数量</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="r_num"
+                                       placeholder="请输入数量">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">价格</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="r_price"
+                                       placeholder="请输入价格">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">出售时间</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" id="r_time"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">支付方式</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="r_pattern">
+                                    <option value="支付宝">支付宝</option>
+                                    <option value="微信支付">微信支付</option>
+                                    <option value="银行卡">银行卡</option>
+                                    <option value="现金支付">现金支付</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10" style=" padding: 0 180px">
+                                <button type="button" class="btn btn-primary" onclick="updateUser()">
+                                    <span class="glyphicon glyphicon-ok"
+                                          style="color: rgb(255, 255, 255); font-size: 15px; width: 150px;"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="BHY-footer" class="BHY-footer">
+    <div class="BHY-footer-copyright">
+        <p class="BHY-clearfix BHY-links">
+            <a href="javascript:;" target="_blank">关于我们</a>
+            <a href="javascript:;" target="_blank">法律声明</a>
+            <a href="javascript:;" target="_blank">服务条款</a>
+            <a href="javascript:;" target="_blank">联系方式</a>
+        <p style="font-family:arial;">地址：陕西省西安市长安区&nbsp;&nbsp;许可证B1-20190601&nbsp;&nbsp;COPYRIGHT&nbsp;&nbsp;©&nbsp;
+            2019-2029 uimaker &nbsp;版权所有&nbsp;ICP证：xx00000000</p>
+        <p style="font-family:arial;">许可证B1-20190601&nbsp;&nbsp;&nbsp;&nbsp;版权所有:不会养宠物舍</p>
+        </p>
+    </div>
+</div>
+
 <script>
     set(json);
+    setAdm()
 </script>
 </body>
 </html>
