@@ -16,6 +16,10 @@
 
         function set(item) {
             var jsons = jQuery.parseJSON(item);
+            // alert(JSON.stringify(jsons));
+            // alert("jsons.c_getDate = " + jsons.c_getDate );
+            // alert("jsons.c_producedDate = " + jsons.c_producedDate );
+            // alert("jsons.c_expirationDate = " + jsons.c_expirationDate );
 
             $("#c_id").val(jsons.c_id);
             $("#c_name").val(jsons.c_name);
@@ -23,7 +27,7 @@
             $("#d_value").val(jsons.d_value);
             $("#st_name").val(jsons.st_name);
             $("#c_getDate").val(jsons.c_getDate);
-            $("#c_produceDate").val(jsons.c_produceDate);
+            $("#c_producedDate").val(jsons.c_producedDate);
             $("#c_expirationDate").val(jsons.c_expirationDate);
 
             $("#updateButton").attr("onclick", "jumpWithCookie(" + item + ",'/BHY/html/BHY-updateCargo.html')")
@@ -146,7 +150,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">生产日期</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="c_produceDate" readonly="readonly">
+                            <input type="text" class="form-control" id="c_producedDate" readonly="readonly">
                         </div>
                     </div>
                     <div class="form-group">
@@ -155,7 +159,7 @@
                             <input type="text" class="form-control" id="c_expirationDate" readonly="readonly">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="display: none">
                         <div class="col-sm-offset-2 col-sm-10" style=" padding: 0 90px; float:left;">
                             <button type="button" id="updateButton" class="btn btn-primary" onclick="updateUser()"
                                     style="margin: 0 45px">

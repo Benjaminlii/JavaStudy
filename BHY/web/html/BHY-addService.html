@@ -28,7 +28,7 @@
                     var jsons = jQuery.parseJSON(result);
                     if (jsons.rtn == 1) {
                         alert("添加成功");
-                        $(location).attr('href','/BHY/BHY-findServiceLimit.html');
+                        $(location).attr('href','/BHY/html/BHY-findServiceLimit.html');
                     } else {
                         alert("添加失败！请重试");
                     }
@@ -96,7 +96,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">宠物id</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="mobile"
+                            <input type="text" class="form-control" id="p_id"
                                    placeholder="请输入宠物id">
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10" style=" padding: 0 180px">
-                            <button type="submit" class="btn btn-primary" onclick="addService()">
+                            <button type="button" class="btn btn-primary" onclick="addService()">
                                 <span class="glyphicon glyphicon-ok"
                                       style="color: rgb(255, 255, 255); font-size: 15px; width: 150px;"></span>
                             </button>
@@ -168,11 +168,9 @@
 <script>
     // set(json);
     setAdm()
-    getDicSelect("d_id", "货物类型", 0);
+    getDicSelect("d_id", "服务类别", 0);
     getStoreSelect("st_id", 0);
-    $("#c_getDate").val(getDate());
-    $("#c_producedDate").val(getDate());
-    $("#c_expirationDate").val(getDate());
+    $("#s_atime").val(getDate());
 </script>
 </body>
 </html>

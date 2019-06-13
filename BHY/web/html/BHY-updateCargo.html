@@ -28,9 +28,9 @@
             $("#c_getDate").val(jsons.c_getDate.toString().substring(0, 10));
         }
 
-        function updateUser() {
+        function updateStore() {
             $.ajax({
-                url: "/javaWeb/Main",
+                url: "/BHY/UpdateStoreServlet",
                 type: "post",
                 data: {
                     "c_id": $("#c_id").val(),
@@ -45,6 +45,7 @@
                     var json = jQuery.parseJSON(result);
                     if (json.rtn == 1) {
                         alert("修改成功");
+                        $(location).attr("href", "/BHY/html/BHY-findCargoLimit.html");
                     } else {
                         alert("请重试");
                     }
@@ -164,7 +165,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10" style=" padding: 0 180px">
-                                <button type="button" class="btn btn-primary" onclick="updateUser()">
+                                <button type="button" class="btn btn-primary" onclick="updateStore()">
                                     <span class="glyphicon glyphicon-ok" style="color: rgb(255, 255, 255); font-size: 15px; width: 150px;"></span>
                                 </button>
                             </div>

@@ -14,8 +14,6 @@
     <script type="text/javascript">
         var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
 
-        // delCookie("item");
-
         function set(item) {
             var jsons = jQuery.parseJSON(item);
 
@@ -129,13 +127,13 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">是否处理</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="is_isdispose" readonly="readonly">
+                            <input type="text" class="form-control" id="s_isdispose" readonly="readonly">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">是否完成</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="is_isfinish" readonly="readonly">
+                            <input type="text" class="form-control" id="s_isfinish" readonly="readonly">
                         </div>
                     </div>
                     <div class="form-group">

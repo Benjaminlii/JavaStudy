@@ -12,7 +12,6 @@
     <script type="text/javascript" src="../js/setSelect.js"></script>
     <script type="text/javascript">
         var json = JSON.stringify(jQuery.parseJSON(getCookie("item")));
-        delCookie("item");
 
         function set(item) {
             var jsons = jQuery.parseJSON(item);
@@ -45,7 +44,7 @@
             })
         }
 
-        function doDelete() {
+        function deleted() {
             if (window.confirm("是否删除")) {
                 deleteUser();
             }
@@ -136,7 +135,7 @@
                                       style="color: rgb(255, 255, 255); font-size: 15px; width: 75px;"></span>
                             </button>
                             <button type="button" class="btn btn-primary" onclick="deleted()"
-                                    style="margin: 0 45px">
+                                    style="margin: 0 45px; display:none;">
                                 <!-- 删除按钮 -->
                                 <span class="glyphicon glyphicon-remove"
                                       style="color: rgb(255, 255, 255); font-size: 15px; width: 75px;"></span>

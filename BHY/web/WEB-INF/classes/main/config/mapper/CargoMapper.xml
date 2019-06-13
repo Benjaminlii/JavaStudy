@@ -73,10 +73,10 @@
             d_id             = #{cargoCustom.d_id},
             st_id            = (select st_id
                                 from employee
-                                where u_id = #{cargoCustom.user.u_id}),
-            c_getdate        = #{cargoCustom.c_getdate},
-            c_produceddate   = #{cargoCustom.c_produceddate},
-            c_expirationdate = #{cargoCustom.c_expirationdate};
+                                where u_id = #{user.u_id}),
+            c_getdate        = #{cargoCustom.c_getDate},
+            c_produceddate   = #{cargoCustom.c_producedDate},
+            c_expirationdate = #{cargoCustom.c_expirationDate};
     </insert>
 
     <!-- #################### update #################### -->
@@ -87,6 +87,9 @@
         update cargo
         set c_num = c_num + #{c_num}
         where c_id = #{c_id};
+        <selectKey keyProperty="c_num" order="AFTER" resultType="java.lang.Integer">
+            select c_num from cargo where c_id = #{c_id};
+        </selectKey>
     </update>
 
     <!-- #################### delete #################### -->

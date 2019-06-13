@@ -47,6 +47,7 @@
                     var json = jQuery.parseJSON(result);
                     if (json.rtn == 1) {
                         alert("修改成功");
+                        $(location).attr("href", "/BHY/html/BHY-findServiceLimit.html");
                     } else {
                         alert("请重试");
                     }
@@ -201,7 +202,8 @@
 
 <script>
     set(json);
-    setAdm()
+    setAdm();
+    $("#s_atime").val(getDate());
 </script>
 </body>
 </html>

@@ -23,15 +23,16 @@
                     "r_price": $("#r_price").val(),
                     "r_pattern": $("#r_pattern").val(),
                     "r_time": $("#r_time").val()
-                },
-                success: function (result) {
+                },success: function (result) {
                     var jsons = jQuery.parseJSON(result);
                     if (jsons.rtn == 1) {
                         alert("添加成功");
-                        $(location).attr('href','/BHY/BHY-findRecordLimit.html');
+                        $(location).attr('href','/BHY/html/BHY-findRecordLimit.html');
                     } else {
                         alert("添加失败！请重试");
                     }
+                },error:function () {
+                    alert("error");
                 }
             })
         }
@@ -83,42 +84,41 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        <span class="text-primary" style="font-size: 25px">添加货物信息</span>
+                        <span class="text-primary" style="font-size: 25px">添加销售信息</span>
                     </h3>
                 </div>
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">顾客手机号</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="cl_name"
+                            <input type="text" class="form-control" id="mobile"
                                    placeholder="请输入手机号码">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="c_num" class="col-sm-2 control-label">宠物店</label>
+                    <div class="form-group" style="display: none">
+                        <label class="col-sm-2 control-label">宠物店</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="st_id"
-                                   placeholder="请输入宠物店">
+                            <select  class="form-control" id="st_id"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="c_num" class="col-sm-2 control-label">货物id</label>
+                        <label class="col-sm-2 control-label">货物id</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="c_id"
                                    placeholder="请输入货物id">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="c_num" class="col-sm-2 control-label">时间</label>
+                        <label class="col-sm-2 control-label">时间</label>
                         <div class="col-sm-10">
                             <input type="date" class="form-control" id="r_time"
                                    placeholder="请输入进货时间">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="c_num" class="col-sm-2 control-label">数量</label>
+                        <label class="col-sm-2 control-label">数量</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="c_num"
+                            <input type="text" class="form-control" id="r_num"
                                    placeholder="请输入货物数量">
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10" style=" padding: 0 180px">
-                            <button type="submit" class="btn btn-primary" onclick="addRecord()">
+                            <button type="button" class="btn btn-primary" onclick="addRecord()">
                                 <span class="glyphicon glyphicon-ok"
                                       style="color: rgb(255, 255, 255); font-size: 15px; width: 150px;"></span>
                             </button>
@@ -169,11 +169,8 @@
 <script>
     // set(json);
     setAdm()
-    getDicSelect("d_id", "货物类型", 0);
     getStoreSelect("st_id", 0);
-    $("#c_getDate").val(getDate());
-    $("#c_producedDate").val(getDate());
-    $("#c_expirationDate").val(getDate());
+    $("#r_time").val(getDate());
 </script>
 </body>
 </html>

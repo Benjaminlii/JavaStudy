@@ -47,9 +47,12 @@
                     var json = jQuery.parseJSON(result);
                     if (json.rtn == 1) {
                         alert("修改成功");
+                        $(location).attr("href", "/BHY/html/BHY-findRecordLimit.html");
                     } else {
                         alert("请重试");
                     }
+                },error:function () {
+                    alert("error");
                 }
             })
         }

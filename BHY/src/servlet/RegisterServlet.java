@@ -4,6 +4,7 @@ import entity.*;
 import net.sf.json.JSONObject;
 import org.apache.commons.beanutils.BeanUtils;
 import service.UserService;
+import util.DateStringUtil;
 
 import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
@@ -34,6 +35,7 @@ public class RegisterServlet extends javax.servlet.http.HttpServlet {
             //避免重复且强制设置为员工
             userCustom.setD_id(9);
             BeanUtils.populate(employeeCustom, request.getParameterMap());
+            employeeCustom.setE_time(DateStringUtil.stringToDate(request.getParameter("e_time")));
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

@@ -61,6 +61,7 @@ public class CargoService {
 
         try {
             rtn = cargoMapper.addCargo(cargoQueryVo);
+
             sqlSession.commit();
         } catch (Exception e) {
             e.printStackTrace();

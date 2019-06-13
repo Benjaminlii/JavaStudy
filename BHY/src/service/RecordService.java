@@ -64,7 +64,11 @@ public class RecordService {
             cargoCustom.setC_num(recordQueryVo.getRecordCustom().getR_num());
 //            CargoService.inAndOutCargo(cargoCustom);
             cargoMapper.inAndOutCargo(cargoCustom);
-            sqlSession.commit();
+            if(cargoCustom.getC_num() >= 0) {
+                sqlSession.commit();
+            }else{
+                rtn = false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -6,6 +6,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.DateConverter;
 import service.EmployeeService;
+import util.DateStringUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,6 +46,7 @@ public class UpdateEmployeeServlet extends HttpServlet {
         EmployeeCustom employeeCustom = new EmployeeCustom();
         try {
             BeanUtils.populate(employeeCustom,request.getParameterMap());
+            employeeCustom.setE_time(DateStringUtil.stringToDate(request.getParameter("e_time")));
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
