@@ -1,0 +1,43 @@
+<?testXml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        set方法配置
+        * 普通数据
+			<property name="" value="值">
+			等效
+			<property name="">
+				<value>值
+		* 引用数据
+			<property name="" ref="另一个bean">
+			等效
+			<property name="">
+				<ref bean="另一个bean"/>
+
+    -->
+    <bean id="personBeanSetter" class="testXml.setter.Person">
+        <!-- 两种设置基本数据类型值的方式 -->
+        <property name="name" value="Benjamin"/>
+        <property name="age">
+            <value>19</value>
+        </property>
+
+        <!-- 设置引用类型 -->
+        <property name="homeAddress" ref="homeAddress"/>
+        <property name="companyAddress">
+            <ref bean="companyAddress"/>
+        </property>
+    </bean>
+    <bean id="homeAddress" class="testXml.setter.Address">
+        <property name="addr" value="宝鸡"/>
+        <property name="tel" value="1234678"/>
+    </bean>
+    <bean id="companyAddress" class="testXml.setter.Address">
+        <property name="addr" value="上海"/>
+        <property name="tel" value="12312"/>
+    </bean>
+
+</beans>

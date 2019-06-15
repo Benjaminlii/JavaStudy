@@ -1,0 +1,25 @@
+<?testXml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        构造函数配置
+        <constructor-arg> 用于配置构造方法一个参数argument
+			方案一：
+                name ：参数的名称
+			方案二：
+                index ：参数的索引号，从0开始 。如果只有索引，匹配到了多个构造方法时，默认使用第一个。
+                type ：确定参数类型
+			填充值：
+                value：设置普通数据
+                ref：引用数据，一般是另一个bean id值
+    -->
+    <bean id="studentConstructor" class="testXml.constructor.Student">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="name" value="Benjamin"/>
+        <constructor-arg name="age" value="19"/>
+    </bean>
+
+</beans>

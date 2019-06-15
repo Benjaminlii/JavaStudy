@@ -1,0 +1,15 @@
+<?testXml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        Bean的生命周期
+        初始化和销毁
+        init-method为初始化函数
+        destroy-method为销毁函数
+    -->
+    <bean id="demoBeanInitDestroy" class="testLifeCycle.DemoImpl" init-method="myInit" destroy-method="myDestroy"/>
+
+</beans>

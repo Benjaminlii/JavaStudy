@@ -1,0 +1,18 @@
+<?testXml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--
+        <property> 用于进行属性的注入
+            name：该属性对应的外层bean的成员变量名
+            ref：该属性的bean id
+    -->
+    <bean id="dao" class="testDI.DaoImpl"/>
+    <bean id="service" class="testDI.ServiceImpl">
+        <property name="dao" ref="dao"/>
+    </bean>
+
+</beans>

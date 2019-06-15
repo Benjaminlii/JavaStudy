@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestData {
     @Test
     public void test1(){
-        String xmlPath = "applicationContext.xml";
+        String xmlPath = "testXml/collection/applicationContext.xml";
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
 
         Data data = applicationContext.getBean("dataBeanCollection", Data.class);

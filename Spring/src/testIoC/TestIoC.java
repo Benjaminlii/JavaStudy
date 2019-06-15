@@ -11,7 +11,7 @@ public class TestIoC {
      */
     public void test1(){
         // 获得容器
-        String xmlPath = "applicationContext.xml";
+        String xmlPath = "testIoC/applicationContext.xml";
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
 
         //获取实例对象

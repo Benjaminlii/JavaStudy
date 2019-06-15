@@ -21,7 +21,7 @@ public class TestFactory {
      * spring实例工厂
      */
     public void test2(){
-        String xmlPath = "applicationContext.xml";
+        String xmlPath = "testInject/factory/applicationContext.xml";
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
         Demo demo = applicationContext.getBean("demoBeanFactory", Demo.class);
         demo.demo();

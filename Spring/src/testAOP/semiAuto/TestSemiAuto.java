@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestSemiAuto {
     @Test
     public void test1(){
-        String xmlPath = "applicationContext.xml";
+        String xmlPath = "testAOP/semiAuto/applicationContext.xml";
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
 
         Service service = applicationContext.getBean("proxyService", Service.class);

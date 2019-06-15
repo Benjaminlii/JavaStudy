@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestConstructor {
     @Test
     public void test1(){
-        String xmlPath = "applicationContext.xml";
+        String xmlPath = "testXml/constructor/applicationContext.xml";
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
 
         Student student = applicationContext.getBean("studentConstructor", Student.class);

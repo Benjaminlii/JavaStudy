@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 public class TestLifeCycle {
     @Test
     public void test1(){
-        String xmlPath = "applicationContext.xml";
+        String xmlPath = "testLifeCycle/applicationContext.xml";
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
 
         Demo demo = applicationContext.getBean("demoBeanInitDestroy", DemoImpl.class);

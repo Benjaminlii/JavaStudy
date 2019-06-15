@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestWeb {
     @Test
     public void test1(){
-        String xmlPath = "applicationContext.xml";
+        String xmlPath = "testAnnotation/web/applicationContext.xml";
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
         Servlet servlet1 = applicationContext.getBean("servlet", Servlet.class);
         Servlet servlet2 = applicationContext.getBean("servlet", Servlet.class);

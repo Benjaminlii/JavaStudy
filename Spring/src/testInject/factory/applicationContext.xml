@@ -1,0 +1,17 @@
+<?testXml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        Spring实例工厂
+        先配置实例工厂的bean
+        在要生产的bean中设置实例工厂以及方法
+        factory-bean为实例工厂的bean id
+        factory-method为实例工厂中的相应方法
+    -->
+    <bean id="demoFactory" class="testInject.factory.MyBeanFactory"/>
+    <bean id="demoBeanFactory" factory-bean="demoFactory" factory-method="createDemoImpl"/>
+
+</beans>

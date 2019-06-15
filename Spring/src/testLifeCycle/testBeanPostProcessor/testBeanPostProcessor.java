@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class testBeanPostProcessor {
     @Test
     public void test1() {
-        String xmlPath = "applicationContext.xml";
+        String xmlPath = "testLifeCycle/testBeanPostProcessor/applicationContext.xml";
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
 
         Demo demo =  applicationContext.getBean("demoBeanPostProcessor", Demo.class);

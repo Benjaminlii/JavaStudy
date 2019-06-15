@@ -1,0 +1,36 @@
+<?testXml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/aop
+       					    http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--
+        spring实现aop
+    -->
+    <!--创建目标类 -->
+    <bean id="serviceSpring" class="testAOP.Auto.ServiceImpl"/>
+    <!-- 切面类 -->
+    <bean id="myAspectSpring" class="testAOP.Auto.MyAspect"/>
+    <!--
+        aop编程
+            1 导入命名空间
+            2 使用 <aop:config>进行配置
+                proxy-target-class="true" 声明时使用cglib代理
+                    <aop:pointcut> 切入点 ，从目标对象获得具体方法
+                    <aop:advisor> 特殊的切面，只有一个通知 和 一个切入点
+                advice-ref 通知引用
+                pointcut-ref 切入点引用
+            3 切入点表达式
+                execution(     *    testAOP.semiAuto. *.      *        (..))
+                选择方法   返回值任意       包      类名任意 方法名任意 参数任意
+    -->
+    <aop:config >
+        <aop:pointcut id="servicePointCut" expression="execution(* testAOP.Auto.*.*(..))"/>
+        <aop:advisor advice-ref="myAspectSpring" pointcut-ref="servicePointCut"/>
+    </aop:config>
+
+
+</beans>

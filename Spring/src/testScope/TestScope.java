@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestScope {
     @Test
     public void test1(){
-        String xmlPath = "applicationContext.xml";
+        String xmlPath = "testScope/applicationContext.xml";
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
         Demo demo1 = applicationContext.getBean("demoBeanScope", Demo.class);
         Demo demo2 = applicationContext.getBean("demoBeanScope", Demo.class);

@@ -1,0 +1,24 @@
+<?testXml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        spring实现半自动化的代理生成
+    -->
+    <!--创建目标类 -->
+    <bean id="service" class="testAOP.semiAuto.ServiceImpl"/>
+    <!-- 切面类 -->
+    <bean id="myAspect" class="testAOP.semiAuto.MyAspect"/>
+    <!-- 代理类 -->
+    <bean id="proxyService" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!-- 接口，若有多个接口，可使用子标签array -->
+        <property name="interfaces" value="testAOP.semiAuto.Service"/>
+        <!-- 目标对象，使用bean id -->
+        <property name="target" ref="service"/>
+        <!-- 切面类名称，因为是名称，所以是个字符串，用value -->
+        <property name="interceptorNames" value="myAspect"/>
+    </bean>
+
+</beans>

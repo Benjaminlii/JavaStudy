@@ -19,7 +19,7 @@ public class TestStaticFactory {
      * 使用Spring的完成静态工厂的使用
      */
     public void test2(){
-        String xmlPath = "applicationContext.xml";
+        String xmlPath = "testInject/staticFactory/applicationContext.xml";
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
 
         Demo demo = applicationContext.getBean("demoBeanStaticFactory", Demo.class);
