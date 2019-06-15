@@ -2,21 +2,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation=" http://www.springframework.org/schema/beans
                             http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context
+       					    http://www.springframework.org/schema/context/spring-context.xsd
                             http://www.springframework.org/schema/aop
        					    http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <!--创建目标类 -->
-    <bean id="serviceAspectJ" class="testAOP.aspectJ.ServiceImpl"/>
-    <!-- 切面类 -->
-    <bean id="myAspectAspectJ" class="testAOP.aspectJ.MyAspect"/>
-    <!-- AOP编程 -->
-    <aop:config>
-        <aop:aspect ref="myAspectAspectJ">
-            <aop:pointcut id="myPointCut" expression="execution(* testAOP.aspectJ.ServiceImpl.* (..))"/>
-            <aop:before method="before" pointcut-ref="myPointCut"/>
-        </aop:aspect>
-    </aop:config>
+    <!-- 扫描注解类 -->
+    <context:component-scan base-package="testAOP.aspectJ.annotation"/>
+
+    <!-- 确定AOP注解生效 -->
+    <aop:aspectj-autoproxy/>
 
 </beans>

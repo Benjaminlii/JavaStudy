@@ -1,4 +1,4 @@
-package testAOP.aspectJ;
+package testAOP.aspectJ.xml;
 
 public interface Service {
     public void doSomething1();

@@ -1,5 +1,6 @@
-package testAOP.aspectJ;
+package testAOP.aspectJ.annotation;
 
+@org.springframework.stereotype.Service("serviceAspectJAnnotation")
 public class ServiceImpl implements Service {
     @Override
     public void doSomething1() {
@@ -9,6 +10,7 @@ public class ServiceImpl implements Service {
     @Override
     public String doSomething2() {
         System.out.println("do something second!");
+//        int i = 1/0;
         return "rtn";
     }
 
