@@ -1,0 +1,57 @@
+<?testXml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/mvc
+                            http://www.springframework.org/schema/mvc/spring/spring-mvc.xsd
+                            http://www.springframework.org/schema/context
+                            http://www.springframework.org/schema/context/spring-context.xsd
+                            http://www.springframework.org/schema/tx
+                            http://www.springframework.org/schema/tx/spring-tx.xsd
+                            http://www.springframework.org/schema/aop
+                            http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 使用注解开发要扫描注解类 -->
+    <context:component-scan base-package="controller"/>
+
+
+    <!-- ==========配置Handler========== -->
+    <!--<bean id="FindStudentController" name="/FindStudents1.action" class="controller.FindStudentController"/>-->
+
+
+    <!-- ==========处理器映射器 多个映射器可以并存========== -->
+
+    <!-- BeanNameUrlHandlerMapping 将bean的name作为url进行查找，需要在配置Handler是设置name为需要的url -->
+    <!--<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>-->
+    <!-- SimpleUrlHandlerMapping 将bean的id和url进行绑定 -->
+    <!--<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->
+        <!--<property name="mappings">-->
+            <!--<props>-->
+                <!--&lt;!&ndash; 在这里通过bean的id和url进行绑定，这里一个bean可以有多个url &ndash;&gt;-->
+                <!--<prop key="/FindStudents2.action">FindStudentController</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!-- *注解映射器* -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+
+    <!-- ==========处理器适配器========== -->
+     <!--SimpleControllerHandlerAdapter 要求Controller实现Handler接口 -->
+    <!--<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>-->
+    <!-- *注解适配器* -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+
+    <!-- ==========视图解析器========== -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
+
+    <!--
+        使用mvc:annotation-driven可以代替注解方式的映射器和适配器的配置
+        并且默认加载很多参数绑定方法，如json转换解析
+    -->
+    <!--<mvc:annotation-driven/>-->
+</beans>
