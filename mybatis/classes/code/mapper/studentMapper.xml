@@ -20,7 +20,7 @@
      -->
     <select id="findStudentBySno" parameterType="java.lang.Integer" resultType="pojo.Student">
         select *
-        from test_mybatis.student
+        from test_mybatis.studentCustom
         where sno = #{id};
     </select>
 
@@ -32,7 +32,7 @@
      -->
     <select id="findStudentBySname" parameterType="java.lang.String" resultType="pojo.Student">
         select *
-        from test_mybatis.student
+        from test_mybatis.studentCustom
         where sname like '%${value}%';
     </select>
 
@@ -42,7 +42,7 @@
 
     <!-- 自增加主键 -->
     <insert id="insertStudent" parameterType="pojo.Student">
-        insert into test_mybatis.student (sname, sage, saddress) values (#{sname}, #{sage}, #{saddress});
+        insert into test_mybatis.studentCustom (sname, sage, saddress) values (#{sname}, #{sage}, #{saddress});
         <selectKey keyProperty="sno" order="AFTER" resultType="java.lang.Integer">
             select last_insert_id();
         </selectKey>
@@ -51,7 +51,7 @@
     <!--&lt;!&ndash; 非自增加主键 &ndash;&gt;-->
     <!--&lt;!&ndash; 这里相当于先填充studentPojo，所以再sql中要留下sno的位置 &ndash;&gt;-->
     <!--<insert id="addStudent" parameterType="pojo.Student">-->
-    <!--insert into test_mybatis.student (sno, sname, sage, saddress) values (#{sno}, #{sname}, #{sage}, #{saddress});-->
+    <!--insert into test_mybatis.studentCustom (sno, sname, sage, saddress) values (#{sno}, #{sname}, #{sage}, #{saddress});-->
     <!--<selectKey keyProperty="sno" order="BEFORE" resultType="java.lang.Integer">-->
     <!--select uuid();-->
     <!--</selectKey>-->
@@ -60,14 +60,14 @@
     <!-- 删除学生信息 -->
     <delete id="deleteStudentBySno" parameterType="java.lang.Integer">
         delete
-        from test_mybatis.student
+        from test_mybatis.studentCustom
         where sno = #{sno};
     </delete>
 
     <!-- 更新学生信息 -->
     <!-- 这里根据sno更新学生信息，需要传入有sno的Student对象，然后根据sno查询数据，根据其他属性的值进行修改 -->
     <update id="updateStudent" parameterType="pojo.Student">
-        update test_mybatis.student
+        update test_mybatis.studentCustom
         set sname    = #{sname},
             sage     = #{sage},
             saddress = #{saddress}
@@ -81,7 +81,7 @@
      -->
     <select id="findStudentList" parameterType="StudentQueryVo" resultType="StudentCustom">
         select *
-        from test_mybatis.student
+        from test_mybatis.studentCustom
         where sage = #{studentCustom.sage}
           and saddress = #{studentCustom.saddress};
     </select>
@@ -122,7 +122,7 @@
 
     <!-- 动态sql -->
     <select id="findStudentListDynamicSQL" parameterType="StudentQueryVo" resultType="StudentCustom">
-        select * from test_mybatis.student
+        select * from test_mybatis.studentCustom
         <where>
             <include refid="selectStudentWhere"/>
             <!-- 这里可能再调用其他的sql片段 -->
@@ -138,7 +138,7 @@
     <!-- resultMap输出映射 -->
     <select id="findStudentListResultMap" parameterType="StudentQueryVo" resultMap="toStudent">
         select sno sno_, sage sage_
-        from test_mybatis.student
+        from test_mybatis.studentCustom
         where sage > #{studentCustom.sage}
           and saddress = #{studentCustom.saddress};
     </select>
