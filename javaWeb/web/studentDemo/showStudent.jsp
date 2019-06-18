@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>show student</title>
+    <title>show studentCustom</title>
 </head>
 <body>
 <table border="1px" style="padding: 1px;margin: 0">

@@ -12,7 +12,7 @@
         type：类型的路径
         alias：别名
          -->
-        <!--<typeAlias type="pojo.Student" alias="student"/>-->
+        <!--<typeAlias type="pojo.Student" alias="studentCustom"/>-->
 
         <!-- 批量设置别名
         指定报名，mybatis会自动扫描包中的类，并设置别名为类名（首字母不区分大小写）
@@ -38,7 +38,7 @@
     <!-- 加载映射文件 -->
     <mappers>
         <!-- 原始方法加载xml -->
-        <mapper resource="config/sqlMap/student.xml" />
+        <mapper resource="config/sqlMap/studentCustom.xml" />
         <!-- 通过mapper接口加载单个 映射文件
         遵循一些规范：需要将mapper接口类名和mapper.xml映射文件名称保持一致，且在一个目录中
         上边规范的前提是：使用的是mapper代理方法
