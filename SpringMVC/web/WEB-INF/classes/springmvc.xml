@@ -55,7 +55,7 @@
     -->
     <mvc:annotation-driven conversion-service="conversionService"/>
 
-    <!-- 在Spring提供的转换器类中，中注入自定义的转换器 -->
+    <!--在Spring提供的转换器类中，中注入自定义的转换器-->
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <!-- 转换器 -->
         <property name="converters">
@@ -65,4 +65,16 @@
             </list>
         </property>
     </bean>
+
+    <!--
+        配置静态资源不能被拦截
+        location元素表示webapp目录下的static包下的所有文件；
+        mapping元素表示以/static开头的所有请求路径，如/static/a 或者/static/a/b；
+        该配置的作用是：DispatcherServlet不会拦截以/static开头的所有请求路径，并当作静态资源
+        交由Servlet处理。
+    -->
+    <mvc:resources location="/html/" mapping="/html/**"/>
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/image/" mapping="/image/**"/>
 </beans>

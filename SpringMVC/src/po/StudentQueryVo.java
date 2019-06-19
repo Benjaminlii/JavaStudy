@@ -2,17 +2,15 @@ package po;
 
 public class StudentQueryVo {
     //Student部分
-    private Student studentCustom;
+    private StudentCustom studentCustom;
 
-    public Student getStudentCustom() {
+    public StudentCustom getStudentCustom() {
         return studentCustom;
     }
 
-    public void setStudentCustom(Student studentCustom) {
+    public void setStudentCustom(StudentCustom studentCustom) {
         this.studentCustom = studentCustom;
     }
-
-    //toString
 
     @Override
     public String toString() {

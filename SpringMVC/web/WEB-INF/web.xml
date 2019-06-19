@@ -22,10 +22,10 @@
         <servlet-name>SpringMVC</servlet-name>
         <!--
             三种拦截方式
-            第一种：*。action。可以拦截以".action"结尾的地址
+            第一种：*.action。可以拦截以".action"结尾的地址
             第二种：/。可以拦截所有路径，但是会导致静态文件（js，css，png）被拦截后无法正常显示
             第三种：/*。这种方式是错误的。
         -->
-        <url-pattern>*.action</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>

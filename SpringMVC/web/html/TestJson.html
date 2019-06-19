@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TestJson</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script>
+        function doSomething() {
+            $.ajax({
+                url: "/SpringMVC/test/testJson",
+                type: "post",
+               contentType: "application/json;charset=utf-8",
+               // data:"sno="+1+"&sname="+'asdf'+"&sage="+3,
+              data: "{'sno': 1, 'sname': 'sdf', 'sage': 19}",
+               // data:{id:1,i:2},
+                dateType:"json",
+                //由于方法加了@RequestBody注解，所以要求，前台的content-type必须为application/json,所以前台传的参数必须为json格式的字符串
+                success: function (result) {
+                    alert(JSON.stringify(result))
+                }, error: function () {
+                    alert("error!!!")
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<button type="button" onclick="doSomething()">click!</button>
+</body>
+</html>
