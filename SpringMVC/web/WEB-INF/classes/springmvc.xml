@@ -47,24 +47,49 @@
     <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>-->
 
     <!-- ==========视图解析器========== -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
-
+   <!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
+-->
     <!--
         使用mvc:annotation-driven可以代替注解方式的映射器和适配器的配置
         并且默认加载很多参数绑定方法，如json转换解析
     -->
-    <mvc:annotation-driven conversion-service="conversionService"/>
+    <!--<mvc:annotation-driven conversion-service="conversionService">
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>-->
+    <mvc:annotation-driven >
+        <mvc:message-converters register-defaults="false">
+            <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.ResourceHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                        <!-- 如果注释下面这一样，相同的代码就会报415错误  -->
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
 
-    <!--在Spring提供的转换器类中，中注入自定义的转换器-->
-    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-        <!-- 转换器 -->
-        <property name="converters">
-            <list>
-                <!-- 日期类型转换 -->
-                <bean class="controller.converter.CustomDateConverter"/>
-            </list>
-        </property>
-    </bean>
+    </mvc:annotation-driven>
+
+    <!--在Spring提供的转换器类中，注入自定义的转换器-->
+    <!--<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
+        <!--&lt;!&ndash; 转换器 &ndash;&gt;-->
+        <!--<property name="converters">-->
+            <!--<list>-->
+                <!--&lt;!&ndash; 日期类型转换 &ndash;&gt;-->
+                <!--<bean class="controller.converter.CustomDateConverter"/>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
 
     <!--
         配置静态资源不能被拦截

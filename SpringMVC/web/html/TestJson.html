@@ -6,21 +6,64 @@
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
     <script>
         function doSomething() {
+            var data = {};
+            data["k1"] = "v1";
+            data["k2"] = "v2";
+            var data1 = [];
+            data1[0] = data;
+            data1[1] = data;
+
             $.ajax({
                 url: "/SpringMVC/test/testJson",
                 type: "post",
-               contentType: "application/json;charset=utf-8",
-               // data:"sno="+1+"&sname="+'asdf'+"&sage="+3,
-              data: "{'sno': 1, 'sname': 'sdf', 'sage': 19}",
-               // data:{id:1,i:2},
-                dateType:"json",
+                contentType: "application/json;charset=utf-8",
                 //由于方法加了@RequestBody注解，所以要求，前台的content-type必须为application/json,所以前台传的参数必须为json格式的字符串
+                //data: JSON.stringify({"studentCustom.sno": 1, "studentCustom.sname": "lt", "studentCustom.sage": 19}),
+                data: JSON.stringify(data1),
+                // data: JSON.stringify(data1),
+                dateType: "json",
                 success: function (result) {
                     alert(JSON.stringify(result))
                 }, error: function () {
                     alert("error!!!")
                 }
             })
+            // var infor = JSON.stringify({"k1":"v1", "k2":"v2"}) ;
+            // var url =  "/SpringMVC/test/testJson"
+            // const getJSON = function(url) {
+            //     const promise = new Promise(function(resolve, reject){
+            //         const handler = function() {
+            //             if (this.readyState !== 4) {
+            //                 return;
+            //             }
+            //             if (this.status === 200) {
+            //                 resolve(this.response);
+            //             } else {
+            //                 reject(new Error(this.statusText));
+            //             }
+            //         };
+            //         const client = new XMLHttpRequest();
+            //         client.open("POST", url);
+            //         client.onreadystatechange = handler;
+            //         client.responseType = "json";
+            //         client.setRequestHeader("Content-Type","application/json");
+            //         client.send(infor);
+            //
+            //     });
+            //
+            //     return promise;
+            // };
+            // getJSON(url).then(function(json) {
+            //     // if(json.flag == 2){
+            //     //     alert("账号密码错误！！");
+            //     // }
+            //     // else if(json.flag == 1){
+            //     //     window.location.href = "packNumber.html?number=" + json.num;
+            //     // }
+            //
+            // }, function(error) {
+            //     console.log("失败了");
+            // });
         }
     </script>
 </head>

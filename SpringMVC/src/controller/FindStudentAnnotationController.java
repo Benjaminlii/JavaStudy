@@ -1,5 +1,6 @@
 package controller;
 
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,7 @@ public class FindStudentAnnotationController {
             @RequestParam(value = "name", required = false, defaultValue = "Benjamin") String studentName,
             @RequestParam(value = "date", required = false) Date date,
             StudentQueryVo studentQueryVo) {
+
         //自定义参数绑定的测试，绑定Date类型的数据
         if (date != null) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
