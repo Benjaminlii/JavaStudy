@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.park.dao.CheckDao">
+
+	<!-- 添加账单信息 -->
+	<insert id="addCheck" parameterType="com.park.entity.Check"  >
+		insert into checkmoney (check_start_time,check_over_time,check_money ,phonenumber,space_location,parking_id,checkstatus )
+		values( #{check_start_time},#{check_over_time},#{check_money},#{phonenumber},#{space_location},#{parking_id},#{checkstatus}  )
+	</insert>
+	
+	<!-- 停车更新账单信息 -->
+	<update id="updateCheck1" parameterType="com.park.entity.Check">
+		update checkmoney set check_start_time=#{check_start_time},
+		checkstatus=#{checkstatus}
+		where parking_id=#{parking_id} and space_location=#{space_location} and phonenumber=#{phonenumber} 
+	</update>
+	
+	<!-- 取车更新账单信息 -->
+	<update id="updateCheck2" parameterType="com.park.entity.Check">
+		update checkmoney set check_over_time=#{check_over_time},checkstatus=#{checkstatus}
+		where parking_id=#{parking_id} and space_location=#{space_location} and phonenumber=#{phonenumber} 
+	</update>
+	
+	<!-- 查找账单信息 -->
+	<select id="findChecktatus" parameterType="com.park.entity.Check" resultType="String">
+		select checkstatus from checkmoney 
+		where parking_id=#{parking_id} and space_location=#{space_location} and phonenumber=#{phonenumber}
+	</select>
+	
+	<!-- 查看某个停车场所有账单 -->
+	<select id="findAllCheck" parameterType="com.park.entity.Check" resultType="com.park.entity.Check">
+	 select * from checkmoney where parking_id=#{parking_id} 
+	</select >
+	
+	<!-- 查看某个停车场某个状态的账单 -->
+	<select id="findParkingStatus" parameterType="com.park.entity.Check" resultType="com.park.entity.Check">
+	 select * from checkmoney where parking_id=#{parking_id} and checkstatus=#{checkstatus}
+	</select >
+	
+	<select id="getDate" parameterType="com.park.entity.Check" resultType="java.util.Date">
+		select check_start_time from checkmoney where phonenumber in(select phonenumber from user where license=#{license});
+	</select>
+	
+	
+
+	
+     
+    
+	 
+</mapper>

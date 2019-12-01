@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="BHY">
+    <output-path>$PROJECT_DIR$/out/artifacts/BHY</output-path>
+    <root id="archive" name="BHY.war">
+      <element id="dir-copy" path="$PROJECT_DIR$/BHY" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="BHY" />
+        </element>
+        <element id="directory" name="lib" />
+      </element>
+    </root>
+  </artifact>
+</component>
